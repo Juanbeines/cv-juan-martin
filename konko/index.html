@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín × Konko">
+<meta property="og:description" content="Juan Martín Beines Furcada — Solutions Engineer para Konko.ai y Kora.">
+<meta property="og:type" content="website">
+<title>Juan Martín × Konko</title>
+<meta name="description" content="Juan Martín Beines Furcada — postulación a Solutions Engineer en Konko.ai para mejorar Kora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: clínica cálida — hero oscuro con chat de Kora, después tarjetas blancas aireadas sobre gris claro, acentos dorados y botones píldora. */
+:root{
+  --page:#f8f9fb;
+  --card:#ffffff;
+  --cream:#fcf3d9;
+  --cream-2:#f8efcf;
+  --ink:#1a1613;
+  --ink-2:#464d59;
+  --muted:#747474;
+  --line:#ece8e0;
+  --gold:#ffd255;
+  --gold-2:#ebc465;
+  --gold-deep:#6b4e14;
+  --hero:#191613; --hero-fg:#ffffff;
+  --wa:#25d366; --wa-bg:#efe7dc; --bubble-me:#d9fdd3; --bubble-them:#ffffff; --bubble-ink:#1a1613;
+  --sans:"Inter","Inter Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#0f0d0b;--card:#181512;--cream:#2a2416;--cream-2:#231e13;--ink:#f5f1ea;--ink-2:#c9c3b8;--muted:#9c958b;--line:#2c2721;
+  --gold:#ffd255;--gold-2:#ebc465;--gold-deep:#f0d58a;--hero:#0a0908;--hero-fg:#ffffff;--wa-bg:#14110e;--bubble-me:#1f4a2e;--bubble-them:#24201b;--bubble-ink:#f5f1ea;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#0f0d0b;--card:#181512;--cream:#2a2416;--cream-2:#231e13;--ink:#f5f1ea;--ink-2:#c9c3b8;--muted:#9c958b;--line:#2c2721;
+  --gold:#ffd255;--gold-2:#ebc465;--gold-deep:#f0d58a;--hero:#0a0908;--hero-fg:#ffffff;--wa-bg:#14110e;--bubble-me:#1f4a2e;--bubble-them:#24201b;--bubble-ink:#f5f1ea;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{margin:0;letter-spacing:-.03em;text-wrap:balance;font-weight:600}
+h2{font-size:clamp(34px,4.6vw,56px);line-height:1.05}
+h3{font-size:22px;line-height:1.25;letter-spacing:-.02em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+/* announcement */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cream)}
+.ann{background:var(--cream);color:var(--ink);font-size:14px}
+.ann .wrap{display:flex;justify-content:center;align-items:center;gap:10px;padding-block:9px;text-align:center}
+.ann .k{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--gold);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:none}
+.ann a{font-weight:600;text-underline-offset:3px}
+
+/* nav (sobre el hero) */
+.top{background:var(--hero);color:var(--hero-fg)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:19px;letter-spacing:-.02em}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--gold);display:inline-flex;align-items:center;justify-content:center;color:#1a1613;font-style:normal;font-weight:700;font-size:13px}
+.links{display:flex;gap:30px;font-size:15px}
+.links a{text-decoration:none;opacity:.82}
+.links a:hover{opacity:1}
+
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;padding:6px 6px 6px 22px;font-weight:600;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .2s;height:50px}
+.pill .c{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .2s}
+.pill:hover .c{transform:translateX(3px)}
+.pill.dark{background:#1a1613;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.pill.dark .c{background:#fff;color:#1a1613}
+.pill.light{background:#fff;color:#1a1613}
+.pill.light .c{background:#1a1613;color:#fff}
+.pill.gold{background:var(--gold);color:#1a1613}
+.pill.gold .c{background:#1a1613;color:var(--gold)}
+.pill svg{width:16px;height:16px}
+.pill.sm{height:42px;font-size:14px;padding-left:18px}
+.pill.sm .c{width:30px;height:30px}
+
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 70% at 78% 40%,rgba(255,210,85,.16),transparent 70%),
+  radial-gradient(50% 60% at 10% 100%,rgba(235,196,101,.10),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;padding-block:56px 88px;align-items:center}
+.hero h1{font-size:clamp(46px,6.6vw,88px);line-height:1;letter-spacing:-.045em;font-weight:500}
+.hero h1 span{display:block}
+.hero h1 .g{color:var(--gold)}
+.hero .lede{margin-top:28px;max-width:54ch;font-size:18px;color:rgba(255,255,255,.78)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero .who{display:flex;align-items:center;gap:14px;margin-top:36px;font-size:14px;color:rgba(255,255,255,.7)}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1613;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+
+/* phone chat */
+.phone{background:var(--wa-bg);border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 8px #000,0 0 0 9px rgba(255,255,255,.12);max-width:400px;width:100%;justify-self:center;display:flex;flex-direction:column;height:560px}
+.phone .hd{background:#075e54;color:#fff;display:flex;align-items:center;gap:10px;padding:14px 16px}
+.phone .hd .avatar{width:36px;height:36px;font-size:13px}
+.phone .hd b{display:block;font-size:15px;font-weight:600;line-height:1.2}
+.phone .hd small{font-size:12px;opacity:.8}
+.msgs{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:14px 14px}
+.b{max-width:84%;padding:8px 11px 6px;border-radius:12px;font-size:14.5px;line-height:1.45;color:var(--bubble-ink);box-shadow:0 1px 1px rgba(0,0,0,.08);animation:pop .25s ease-out}
+.b.them{background:var(--bubble-them);align-self:flex-start;border-top-left-radius:4px}
+.b.me{background:var(--bubble-me);align-self:flex-end;border-top-right-radius:4px}
+.b time{display:block;text-align:right;font-size:10.5px;opacity:.55;margin-top:2px}
+.b ul{margin:4px 0 0;padding-left:18px}
+.typing{align-self:flex-start;background:var(--bubble-them);border-radius:12px;padding:10px 12px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dots 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dots{50%{transform:translateY(-3px);opacity:.4}}
+@keyframes pop{from{transform:translateY(6px);opacity:0}}
+.quick{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px 14px;background:var(--wa-bg);border-top:1px solid rgba(0,0,0,.06)}
+.quick button{font-family:inherit;font-size:13px;font-weight:500;border:1px solid var(--wa);color:var(--ink);background:var(--card);border-radius:999px;padding:6px 12px;cursor:pointer}
+.quick button:hover{background:var(--wa);color:#fff}
+.quick button[disabled]{opacity:.4;cursor:default;background:var(--card);color:var(--ink)}
+
+/* logos strip */
+.strip{background:var(--card);border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;align-items:center;gap:20px 40px;flex-wrap:wrap;justify-content:center;padding-block:26px}
+.strip span{font-weight:600;font-size:17px;color:var(--muted);letter-spacing:-.01em}
+.strip small{font-size:13px;color:var(--muted);width:100%;text-align:center}
+
+.sec{padding-block:104px}
+.head{max-width:760px;display:flex;flex-direction:column;gap:18px;margin-bottom:56px}
+.head p{font-size:18px;color:var(--ink-2);max-width:60ch}
+.center{margin-inline:auto;text-align:center;align-items:center}
+
+/* value cards */
+.vals{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.val{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:transform .25s,box-shadow .25s}
+.val:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(26,22,19,.08)}
+.val.wide{grid-column:span 3}
+.val.feature{background:var(--cream);border-color:var(--cream-2)}
+.val .ic{width:46px;height:46px;border-radius:14px;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--gold-deep)}
+.val.feature .ic{background:var(--card)}
+.val .ic svg{width:22px;height:22px}
+.val .k{font-size:13px;font-weight:600;color:var(--gold-deep)}
+.val h3{font-size:24px}
+.val p{color:var(--muted);font-size:16px;line-height:1.6}
+.val .proof{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-2)}
+.val .proof b{color:var(--ink)}
+
+/* case study */
+.case{background:var(--hero);color:#fff;border-radius:32px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.case .l{padding:52px;display:flex;flex-direction:column;gap:20px}
+.case .l p{color:rgba(255,255,255,.75)}
+.case .eyebrow{color:var(--gold)}
+.case h2{font-size:clamp(30px,3.4vw,44px)}
+.case .r{padding:40px;background:rgba(255,255,255,.04);border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:12px;min-width:0}
+.step{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;padding:14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:background .3s,border-color .3s}
+.step.on{background:rgba(255,210,85,.10);border-color:rgba(255,210,85,.45)}
+.step .n{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--gold)}
+.step b{display:block;font-weight:600}
+.step small{color:rgba(255,255,255,.65);font-size:14px}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+.nums div{background:rgba(255,255,255,.06);border-radius:16px;padding:16px}
+.nums b{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.1}
+.nums small{font-size:13px;color:rgba(255,255,255,.65)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85)}
+.tag.l{background:var(--cream);color:var(--gold-deep)}
+
+/* timeline */
+.tl{display:flex;flex-direction:column;gap:16px}
+.job{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px 30px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.job .co{font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.job .role{color:var(--gold-deep);font-weight:500;font-size:15px;margin-top:4px}
+.job ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.job li{padding-left:22px;position:relative;color:var(--ink-2);font-size:15.5px}
+.job li::before{content:"";position:absolute;left:2px;top:.55em;width:10px;height:10px;border-radius:50%;border:2px solid var(--gold-2)}
+.job .tags{margin-top:16px}
+.job.now{border-color:var(--gold-2);box-shadow:0 0 0 4px var(--cream)}
+
+/* marquee */
+.marq{overflow:hidden;padding-block:8px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marq .t{display:inline-flex;gap:12px;white-space:nowrap;animation:mq 40s linear infinite}
+.marq.rev .t{animation-direction:reverse}
+.marq span{padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:500;font-size:15px}
+.marq span.y{background:var(--cream);border-color:var(--cream-2)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ph{border-radius:24px;padding:30px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0}
+.ph .d{font-size:44px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.ph .d small{font-size:16px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:6px}
+.ph ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ph li{padding-left:24px;position:relative;font-size:15.5px;color:var(--ink-2)}
+.ph li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold-deep);font-weight:700}
+.ph.mid{background:var(--cream);border-color:var(--cream-2)}
+.bar3{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar3 i{display:block;height:100%;background:var(--gold-2);border-radius:99px}
+
+/* creds */
+.creds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px}
+.box h3{margin-bottom:12px}
+.ln{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.ln:last-child{border-bottom:0}
+.ln span:last-child{color:var(--muted);text-align:right}
+
+/* cta */
+.cta{background:var(--hero);color:#fff;border-radius:32px;padding:64px 52px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,85,.25),transparent 70%)}
+.cta h2{color:#fff}
+.cta p{color:rgba(255,255,255,.75);margin-top:16px;font-size:18px}
+.contact{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.ci{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px 12px 12px 18px;min-width:0}
+.ci small{display:block;font-size:12px;color:rgba(255,255,255,.6)}
+.ci b{font-weight:500;overflow-wrap:anywhere;user-select:all}
+.ci button,.ci a.go{flex:none;font-family:inherit;font-size:13px;font-weight:600;border:0;border-radius:999px;padding:8px 14px;background:var(--gold);color:#1a1613;cursor:pointer;text-decoration:none}
+footer{padding-block:40px;text-align:center;color:var(--muted);font-size:14px}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:#1a1613;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500;transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1000px){
+  .hero .wrap,.case,.cta{grid-template-columns:minmax(0,1fr)}
+  .case .r{border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .vals{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .val,.val.wide{grid-column:span 1}
+  .val.feature{grid-column:1/-1}
+  .plan{grid-template-columns:minmax(0,1fr)}
+  .links{display:none}
+}
+@media (max-width:640px){
+  .sec{padding-block:72px}
+  .vals,.creds{grid-template-columns:minmax(0,1fr)}
+  .job{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px}
+  .case .l,.case .r,.cta{padding:28px}
+  .nums{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .phone{height:520px}
+  .nav .pill .t{display:none}
+  .nav .pill{padding-left:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="ann"><div class="wrap"><span class="k">K</span><span>Juan Martín se postula como <b>Solutions Engineer</b> para hacer crecer a Kora.</span><a href="#kora">Ver más →</a></div></div>
+
+<div class="top">
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="#inicio" aria-label="Inicio"><i>JM</i>juanmartín<span style="opacity:.55">.cv</span></a>
+      <nav class="links" aria-label="Secciones">
+        <a href="#kora">Para Kora</a><a href="#hoy">Hoy</a><a href="#experiencia">Experiencia</a><a href="#plan">Plan de ataque</a>
+      </nav>
+      <a class="pill sm light" href="#contacto"><span class="t">Agendar charla</span><span class="c"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </header>
+  </div>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <h1><span>Más citas</span><span>Mejor Kora</span><span class="g">Menos carga operativa</span></h1>
+        <p class="lede">Soy Juan Martín Beines Furcada. Siete años del lado del cliente como Solutions Engineer y arquitecto (DevRev, partner de AWS, MicroStrategy). En 2025 fui el #1 SE del mercado US Commercial de DevRev, y hoy diseño agentes de IA para clientes enterprise en Estados Unidos. Mi especialidad es sentarme con el cliente, entender su proceso y convertirlo en una arquitectura agéntica. Eso es lo que quiero hacer con Kora.</p>
+        <div class="ctas">
+          <a class="pill dark" href="#contacto"><span class="t">Agendar charla</span><span class="c"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+          <a class="pill light" href="#kora"><span class="t">Ver qué traigo</span><span class="c"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+        </div>
+        <div class="who"><span class="avatar">JM</span><span>Buenos Aires · Español nativo, inglés bilingüe · Disponible ya</span></div>
+      </div>
+
+      <div class="phone" aria-label="Chat de ejemplo con Juan Martín">
+        <div class="hd"><span class="avatar">JM</span><div><b>Juan Martín</b><small>en línea · responde al toque</small></div></div>
+        <div class="msgs" id="msgs" aria-live="polite">
+          <div class="b them">¡Hola, soy Juan Martín! 👋 ¿Qué querés saber sobre mi postulación a Konko?<time>09:00</time></div>
+          <div class="b me">¿Ya construiste un agente como Kora?<time>09:01</time></div>
+          <div class="b them">Sí, y con código propio. Construí un agente en producción que entiende pedidos libres en español, pregunta lo que falta y ejecuta: ruteo entre modelos, herramientas propias e integración con WhatsApp Cloud API. Hoy diseño agentes así para empresas en EE.UU. 🚀<time>09:01</time></div>
+        </div>
+        <div class="quick" id="quick">
+          <button type="button" data-q="0">¿Qué harías con Kora?</button>
+          <button type="button" data-q="1">¿Trabajás con clientes?</button>
+          <button type="button" data-q="2">¿Por qué Konko?</button>
+          <button type="button" data-q="3">¿Cómo te contacto?</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <small>Empresas donde trabajé y construí</small>
+    <span>DevRev</span><span>BGH Tech Partner · AWS</span><span>MicroStrategy</span><span>Clientes enterprise · EE.UU.</span><span>ITBA × MIT $100K</span>
+  </div>
+</div>
+
+<main>
+<section id="kora">
+  <div class="wrap sec">
+    <div class="head">
+      <span class="eyebrow">Lo que traigo para Kora</span>
+      <h2>Las mismas cinco promesas de Kora, del lado de quien las implementa.</h2>
+      <p>Kora promete más citas, mejor atención, menos caos, visibilidad y salir en días. Así aportaría a cada una como Solutions Engineer.</p>
+    </div>
+    <div class="vals">
+      <article class="val feature wide">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8"/></svg></span>
+        <span class="k">Más mensajes que terminan en cita</span>
+        <h3>Diseño conversacional y prompts que se miden</h3>
+        <p>Reviso conversaciones reales, encuentro dónde se cae el paciente y ajusto prompts, flujos y seguimientos. Cada cambio se prueba contra casos reales antes de salir.</p>
+        <p class="proof"><b>Prueba:</b> construí un agente que rutea entre un modelo rápido y uno potente, pide el contexto que falta y tiene fallback entre proveedores.</p>
+      </article>
+      <article class="val wide">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
+        <span class="k">Atención que fideliza</span>
+        <h3>Tono, seguridad y escalamiento correcto</h3>
+        <p>En salud lo sensible no se improvisa. Definiría con cada clínica qué casos escala Kora, cómo y a quién, y armaría pruebas para evitar alucinaciones.</p>
+        <p class="proof"><b>Prueba:</b> diseñé gobierno y calidad de datos para bancos y sector público en AWS.</p>
+      </article>
+      <article class="val">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l3-7 4 14 3-7h2"/></svg></span>
+        <span class="k">Menos caos operativo</span>
+        <h3>Integraciones con la agenda y los sistemas de la clínica</h3>
+        <p>APIs, webhooks y automatizaciones para que la cita quede agendada de verdad, no solo conversada.</p>
+        <p class="proof"><b>Prueba:</b> integré WhatsApp Cloud API, Meta, MercadoPago y OAuth en un producto en producción.</p>
+      </article>
+      <article class="val">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span>
+        <span class="k">Visibilidad y control</span>
+        <h3>Datos de intención, motivos y canal</h3>
+        <p>Mi base es data: pipelines, modelos y tableros. Puedo ayudar a que cada clínica vea qué genera citas y qué las frena.</p>
+        <p class="proof"><b>Prueba:</b> 7+ años en arquitectura de datos, Spark, Redshift y BI.</p>
+      </article>
+      <article class="val">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7"/></svg></span>
+        <span class="k">Lista en días</span>
+        <h3>Onboarding que no se traba</h3>
+        <p>Discovery, configuración, demo y salida a producción con la clínica al lado. Y si hay que ir a la clínica, voy.</p>
+        <p class="proof"><b>Prueba:</b> #1 SE de US Commercial en DevRev (2025) y líder del equipo de SE en Argentina.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="hoy">
+  <div class="wrap" style="padding-bottom:104px">
+    <div class="case">
+      <div class="l">
+        <span class="eyebrow">Lo que hago hoy</span>
+        <h2>Bajo procesos de negocio a arquitecturas agénticas.</h2>
+        <p>Diseño agentes de IA para clientes enterprise en Estados Unidos. Mi lugar favorito es la oficina del cliente: me siento con quienes hacen el trabajo, entiendo cada paso y lo convierto en un agente que lo resuelve. Viajo cuando hace falta, y me encanta.</p>
+        <p>Y no me quedo en el diagrama: construí y puse en producción un agente conversacional con código propio, del frontend a las integraciones.</p>
+        <div class="nums">
+          <div><b>#1 SE</b><small>US Commercial · DevRev 2025</small></div>
+          <div><b>7+ años</b><small>con clientes enterprise</small></div>
+          <div><b>7</b><small>ingenieros liderados</small></div>
+        </div>
+        <div class="tags">
+          <span class="tag">Next.js · React · TypeScript</span><span class="tag">Node.js</span><span class="tag">Python · Flask</span><span class="tag">Claude · Gemini</span><span class="tag">Postgres · Redis · Celery</span><span class="tag">AWS</span><span class="tag">WhatsApp Cloud API</span>
+        </div>
+      </div>
+      <div class="r" id="flow">
+        <span class="eyebrow">Cómo responde un agente que construí</span>
+        <div class="step on"><span class="n">01</span><div><b>Llega el mensaje</b><small>Un modelo rápido entiende la intención y decide si escalar.</small></div></div>
+        <div class="step"><span class="n">02</span><div><b>Razona y pregunta</b><small>Arma un plan y pide solo el dato que falta.</small></div></div>
+        <div class="step"><span class="n">03</span><div><b>Usa herramientas</b><small>Llama a motores internos y APIs externas.</small></div></div>
+        <div class="step"><span class="n">04</span><div><b>Ejecuta y avisa</b><small>Actúa y notifica por WhatsApp, mail o la app.</small></div></div>
+        <div class="step"><span class="n">05</span><div><b>Mide y mejora</b><small>Logs, QA y reportes alimentan la próxima versión.</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia" style="background:var(--card);border-block:1px solid var(--line)">
+  <div class="wrap sec">
+    <div class="head">
+      <span class="eyebrow">Experiencia</span>
+      <h2>Del discovery con el cliente a producción, varias veces.</h2>
+    </div>
+    <div class="tl">
+      <article class="job now">
+        <div class="when">2026 — hoy</div>
+        <div>
+          <div class="co">Arquitecto de Agentes de IA</div><div class="role">Clientes enterprise en Estados Unidos</div>
+          <ul>
+            <li>Diseño y despliego agentes de IA que toman trabajo operativo de equipos enterprise en EE.UU.</li>
+            <li>Discovery en la operación del cliente: convierto su proceso de negocio en una arquitectura agéntica</li>
+            <li>Prompts, herramientas, reglas de escalamiento e integraciones, hasta producción</li>
+          </ul>
+          <div class="tags"><span class="tag l">Agentes IA</span><span class="tag l">Enterprise</span><span class="tag l">EE.UU.</span></div>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Oct 2024 — 2026</div>
+        <div>
+          <div class="co">DevRev</div><div class="role">Solutions Engineer → Team Lead SE Argentina</div>
+          <ul>
+            <li><b>#1 Solutions Engineer del mercado US Commercial en 2025</b> en una empresa de IA agéntica</li>
+            <li>Promovido a liderar el equipo de Solutions Engineering en Argentina: estrategia de preventa, demos técnicas y arquitectura de soluciones</li>
+            <li>Diseñé casos de uso con IA para automatizar el triage de soporte, analítica de producto y capas de consumo de datos</li>
+            <li>Asesor técnico de clientes enterprise; mentoría y seguimiento de entregas en varias cuentas a la vez</li>
+          </ul>
+          <div class="tags"><span class="tag l">#1 SE US 2025</span><span class="tag l">IA agéntica</span><span class="tag l">Liderazgo</span></div>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">2021 — 2024</div>
+        <div>
+          <div class="co">BGH Tech Partner</div><div class="role">Sr Cloud Pre-Sales Engineer · AWS Solutions Architect · Data Analytics Manager</div>
+          <ul>
+            <li>Asesor de C-level y VPs en banca, retail, logística, telcos y sector público</li>
+            <li>Diseñé y desplegué soluciones de datos end-to-end en AWS: ETL serverless, data lakes, pipelines de ML y warehouses (Spark, Glue, Redshift, Step Functions)</li>
+            <li>Formé y lideré un equipo de 7 ingenieros y arquitectos; 3 AWS Competencies logradas</li>
+          </ul>
+          <div class="tags"><span class="tag l">AWS</span><span class="tag l">Data</span><span class="tag l">Equipo de 7</span></div>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">2019 — 2021</div>
+        <div>
+          <div class="co">MicroStrategy</div><div class="role">BI Pre-Sales Engineer · Associate Consultant</div>
+          <ul>
+            <li>POCs, demos técnicas y consultoría para clientes enterprise</li>
+            <li>Modernización de data warehouses y despliegues de BI: modelado, SQL y ETL</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">2014 — 2021</div>
+        <div>
+          <div class="co">ITBA · BB Productions</div><div class="role">Back Office Manager MIT $100K LatAm · CEO y cofundador</div>
+          <ul>
+            <li>Gestioné la competencia de emprendimiento más importante de LatAm junto al MIT, con un equipo de 4 analistas</li>
+            <li>Fundé mi primera empresa a los 17: clientes, P&amp;L, proveedores y equipo</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Habilidades">
+  <div style="padding-block:72px 32px">
+    <div class="wrap"><div class="head center" style="margin-bottom:32px"><span class="eyebrow">Diseñado para tu stack</span><h2 style="font-size:clamp(28px,3.4vw,40px)">Me adapto a cada clínica y a cada sistema</h2></div></div>
+    <div class="marq"><div class="t">
+      <span class="y">Agentes conversacionales</span><span>Prompt engineering</span><span>Evaluaciones y QA</span><span class="y">WhatsApp Cloud API</span><span>Integraciones y webhooks</span><span>Python</span><span>TypeScript</span><span class="y">React · Next.js</span><span>SQL</span><span>Postgres</span><span>AWS</span>
+      <span class="y">Agentes conversacionales</span><span>Prompt engineering</span><span>Evaluaciones y QA</span><span class="y">WhatsApp Cloud API</span><span>Integraciones y webhooks</span><span>Python</span><span>TypeScript</span><span class="y">React · Next.js</span><span>SQL</span><span>Postgres</span><span>AWS</span>
+    </div></div>
+    <div class="marq rev"><div class="t">
+      <span>Discovery con clientes</span><span class="y">Demos y POCs</span><span>Onboarding</span><span>Arquitectura de soluciones</span><span class="y">Analítica y tableros</span><span>Spark · ETL</span><span>Gobierno de datos</span><span class="y">Liderazgo de equipos</span><span>Documentación técnica</span>
+      <span>Discovery con clientes</span><span class="y">Demos y POCs</span><span>Onboarding</span><span>Arquitectura de soluciones</span><span class="y">Analítica y tableros</span><span>Spark · ETL</span><span>Gobierno de datos</span><span class="y">Liderazgo de equipos</span><span>Documentación técnica</span>
+    </div></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap sec">
+    <div class="head">
+      <span class="eyebrow">Plan de ataque</span>
+      <h2>En dos semanas ya estoy en una clínica mejorando a Kora.</h2>
+      <p>No necesito un trimestre para arrancar. Así lo encararía.</p>
+    </div>
+    <div class="plan">
+      <div class="ph">
+        <div class="d">2<small>semanas</small></div>
+        <div class="bar3"><i style="width:33%"></i></div>
+        <h3>Ramp-up y a la cancha</h3>
+        <ul>
+          <li>Leer cientos de conversaciones reales de Kora por especialidad</li>
+          <li>Visitar clínicas y sentarme con recepción a ver el día a día</li>
+          <li>Primer cambio en producción con un cliente real</li>
+        </ul>
+      </div>
+      <div class="ph mid">
+        <div class="d">30<small>días</small></div>
+        <div class="bar3"><i style="width:66%"></i></div>
+        <h3>Mejorar con datos</h3>
+        <ul>
+          <li>Armar un set de pruebas con casos sensibles y de agenda</li>
+          <li>Iterar prompts y flujos con métricas antes y después</li>
+          <li>Documentar playbooks de implementación por tipo de clínica</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <div class="d">60<small>días</small></div>
+        <div class="bar3"><i style="width:100%"></i></div>
+        <h3>Escalar</h3>
+        <ul>
+          <li>Reducir el tiempo de salida a producción de una clínica nueva</li>
+          <li>Tablero de intención, motivos y conversión por canal</li>
+          <li>Feedback de clientes priorizado para producto</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="padding-bottom:104px">
+    <div class="creds">
+      <div class="box">
+        <h3>Certificaciones</h3>
+        <div class="ln"><span>AWS Solutions Architect</span><span>AWS</span></div>
+        <div class="ln"><span>AWS Database Specialty</span><span>AWS</span></div>
+        <div class="ln"><span>AWS Well-Architected Review Consultant</span><span>AWS</span></div>
+        <div class="ln"><span>AWS Cloud Practitioner</span><span>AWS</span></div>
+        <div class="ln"><span>Generative AI Professional</span><span>Blockchain Council</span></div>
+        <div class="ln"><span>MicroStrategy Architect</span><span>MicroStrategy</span></div>
+      </div>
+      <div class="box">
+        <h3>Formación e idiomas</h3>
+        <div class="ln"><span>Lic. en Sistemas y Administración, ITBA</span><span>2016–2021 · Honores</span></div>
+        <div class="ln"><span>IGCSE (Cambridge) · IB, Northlands</span><span>Alumno más distinguido</span></div>
+        <div class="ln"><span>Español</span><span>Nativo</span></div>
+        <div class="ln"><span>Inglés</span><span>Bilingüe</span></div>
+        <div class="ln"><span>Francés</span><span>DELF A2</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap" style="padding-bottom:40px">
+    <div class="cta">
+      <div style="position:relative;z-index:1">
+        <span class="eyebrow" style="color:var(--gold)">Hablemos</span>
+        <h2 style="margin-top:14px">Quiero ayudar a que ninguna clínica pierda un paciente por no responder.</h2>
+        <p>Disponible para empezar ya, con valija lista para visitar clientes. Te respondo en el día.</p>
+      </div>
+      <div class="contact">
+        <div class="ci"><div><small>Email</small><b id="mail">jbeinesfurcada@gmail.com</b></div><button type="button" data-copy="jbeinesfurcada@gmail.com">Copiar</button></div>
+        <div class="ci"><div><small>WhatsApp</small><b>+54 9 11 6433-6286</b></div><button type="button" data-copy="+5491164336286">Copiar</button></div>
+        <div class="ci"><div><small>LinkedIn</small><b>Juan Martín Beines Furcada</b></div><a class="go" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">Abrir</a></div>
+      </div>
+    </div>
+  </div>
+  <footer>Juan Martín Beines Furcada · Buenos Aires · 2026 · Hecho para Konko.ai</footer>
+</section>
+</main>
+<div class="toast" id="toast" role="status">Copiado</div>
+
+<script>
+// chat
+(function(){
+  const msgs=document.getElementById('msgs'), quick=document.getElementById('quick');
+  const answers=[
+    {q:'¿Qué harías con Kora?',a:'En 2 semanas ya estoy en una clínica. Tres cosas al principio:<ul><li>leer conversaciones reales y encontrar dónde se pierden citas</li><li>armar pruebas con casos sensibles para evitar alucinaciones</li><li>acelerar el onboarding de clínicas nuevas</li></ul>Más detalle en el plan de ataque 👇'},
+    {q:'¿Trabajás con clientes?',a:'Es lo que más hice. 7+ años en preventa y soluciones: asesoré a C-level de bancos, retail y sector público en BGH, y en DevRev fui el #1 SE de US Commercial en 2025. Y me encanta ir a la oficina del cliente a entender su operación. Y si hace falta me subo a un avión: lo que más me gusta es ir a la oficina del cliente y entender su operación ahí mismo.'},
+    {q:'¿Por qué Konko?',a:'Porque Kora resuelve un problema real que vi de cerca: clínicas que pierden pacientes por no contestar a tiempo. Y porque combina lo que mejor sé hacer: agentes, datos y estar al lado del cliente. En Latam y en español.'},
+    {q:'¿Cómo te contacto?',a:'📧 jbeinesfurcada@gmail.com<br>📱 +54 9 11 6433-6286<br>Estoy disponible para empezar ya. ¡Escribime!'}
+  ];
+  const now=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+  const add=(cls,html)=>{const b=document.createElement('div');b.className='b '+cls;b.innerHTML=html+'<time>'+now()+'</time>';msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight};
+  let busy=false;
+  quick.addEventListener('click',e=>{
+    const btn=e.target.closest('button'); if(!btn||busy||btn.disabled) return;
+    busy=true; btn.disabled=true; const it=answers[+btn.dataset.q];
+    add('me',it.q);
+    const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';
+    setTimeout(()=>{msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight},250);
+    setTimeout(()=>{t.remove();add('them',it.a);busy=false},1300);
+  });
+})();
+// flow steps highlight
+(function(){
+  const s=[...document.querySelectorAll('#flow .step')]; if(!s.length||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i=0; setInterval(()=>{s.forEach(x=>x.classList.remove('on'));i=(i+1)%s.length;s[i].classList.add('on')},1800);
+})();
+// copy buttons
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+  const t=document.getElementById('toast');
+  const ok=(m)=>{t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
+  try{navigator.clipboard.writeText(b.dataset.copy).then(()=>ok('Copiado'),()=>ok('Seleccioná el texto y copiá'))}catch(_){ok('Seleccioná el texto y copiá')}
+}));
+</script>
+
+</body>
+</html>

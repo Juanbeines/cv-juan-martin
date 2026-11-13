@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín × HappyRobot">
+<meta property="og:description" content="Juan Martín Beines Furcada — Forward Deployed Engineer application for HappyRobot.">
+<meta property="og:type" content="website">
+<title>Juan Martín × HappyRobot</title>
+<meta name="description" content="Juan Martín Beines Furcada — Forward Deployed Engineer application for HappyRobot, Buenos Aires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineering grid — hairline cells, mono labels, one big light-weight headline per section; black squares for actions. */
+:root{
+  --canvas:#f6f5f2;      /* hull white, slightly warm */
+  --surface:#ffffff;
+  --cell:#ecebe7;
+  --ink:#070707;         /* obsidian */
+  --ink-2:#2e2e2e;       /* carbon */
+  --muted:#736f6a;       /* concrete */
+  --stone:#b8aea4;
+  --line:#dcd9d3;
+  --rust:#b06a38;        /* rare accent */
+  --bar:#070707; --bar-fg:#f2f0ea;
+  --btn:#070707; --btn-fg:#fdfcf4;
+  --display:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --canvas:#0b0a09;--surface:#12100e;--cell:#181614;--ink:#f4f1ea;--ink-2:#d6d0c6;--muted:#9c9288;--stone:#7e766b;
+  --line:#2a2724;--rust:#d59566;--bar:#f2f0ea;--bar-fg:#070707;--btn:#fdfcf4;--btn-fg:#070707;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --canvas:#0b0a09;--surface:#12100e;--cell:#181614;--ink:#f4f1ea;--ink-2:#d6d0c6;--muted:#9c9288;--stone:#7e766b;
+  --line:#2a2724;--rust:#d59566;--bar:#f2f0ea;--bar-fg:#070707;--btn:#fdfcf4;--btn-fg:#070707;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--ink);color:var(--canvas)}
+.wrap{max-width:1360px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.035em;margin:0;text-wrap:balance}
+h2{font-size:clamp(36px,5.2vw,72px);line-height:1.02}
+h3{font-size:22px;letter-spacing:-.02em;line-height:1.2}
+p{margin:0}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+
+/* announcement bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+.bar{background:var(--bar);color:var(--bar-fg);overflow:hidden;white-space:nowrap}
+.bar .track{display:inline-flex;gap:56px;padding:9px 0;animation:marquee 38s linear infinite}
+.bar span{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--canvas) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark svg{width:26px;height:26px}
+.mark b{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.02em}
+.links{display:flex;gap:28px}
+.links a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink-2)}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:stretch;background:var(--btn);color:var(--btn-fg);text-decoration:none;border:0;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;height:40px;transition:transform .15s}
+.btn .t{display:flex;align-items:center;padding:0 16px}
+.btn .i{display:flex;align-items:center;justify-content:center;width:40px;border-left:1px solid color-mix(in srgb,var(--btn-fg) 25%,transparent)}
+.btn .i svg{width:14px;height:14px;transition:transform .2s}
+.btn:hover .i svg{transform:translate(2px,-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.ghost .i{border-left-color:var(--line)}
+
+/* hero */
+.hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;padding-block:72px 64px}
+.hero h1{font-size:clamp(48px,7.4vw,112px);line-height:.95;font-weight:300;letter-spacing:-.05em}
+.hero h1 em{font-style:normal;color:var(--muted)}
+.hero .kicker{display:flex;gap:10px;align-items:center;margin-bottom:28px}
+.dot{width:8px;height:8px;background:var(--rust);display:inline-block;animation:blink 2.4s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero .lede{margin-top:32px;max-width:56ch;font-size:18px;color:var(--ink-2)}
+.copyrow{margin-top:36px;display:flex;max-width:520px;border:1px solid var(--ink);background:var(--surface)}
+.copyrow input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font-family:var(--body);font-size:15px;padding:0 16px;height:46px}
+.copyrow input:focus{outline:none}
+.copyrow .btn{height:46px}
+.hero .meta{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 22px}
+.cellgrid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);align-self:start}
+.cellgrid div{aspect-ratio:1;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;max-width:100%;transition:background .6s}
+.cellgrid div.on{background:var(--ink)}
+.cellgrid div.soft{background:var(--cell)}
+.cellgrid div span{position:absolute;left:8px;bottom:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.cellgrid div.on span{color:var(--canvas)}
+.cellgrid div.big{grid-column:span 2;aspect-ratio:auto;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface)}
+.cellgrid div.big b{font-family:var(--display);font-weight:400;font-size:clamp(28px,3vw,40px);letter-spacing:-.04em;line-height:1}
+.cellgrid div.big span{position:static}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:28px 24px 32px 0;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line);padding-left:24px}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat b{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.6vw,36px);line-height:1.08;letter-spacing:-.035em}
+.stat b small{color:var(--muted);font-size:inherit}
+
+section{border-bottom:1px solid var(--line)}
+.sec{padding-block:96px}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:56px}
+.sec-head p{color:var(--ink-2);max-width:52ch;font-size:17px}
+
+/* platform map */
+.platform{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line)}
+.pcell{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface)}
+.pcell:nth-child(3n){border-right:0}
+.pcell:nth-last-child(-n+3){border-bottom:0}
+.pcell.core{background:var(--ink);color:var(--canvas);justify-content:space-between}
+.pcell.core .label{color:var(--stone)}
+.pcell.core h3{font-size:clamp(28px,2.6vw,38px);letter-spacing:-.04em;font-weight:300}
+.pcell .req{font-size:14px;color:var(--muted);border-left:1px solid var(--line);padding-left:12px}
+.pcell ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pcell li{font-size:15px;color:var(--ink-2);padding-left:16px;position:relative}
+.pcell li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);padding:3px 7px;color:var(--ink-2)}
+
+/* now spotlight */
+.spot{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border:1px solid var(--line);background:var(--surface)}
+.spot .l{padding:40px;display:flex;flex-direction:column;gap:22px;border-right:1px solid var(--line)}
+.spot .l p{color:var(--ink-2)}
+.spot .r{padding:32px;display:flex;flex-direction:column;gap:18px;min-width:0;background:var(--cell)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--surface)}
+.node{padding:14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
+.node:last-child{border-right:0}
+.node b{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:-.01em}
+.node small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.node.pulse::after{content:"";position:absolute;inset:-1px;border:1px solid var(--rust);animation:pulse 4s ease-in-out infinite;pointer-events:none}
+@keyframes pulse{0%,100%{opacity:0}50%{opacity:1}}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--surface)}
+.figs div{padding:16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.figs div:last-child{border-right:0}
+.figs b{font-family:var(--display);font-weight:400;font-size:30px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stack{font-family:var(--mono);font-size:12px;color:var(--ink-2);line-height:1.9}
+.stack i{font-style:normal;color:var(--muted)}
+
+/* experience table */
+.xp{border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:150px minmax(0,1.1fr) minmax(0,1.6fr) 40px;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);cursor:pointer;align-items:start}
+.row:hover .co{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.row .co{font-family:var(--display);font-size:clamp(24px,2.4vw,32px);letter-spacing:-.035em;line-height:1.05}
+.row .role{font-size:14px;color:var(--muted);margin-top:8px}
+.row .sum{color:var(--ink-2);font-size:15.5px}
+.row .tog{width:32px;height:32px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);transition:transform .25s,background .2s}
+.row[aria-expanded="true"] .tog{transform:rotate(45deg);background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+.row .more{grid-column:3/4;display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.row[aria-expanded="true"] .more{grid-template-rows:1fr}
+.row .more>div{overflow:hidden}
+.row .more ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.row .more li{font-size:15px;color:var(--ink-2);padding-left:16px;position:relative}
+.row .more li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--ink)}
+.row .more .chips{margin-top:14px}
+
+/* industries */
+.inds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.ind{padding:22px 20px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px;min-height:150px;transition:background .25s}
+.ind:hover{background:var(--surface)}
+.ind h3{font-size:24px}
+.ind p{font-size:14px;color:var(--muted)}
+.ind.hl{background:var(--ink);color:var(--canvas)}
+.ind.hl p,.ind.hl .label{color:var(--stone)}
+
+/* principles */
+.princ{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.pr{background:var(--canvas);padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pr h3{font-size:26px}
+.pr p{color:var(--ink-2);font-size:15px}
+.pr .q{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+
+/* plan */
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
+.wk{padding:24px 24px 8px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.wk + .wk{padding-left:24px;border-left:1px solid var(--line)}
+.wk .n{font-family:var(--display);font-size:clamp(36px,3.6vw,52px);white-space:nowrap;font-weight:300;letter-spacing:-.05em;line-height:1}
+.wk p{color:var(--ink-2);font-size:15px}
+
+/* creds */
+.creds{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+.list{border-top:1px solid var(--ink)}
+.li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.li span:first-child{font-size:16px}
+.li span:last-child{text-align:right}
+
+/* closing */
+.close{position:relative;overflow:hidden;background:var(--ink);color:var(--canvas);border-bottom:0}
+.close .wrap{position:relative;padding-block:120px 72px;display:flex;flex-direction:column;gap:32px}
+.close h2{font-size:clamp(48px,8vw,128px);font-weight:300;letter-spacing:-.055em;line-height:.92;max-width:12ch}
+.close .label{color:var(--stone)}
+.close canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.contacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid color-mix(in srgb,var(--canvas) 22%,transparent);margin-top:24px}
+.contacts>div{padding:18px 18px 0 0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.contacts>div+div{padding-left:18px;border-left:1px solid color-mix(in srgb,var(--canvas) 22%,transparent)}
+.contacts b{font-weight:400;font-size:16px;overflow-wrap:anywhere;user-select:all}
+.contacts a{text-decoration:none}
+.close .btn{background:var(--canvas);color:var(--ink)}
+.close .btn .i{border-left-color:color-mix(in srgb,var(--ink) 20%,transparent)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:40px;color:var(--stone)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--canvas);padding:10px 16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* reveal: visible at rest, small lift when JS enabled */
+.rv{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
+.js .rv.pre{transform:translateY(14px);opacity:.001}
+
+@media (max-width:1000px){
+  .hero .wrap,.sec-head,.spot,.creds{grid-template-columns:minmax(0,1fr)}
+  .spot .l{border-right:0;border-bottom:1px solid var(--line)}
+  .platform{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .pcell{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)!important}
+  .pcell.core{grid-column:1/-1}
+  .inds{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .princ{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .weeks{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .wk:nth-child(3){padding-left:0;border-left:0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(3){padding-left:0;border-top:1px solid var(--line)}
+  .stat:nth-child(4){border-top:1px solid var(--line)}
+  .links{display:none}
+  .cellgrid{max-width:520px;width:100%}
+  .contacts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .contacts>div:nth-child(3){padding-left:0;border-left:0}
+}
+@media (max-width:640px){
+  .sec{padding-block:64px}
+  .platform,.princ,.weeks,.inds,.contacts{grid-template-columns:minmax(0,1fr)}
+  .wk{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--line);padding-bottom:20px}
+  .contacts>div{padding-left:0!important;border-left:0!important;padding-bottom:14px}
+  .row{grid-template-columns:minmax(0,1fr) 36px;gap:10px 16px}
+  .row .yr{grid-column:1/-1}
+  .row .sum{grid-column:1/2}
+  .row .tog{grid-row:2;grid-column:2}
+  .row .more{grid-column:1/-1}
+  .flow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .node:nth-child(2){border-right:0}
+  .node:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .figs{grid-template-columns:minmax(0,1fr)}
+  .figs div{border-right:0;border-bottom:1px solid var(--line)}
+  .spot .l,.spot .r{padding:24px}
+  .nav .btn .t{display:none}
+  .stats{grid-template-columns:1fr}
+  .stat{padding-left:0!important;border-right:0;border-top:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar" aria-label="Announcement">
+  <div class="track" aria-hidden="true">
+    <span>New — Juan Martín applies for Forward Deployed Engineer · Argentina (hybrid) &nbsp;→&nbsp; Read the brief</span>
+    <span>Top SE, US Commercial market · DevRev 2025 · Now architecting AI agents for US enterprises · Will fly to your customers</span>
+    <span>New — Juan Martín applies for Forward Deployed Engineer · Argentina (hybrid) &nbsp;→&nbsp; Read the brief</span>
+    <span>Top SE, US Commercial market · DevRev 2025 · Now architecting AI agents for US enterprises · Will fly to your customers</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Juan Martín, top of page">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="currentColor"/><rect x="15" y="1" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="15" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="15" y="15" width="10" height="10" fill="currentColor"/></svg>
+      <b>Juan Martín</b>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#fit">Fit</a><a href="#now">Now</a><a href="#experience">Experience</a><a href="#principles">Principles</a><a href="#plan">First 2 weeks</a>
+    </nav>
+    <a class="btn" href="#contact"><span class="t">Book a call</span><span class="i"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11 11 3M5 3h6v6"/></svg></span></a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker"><span class="dot"></span><span class="label">Forward Deployed Engineer · Buenos Aires · Available now</span></div>
+      <h1>Putting agents<br>to work, <em>on site.</em></h1>
+      <p class="lede">I'm Juan Martín Beines Furcada. I've spent seven years as the engineer customers trust in the room (DevRev, AWS partner BGH, MicroStrategy). In 2025 I was the top Solutions Engineer in DevRev's US Commercial market. Today I architect AI agents for enterprise clients in the US, and I write the code myself in React, TypeScript, Node.js and Python. Put me in a customer's office and I'll walk out with their process mapped into an agentic architecture.</p>
+      <form class="copyrow" id="copyForm" aria-label="Copy email">
+        <label class="label" for="email" style="position:absolute;left:-9999px">Email</label>
+        <input id="email" value="jbeinesfurcada@gmail.com" readonly>
+        <button class="btn" type="submit"><span class="t">Copy email</span><span class="i"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="8" height="8"/><path d="M2 10V2h8"/></svg></span></button>
+      </form>
+      <div class="meta">
+        <span class="label">EN bilingual · ES native</span>
+        <span class="label">GMT-3 · overlaps US &amp; EU</span>
+        <span class="label">Hybrid BA ✓</span><span class="label">Ready to travel ✓</span>
+      </div>
+    </div>
+    <div class="cellgrid rv" id="cells" aria-hidden="true"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><span class="label">Customer-facing</span><b>7+ yrs<br><small>pre-sales &amp; solutions</small></b></div>
+    <div class="stat"><span class="label">DevRev · 2025</span><b>#1 SE<br><small>US Commercial</small></b></div>
+    <div class="stat"><span class="label">Leadership</span><b>7<br><small>engineers led</small></b></div>
+    <div class="stat"><span class="label">Credentials</span><b>3× AWS<br><small>competencies won</small></b></div>
+  </div>
+</div>
+
+<section id="fit">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">The role, mapped</p><h2>Every line of the job post, backed by work I've shipped.</h2></div>
+      <p>HappyRobot asks for one person who can sit with a carrier-sales team in the morning and push a fix to their workflow by the afternoon. Here is the evidence for each must-have.</p>
+    </div>
+    <div class="platform rv">
+      <div class="pcell core">
+        <span class="label">Forward deployed</span>
+        <h3>Customer outcome<br>→ working agent<br>→ measured result</h3>
+        <span class="label">The loop I run</span>
+      </div>
+      <div class="pcell">
+        <span class="label">Full-stack</span>
+        <p class="req">React, TypeScript, Node.js</p>
+        <ul>
+          <li>Shipped a production web app in Next.js, React and TypeScript: chat UI, editor, admin panel</li>
+          <li>Server routes and SSE streaming on Node.js; Dockerized on AWS behind Nginx</li>
+        </ul>
+        <div class="chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span></div>
+      </div>
+      <div class="pcell">
+        <span class="label">Python</span>
+        <p class="req">Hands-on proficiency</p>
+        <ul>
+          <li>Built a Python/Flask backend with Celery + Redis workers and Postgres for a production agent</li>
+          <li>Years of Python/Spark ETL on AWS Glue and Step Functions for enterprise data platforms</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Spark</span><span class="chip">AWS</span></div>
+      </div>
+      <div class="pcell">
+        <span class="label">AI / LLM</span>
+        <p class="req">Prompting, tuning voices &amp; transcribers</p>
+        <ul>
+          <li>Built a conversational agent with model routing: a fast model triages, a stronger one runs the tool loop, with fallbacks across providers</li>
+          <li>TTS and voice cloning with ElevenLabs; prompts iterated against real conversations</li>
+        </ul>
+        <div class="chips"><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">ElevenLabs</span></div>
+      </div>
+      <div class="pcell">
+        <span class="label">Integrations</span>
+        <p class="req">APIs &amp; third-party systems</p>
+        <ul>
+          <li>Integrated WhatsApp Cloud API, Meta Marketing API, payments and OAuth into a production product</li>
+          <li>Designed data integration and consumption layers for enterprise clients at DevRev and BGH</li>
+        </ul>
+        <div class="chips"><span class="chip">REST</span><span class="chip">Webhooks</span><span class="chip">OAuth</span></div>
+      </div>
+      <div class="pcell">
+        <span class="label">Communication · Projects</span>
+        <p class="req">Explain to non-technical stakeholders, juggle deadlines</p>
+        <ul>
+          <li>Advised C-level and VPs across banking, retail, logistics, telco and public sector</li>
+          <li>Ran a team of 7 across parallel enterprise accounts at BGH; led the SE team in Argentina at DevRev</li>
+        </ul>
+        <div class="chips"><span class="chip">Discovery</span><span class="chip">POCs</span><span class="chip">Exec demos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">What I do now</p><h2>I turn business processes into agentic architecture.</h2></div>
+      <p>Today I design and deploy AI agents for enterprise clients in the United States. My favorite place to work is the customer's office: sitting with the people who do the job, then turning it into an agent that does it.</p>
+    </div>
+    <div class="spot rv">
+      <div class="l">
+        <span class="label">AI Agents Architect · US enterprise clients · 2026 — present</span>
+        <h3 style="font-size:30px;letter-spacing:-.035em">Same job as an FDE: sit with the customer, then build what they need.</h3>
+        <p>I map the work a team does today, decide what the agent should own and what it should escalate, and connect it to the systems they already use.</p>
+        <p>Before that, I was DevRev's top Solutions Engineer in the US Commercial market in 2025. And I don't stop at the diagram: I've built and shipped a conversational agent in production myself, frontend to integrations.</p>
+        <div class="stack">
+          <i>Languages&nbsp;</i> TypeScript · JavaScript · Python · SQL<br>
+          <i>Frameworks</i> Next.js · React · Node.js · Flask<br>
+          <i>AI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i> Claude · Gemini · ElevenLabs · tool use<br>
+          <i>Infra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i> AWS · Postgres · Redis · Celery · Docker
+        </div>
+      </div>
+      <div class="r">
+        <span class="label">How I architect an agent</span>
+        <div class="flow">
+          <div class="node"><span class="label">01 · Map</span><b>The work</b><small>Every call, decision and handoff a person does today</small></div>
+          <div class="node pulse"><span class="label">02 · Design</span><b>The agent</b><small>What it owns, what it escalates, how it reasons</small></div>
+          <div class="node"><span class="label">03 · Connect</span><b>Integrations</b><small>CRM, ticketing, messaging, data</small></div>
+          <div class="node"><span class="label">04 · Prove</span><b>Measure</b><small>Tests before launch, audits after</small></div>
+        </div>
+        <div class="figs">
+          <div><span class="label">DevRev 2025</span><b>#1 SE</b></div>
+          <div><span class="label">Market</span><b>US</b></div>
+          <div><span class="label">Customer-facing</span><b>7+ yrs</b></div>
+        </div>
+        <p style="font-size:14px;color:var(--muted)">#1 Solutions Engineer, US Commercial market, DevRev, 2025.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">Experience</p><h2>Deployed in the real world.</h2></div>
+      <p>Click any row for detail. The common thread is owning a customer from discovery to production, then staying until the numbers move.</p>
+    </div>
+    <div class="xp" id="xp">
+      <div class="row rv" role="button" tabindex="0" aria-expanded="true">
+        <span class="label yr">2026 — Now</span>
+        <div><div class="co">AI Agents Architect</div><div class="role">Enterprise clients in the US</div></div>
+        <p class="sum">Design and deploy AI agents that take over operational work for US enterprise teams.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>Run discovery on site with the customer's operators and map the business process into an agentic architecture</li>
+          <li>Architect the agent: prompts, tools, escalation rules and integrations with their systems</li>
+          <li>Take it to production and iterate on real conversations and results</li>
+        </ul><div class="chips"><span class="chip">Agents</span><span class="chip">Enterprise</span><span class="chip">US</span></div></div></div>
+      </div>
+      <div class="row rv" role="button" tabindex="0" aria-expanded="false">
+        <span class="label yr">Oct 2024 — 2026</span>
+        <div><div class="co">DevRev</div><div class="role">Solutions Engineer → Team Lead, SE Argentina</div></div>
+        <p class="sum">Top SE in the US Commercial market in 2025 at an agentic AI company. Promoted to lead the Argentina SE team.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>#1 Solutions Engineer in the US Commercial market, 2025</li>
+          <li>Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts</li>
+          <li>Designed AI use cases that automated support triage, product analytics workflows and data consumption for customers</li>
+          <li>Trusted technical advisor through POCs, integration design and adoption</li>
+          <li>Led and mentored the SE team while tracking delivery across several accounts at once</li>
+        </ul><div class="chips"><span class="chip">#1 SE US 2025</span><span class="chip">Agentic AI</span><span class="chip">Team lead</span></div></div></div>
+      </div>
+      <div class="row rv" role="button" tabindex="0" aria-expanded="false">
+        <span class="label yr">2021 — 2024</span>
+        <div><div class="co">BGH Tech Partner</div><div class="role">Sr Cloud Pre-Sales Engineer · AWS Solutions Architect · Data Analytics Manager</div></div>
+        <p class="sum">AWS partner. Advised C-level and VPs in banking, retail, logistics, telco and public sector.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)</li>
+          <li>Built and led a team of 7 engineers and architects across multiple customer accounts</li>
+          <li>Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization</li>
+          <li>Helped the company earn 3 AWS Competencies</li>
+        </ul><div class="chips"><span class="chip">AWS</span><span class="chip">Data</span><span class="chip">Team of 7</span></div></div></div>
+      </div>
+      <div class="row rv" role="button" tabindex="0" aria-expanded="false">
+        <span class="label yr">2019 — 2021</span>
+        <div><div class="co">MicroStrategy</div><div class="role">BI Pre-Sales Engineer · Associate Consultant</div></div>
+        <p class="sum">POCs, demos and warehouse modernization for enterprise clients.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>Delivered POCs, technical demos and consulting to prospective enterprise clients</li>
+          <li>Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL</li>
+          <li>Wrote solution documentation: POCs, roadmaps, logical system views</li>
+        </ul></div></div>
+      </div>
+      <div class="row rv" role="button" tabindex="0" aria-expanded="false">
+        <span class="label yr">2017 — 2021</span>
+        <div><div class="co">ITBA</div><div class="role">Back Office Manager, MIT $100K LatAm · Sr Analyst</div></div>
+        <p class="sum">Ran operations for LatAm's largest entrepreneurship competition with MIT.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>Led a team of 4 analysts across logistics, data analysis and process optimization</li>
+          <li>Owned university framework agreements and internships; automated processes on the ERP</li>
+        </ul></div></div>
+      </div>
+      <div class="row rv" role="button" tabindex="0" aria-expanded="false">
+        <span class="label yr">2014 — 2019</span>
+        <div><div class="co">BB Productions</div><div class="role">CEO &amp; Co-founder</div></div>
+        <p class="sum">Founded at 17. Ran clients, P&amp;L, vendors and staffing.</p>
+        <span class="tog" aria-hidden="true">+</span>
+        <div class="more"><div><ul>
+          <li>Managed every business operation: client relations, P&amp;L, vendor management, staffing and planning</li>
+        </ul></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">Industries</p><h2>I've sat with the teams that move the world.</h2></div>
+      <p>HappyRobot started in logistics. At BGH I advised logistics companies, alongside banks, retailers, telcos and the public sector.</p>
+    </div>
+    <div class="inds rv">
+      <div class="ind hl"><span class="label">AWS · BGH</span><h3>Logistics</h3><p>Data architecture and analytics for operations teams.</p></div>
+      <div class="ind"><span class="label">AWS · BGH</span><h3>Banking &amp; Finance</h3><p>Governed data lakes and ML pipelines under strict compliance.</p></div>
+      <div class="ind"><span class="label">AWS · BGH</span><h3>Telecom</h3><p>High-volume ETL and warehousing for customer operations.</p></div>
+      <div class="ind"><span class="label">AWS · BGH</span><h3>Retail</h3><p>Analytics and forecasting foundations across store networks.</p></div>
+      <div class="ind"><span class="label">AWS · BGH</span><h3>Public Sector</h3><p>Cloud migration and data architecture for government agencies.</p></div>
+      <div class="ind"><span class="label">DevRev</span><h3>Customer Support</h3><p>AI triage and agent use cases for enterprise support teams.</p></div>
+      <div class="ind"><span class="label">Now</span><h3>US Enterprise</h3><p>AI agents for operations and support teams in the United States.</p></div>
+      <div class="ind"><span class="label">MicroStrategy</span><h3>Enterprise BI</h3><p>Warehouse modernization and executive reporting.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">Operating principles</p><h2>Your six principles, and where I've lived them.</h2></div>
+      <p>I read HappyRobot's operating principles before writing this page. Each one has a concrete moment behind it.</p>
+    </div>
+    <div class="princ rv">
+      <div class="pr"><span class="q">Extreme ownership</span><h3>Started a company at 17.</h3><p>Nobody else owned the P&amp;L, the clients or the mistakes. I still own every deployment from discovery to go-live.</p></div>
+      <div class="pr"><span class="q">Craftsmanship</span><h3>#1 SE in the US Commercial market.</h3><p>At DevRev in 2025, every demo was tailored to the customer's own process and rehearsed until it held up to their hardest questions.</p></div>
+      <div class="pr"><span class="q">We are “majos”</span><h3>Promoted to lead the team I joined.</h3><p>At DevRev I went from SE to leading the SE team in Argentina. Mentoring 7 engineers at BGH taught me to give feedback that lands kindly.</p></div>
+      <div class="pr"><span class="q">Urgency with focus</span><h3>Several enterprise deals at once.</h3><p>Running parallel US deals taught me to put my time where it moves a customer closer to production.</p></div>
+      <div class="pr"><span class="q">Talent density</span><h3>Hired and grew a team of 7.</h3><p>At BGH I built and led a team of engineers and architects that helped the company earn three AWS Competencies.</p></div>
+      <div class="pr"><span class="q">First principles</span><h3>Start from the work, not the tool.</h3><p>Every agent I architect starts by mapping what a person does today, call by call and decision by decision, before choosing a prompt or a model.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <div><p class="label" style="margin-bottom:18px">First two weeks</p><h2>Four weeks to ramp up? Give me two.</h2></div>
+      <p>How I'd go from day one to a customer's live deployment, in order. If the customer is in another city, I'll be on the plane.</p>
+    </div>
+    <div class="weeks rv">
+      <div class="wk"><span class="n">D1–3</span><span class="label">Learn the stack</span><p>Shadow live calls, read workflows and audits, ship a first fix to an existing deployment.</p></div>
+      <div class="wk"><span class="n">D4–6</span><span class="label">At the customer's office</span><p>Sit with their team and map the process call by call: what the agent hears, decides, and writes back to their TMS or CRM.</p></div>
+      <div class="wk"><span class="n">D7–10</span><span class="label">Build and test</span><p>Prompts, voice and transcriber tuning, integrations, then end-to-end tests against real transcripts.</p></div>
+      <div class="wk"><span class="n">D11–14</span><span class="label">Go live and measure</span><p>Launch on a slice of volume, watch autonomous resolution and escalations, report back in their numbers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap sec">
+    <div class="creds">
+      <div class="rv">
+        <p class="label" style="margin-bottom:18px">Certifications</p>
+        <div class="list">
+          <div class="li"><span>AWS Solutions Architect</span><span class="label">Amazon Web Services</span></div>
+          <div class="li"><span>AWS Database Specialty</span><span class="label">Amazon Web Services</span></div>
+          <div class="li"><span>AWS Well-Architected Review Consultant</span><span class="label">Amazon Web Services</span></div>
+          <div class="li"><span>AWS Cloud Practitioner</span><span class="label">Amazon Web Services</span></div>
+          <div class="li"><span>Generative AI Professional</span><span class="label">Blockchain Council</span></div>
+          <div class="li"><span>MicroStrategy Architect</span><span class="label">MicroStrategy</span></div>
+        </div>
+      </div>
+      <div class="rv">
+        <p class="label" style="margin-bottom:18px">Education &amp; languages</p>
+        <div class="list">
+          <div class="li"><span>B.S. Systems &amp; Business Administration, ITBA</span><span class="label">2016–2021 · Honors</span></div>
+          <div class="li"><span>IGCSE (Cambridge) · IB Certificate, Northlands</span><span class="label">Most honored student</span></div>
+          <div class="li"><span>Spanish</span><span class="label">Native</span></div>
+          <div class="li"><span>English</span><span class="label">Bilingual</span></div>
+          <div class="li"><span>French</span><span class="label">DELF A2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="contact">
+  <canvas id="curves" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="label">Let's talk</span>
+    <h2>Put me to work.</h2>
+    <div><a class="btn" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener"><span class="t">Open LinkedIn</span><span class="i"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11 11 3M5 3h6v6"/></svg></span></a></div>
+    <div class="contacts">
+      <div><span class="label">Email</span><b>jbeinesfurcada@gmail.com</b></div>
+      <div><span class="label">Phone · WhatsApp</span><b>+54 9 11 6433-6286</b></div>
+      <div><span class="label">Location</span><b>Buenos Aires, Argentina</b></div>
+      <div><span class="label">Start</span><b>Now · ready to travel</b></div>
+    </div>
+    <div class="foot"><span class="label">Juan Martín Beines Furcada · 2026</span><span class="label">Built for HappyRobot's FDE role</span></div>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast" role="status">Email copied</div>
+
+<script>
+document.documentElement.classList.add('js');
+// hero cell grid
+(function(){
+  const g=document.getElementById('cells'); if(!g) return;
+  const labels={0:'TS',6:'PY',12:'LLM',18:'API',24:'VOICE'};
+  const cells=[];
+  for(let i=0;i<25;i++){
+    if(i===7){const d=document.createElement('div');d.className='big';d.innerHTML='<span>Stage</span><b>Discovery → Prod</b>';g.appendChild(d);i++;continue;}
+    const d=document.createElement('div'); if(labels[i]) d.innerHTML='<span>'+labels[i]+'</span>';
+    if([3,11,16,22].includes(i)) d.classList.add('soft');
+    g.appendChild(d); cells.push(d);
+  }
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let k=0; setInterval(()=>{cells.forEach(c=>c.classList.remove('on'));
+    const pick=[(k*7)%cells.length,(k*7+11)%cells.length];pick.forEach(p=>cells[p].classList.add('on'));k++;},1400);
+})();
+// copy email
+document.getElementById('copyForm').addEventListener('submit',e=>{
+  e.preventDefault(); const inp=document.getElementById('email'); const t=document.getElementById('toast');
+  const ok=()=>{t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
+  try{navigator.clipboard.writeText(inp.value).then(ok,()=>{inp.select();t.textContent='Selected, press ⌘C';ok()})}catch(_){inp.select()}
+});
+// experience accordion
+document.querySelectorAll('#xp .row').forEach(r=>{
+  const t=()=>r.setAttribute('aria-expanded',r.getAttribute('aria-expanded')==='true'?'false':'true');
+  r.addEventListener('click',t); r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
+// reveal (only below-the-fold items get lifted; everything visible at rest otherwise)
+(function(){
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>{const r=el.getBoundingClientRect(); if(r.top>innerHeight){el.classList.add('pre');io.observe(el)}});
+  setTimeout(()=>document.querySelectorAll('.rv.pre').forEach(el=>el.classList.remove('pre')),4000);
+})();
+// closing curves (HappyRobot-style line field)
+(function(){
+  const c=document.getElementById('curves'); if(!c) return; const x=c.getContext('2d'); let w,h,t=0;
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){const r=c.getBoundingClientRect();w=c.width=r.width*devicePixelRatio;h=c.height=r.height*devicePixelRatio}
+  function draw(){
+    x.clearRect(0,0,w,h);
+    const col=getComputedStyle(document.documentElement).getPropertyValue('--stone').trim()||'#b8aea4';
+    x.strokeStyle=col; x.lineWidth=1*devicePixelRatio;
+    for(let i=0;i<14;i++){
+      x.beginPath();
+      const y0=h*(.15+i*.06);
+      x.moveTo(w*.35,y0);
+      x.bezierCurveTo(w*.6,y0+Math.sin(t+i*.4)*40*devicePixelRatio,w*.75,h*.2+i*8*devicePixelRatio,w*1.02,h*(.05+i*.065));
+      x.globalAlpha=.15+i*.03; x.stroke();
+    }
+    x.globalAlpha=1;
+    if(!still){t+=.006;requestAnimationFrame(draw)}
+  }
+  size(); addEventListener('resize',size); draw();
+})();
+</script>
+
+</body>
+</html>
