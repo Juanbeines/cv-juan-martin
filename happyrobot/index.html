@@ -88,14 +88,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .copyrow input:focus{outline:none}
 .copyrow .btn{height:46px}
 .hero .meta{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 22px}
-.cellgrid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);align-self:start}
+.cellgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);align-self:start}
 .cellgrid div{aspect-ratio:1;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;max-width:100%;transition:background .6s}
 .cellgrid div.on{background:var(--ink)}
 .cellgrid div.soft{background:var(--cell)}
 .cellgrid div span{position:absolute;left:8px;bottom:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
 .cellgrid div.on span{color:var(--canvas)}
 .cellgrid div.big{grid-column:span 2;aspect-ratio:auto;padding:12px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface)}
-.cellgrid div.big b{font-family:var(--display);font-weight:400;font-size:clamp(28px,3vw,40px);letter-spacing:-.04em;line-height:1}
+.cellgrid div.big b{font-family:var(--display);font-weight:400;font-size:clamp(18px,3vw,40px);overflow-wrap:anywhere;letter-spacing:-.04em;line-height:1}
 .cellgrid div.big span{position:static}
 
 /* stats */
@@ -249,6 +249,8 @@ section{border-bottom:1px solid var(--line)}
   .figs div{border-right:0;border-bottom:1px solid var(--line)}
   .spot .l,.spot .r{padding:24px}
   .nav .btn .t{display:none}
+  .copyrow .btn .t{display:none}
+  .cellgrid div span{font-size:9px;left:5px}
   .stats{grid-template-columns:1fr}
   .stat{padding-left:0!important;border-right:0;border-top:1px solid var(--line)}
 }
