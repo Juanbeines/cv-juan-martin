@@ -311,7 +311,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a href="#values">How I work</a>
       <a href="#stack">Stack</a>
       <a href="#security">Security</a>
-      <a href="#proof">Proof</a>
       <a href="#experience">Experience</a>
       <a href="#plan">First 30 days</a>
     </div>
@@ -327,7 +326,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p class="sub">I'm Juan Martín Beines Furcada. In 2025 I was the #1 Solutions Engineer in DevRev's US Commercial market. Before that, I spent years designing data lakes, ETL and ML pipelines on AWS for banks, retailers and telcos. Today I architect AI agents for enterprise clients in the US. Put me in a room with a prospect's data, engineering and security teams, and I'll leave with a solution design they agree is buildable.</p>
       <div class="ctas">
         <a class="btn btn-o" href="#contact">Book a call <span class="arrow">→</span></a>
-        <a class="btn btn-g" href="#proof">See a sample proof <span class="arrow">→</span></a>
+        <a class="btn btn-g" href="#experience">See my experience <span class="arrow">→</span></a>
       </div>
       <div class="facts"><span>Based in Buenos Aires</span><span>50% travel, happily</span><span>ES native · EN bilingual</span></div>
     </div>
@@ -399,7 +398,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div><h3>Turn the proof into a business case in dollars</h3><p class="q">"…and defend it to the client side."</p></div>
         <div><ul>
           <li>Designed AI use cases at DevRev that automated support triage, product analytics and data consumption, and sized them in the customer's own metrics</li>
-          <li>A sample of how I'd build one for Hilbert is <a href="#proof">further down this page</a></li>
         </ul><div class="tags"><span>Business case</span><span>ROI</span><span>Exec readouts</span></div></div>
       </div>
       <div class="mrow reveal">
@@ -464,58 +462,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p>So I ask early: who owns the warehouse, who signs the vendor review, and does data leave the account? Those three answers decide which deployment pattern I put on the table.</p>
         <div class="rule"><span class="tex" style="color:var(--mint)">owner</span><span class="tex" style="color:var(--yellow)">path</span><span class="tex" style="color:var(--orange)">pattern</span></div>
       </aside>
-    </div>
-  </div>
-</section>
-
-<section class="dark" id="proof">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div class="eyebrow">Build and pitch, preview</div>
-      <h2 class="h2">The proof, in dollars.</h2>
-      <p class="lede">Your last interview round asks for a use case, a proof of concept design and a business case. Here's a sketch of how I'd approach one for a LATAM grocery delivery brand. The numbers are illustrative; in a real deal they come from the prospect's own data.</p>
-    </div>
-    <div class="bc">
-      <div class="brief reveal">
-        <div class="eyebrow">Use case · Reactivation</div>
-        <h3>Weekly buyers are lapsing. Bring back the ones worth bringing back.</h3>
-        <p>Growth goal from the CMO: lift repeat purchase without training customers to wait for discounts. Engineers need to agree it's buildable on their stack, and finance needs to see the margin, not just revenue.</p>
-        <div class="flow">
-          <div><b>1 · Ingest</b><span>Orders &amp; customers</span><em>Read in place from their warehouse. No bulk export.</em></div>
-          <div><b>2 · Score</b><span>Lapse propensity</span><em>Who's late vs their usual interval, and their value.</em></div>
-          <div><b>3 · Activate</b><span>CRM &amp; Meta</span><em>Hashed emails out; labels written back to their tools.</em></div>
-          <div><b>4 · Measure</b><span>Holdout control</span><em>Lift vs a control group, at 95% confidence.</em></div>
-        </div>
-      </div>
-      <div class="calc reveal" id="calc">
-        <div class="eyebrow">Business case · per 90-day cycle</div>
-        <div class="sl"><label for="lapsed">Lapsed weekly buyers <output id="o-lapsed"></output></label><input type="range" id="lapsed" min="5000" max="200000" step="5000" value="40000"></div>
-        <div class="sl"><label for="lift">Reactivation lift vs control <output id="o-lift"></output></label><input type="range" id="lift" min="0.5" max="10" step="0.5" value="3"></div>
-        <div class="sl"><label for="orders">Orders per reactivated buyer <output id="o-orders"></output></label><input type="range" id="orders" min="1" max="12" step="1" value="4"></div>
-        <div class="sl"><label for="aov">Average order value (USD) <output id="o-aov"></output></label><input type="range" id="aov" min="10" max="120" step="5" value="35"></div>
-        <div class="sl"><label for="margin">Gross margin <output id="o-margin"></output></label><input type="range" id="margin" min="10" max="60" step="1" value="28"></div>
-        <div class="result">
-          <div><div class="eyebrow">Incremental revenue</div><b id="r-rev">$0</b><div class="sm" id="r-cust"></div></div>
-          <div><div class="eyebrow">Incremental gross profit</div><b id="r-gp">$0</b><div class="sm" id="r-yr"></div></div>
-          <div class="formula">ΔGP = N · ℓ · q · AOV · m</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="paper" id="loop">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div class="eyebrow">How I run a technical evaluation</div>
-      <h2 class="h2">Measured the way you'll measure me.</h2>
-      <p class="lede">The brief says the role is measured on technical wins, time to a feasibility answer, conversion to contract, and efficiency. Each step I run is built to move one of those numbers.</p>
-    </div>
-    <div class="loop">
-      <div class="step reveal"><span class="tex">1. Discover</span><h3>Start from the growth goal</h3><p>Reactivation, acquisition quality, cross-sell? Get the goal and the metric in the customer's own words before talking about architecture.</p><div class="kpi">→ first technical engagement</div></div>
-      <div class="step reveal"><span class="tex">2. Map</span><h3>Read the stack</h3><p>Warehouse, CDP, CRM, ad platforms. Name the data owner and the security counterpart. Pick the deployment pattern.</p><div class="kpi">→ time to feasibility answer</div></div>
-      <div class="step reveal"><span class="tex">3. Prove</span><h3>Their data, their stack</h3><p>The AE runs the demo. I run the architecture walkthrough, the live technical questions and the proof on their own data.</p><div class="kpi">→ technical win rate</div></div>
-      <div class="step reveal"><span class="tex">4. Scope</span><h3>Design, dollars, handoff</h3><p>Solution design, feasibility assessment and business case. Delivery reviews it, then gets a clean handoff.</p><div class="kpi">→ engagement-to-contract</div></div>
     </div>
   </div>
 </section>
@@ -670,18 +616,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   });
   ck.children[4].classList.add('open');ck.children[4].querySelector('button').setAttribute('aria-expanded','true');
 
-  /* business case */
   var $=function(id){return document.getElementById(id)};
-  var fmt=function(n){return n>=1e6?'$'+(n/1e6).toFixed(2)+'M':n>=1e3?'$'+Math.round(n/1e3)+'K':'$'+Math.round(n)};
-  function calc(){
-    var N=+$('lapsed').value,l=+$('lift').value/100,q=+$('orders').value,a=+$('aov').value,m=+$('margin').value/100;
-    $('o-lapsed').textContent=N.toLocaleString('en-US');$('o-lift').textContent=(l*100).toFixed(1)+' pp';$('o-orders').textContent=q;$('o-aov').textContent='$'+a;$('o-margin').textContent=Math.round(m*100)+'%';
-    var cust=Math.round(N*l),rev=cust*q*a,gp=rev*m;
-    $('r-rev').textContent=fmt(rev);$('r-gp').textContent=fmt(gp);
-    $('r-cust').textContent=cust.toLocaleString('en-US')+' buyers back, beyond control';
-    $('r-yr').textContent='≈ '+fmt(gp*4)+' a year at 4 cycles';
-  }
-  ['lapsed','lift','orders','aov','margin'].forEach(function(id){$(id).addEventListener('input',calc)});calc();
 
   /* experience */
   var xp=[
