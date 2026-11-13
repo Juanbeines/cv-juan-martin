@@ -221,6 +221,10 @@ input[type=range]{width:100%;accent-color:var(--orange);height:22px}
 .xrow .when{font-family:var(--mono);font-size:13px;color:var(--muted-d)}
 .xrow .co{font-family:var(--serif);font-size:28px;line-height:1.1}
 .xrow .co small{display:block;font-family:var(--sans);font-size:14px;color:var(--muted-d);margin-top:6px}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;font-family:var(--sans)}
+.ladder span{font-size:13px;line-height:1.3;padding:3px 8px;border:1px solid var(--line-d);color:var(--muted-d)}
+.ladder span.top{border-color:var(--mint);color:var(--white)}
+.ladder i{font-style:normal;font-size:14px;color:var(--orange)}
 .xrow .sum{color:#dcdad8;font-size:16px}
 .xrow .pm{font-family:var(--serif);font-size:24px;color:var(--muted-d);transition:transform .25s}
 .xrow.open .pm{transform:rotate(45deg)}
@@ -402,7 +406,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="n">(7)</div>
         <div><h3>First in the region: set how the function works</h3><p class="q">"…with no team to delegate to at first."</p></div>
         <div><ul>
-          <li>Promoted at DevRev from SE to leading the SE team in Argentina</li>
+          <li>Promoted at DevRev from Solutions Engineer to Solutions Architect, and led the SE team in Argentina</li>
           <li>At BGH I built and led a team of 7 engineers and architects across parallel accounts, and the practice earned three AWS Competencies</li>
         </ul><div class="tags"><span>Team lead</span><span>Playbooks</span><span>Parallel deals</span></div></div>
       </div>
@@ -520,8 +524,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="sechead reveal">
       <div class="eyebrow">Experience</div>
-      <h2 class="h2">Seven years in the room with enterprise buyers.</h2>
-      <p class="lede">Click any row for detail. The common thread: owning the technical side of a customer from discovery to a signed scope, then making sure it gets built.</p>
+      <h2 class="h2">Promoted at every stop.</h2>
+      <p class="lede">Seven years in the room with enterprise buyers, and a step up at every company: intern to consultant, Solutions Architect to manager, Solutions Engineer to Solutions Architect. Click any row for detail.</p>
     </div>
     <div class="xp" id="xp"></div>
   </div>
@@ -682,16 +686,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   /* experience */
   var xp=[
     ["2026 — Now","AI Agents Architect","Enterprise clients in the US","Design and deploy AI agents that take over operational work for US enterprise teams.",["Run discovery on site with the customer's operators and map the business process into an agentic architecture","Architect the agent: prompts, tools, escalation rules and integrations with their CRM and data","Take it to production and iterate on real conversations and results"]],
-    ["Oct 2024 — 2026","DevRev","Solutions Engineer → Team Lead, SE Argentina","#1 SE in the US Commercial market in 2025 at an agentic AI company. Promoted to lead the Argentina SE team.",["#1 Solutions Engineer in the US Commercial market, 2025","Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts","Designed AI use cases that automated support triage, product analytics workflows and data consumption","Trusted technical advisor through POCs, integration design and adoption","Led and mentored the SE team while tracking several accounts at once"],true],
-    ["2021 — 2024","BGH Tech Partner","Sr Cloud Pre-Sales Engineer · AWS Solutions Architect · Data Analytics Manager","AWS partner. Advised C-level and VPs in banking, retail, logistics, telco and public sector.",["Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)","Governed data platforms for banks under strict compliance requirements","Built and led a team of 7 engineers and architects across multiple customer accounts","Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization","Helped the company earn 3 AWS Competencies"]],
-    ["2019 — 2021","MicroStrategy","BI Pre-Sales Engineer · Associate Consultant","POCs, demos and warehouse modernization for enterprise clients.",["Delivered POCs, technical demos and consulting to prospective enterprise clients","Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL","Wrote solution documentation: POCs, roadmaps, logical system views"]],
-    ["2017 — 2021","ITBA","Back Office Manager, MIT $100K LatAm · Sr Analyst","Ran operations for LatAm's largest entrepreneurship competition with MIT.",["Led a team of 4 analysts across logistics, data analysis and process optimization","Owned university framework agreements and internships; automated processes on the ERP"]],
+    ["Oct 2024 — 2026","DevRev","Solutions Engineer → Solutions Architect","#1 SE in the US Commercial market in 2025 at an agentic AI company. Promoted to Solutions Architect.",["#1 Solutions Engineer in the US Commercial market, 2025","Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts","Designed AI use cases that automated support triage, product analytics workflows and data consumption","Trusted technical advisor through POCs, integration design and adoption","Led and mentored the SE team while tracking several accounts at once"],true],
+    ["2021 — 2024","BGH Tech Partner","AWS Solutions Architect → Data Analytics Manager","AWS partner. Joined as a Solutions Architect, promoted to lead the Data Analytics team of data Solutions Architects.",["Started as Sr Cloud Pre-Sales Engineer and AWS Solutions Architect, advising C-level and VPs in banking, retail, logistics, telco and public sector","Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)","Governed data platforms for banks under strict compliance requirements","As Data Analytics Manager, built and led a team of 7 data engineers and Solutions Architects across multiple customer accounts","Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization","Helped the company earn 3 AWS Competencies"]],
+    ["2019 — 2021","MicroStrategy","Intern → Associate Consultant","Joined as an intern, promoted to consultant. POCs, pre-sales demos and warehouse modernization for enterprise clients.",["Delivered POCs, technical demos and consulting to prospective enterprise clients","Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL","Wrote solution documentation: POCs, roadmaps, logical system views"]],
+    ["2017 — 2021","ITBA","Sr Analyst → Back Office Manager → Instructor","Ran operations for LatAm's largest entrepreneurship competition with MIT, then taught Product Management and Cloud Computing.",["Taught Product Management and Cloud Computing at ITBA","Back Office Manager for MIT $100K LatAm: Led a team of 4 analysts across logistics, data analysis and process optimization","Owned university framework agreements and internships; automated processes on the ERP"]],
     ["2014 — 2019","BB Productions","CEO & Co-founder","Founded at 17. Ran clients, P&L, vendors and staffing.",["Managed every business operation: client relations, P&L, vendor management, staffing and planning"]]
   ];
   var xc=document.getElementById('xp');
   xp.forEach(function(r,i){
     var d=document.createElement('div');d.className='xrow reveal'+(i===1?' open':'');
-    d.innerHTML='<button type="button" aria-expanded="'+(i===1)+'"><span class="when">'+r[0]+'</span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE US 2025</span>':'')+'<small>'+r[2]+'</small></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
+    d.innerHTML='<button type="button" aria-expanded="'+(i===1)+'"><span class="when">'+r[0]+'</span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE US 2025</span>':'')+'<span class="ladder">'+r[2].split(' → ').map(function(x,k,a){return '<span'+(a.length>1&&k===a.length-1?' class="top"':'')+'>'+x+'</span>'}).join('<i aria-hidden="true">→</i>')+'</span></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
     d.querySelector('button').addEventListener('click',function(){var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)});
     xc.appendChild(d);
   });
