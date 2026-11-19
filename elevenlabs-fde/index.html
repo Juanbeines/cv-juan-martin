@@ -1089,7 +1089,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </script>
 <script id="la-voice">
 /* ElevenLabs voice layer for Sofía. Public agent id only (no key in the page). The SDK loads on first use.
-   Mic tap = voice call. Typing or a chip = the same call with the mic muted: Sofía still answers out loud.
+   Mic tap = voice call. Typing or a chip = a call fed a silent track (no mic prompt): Sofía still answers out loud.
    Agent limits live server-side: 120 s per call, 10 calls/day, 2 at a time. If voice can't start, the offline brain answers.
    file:// (PDF render) stays offline. */
 (function(){
@@ -1115,23 +1115,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   function start(withMic){
     if(starting)return;starting=true;var my=++gen;ui(withMic);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
     var typed=queue.length>0;
+    var md=navigator.mediaDevices,gum=md&&md.getUserMedia,restore=function(){if(gum)md.getUserMedia=gum};
+    /* typed call: hand the SDK a silent track instead of the mic, so no permission prompt and nothing is heard */
+    if(!withMic&&gum)md.getUserMedia=function(c){if(c&&c.audio){try{var ac=new (window.AudioContext||window.webkitAudioContext)();return Promise.resolve(ac.createMediaStreamDestination().stream)}catch(e){}}return gum.call(md,c)};
     load().then(function(){
       wd=setTimeout(function(){gen++;var c=conv;offline('Sofía is busy with another caller right now. Try again in a minute.');if(c)c.endSession()},12000);
       return window.ElevenLabsClient.Conversation.startSession({
         agentId:AGENT,connectionType:'webrtc',dynamicVariables:{today:today()},clientTools:clientTools,
         overrides:typed?{agent:{firstMessage:''}}:undefined,
-        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Melanie (rioplatense) · '+(withMic?'mic on':'typed, mic muted')+' · max 2 min'})},
+        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Melanie (rioplatense) · '+(withMic?'mic on':'typed, no mic')+' · max 2 min'})},
         onMessage:function(m){if(!m||!m.message)return;if(m.source==='user')D.onUserTranscript(m.message,{source:'voice'});else D.onAgentMessage(m.message,{tts:'ElevenLabs TTS · Flash v2.5'})},
         onModeChange:function(m){D.setMode(m.mode==='speaking'?'speaking':'listening');if(m.mode==='listening'&&endAfter&&conv)conv.endSession()},
         onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic or type to start again.':d&&d.reason==='agent'?'Call ended. Tap the mic or type to start a new one.':'')},
         onError:function(m){if(window.console)console.warn('ElevenLabs',m)}
       });
-    }).then(function(c){if(my!==gen){c.endSession();return}conv=c;starting=false;raf=requestAnimationFrame(level);
-      if(!withMic&&c.setMicMuted)c.setMicMuted(true);
+    }).then(function(c){restore();if(my!==gen){c.endSession();return}conv=c;starting=false;raf=requestAnimationFrame(level);
       if(D.muted&&c.setVolume)c.setVolume({volume:0});
       var q=queue;queue=[];q.forEach(function(t){c.sendUserMessage(t)});
       D.setMode(q.length?'thinking':'listening');
-    }).catch(function(e){if(my!==gen)return;
+    }).catch(function(e){restore();if(my!==gen)return;
       var m=String(e&&(e.message||e)||'');
       offline(/permission|denied|notallowed/i.test(m)?'Voice needs microphone access (allow it in the browser). Meanwhile the offline brain answers.':
         'Voice is resting right now (daily demo limit or network). The offline brain answers.');
@@ -1140,9 +1142,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   }
   /* typed text and chips: send to the live call, or start one (mic muted) so Sofía answers by voice */
   D.setTextHandler(function(t){if(conv){conv.sendUserMessage(t);D.setMode('thinking')}else{queue.push(t);start(false)}});
-  /* mic: start a voice call; in a typed call, unmute; in a voice call, hang up */
+  /* mic: start a voice call; in a typed call, switch to a real voice call; in a voice call, hang up */
   D.setMicHandler(function(){
-    if(conv&&!micOn){if(conv.setMicMuted)conv.setMicMuted(false);ui(true);return}
+    if(conv&&!micOn){var c=conv;conv=null;Promise.resolve(c.endSession()).catch(function(){}).then(function(){start(true)});return}
     if(conv){endAfter=false;conv.endSession();return}
     start(true);
   });
