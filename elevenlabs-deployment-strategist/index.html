@@ -1095,13 +1095,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </script>
 <script id="la-voice">
 /* ElevenLabs voice layer for Sofía. Public agent id only (no key in the page). The SDK loads on the first mic tap.
-   Agent limits live server-side: 120 s per call, 8 calls/day, 1 at a time. Typed text outside a call runs the offline brain.
+   Agent limits live server-side: 120 s per call, 10 calls/day, 2 at a time. Typed text outside a call runs the offline brain.
    file:// (PDF render) stays offline. */
 (function(){
   var D=window.SofiaDemo;if(!D||!/^https?:$/.test(location.protocol))return;
   var AGENT='agent_5101m7t5jwd7em3tywc46e48a67z',SDK='https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.32.1/dist/lib.iife.js';
   var mic=document.getElementById('la-mic'),note=document.getElementById('la-note');
-  var conv=null,starting=false,endAfter=false,raf=0;
+  var conv=null,starting=false,endAfter=false,raf=0,wd=0,gen=0;
   D.setLive(true,{label:'ElevenLabs agent · tap the mic to talk'});
   function say(t){note.textContent=t;note.hidden=!t}
   function ui(on){mic.classList.toggle('on',on);mic.setAttribute('aria-pressed',on);mic.setAttribute('aria-label',on?'End the call with Sofía':'Talk to Sofía (microphone)')}
@@ -1112,22 +1112,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     return D.tools[MAP[k]](p||{}).then(function(r){return JSON.stringify(r)})}});
   function level(){if(conv&&conv.getOutputVolume)D.setLevel(Math.min(1,conv.getOutputVolume()*2.5));raf=requestAnimationFrame(level)}
   function today(){try{return new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
-  function cleanup(msg){conv=null;starting=false;endAfter=false;cancelAnimationFrame(raf);D.setTextHandler(null);ui(false);D.setMode('idle');D.setLevel(0);say(msg||'')}
+  function cleanup(msg){clearTimeout(wd);conv=null;starting=false;endAfter=false;cancelAnimationFrame(raf);D.setTextHandler(null);ui(false);D.setMode('idle');D.setLevel(0);say(msg||'')}
   function start(){
-    if(starting)return;starting=true;ui(true);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
+    if(starting)return;starting=true;var my=++gen;ui(true);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
     load().then(function(){
+      wd=setTimeout(function(){gen++;var c=conv;cleanup('Sofía is busy with another caller right now. Try again in a minute, or type below.');if(c)c.endSession()},12000);
       return window.ElevenLabsClient.Conversation.startSession({
         agentId:AGENT,connectionType:'webrtc',dynamicVariables:{today:today()},clientTools:clientTools,
-        onConnect:function(){say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Martina (rioplatense) · max 2 min'})},
+        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Martina (rioplatense) · max 2 min'})},
         onMessage:function(m){if(!m||!m.message)return;if(m.source==='user')D.onUserTranscript(m.message,{source:'voice'});else D.onAgentMessage(m.message,{tts:'ElevenLabs TTS · Flash v2.5'})},
         onModeChange:function(m){D.setMode(m.mode==='speaking'?'speaking':'listening');if(m.mode==='listening'&&endAfter&&conv)conv.endSession()},
         onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic to try again, or type below.':d&&d.reason==='agent'?'Call ended. Tap the mic to start a new one.':'')},
         onError:function(m){if(window.console)console.warn('ElevenLabs',m)}
       });
-    }).then(function(c){conv=c;starting=false;D.setMode('listening');raf=requestAnimationFrame(level);
+    }).then(function(c){if(my!==gen){c.endSession();return}conv=c;starting=false;D.setMode('listening');raf=requestAnimationFrame(level);
       D.setTextHandler(function(t){if(conv)conv.sendUserMessage(t)});
       if(D.muted&&conv.setVolume)conv.setVolume({volume:0});
-    }).catch(function(e){
+    }).catch(function(e){if(my!==gen)return;
       var m=String(e&&(e.message||e)||'');
       cleanup(/permission|denied|notallowed/i.test(m)?'Microphone blocked. Allow it in the browser, or just type: the offline brain answers.':
         'Voice is resting right now (daily demo limit or network). Type below: the offline brain answers.');
