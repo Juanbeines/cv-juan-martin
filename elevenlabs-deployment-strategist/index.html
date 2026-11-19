@@ -1094,17 +1094,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 })();
 </script>
 <script id="la-voice">
-/* ElevenLabs voice layer for Sofía. Public agent id only (no key in the page). The SDK loads on the first mic tap.
-   Agent limits live server-side: 120 s per call, 10 calls/day, 2 at a time. Typed text outside a call runs the offline brain.
+/* ElevenLabs voice layer for Sofía. Public agent id only (no key in the page). The SDK loads on first use.
+   Mic tap = voice call. Typing or a chip = the same call with the mic muted: Sofía still answers out loud.
+   Agent limits live server-side: 120 s per call, 10 calls/day, 2 at a time. If voice can't start, the offline brain answers.
    file:// (PDF render) stays offline. */
 (function(){
   var D=window.SofiaDemo;if(!D||!/^https?:$/.test(location.protocol))return;
   var AGENT='agent_5101m7t5jwd7em3tywc46e48a67z',SDK='https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.32.1/dist/lib.iife.js';
-  var mic=document.getElementById('la-mic'),note=document.getElementById('la-note');
-  var conv=null,starting=false,endAfter=false,raf=0,wd=0,gen=0;
-  D.setLive(true,{label:'ElevenLabs agent · tap the mic to talk'});
+  var mic=document.getElementById('la-mic'),note=document.getElementById('la-note'),logEl=document.getElementById('la-log');
+  var conv=null,starting=false,endAfter=false,raf=0,wd=0,gen=0,micOn=false,queue=[];
+  D.setLive(true,{label:'ElevenLabs agent · talk or type'});
   function say(t){note.textContent=t;note.hidden=!t}
-  function ui(on){mic.classList.toggle('on',on);mic.setAttribute('aria-pressed',on);mic.setAttribute('aria-label',on?'End the call with Sofía':'Talk to Sofía (microphone)')}
+  function ui(on){micOn=on;mic.classList.toggle('on',on);mic.setAttribute('aria-pressed',on);
+    mic.setAttribute('aria-label',on?'End the call with Sofía':'Talk to Sofía (microphone)')}
   function load(){return window.ElevenLabsClient?Promise.resolve():new Promise(function(res,rej){var s=document.createElement('script');s.src=SDK;s.onload=res;s.onerror=function(){rej(new Error('sdk'))};document.head.appendChild(s)})}
   var MAP={get_order:'get_order',get_tracking:'get_tracking',check_return_eligibility:'check_return_eligibility',create_return:'create_return',
     update_address:'update_address',open_carrier_claim:'open_carrier_claim',transfer_to_human:'transfer_to_human',end_conversation:'end_call'};
@@ -1112,32 +1114,46 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     return D.tools[MAP[k]](p||{}).then(function(r){return JSON.stringify(r)})}});
   function level(){if(conv&&conv.getOutputVolume)D.setLevel(Math.min(1,conv.getOutputVolume()*2.5));raf=requestAnimationFrame(level)}
   function today(){try{return new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
-  function cleanup(msg){clearTimeout(wd);conv=null;starting=false;endAfter=false;cancelAnimationFrame(raf);D.setTextHandler(null);ui(false);D.setMode('idle');D.setLevel(0);say(msg||'')}
-  function start(){
-    if(starting)return;starting=true;var my=++gen;ui(true);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
+  function cleanup(msg){clearTimeout(wd);conv=null;starting=false;endAfter=false;cancelAnimationFrame(raf);ui(false);D.setMode('idle');D.setLevel(0);say(msg||'')}
+  /* voice could not start: hand queued typed messages to the offline brain (drop the bubble the page already drew) */
+  function offline(msg){var q=queue;queue=[];cleanup(msg);
+    q.forEach(function(t){var us=logEl.querySelectorAll('.la-m.u');if(us.length)us[us.length-1].remove();D.brain(t)})}
+  function start(withMic){
+    if(starting)return;starting=true;var my=++gen;ui(withMic);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
+    var typed=queue.length>0;
     load().then(function(){
-      wd=setTimeout(function(){gen++;var c=conv;cleanup('Sofía is busy with another caller right now. Try again in a minute, or type below.');if(c)c.endSession()},12000);
+      wd=setTimeout(function(){gen++;var c=conv;offline('Sofía is busy with another caller right now. Try again in a minute.');if(c)c.endSession()},12000);
       return window.ElevenLabsClient.Conversation.startSession({
         agentId:AGENT,connectionType:'webrtc',dynamicVariables:{today:today()},clientTools:clientTools,
-        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Melanie (rioplatense) · max 2 min'})},
+        overrides:typed?{agent:{firstMessage:''}}:undefined,
+        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Melanie (rioplatense) · '+(withMic?'mic on':'typed, mic muted')+' · max 2 min'})},
         onMessage:function(m){if(!m||!m.message)return;if(m.source==='user')D.onUserTranscript(m.message,{source:'voice'});else D.onAgentMessage(m.message,{tts:'ElevenLabs TTS · Flash v2.5'})},
         onModeChange:function(m){D.setMode(m.mode==='speaking'?'speaking':'listening');if(m.mode==='listening'&&endAfter&&conv)conv.endSession()},
-        onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic to try again, or type below.':d&&d.reason==='agent'?'Call ended. Tap the mic to start a new one.':'')},
+        onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic or type to start again.':d&&d.reason==='agent'?'Call ended. Tap the mic or type to start a new one.':'')},
         onError:function(m){if(window.console)console.warn('ElevenLabs',m)}
       });
-    }).then(function(c){if(my!==gen){c.endSession();return}conv=c;starting=false;D.setMode('listening');raf=requestAnimationFrame(level);
-      D.setTextHandler(function(t){if(conv)conv.sendUserMessage(t)});
-      if(D.muted&&conv.setVolume)conv.setVolume({volume:0});
+    }).then(function(c){if(my!==gen){c.endSession();return}conv=c;starting=false;raf=requestAnimationFrame(level);
+      if(!withMic&&c.setMicMuted)c.setMicMuted(true);
+      if(D.muted&&c.setVolume)c.setVolume({volume:0});
+      var q=queue;queue=[];q.forEach(function(t){c.sendUserMessage(t)});
+      D.setMode(q.length?'thinking':'listening');
     }).catch(function(e){if(my!==gen)return;
       var m=String(e&&(e.message||e)||'');
-      cleanup(/permission|denied|notallowed/i.test(m)?'Microphone blocked. Allow it in the browser, or just type: the offline brain answers.':
-        'Voice is resting right now (daily demo limit or network). Type below: the offline brain answers.');
+      offline(/permission|denied|notallowed/i.test(m)?'Voice needs microphone access (allow it in the browser). Meanwhile the offline brain answers.':
+        'Voice is resting right now (daily demo limit or network). The offline brain answers.');
       if(window.console)console.warn(e);
     });
   }
-  D.setMicHandler(function(){if(conv){endAfter=false;conv.endSession()}else start()});
+  /* typed text and chips: send to the live call, or start one (mic muted) so Sofía answers by voice */
+  D.setTextHandler(function(t){if(conv){conv.sendUserMessage(t);D.setMode('thinking')}else{queue.push(t);start(false)}});
+  /* mic: start a voice call; in a typed call, unmute; in a voice call, hang up */
+  D.setMicHandler(function(){
+    if(conv&&!micOn){if(conv.setMicMuted)conv.setMicMuted(false);ui(true);return}
+    if(conv){endAfter=false;conv.endSession();return}
+    start(true);
+  });
   D.setMuteHandler(function(m){if(conv&&conv.setVolume)conv.setVolume({volume:m?0:1})});
-  D.setResetHandler(function(){if(conv)conv.endSession()});
+  D.setResetHandler(function(){queue=[];if(conv)conv.endSession()});
   window.addEventListener('pagehide',function(){if(conv)conv.endSession()});
 })();
 </script>
