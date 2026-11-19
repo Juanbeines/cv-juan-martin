@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín · Supabase CSA">
+<meta property="og:description" content="Juan Martín Beines Furcada · #1 SE US Commercial (DevRev 2025) · AI agents architect · Buenos Aires">
+<meta property="og:type" content="website">
+<title>Juan Martín · Supabase CSA</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#121212; --bg2:#171717; --surface:#1c1c1c; --surface2:#232323; --surface3:#282828;
+  --border:#2e2e2e; --border2:#3e3e3e; --border3:#505050;
+  --fg:#ededed; --fg-light:#a0a0a0; --fg-lighter:#8f8f8f;
+  --brand:#3ecf8e; --brand-hi:#6ee7b0; --brand-btn:#006239; --brand-btn-hi:#007a47; --brand-line:rgba(62,207,142,.35); --brand-wash:rgba(62,207,142,.08);
+  --amber:#f1a10d; --violet:#a78bfa; --sky:#5eb1ef;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Source Code Pro","Office Code Pro",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1200px; --r:8px; --r-lg:12px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:640px){.wrap{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--border)}
+.alt{background:var(--bg2)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-light);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow .n{color:var(--brand)}
+.h2{font-size:clamp(30px,4.4vw,48px);line-height:1.1}
+.h2 .g{color:var(--brand)}
+.lede{font-size:clamp(16px,1.5vw,18px);color:var(--fg-light);max-width:62ch}
+.sechead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 64px;align-items:end;margin-bottom:48px}
+.sechead .eyebrow{grid-column:1/-1}
+.sechead>*{min-width:0}
+@media (max-width:860px){.sechead{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;line-height:1;padding:10px 16px;border-radius:6px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.btn-p{background:var(--brand-btn);border-color:var(--brand-line);color:#fff}
+.btn-p:hover{background:var(--brand-btn-hi);border-color:var(--brand)}
+.btn-s{background:var(--surface2);border-color:var(--border2);color:var(--fg)}
+.btn-s:hover{background:var(--surface3);border-color:var(--border3)}
+
+/* banner + nav */
+.banner{background:var(--bg2);border-bottom:1px solid var(--border);font-size:13px;line-height:1.45;text-align:center;padding:9px 16px;color:var(--fg-light)}
+.banner b{color:var(--fg);font-weight:500}
+.banner .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:999px;padding:1px 8px;margin-right:8px;white-space:nowrap}
+nav.top{position:sticky;top:0;z-index:20;background:rgba(18,18,18,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav.top .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.mark{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:var(--brand-wash);border:1px solid var(--brand-line);color:var(--brand);font-family:var(--mono);font-size:12px;font-weight:500}
+nav.top .links{display:flex;gap:22px;margin-left:auto;font-size:13.5px}
+nav.top .links a{text-decoration:none;color:var(--fg-light)}
+nav.top .links a:hover{color:var(--fg)}
+@media (max-width:980px){nav.top .links{display:none}nav.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(48px,8vw,100px) clamp(56px,8vw,96px);border-top:0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:56px 56px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 10%,transparent 75%);pointer-events:none}
+.hero::after{content:"";position:absolute;width:620px;height:620px;right:-160px;top:-220px;background:radial-gradient(closest-side,rgba(62,207,142,.13),transparent);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero .wrap>*{min-width:0}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:44px}}
+.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--fg-light);border:1px solid var(--border2);background:var(--surface);border-radius:999px;padding:4px 12px 4px 8px;margin-bottom:24px;max-width:100%}
+.pill span{overflow-wrap:anywhere}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 0 rgba(62,207,142,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(62,207,142,0)}100%{box-shadow:0 0 0 0 rgba(62,207,142,0)}}
+.hero h1{font-size:clamp(40px,6.2vw,72px);line-height:1.02;margin-bottom:24px}
+.hero h1 span{display:block}
+.hero h1 .g{color:var(--brand)}
+.hero p.sub{font-size:clamp(16px,1.6vw,18px);color:var(--fg-light);max-width:56ch;margin-bottom:30px}
+.hero p.sub b{color:var(--fg);font-weight:500}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:30px;font-size:13.5px;color:var(--fg-light);padding:0;list-style:none}
+.facts li::before{content:"✓";color:var(--brand);margin-right:8px;font-weight:600}
+
+/* sql editor panel */
+.editor{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(62,207,142,.05)}
+.ed-bar{display:flex;align-items:center;gap:12px;padding:10px 13.5px;border-bottom:1px solid var(--border);background:var(--surface)}
+.ed-bar .lights{display:flex;gap:6px}
+.ed-bar .lights i{width:10px;height:10px;border-radius:50%;background:var(--border3)}
+.ed-tab{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ed-run{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:5px;padding:2px 8px;white-space:nowrap}
+.ed-code{padding:16px 13px 13px;font-family:var(--mono);font-size:13px;line-height:1.75;min-height:150px}
+.ed-code pre{margin:0;font:inherit;color:var(--fg)}
+.ed-code .l{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;min-height:1.75em}
+.ed-code .l>span{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}
+.ed-code .l>i{font-style:normal;color:var(--border3);text-align:right;user-select:none}
+.ed-code .k{color:var(--brand)}
+.ed-code .s{color:var(--amber)}
+.ed-code .c{color:var(--fg-lighter)}
+.ed-code .caret{display:inline-block;width:7px;height:15px;background:var(--brand);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.ed-res{border-top:1px solid var(--border)}
+.ed-res .rh{display:flex;justify-content:space-between;gap:10px;padding:8px 13.5px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;table-layout:fixed}
+.tbl th{text-align:left;font-weight:500;color:var(--fg-light);padding:8px 13.5px;border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl th small{color:var(--fg-lighter);font-weight:400;margin-left:6px}
+.tbl td{padding:9px 13.5px;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;overflow-wrap:anywhere}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.hl{color:var(--brand)}
+.tbl tbody tr{transition:opacity .4s,transform .4s}
+.tbl tbody tr.wait{opacity:0;transform:translateY(4px)}
+@media (max-width:520px){.tbl th small{display:none}.tbl th,.tbl td{padding-inline:10px}}
+
+/* stats */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.stat{padding:28px 20px;border-right:1px solid var(--border);min-width:0}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-lighter);margin-bottom:10px}
+.stat b{display:block;font-weight:400;font-size:clamp(30px,3.4vw,42px);line-height:1;letter-spacing:-.03em}
+.stat b em{font-style:normal;color:var(--brand)}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--fg-light)}
+@media (max-width:900px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:20px 16px;border-bottom:1px solid var(--border)}.stat:first-child{padding-left:16px}.stat:nth-child(2n){border-right:0}.stat:last-child{grid-column:1/-1;border-bottom:0}}
+
+/* role mapped */
+.map{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--bg)}
+.map-head{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter)}
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.3fr);gap:10px 24px;padding:22px 20px;border-bottom:1px solid var(--border);align-items:start}
+.mrow:last-child{border-bottom:0}
+.mrow:hover{background:rgba(255,255,255,.015)}
+.mrow>*{min-width:0}
+.mrow .n{font-family:var(--mono);font-size:12px;color:var(--fg-lighter);padding-top:4px}
+.mrow h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
+.mrow .q{font-family:var(--mono);font-size:12.5px;line-height:1.55;color:var(--fg-lighter);margin-top:8px}
+.mrow ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;color:var(--fg-light);font-size:15px}
+.mrow li{position:relative;padding-left:20px}
+.mrow li::before{content:"→";position:absolute;left:0;color:var(--brand)}
+.mrow li b{color:var(--fg);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:5px;background:var(--surface2);border:1px solid var(--border2);color:var(--fg-light)}
+.honest{margin-top:12px;font-size:13.5px;color:var(--fg-light);border-left:2px solid var(--amber);padding:2px 0 2px 12px}
+.honest b{color:var(--amber);font-weight:500;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+@media (max-width:820px){.map-head{display:none}.mrow{grid-template-columns:1fr;padding:20px 16px}.mrow .n{padding:0}}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.val{grid-column:span 2;position:relative;border-radius:var(--r-lg);padding:1px;background:linear-gradient(180deg,var(--border2),var(--border) 60%)}
+.val:nth-child(4),.val:nth-child(5){grid-column:span 3}
+.val>div{height:100%;border-radius:calc(var(--r-lg) - 1px);background:var(--bg2);padding:26px 24px 24px;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.val:hover{background:linear-gradient(180deg,var(--brand-line),var(--border) 70%)}
+.val .ic{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--border2);color:var(--brand)}
+.val .ic svg{width:18px;height:18px}
+.val h3{font-size:22px;margin-top:8px}
+.val .def{font-family:var(--mono);font-size:12.5px;color:var(--fg-lighter);line-height:1.5}
+.val p.story{color:var(--fg-light);font-size:15px}
+.val .proof{margin-top:auto;padding-top:13.5px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--brand)}
+@media (max-width:960px){.values{grid-template-columns:repeat(2,minmax(0,1fr))}.val,.val:nth-child(4),.val:nth-child(5){grid-column:span 1}.val:nth-child(5){grid-column:1/-1}}
+@media (max-width:600px){.values{grid-template-columns:1fr}.val:nth-child(5){grid-column:auto}}
+
+/* now */
+.now{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.now>*{min-width:0}
+@media (max-width:960px){.now{grid-template-columns:1fr}}
+.flow{display:grid;gap:10px;margin-top:28px}
+.fstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:13.5px;align-items:start;padding:16px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg)}
+.fstep .i{font-family:var(--mono);font-size:12px;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:6px;text-align:center;padding:4px 0}
+.fstep b{display:block;font-weight:500;font-size:16px}
+.fstep span{display:block;color:var(--fg-light);font-size:15px;margin-top:2px}
+.schema{border:1px solid var(--border2);border-radius:var(--r-lg);background:var(--bg);overflow:hidden}
+.schema .sh{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface);font-family:var(--mono);font-size:12px;color:var(--fg-light)}
+.schema .sh b{color:var(--fg);font-weight:500}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:16px;background-image:radial-gradient(var(--border) 1px,transparent 1.2px);background-size:16px 16px}
+@media (max-width:520px){.sgrid{grid-template-columns:1fr}}
+.stable{border:1px solid var(--border2);border-radius:8px;background:var(--bg2);overflow:hidden;min-width:0}
+.stable.pg{border-color:var(--brand-line);box-shadow:0 0 0 3px rgba(62,207,142,.06)}
+.stable .tn{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12.5px;font-weight:500;background:var(--surface)}
+.stable .tn svg{width:13px;height:13px;color:var(--brand);flex:none}
+.stable .col{display:flex;justify-content:space-between;gap:10px;padding:5px 12px;font-family:var(--mono);font-size:12px;color:var(--fg-light);border-bottom:1px solid rgba(46,46,46,.6)}
+.stable .col:last-child{border-bottom:0}
+.stable .col i{font-style:normal;color:var(--fg-lighter);white-space:nowrap}
+.stable .col span{min-width:0;overflow-wrap:anywhere}
+.skills{display:grid;gap:8px;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--fg-light)}
+.skills div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px}
+.skills b{color:var(--fg-lighter);font-weight:400}
+
+/* experience */
+.xp{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.xrow{border-bottom:1px solid var(--border);background:var(--bg)}
+.xrow:last-child{border-bottom:0}
+.xrow button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:140px minmax(0,1fr) minmax(0,1.1fr) 24px;gap:10px 24px;align-items:start;padding:22px 20px}
+.xrow button>*{min-width:0}
+.xrow button:hover{background:rgba(255,255,255,.015)}
+.xrow button:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.xrow .when{font-family:var(--mono);font-size:12.5px;color:var(--fg-lighter);padding-top:4px}
+.xrow .co{font-size:22px;line-height:1.2;letter-spacing:-.015em}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.ladder span{font-family:var(--mono);font-size:11.5px;line-height:1.4;padding:2px 8px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);color:var(--fg-light)}
+.ladder span.top{border-color:var(--brand-line);background:var(--brand-wash);color:var(--brand)}
+.ladder i{font-style:normal;font-size:12px;color:var(--fg-lighter)}
+.xrow .sum{color:var(--fg-light);font-size:15px;padding-top:2px}
+.xrow .pm{font-family:var(--mono);font-size:20px;line-height:1;color:var(--fg-lighter);transition:transform .25s;text-align:center;padding-top:4px}
+.xrow.open .pm{transform:rotate(45deg);color:var(--brand)}
+.xrow .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.xrow.open .body{grid-template-rows:1fr}
+.xrow .body>div{overflow:hidden}
+.xrow ul{margin:0;padding:0 20px 24px 184px;list-style:none;display:grid;gap:8px;color:var(--fg-light);font-size:15px}
+.xrow li{position:relative;padding-left:20px}
+.xrow li::before{content:"→";position:absolute;left:0;color:var(--brand)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:4px;background:var(--brand);color:#0b2b1c;margin-left:10px;vertical-align:middle;text-transform:uppercase;font-weight:500}
+@media (max-width:820px){.xrow button{grid-template-columns:minmax(0,1fr) 24px;padding:18px 16px}.xrow .when{grid-column:1/-1;padding:0}.xrow .sum{grid-column:1/-1;grid-row:3}.xrow .pm{grid-row:2;grid-column:2}.xrow ul{padding:0 16px 20px}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.pcard{border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;background:var(--bg);display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.pcard .d{font-family:var(--mono);font-size:12px;color:var(--brand);display:flex;align-items:center;gap:8px}
+.pcard .d::before{content:"";width:8px;height:8px;border-radius:50%;border:2px solid var(--brand)}
+.pcard:last-child .d::before{background:var(--brand)}
+.pcard h3{font-size:20px;line-height:1.25}
+.pcard p{font-size:15px;color:var(--fg-light)}
+.pcard .out{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--fg)}
+.pcard .out::before{content:"→ ";color:var(--brand)}
+.track{height:2px;background:var(--border);border-radius:2px;margin:0 0 20px;position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 100% 0 0;background:var(--brand);transition:right 1.6s cubic-bezier(.2,.7,.2,1)}
+.track.in i{right:0}
+.track-l{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--fg-lighter);margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:960px){.plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plan{grid-template-columns:1fr}}
+
+/* creds */
+.creds{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+.creds>*{min-width:0}
+@media (max-width:900px){.creds{grid-template-columns:1fr}}
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.certs div{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:16px;min-width:0}
+.certs b{display:block;font-weight:500;font-size:15.5px;line-height:1.35}
+.certs span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter);margin-top:6px}
+@media (max-width:520px){.certs{grid-template-columns:1fr}}
+.edu{display:grid;gap:12px;margin-top:18px}
+.edu .it{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:16px}
+.edu .it b{display:block;font-weight:500;font-size:15.5px;line-height:1.35}
+.edu .it span{font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter)}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.langs div{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:12px;min-width:0}
+.langs b{display:block;font-weight:500;font-size:15px}
+.langs span{font-family:var(--mono);font-size:11.5px;color:var(--brand)}
+
+/* contact */
+.contact{position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;width:700px;height:700px;left:50%;bottom:-460px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(62,207,142,.14),transparent);pointer-events:none}
+.contact .wrap{position:relative;z-index:1}
+.contact h2{font-size:clamp(38px,6vw,68px);line-height:1.04;margin:18px 0 20px}
+.contact h2 .g{color:var(--brand);display:block}
+.term{margin-top:36px;border:1px solid var(--border2);border-radius:var(--r-lg);background:var(--bg2);overflow:hidden}
+.term .tb{padding:8px 13.5px;border-bottom:1px solid var(--border);background:var(--surface);font-family:var(--mono);font-size:11px;color:var(--fg-lighter);letter-spacing:.06em;text-transform:uppercase}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))}
+.cgrid>div{padding:18px;border-right:1px solid var(--border);min-width:0}
+.cgrid>div:last-child{border-right:0}
+.cgrid .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);margin-bottom:6px}
+.cgrid .k::before{content:"$ ";color:var(--brand)}
+.cgrid .v{font-family:var(--mono);font-size:15px;color:var(--fg);overflow-wrap:anywhere}
+.cgrid .v.sel{user-select:all}
+@media (max-width:900px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cgrid>div{border-bottom:1px solid var(--border)}.cgrid>div:first-child{grid-column:1/-1;border-right:0}.cgrid>div:nth-child(3){border-right:0}}
+@media (max-width:520px){.cgrid{grid-template-columns:1fr}.cgrid>div{border-right:0}}
+footer{border-top:1px solid var(--border);padding-block:22px;font-size:13px;color:var(--fg-lighter)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--surface2);border:1px solid var(--brand-line);color:var(--fg);font-size:13.5px;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* live agent */
+.la{position:relative;overflow:hidden}
+.la::before{content:"";position:absolute;width:760px;height:760px;left:-260px;top:-300px;background:radial-gradient(closest-side,rgba(62,207,142,.08),transparent);pointer-events:none}
+.la .wrap{position:relative;z-index:1}
+.la-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.la-meta{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-top:20px}
+.la-sim{font-family:var(--mono);font-size:12px;line-height:1.55;color:var(--fg-light);border-left:2px solid var(--amber);padding:2px 0 2px 12px;max-width:62ch;min-width:0}
+.la-sim b{color:var(--amber);font-weight:500}
+.la-shell{border:1px solid var(--border2);border-radius:var(--r-lg);background:var(--bg2);overflow:hidden;box-shadow:0 30px 80px -24px rgba(0,0,0,.7),0 0 0 1px rgba(62,207,142,.05)}
+.la-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface)}
+.la-bar .lights{display:flex;gap:6px}
+.la-bar .lights i{width:10px;height:10px;border-radius:50%;background:var(--border3)}
+.la-app{font-family:var(--mono);font-size:12.5px;color:var(--fg);display:flex;align-items:center;gap:8px;min-width:0}
+.la-app .mark{width:22px;height:22px;font-size:11px;border-radius:5px}
+.la-app span:last-child{color:var(--fg-lighter)}
+.la-who{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.la-who-l{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter)}
+.la-seg{display:flex;gap:2px;padding:2px;border:1px solid var(--border2);border-radius:7px;background:var(--bg2);min-width:0}
+.la-seg button{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--sans);font-size:12.5px;line-height:1.2;padding:5px 10px;border-radius:5px;color:var(--fg-light);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;transition:background .15s,color .15s}
+.la-seg button:hover{color:var(--fg)}
+.la-seg button[aria-pressed="true"]{background:var(--surface3);color:var(--fg);box-shadow:inset 0 0 0 1px var(--border3)}
+.la-seg button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.la-seg button:disabled{cursor:wait}
+.la-seg i{width:7px;height:7px;border-radius:50%;flex:none}
+.la-jwt{padding:8px 14px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--fg-lighter);overflow-wrap:anywhere;background:var(--bg)}
+.la-jwt b{color:var(--fg-light);font-weight:400}
+.la-jwt em{font-style:normal;color:var(--brand)}
+.la-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);height:700px}
+.la-grid>*{min-width:0;min-height:0}
+.la-chat{display:flex;flex-direction:column;border-right:1px solid var(--border)}
+.la-log{flex:1;min-height:0;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.la-u{align-self:flex-end;max-width:88%;background:var(--surface3);border:1px solid var(--border2);padding:8px 12px;border-radius:10px 10px 2px 10px;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}
+.la-a{align-self:stretch;display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;font-size:14.5px;line-height:1.55}
+.la-a .mark{width:26px;height:26px;font-size:10.5px}
+.la-a .bd{min-width:0}
+.la-a .bd>p+p{margin-top:8px}
+.la-a .bd p b{font-weight:500}
+.la-mini{margin-top:10px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg)}
+.la-mini .tbl{font-size:12px}
+.la-mini .tbl th,.la-mini .tbl td{padding:6px 10px}
+.la-foot{margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--fg-lighter);overflow-wrap:anywhere}
+.la-foot em{font-style:normal;color:var(--brand)}
+.la-x{margin-top:10px;border-left:2px solid var(--amber);background:rgba(241,161,13,.06);padding:8px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:var(--fg-light)}
+.la-x b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:2px}
+.la-cite{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter)}
+.la-cite li{overflow-wrap:anywhere}
+.la-cite em{font-style:normal;color:var(--brand)}
+.la-can{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-size:13.5px;color:var(--fg-light)}
+.la-can li::before{content:"→ ";color:var(--brand)}
+.la-sys{align-self:center;max-width:100%;font-family:var(--mono);font-size:11.5px;line-height:1.45;color:var(--fg-lighter);text-align:center;border:1px dashed var(--border2);border-radius:999px;padding:3px 12px;overflow-wrap:anywhere}
+.la-dots{display:inline-flex;gap:4px;padding:8px 0}
+.la-dots i{width:6px;height:6px;border-radius:50%;background:var(--fg-lighter);animation:ladot 1s infinite}
+.la-dots i:nth-child(2){animation-delay:.15s}.la-dots i:nth-child(3){animation-delay:.3s}
+@keyframes ladot{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.la-chips{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px 0;border-top:1px solid var(--border)}
+.la-chip{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--sans);font-size:12.5px;line-height:1.35;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);background:var(--surface);color:var(--fg-light);max-width:100%;transition:border-color .15s,color .15s}
+.la-chip:hover{border-color:var(--brand-line);color:var(--fg)}
+.la-chip:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.la-chip.x{border-color:rgba(241,161,13,.4);color:var(--amber)}
+.la-chip.x:hover{border-color:var(--amber)}
+.la-chip:disabled{opacity:.5;cursor:wait}
+.la-form{display:flex;gap:8px;padding:12px 16px 16px}
+.la-form input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--border2);border-radius:6px;color:var(--fg);font-family:var(--sans);font-size:14px;padding:9px 12px;outline:0}
+.la-form input:focus{border-color:var(--brand-line);box-shadow:0 0 0 3px rgba(62,207,142,.1)}
+.la-form input::placeholder{color:var(--fg-lighter)}
+.la-form .btn{flex:none}
+.la-form .btn:disabled{opacity:.6;cursor:wait}
+.la-trace{display:flex;flex-direction:column;background:var(--bg)}
+.la-th{display:flex;justify-content:space-between;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);background:var(--surface)}
+.la-th b{color:var(--brand);font-weight:500}
+.la-steps{list-style:none;margin:0;padding:16px 16px 6px;overflow-y:auto;flex:1;min-height:0;overscroll-behavior:contain}
+.la-st{position:relative;display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;padding-bottom:16px}
+.la-st::before{content:"";position:absolute;left:8px;top:20px;bottom:0;width:1px;background:var(--border2)}
+.la-st:last-child::before{display:none}
+.la-st>*{min-width:0}
+.la-o{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--border3);background:var(--bg);margin-top:2px;display:grid;place-items:center;box-sizing:border-box}
+.la-st.done .la-o{border-color:var(--brand);background:var(--brand-wash)}
+.la-st.done .la-o::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand)}
+.la-st.warn .la-o{border-color:var(--amber);background:rgba(241,161,13,.1)}
+.la-st.warn .la-o::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.la-st.run .la-o{border-color:var(--brand);border-top-color:transparent;animation:laspin .7s linear infinite}
+@keyframes laspin{to{transform:rotate(360deg)}}
+.la-sh{display:flex;align-items:baseline;gap:6px 8px;flex-wrap:wrap}
+.la-sh b{font-weight:500;font-size:14px;line-height:1.35}
+.la-tag{font-family:var(--mono);font-size:10.5px;line-height:1.5;padding:0 6px;border-radius:4px;border:1px solid var(--border2);color:var(--fg-light);background:var(--surface);white-space:nowrap}
+.la-tag.g{border-color:var(--brand-line);color:var(--brand);background:var(--brand-wash)}
+.la-tag.a{border-color:rgba(241,161,13,.4);color:var(--amber);background:rgba(241,161,13,.08)}
+.la-ms{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter);white-space:nowrap}
+.la-wf{height:3px;border-radius:2px;background:var(--surface2);margin-top:6px;position:relative;overflow:hidden}
+.la-wf i{position:absolute;top:0;bottom:0;border-radius:2px;background:var(--brand-line)}
+.la-st.warn .la-wf i{background:rgba(241,161,13,.5)}
+.la-sm{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--fg-light);margin-top:4px;overflow-wrap:anywhere}
+.la-sm em{font-style:normal;color:var(--brand)}
+.la-sm u{text-decoration:none;color:var(--amber)}
+.la-code{margin:8px 0 0;padding:9px 11px;border:1px solid var(--border);border-radius:6px;background:var(--bg2);font-family:var(--mono);font-size:11.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--fg)}
+.la-code .k{color:var(--brand)}
+.la-code .s{color:var(--amber)}
+.la-code .c{color:var(--fg-lighter)}
+.la-code .f,.la-code .p{color:var(--sky)}
+.la-code .op,.la-code .nm{color:var(--violet)}
+.la-chunk{margin-top:6px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg2);font-size:12.5px;line-height:1.45;color:var(--fg-light)}
+.la-chunk .ct{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--fg);margin-bottom:4px}
+.la-chunk .ct span{min-width:0;overflow-wrap:anywhere}
+.la-chunk .ct em{font-style:normal;color:var(--brand);white-space:nowrap}
+.la-chunk .mt{height:3px;border-radius:2px;background:var(--surface2);margin-bottom:6px;overflow:hidden}
+.la-chunk .mt i{display:block;height:100%;background:var(--brand)}
+@media (max-width:900px){
+  .la-grid{grid-template-columns:1fr;height:auto}
+  .la-chat{border-right:0;border-bottom:1px solid var(--border)}
+  .la-log{max-height:480px;min-height:240px}
+  .la-steps{overflow:visible}
+}
+@media (max-width:560px){
+  .la-bar .lights{display:none}
+  .la-who{margin-left:0;width:100%}
+  .la-seg{flex:1}
+  .la-seg button{flex:1;padding:6px 6px}
+  .la-form input{font-size:16px}
+  .la-a{grid-template-columns:minmax(0,1fr)}
+  .la-a>.mark{display:none}
+}
+@media print{.la-grid{height:auto}.la-log,.la-steps{overflow:visible;max-height:none}.la-form{display:none}}
+
+.reveal{opacity:0;transform:translateY(13.5px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.tbl tbody tr.wait{opacity:1;transform:none}.track i{right:0}}
+</style>
+</head>
+<body>
+
+
+<div class="banner"><span class="tag">Built on purpose</span>Adaptation is the most valuable skill in the AI era. <b>So I studied Supabase's DNA and built my CV in it.</b></div>
+
+<nav class="top" aria-label="Page">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Juan Martín, back to top"><span class="mark" aria-hidden="true">JM</span>Juan Martín</a>
+    <div class="links">
+      <a href="#live-agent">Live agent</a>
+      <a href="#role">The role</a>
+      <a href="#values">Values</a>
+      <a href="#now">What I do now</a>
+      <a href="#experience">Experience</a>
+      <a href="#plan">First two weeks</a>
+    </div>
+    <a class="btn btn-p" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="pill"><span class="dot" aria-hidden="true"></span><span>Customer Solution Architect · Remote, AMER</span></div>
+      <h1><span>Discovery to proof-of-value.</span><span class="g">Then scale to millions.</span></h1>
+      <p class="sub">I'm Juan Martín Beines Furcada. I was <b>#1 Solutions Engineer in DevRev's US Commercial market in 2025</b>. Before that I designed data lakes, warehouses and ETL on AWS for banks, telcos and retailers, and today I architect AI agents for US enterprises. I've run Postgres in production myself. I want to be the person your Team and Enterprise customers call when their workload grows.</p>
+      <div class="ctas">
+        <button class="btn btn-p js-copy" type="button">Copy email</button>
+        <a class="btn btn-s" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-s" href="#live-agent">▶ Try the live agent</a>
+      </div>
+      <ul class="facts"><li>Postgres in production, SQL for years</li><li>AWS Database Specialty</li><li>Buenos Aires · GMT-3, same workday as the US East Coast</li><li>ES native · EN bilingual</li></ul>
+    </div>
+    <div class="editor" aria-label="SQL editor querying Juan Martín's career as a table">
+      <div class="ed-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="ed-tab">career.sql</span><span class="ed-run">RUN ⏎</span></div>
+      <div class="ed-code"><pre id="sql"></pre></div>
+      <div class="ed-res"><div class="rh"><span>Results</span><span id="rc"></span></div><table class="tbl" id="tbl"></table></div>
+    </div>
+  </div>
+</header>
+
+<div class="stats" aria-label="Key numbers">
+  <div class="wrap">
+    <div class="stat"><small>DevRev · 2025</small><b><em>#1</em> SE</b><span>US Commercial market</span></div>
+    <div class="stat"><small>Customer-facing</small><b>7+ yrs</b><span>pre-sales &amp; solutions</span></div>
+    <div class="stat"><small>Leadership</small><b>7</b><span>engineers led at BGH</span></div>
+    <div class="stat"><small>AWS partner</small><b>3×</b><span>AWS Competencies earned</span></div>
+    <div class="stat"><small>Career</small><b>4×</b><span>promoted: DevRev, BGH, MicroStrategy, ITBA</span></div>
+  </div>
+</div>
+
+<section class="la" id="live-agent" aria-labelledby="la-h">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">▶</span> Live agent · runs in your browser</div>
+      <h2 class="h2" id="la-h">Don't read about it. <span class="g">Query it.</span></h2>
+      <div>
+        <p class="lede">A support copilot for Fernhill, a fictional multi-tenant B2B SaaS. An Edge Function routes each question, Postgres answers it under Row Level Security, and pgvector finds the right docs. Switch tenants, then try to read another customer's invoices.</p>
+        <div class="la-meta">
+          <p class="la-sim"><b>Simulated in your browser</b> — the same pattern I'd build with Postgres, RLS, pgvector and an Edge Function on Supabase. Fernhill and all its data are made up.</p>
+          <a class="btn btn-s" href="https://cv-juan-martin.vercel.app/supabase-customer-sa/#live-agent" target="_blank" rel="noopener">Open the live demo ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="la-shell reveal">
+      <div class="la-bar">
+        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="la-app"><span class="mark" aria-hidden="true">F</span><span>fernhill</span><span>/ support-copilot</span></span>
+        <div class="la-who" role="group" aria-label="Signed in as"><span class="la-who-l">Signed in as</span><div class="la-seg" id="laOrgs"></div></div>
+      </div>
+      <div class="la-jwt" id="laJwt"></div>
+      <div class="la-grid">
+        <div class="la-chat">
+          <div class="la-log" id="laLog" aria-live="polite"></div>
+          <div class="la-chips" id="laChips" aria-label="Suggested questions"></div>
+          <form class="la-form" id="laForm" autocomplete="off">
+            <label class="la-sr" for="laQ">Ask the support copilot</label>
+            <input id="laQ" type="text" maxlength="200" placeholder="Ask about invoices, tickets, projects, members or the docs">
+            <button class="btn btn-p" id="laGo" type="submit">Ask ⏎</button>
+          </form>
+        </div>
+        <aside class="la-trace" aria-label="Agent trace">
+          <div class="la-th"><span>Trace · <span id="laRun">run</span></span><b id="laTotal"></b></div>
+          <ol class="la-steps" id="laSteps"></ol>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="role">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">01</span> The role, mapped</div>
+      <h2 class="h2">Every line of the post, <span class="g">backed by work I've done.</span></h2>
+      <p class="lede">A CSA owns the whole journey: discovery, a proof-of-value the customer believes in, then the architecture reviews and tuning that let them scale on Supabase. Here is the evidence for each part.</p>
+    </div>
+    <div class="map">
+      <div class="map-head" aria-hidden="true"><span>#</span><span>From the job post</span><span>Evidence</span></div>
+      <div class="mrow reveal">
+        <div class="n">01</div>
+        <div><h3>Lead technical discovery and set the right expectations</h3><p class="q">"…define the criteria for success."</p></div>
+        <div><ul><li><b>#1 Solutions Engineer, US Commercial, DevRev, 2025</b>: owned pre-sales strategy and solution architecture for enterprise accounts</li><li>Today I run discovery on site with US enterprise teams and map their processes into architecture. At BGH I owned the full lifecycle: discovery, design, blueprints, implementation, optimization</li></ul><div class="tags"><span>Discovery</span><span>Success criteria</span><span>Enterprise</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">02</div>
+        <div><h3>Demos and storytelling for high-value customers</h3><p class="q">"…leverage quality storytelling to present the value of the platform."</p></div>
+        <div><ul><li>Built and ran technical demos at DevRev and pre-sales demos at MicroStrategy</li><li>Advised C-level and VPs at banks, retailers and telcos at BGH. The story changes with the room, and the architecture underneath has to stay the same</li></ul><div class="tags"><span>Demos</span><span>Exec readouts</span><span>Storytelling</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">03</div>
+        <div><h3>Scope and run proofs-of-value with clear success criteria</h3><p class="q">"…comfortable proceeding with the platform once a proof-of-value has been completed."</p></div>
+        <div><ul><li>Trusted technical advisor through POCs, integration design and adoption at DevRev</li><li>Delivered POCs for prospective enterprise clients at MicroStrategy, and wrote the roadmaps and logical system views that came after them</li></ul><div class="tags"><span>Proof-of-value</span><span>POCs</span><span>Adoption</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">04</div>
+        <div><h3>Database design and performance optimization</h3><p class="q">"…application architecture assessments, database design and performance optimization."</p></div>
+        <div><ul><li>Data modeling and <b>SQL optimization</b> in warehouse modernizations at MicroStrategy; Redshift, Glue and Spark warehouses on AWS at BGH</li><li>Run <b>Postgres in production</b> behind the conversational agent I built. AWS Database Specialty and Well-Architected Review Consultant: I've walked customers through performance and cost line by line</li></ul><p class="honest"><b>Honest note</b>My Postgres is application and warehouse work, not years as a DBA. Supabase-scale tuning (pg_stat_statements, indexes, RLS performance) is my first-week homework.</p><div class="tags"><span>Postgres</span><span>SQL</span><span>Data modeling</span><span>Well-Architected</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">05</div>
+        <div><h3>Size deals and estimate usage with the Growth team</h3><p class="q">"…provide anticipated usage estimates, and identify potential workloads."</p></div>
+        <div><ul><li>Designed data platforms on AWS for banking, retail, logistics, telco and public sector, where sizing storage and compute is part of every blueprint</li><li>Designed AI use cases at DevRev (support triage, product analytics, data consumption), which is how new workloads get found inside an existing account</li></ul><div class="tags"><span>Sizing</span><span>New workloads</span><span>Account plans</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">06</div>
+        <div><h3>Web application development: Python, JavaScript frameworks, Node.js</h3><p class="q">"…familiarity with Python, C# and popular JavaScript frameworks (React, Vue, Svelte) as well as Node.js."</p></div>
+        <div><ul><li>Built and shipped a production app end to end: <b>Next.js, React, TypeScript</b>, Node.js SSE streaming, <b>Python/Flask</b> with Celery and Redis, OAuth, payments, Docker on AWS</li></ul><div class="tags"><span>React</span><span>Node.js</span><span>Python</span><span>TypeScript</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">07</div>
+        <div><h3>Navigate stakeholders with conflicting opinions</h3><p class="q">"…the ability to effectively mediate this type of conflict is crucial."</p></div>
+        <div><ul><li>Governed data platforms for banks under strict compliance, where security, data and business teams rarely want the same thing on day one</li><li>Getting finance and marketing to agree on what an "active customer" means was a regular part of my BI work at MicroStrategy</li></ul><div class="tags"><span>Stakeholders</span><span>Compliance</span><span>Banking</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">08</div>
+        <div><h3>Champion the customer inside Supabase, fully remote</h3><p class="q">"…advocate on behalf of the customer within Supabase."</p></div>
+        <div><ul><li>Led the SE team in Argentina at DevRev, and worked US accounts from Buenos Aires. GMT-3 is one or two hours ahead of New York: I cover the East Coast morning and the West Coast afternoon</li><li>Spanish native for LatAm customers, English bilingual for everyone else</li></ul><div class="tags"><span>Remote, AMER</span><span>Async</span><span>ES / EN</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="values">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">02</span> Human powered</div>
+      <h2 class="h2">Your five traits, <span class="g">and where I've lived them.</span></h2>
+      <p class="lede">Supabase says a remote, async team stays effective through five traits. I read them before writing this page. Each one has a story behind it.</p>
+    </div>
+    <div class="values">
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><path d="M15.5 14.2c2.6-.3 4.8 1.2 5.5 4.3"/></svg></div><h3>Egoless</h3><p class="def">Mission driven, work for the good of colleagues.</p><p class="story">At DevRev I was the #1 SE in the US Commercial market, and I still spent my time leading and mentoring the SE team in Argentina. A win I can't hand over to the next person isn't worth much.</p><div class="proof">Led the SE team · DevRev Argentina</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h4v-4h4v-4h4V6h4"/><path d="M16 6h4v4"/></svg></div><h3>Kaizen Mindset</h3><p class="def">Iterative approach, continuously improve all functions.</p><p class="story">Promoted at four companies in a row, each time by getting a little better at the job every week. Same with agents: ship to production first, then improve on real conversations.</p><div class="proof">4× promoted · DevRev, BGH, MicroStrategy, ITBA</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.2-4.2"/><path d="m8.5 11 1.8 1.8L13.8 9.3"/></svg></div><h3>Truth Seeking</h3><p class="def">Intellectually honest, act with integrity, recognize biases.</p><p class="story">I say "not feasible" when it isn't. A scope the platform can't support is a churned customer that just hasn't happened yet. I'd rather lose the argument on day 3 than the account on day 90.</p><div class="proof">Trusted advisor through POCs · DevRev</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="m11.5 9-2 3h3l-2 3"/></svg></div><h3>Batteries Included</h3><p class="def">High ownership, intrinsically motivated, care about quality.</p><p class="story">I started a company at 17, and nobody else owned the clients or the P&amp;L. I still work that way: I built and shipped a production agent end to end myself, frontend to Postgres to the integrations.</p><div class="proof">BB Productions · founded at 17</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></div><h3>Undeniable</h3><p class="def">So good you earn respect, reliable, consistently deliver.</p><p class="story">#1 Solutions Engineer in DevRev's US Commercial market in 2025. Before that, the AWS practice I helped build at BGH earned three AWS Competencies, which AWS only grants after reviewing delivered work.</p><div class="proof">#1 SE · 3× AWS Competencies</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap now">
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px"><span class="n">03</span> What I do now</div>
+      <h2 class="h2">I turn business processes into <span class="g">agentic architecture.</span></h2>
+      <p class="lede" style="margin-top:20px">Today I design and deploy AI agents for enterprise clients in the US. My favorite place to work is the customer's office: sitting with the people who do the job, mapping it step by step, then turning it into an agent that does it.</p>
+      <div class="flow">
+        <div class="fstep"><span class="i">01</span><div><b>Map the work</b><span>Every call, decision and handoff a person does today.</span></div></div>
+        <div class="fstep"><span class="i">02</span><div><b>Design the agent</b><span>What it owns, what it escalates, which tools it calls.</span></div></div>
+        <div class="fstep"><span class="i">03</span><div><b>Connect the systems</b><span>CRM, messaging, data. Where state lives, and who can read it.</span></div></div>
+        <div class="fstep"><span class="i">04</span><div><b>Ship and iterate</b><span>Production first, then improve on real conversations and results.</span></div></div>
+      </div>
+      <p class="lede" style="margin-top:24px">I don't stop at the diagram. The schema on the right is a production agent I built myself, Postgres included. When a customer's engineers walk me through their app, I've usually shipped something with the same parts.</p>
+    </div>
+    <div class="reveal">
+      <div class="schema" aria-label="Architecture of a production conversational agent I built and shipped end to end">
+        <div class="sh"><span><b>agent_in_production</b> · schema</span><span>built end to end</span></div>
+        <div class="sgrid">
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>frontend</div><div class="col"><span>framework</span><i>Next.js · React</i></div><div class="col"><span>language</span><i>TypeScript</i></div><div class="col"><span>stream</span><i>Node.js SSE</i></div></div>
+          <div class="stable pg"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>backend</div><div class="col"><span>api</span><i>Python · Flask</i></div><div class="col"><span>jobs</span><i>Celery · Redis</i></div><div class="col"><span>database</span><i>Postgres</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>model_router</div><div class="col"><span>triage</span><i>fast model</i></div><div class="col"><span>tool_loop</span><i>stronger model</i></div><div class="col"><span>fallback</span><i>across providers</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>channels</div><div class="col"><span>voice</span><i>ElevenLabs TTS · cloning</i></div><div class="col"><span>chat</span><i>WhatsApp Cloud API</i></div><div class="col"><span>ads</span><i>Meta Marketing API</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>platform</div><div class="col"><span>auth</span><i>OAuth</i></div><div class="col"><span>billing</span><i>payments</i></div><div class="col"><span>deploy</span><i>Docker on AWS</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>data_past</div><div class="col"><span>warehouse</span><i>Redshift</i></div><div class="col"><span>etl</span><i>Glue · Spark</i></div><div class="col"><span>orchestration</span><i>Step Functions</i></div></div>
+        </div>
+      </div>
+      <div class="skills">
+        <div><b>Languages</b><span>TypeScript · JavaScript · Python · SQL</span></div>
+        <div><b>Frameworks</b><span>Next.js · React · Node.js · Flask</span></div>
+        <div><b>Data</b><span>Postgres · Redis · Redshift · Glue · Spark</span></div>
+        <div><b>Cloud</b><span>AWS · Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">04</span> Experience</div>
+      <h2 class="h2">Promoted at <span class="g">every stop.</span></h2>
+      <p class="lede">Seven-plus years in the room with customers, and a step up at every company: intern to consultant, Solutions Architect to manager, Solutions Engineer to Solutions Architect. Open any row for detail.</p>
+    </div>
+    <div class="xp" id="xp"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">05</span> First two weeks</div>
+      <h2 class="h2">Four weeks to ramp up? <span class="g">Give me two.</span></h2>
+      <p class="lede">Customers notice in the first call whether their architect knows the platform. So I'll learn it hands-on and be in front of a customer before the end of week two.</p>
+    </div>
+    <div class="track-l" aria-hidden="true"><span>Day 1</span><span>Day 10 · end of week two</span></div>
+    <div class="track" id="track" aria-hidden="true"><i></i></div>
+    <div class="plan">
+      <div class="pcard reveal"><div class="d">Days 1–2</div><h3>Learn by building</h3><p>Build a small app on Supabase: Postgres schema, Auth with Row Level Security, Edge Functions, Realtime. Read the docs the way a new customer would.</p><div class="out">I can demo the platform end to end</div></div>
+      <div class="pcard reveal"><div class="d">Days 3–5</div><h3>Shadow and tune</h3><p>Shadow CSAs on live Team and Enterprise accounts. Go deep on Supabase's Postgres performance tools: EXPLAIN, indexes, connection pooling, RLS cost.</p><div class="out">Notes on the top customer questions</div></div>
+      <div class="pcard reveal"><div class="d">Days 6–8</div><h3>First discovery</h3><p>Lead my first customer discovery and scope a proof-of-value with a timeline, business outcomes and written success criteria.</p><div class="out">First proof-of-value scope signed off</div></div>
+      <div class="pcard reveal"><div class="d">Days 9–10</div><h3>First assessment</h3><p>Run my first architecture and database assessment, write the account plan, and send product the first round of feedback.</p><div class="out">Account plan and a feedback loop</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="creds">
+  <div class="wrap creds">
+    <div class="reveal">
+      <div class="eyebrow"><span class="n">06</span> Certifications</div>
+      <div class="certs">
+        <div><b>AWS Solutions Architect</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Database Specialty</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Well-Architected Review Consultant</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></div>
+        <div><b>Generative AI Professional</b><span>Blockchain Council</span></div>
+        <div><b>MicroStrategy Architect</b><span>MicroStrategy</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Education &amp; languages</div>
+      <div class="edu">
+        <div class="it"><b>B.S. Systems &amp; Business Administration, ITBA</b><span>2016–2021 · Honors</span></div>
+        <div class="it"><b>IGCSE + IB Certificate, Northlands</b><span>Most honored student</span></div>
+        <div class="langs">
+          <div><b>Spanish</b><span>Native</span></div>
+          <div><b>English</b><span>Bilingual</span></div>
+          <div><b>French</b><span>DELF A2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="n">07</span> Contact</div>
+    <h2>Let's make customers <span class="g">scale with confidence.</span></h2>
+    <p class="lede">Give me 30 minutes and I'll walk you through a deal I owned from discovery to signed scope, and how I'd run the same thing on Supabase.</p>
+    <div class="ctas" style="margin-top:28px">
+      <button class="btn btn-p js-copy" type="button">Copy email</button>
+      <a class="btn btn-s" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">Open LinkedIn ↗</a>
+    </div>
+    <div class="term">
+      <div class="tb">juan_martin.contact</div>
+      <div class="cgrid">
+        <div><div class="k">email</div><div class="v sel" id="email">jbeinesfurcada@gmail.com</div></div>
+        <div><div class="k">phone · whatsapp</div><div class="v sel">+54 9 11 6433-6286</div></div>
+        <div><div class="k">location</div><div class="v">Buenos Aires · GMT-3</div></div>
+        <div><div class="k">work</div><div class="v">Remote · AMER</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Juan Martín Beines Furcada · 2026</span><span>Built for Supabase's Customer Solution Architect (AMER) role</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+<script>
+(function(){
+  var D={"sql": "-- customer-facing, 7+ years\nselect company, role, outcome\nfrom juan.experience\norder by started_at desc;", "cols": [["company", "text"], ["role", "text"], ["outcome", "text"]], "rows": [["Enterprise, US", "AI Agents Architect", "agents in production"], ["DevRev", "SE → SA", "#1 SE US Commercial 2025"], ["BGH Tech Partner", "SA → Manager", "3× AWS Competencies"], ["MicroStrategy", "Intern → Consultant", "warehouse modernization"]], "xp": [["2026 — Now", "AI Agents Architect", "Enterprise clients in the US", "Design and deploy AI agents that take over operational work for US enterprise teams.", ["Run discovery on site with the customer's operators and map the business process into an agentic architecture", "Architect the agent: prompts, tools, escalation rules and integrations with their CRM and data", "Take it to production and iterate on real conversations and results"]], ["Oct 2024 — 2026", "DevRev", "Solutions Engineer → Solutions Architect", "#1 SE in the US Commercial market in 2025 at an agentic AI company. Promoted to Solutions Architect.", ["#1 Solutions Engineer in the US Commercial market, 2025", "Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts", "Designed AI use cases that automated support triage, product analytics workflows and data consumption", "Trusted technical advisor through POCs, integration design and adoption", "Led and mentored the SE team in Argentina while tracking several accounts at once"], true], ["2021 — 2024", "BGH Tech Partner", "AWS Solutions Architect → Data Analytics Manager", "AWS partner. Joined as a Solutions Architect, promoted to lead a team of 7 data engineers and Solutions Architects.", ["Started as Sr Cloud Pre-Sales Engineer and AWS Solutions Architect, advising C-level and VPs in banking, retail, logistics, telco and public sector", "Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)", "Governed data platforms for banks under strict compliance requirements", "As Data Analytics Manager, built and led a team of 7 data engineers and Solutions Architects across multiple customer accounts", "Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization", "Helped the company earn 3 AWS Competencies"]], ["2019 — 2021", "MicroStrategy", "Intern → Associate Consultant", "Joined as an intern, promoted to consultant. POCs, pre-sales demos and warehouse modernization for enterprise clients.", ["Delivered POCs, technical demos and consulting to prospective enterprise clients", "Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL", "Wrote solution documentation: POCs, roadmaps, logical system views"]], ["2017 — 2021", "ITBA", "Sr Analyst → Back Office Manager → Instructor", "Ran operations for MIT $100K LatAm, then taught Product Management and Cloud Computing.", ["Taught Product Management and Cloud Computing at ITBA", "Back Office Manager for MIT $100K LatAm: led a team of 4 analysts across logistics, data analysis and process optimization", "Owned university framework agreements and internships; automated processes on the ERP"]], ["2014 — 2019", "BB Productions", "CEO & Co-founder", "Founded at 17. Ran clients, P&amp;L, vendors and staffing.", ["Managed every business operation: client relations, P&amp;L, vendor management, staffing and planning"]]]};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  /* SQL editor */
+  var KW=/\b(select|from|where|order|by|desc|asc|and|or|limit|join|on|as|group|true|false|ilike|is|not|null)\b/gi;
+  function hl(src){
+    return src.split('\n').map(function(line){
+      var c=line.indexOf('--');var code=c>=0?line.slice(0,c):line,com=c>=0?line.slice(c):'';
+      var out=esc(code).replace(/('[^']*'?)/g,'\u0000$1\u0001').split(/(\u0000[^\u0001]*\u0001)/).map(function(p){
+        return p.charAt(0)==='\u0000'?'<span class="s">'+p.slice(1,-1)+'</span>':p.replace(KW,'<span class="k">$1</span>');
+      }).join('');
+      return out+(com?'<span class="c">'+esc(com)+'</span>':'');
+    });
+  }
+  var pre=$('sql'),tbl=$('tbl'),rc=$('rc'),N=D.sql.split('\n').length;
+  function paint(src,caret){var h=hl(src);var out='';for(var k=0;k<N;k++){out+='<div class="l"><i aria-hidden="true">'+(k+1)+'</i><span>'+(h[k]||'')+(caret&&k===h.length-1?'<span class="caret"></span>':'')+'</span></div>'}pre.innerHTML=out}
+  tbl.innerHTML='<thead><tr>'+D.cols.map(function(c){return '<th>'+c[0]+'<small>'+c[1]+'</small></th>'}).join('')+'</tr></thead><tbody>'+D.rows.map(function(r){return '<tr class="wait">'+r.map(function(v,i){return '<td'+(i===r.length-1?' class="hl"':'')+'>'+v+'</td>'}).join('')+'</tr>'}).join('')+'</tbody>';
+  var trs=tbl.querySelectorAll('tbody tr');
+  function showRows(){rc.textContent=trs.length+' rows';trs.forEach(function(tr,i){setTimeout(function(){tr.classList.remove('wait')},reduce?0:i*150)})}
+  if(reduce){paint(D.sql,false);showRows()}
+  else{
+    var i=0;rc.textContent='running…';
+    (function type(){
+      i=Math.min(D.sql.length,i+3);
+      paint(D.sql.slice(0,i),i<D.sql.length);
+      if(i<D.sql.length)setTimeout(type,24);else setTimeout(showRows,240);
+    })();
+  }
+
+  /* experience */
+  var xc=$('xp');
+  D.xp.forEach(function(r,i){
+    var d=document.createElement('div');d.className='xrow'+(i===1?' open':'');
+    var lad=r[2].split(' → ');
+    d.innerHTML='<button type="button" aria-expanded="'+(i===1)+'"><span class="when">'+r[0]+'</span><span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE US 2025</span>':'')+'</span><span class="ladder">'+lad.map(function(x,k){return '<span'+(lad.length>1&&k===lad.length-1?' class="top"':'')+'>'+x+'</span>'}).join('<i aria-hidden="true">→</i>')+'</span></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
+    d.querySelector('button').addEventListener('click',function(){var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+    xc.appendChild(d);
+  });
+
+  /* reveal */
+  var els=document.querySelectorAll('.reveal,#track');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(el){io.observe(el)});
+  }else{els.forEach(function(el){el.classList.add('in')})}
+
+  /* copy email */
+  var t=$('toast'),email='jbeinesfurcada@gmail.com',tm;
+  function toast(msg){t.textContent=msg;t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},1800)}
+  function selectEmail(){var v=$('email');var r=document.createRange();r.selectNodeContents(v);var s=getSelection();s.removeAllRanges();s.addRange(r);v.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});toast('Email selected, press Ctrl/Cmd+C')}
+  document.querySelectorAll('.js-copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      try{navigator.clipboard.writeText(email).then(function(){toast('Email copied: '+email)},selectEmail)}catch(x){selectEmail()}
+    });
+  });
+})();
+
+/* live agent: simulated support copilot (all data is fictional) */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  if(!$('live-agent'))return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  var NOW=Date.UTC(2026,10,18);
+  function days(d){return Math.floor((NOW-Date.parse(d+'T00:00:00Z'))/864e5)}
+  function usd(n){return '$'+n.toLocaleString('en-US')}
+  function md(d){return new Date(d+'T00:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})}
+  function plural(n,a,b){return n+' '+(n===1?a:(b||a+'s'))}
+  function list(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1]}
+
+  /* ---- mock database ---- */
+  var ORGS=[
+    {id:'org_acme',name:'Acme Logistics',short:'Acme',plan:'enterprise',email:'maya@acme.example',sub:'5f1c…a2',color:'var(--amber)',re:/\bacme\b/},
+    {id:'org_bright',name:'Brightline Health',short:'Brightline',plan:'team',email:'dev@brightline.example',sub:'9b3e…7d',color:'var(--sky)',re:/\bbright ?line\b/},
+    {id:'org_corvid',name:'Corvid Retail',short:'Corvid',plan:'pro',email:'ana@corvid.example',sub:'c47a…10',color:'var(--violet)',re:/\bcorvid\b/}
+  ];
+  var USERS=[ /* org, full_name, email, role, last_sign_in_at */
+    ['org_acme','Maya Chen','maya@acme.example','admin','2026-11-18'],['org_acme','Tom Okafor','tom@acme.example','member','2026-11-17'],['org_acme','Priya Nair','priya@acme.example','member','2026-09-30'],['org_acme','Luis Ortega','luis@acme.example','viewer','2026-10-02'],
+    ['org_bright','Dev Patel','dev@brightline.example','admin','2026-11-18'],['org_bright','Sara Klein','sara@brightline.example','member','2026-11-12'],['org_bright','Noah Reyes','noah@brightline.example','member','2026-10-01'],['org_bright','Emma Wu','emma@brightline.example','viewer','2026-08-21'],
+    ['org_corvid','Ana Souza','ana@corvid.example','admin','2026-11-18'],['org_corvid','Ben Hart','ben@corvid.example','member','2026-11-16'],['org_corvid','Kai Müller','kai@corvid.example','member','2026-11-03'],['org_corvid','Lena Ito','lena@corvid.example','viewer','2026-07-11']
+  ];
+  var PROJECTS=[ /* org, id, name, status */
+    ['org_acme','p_a1','Route Optimizer','active'],['org_acme','p_a2','Fleet Dashboard','active'],['org_acme','p_a3','Driver App v2','paused'],
+    ['org_bright','p_b1','Patient Portal','active'],['org_bright','p_b2','Claims Pipeline','active'],['org_bright','p_b3','HIPAA Audit Log','active'],
+    ['org_corvid','p_c1','Storefront Search','active'],['org_corvid','p_c2','Loyalty Program','active'],['org_corvid','p_c3','POS Sync','archived']
+  ];
+  var INVOICES=[ /* org, number, amount_usd, status, due_date */
+    ['org_acme','INV-1001',12400,'paid','2026-08-31'],['org_acme','INV-1012',12400,'paid','2026-09-30'],['org_acme','INV-1023',12400,'overdue','2026-10-31'],['org_acme','INV-1031',3150,'overdue','2026-11-05'],['org_acme','INV-1040',12400,'open','2026-11-30'],
+    ['org_bright','INV-2003',4800,'paid','2026-08-31'],['org_bright','INV-2015',4800,'paid','2026-09-30'],['org_bright','INV-2019',1250,'overdue','2026-10-03'],['org_bright','INV-2027',4800,'overdue','2026-10-31'],['org_bright','INV-2041',4800,'open','2026-11-30'],
+    ['org_corvid','INV-3002',2100,'paid','2026-08-31'],['org_corvid','INV-3011',2100,'paid','2026-09-30'],['org_corvid','INV-3020',2100,'paid','2026-10-31'],['org_corvid','INV-3029',2100,'open','2026-11-30']
+  ];
+  var TICKETS=[ /* org, ticket_no, project_id, subject, priority, status, created_at */
+    ['org_acme','T-101','p_a1','Route solver times out above 400 stops','urgent','open','2026-11-17'],['org_acme','T-102','p_a2','Map tiles not loading in Safari','high','open','2026-11-15'],['org_acme','T-103','p_a1','Route export missing the ETA column','normal','open','2026-11-10'],['org_acme','T-104','p_a3','Push notifications delayed on Android','high','closed','2026-11-02'],['org_acme','T-105','p_a1','Webhook retries flooding our endpoint','high','in_progress','2026-11-16'],
+    ['org_bright','T-201','p_b2','Claims batch job failing on large PDFs','urgent','open','2026-11-18'],['org_bright','T-202','p_b1','SSO login loop for some Okta users','high','in_progress','2026-11-16'],['org_bright','T-203','p_b3','Audit log export missing timezone','normal','open','2026-11-11'],['org_bright','T-204','p_b2','Duplicate claim IDs after a retry','high','open','2026-11-14'],['org_bright','T-205','p_b1','Portal slow at the start of the month','normal','closed','2026-11-01'],
+    ['org_corvid','T-301','p_c1','Search results stale after catalog update','high','open','2026-11-17'],['org_corvid','T-302','p_c2','Points not applied to bundles','normal','open','2026-11-13'],['org_corvid','T-303','p_c3','POS sync stopped after archiving','low','closed','2026-10-28']
+  ];
+  var DOCS=[ /* id, title, section, content */
+    [1,'API keys','Rotating a key','Go to Settings, then API keys, and click Rotate next to the key. The old key keeps working for 24 hours so you can update your services, then it is revoked automatically.'],
+    [2,'API keys','Rate limits','Each organization can make 600 API requests per minute. Requests over the limit return HTTP 429 with a Retry-After header, so back off and retry.'],
+    [3,'Billing','Paying an invoice','Open Billing, then Invoices, and click Pay now on any open or overdue invoice. Card and ACH bank transfer are accepted, and payments post within one business day.'],
+    [4,'Billing','Overdue invoices','An invoice becomes overdue the day after its due date and admins get a reminder email. After 30 days overdue the workspace becomes read-only until the balance is paid.'],
+    [5,'Billing','Changing plans','Admins can upgrade or downgrade the plan from Billing, then Plan. Upgrades apply immediately and are prorated; downgrades apply at the next renewal.'],
+    [6,'Security','Single sign-on with Okta','Enterprise plans support SAML SSO. In Okta, create a SAML app with the ACS URL from Settings, then Security, upload the metadata XML, and enforce SSO for your domain.'],
+    [7,'Members','Inviting and removing members','Admins invite members from Settings, then Members. Each member uses one seat; removing a member frees the seat at the next invoice.'],
+    [8,'Members','Inactive members','Members who have not signed in for 30 days are flagged as inactive. Review them before renewal and remove anyone who no longer needs a seat.'],
+    [9,'Support','Ticket priorities and SLAs','Urgent tickets get a first response within 1 hour, high within 4 hours and normal within 1 business day. Mark a ticket urgent only when production is down.'],
+    [10,'Projects','Archiving a project','Archiving a project makes it read-only and pauses its integrations and sync jobs. You can restore an archived project at any time from its settings.'],
+    [11,'Data','Exporting data','Export any table to CSV from the project menu. Exports over 100,000 rows are emailed to you as a download link that expires in 7 days.'],
+    [12,'Integrations','Webhook retries','Failed webhook deliveries are retried with exponential backoff for up to 24 hours. Return a 2xx status quickly and process the event asynchronously to avoid duplicate retries.']
+  ];
+
+  /* ---- tiny "embedding": bag-of-words cosine ---- */
+  var STOP={};('a an the i we my our us me you your do does did how what whats is are was were be been to of for in on at by it its this that these those can could would should will with from and or but if so not no any all have has had get which who whom why when where there here than then them they their some just about into out up please tell show want need may might let lets also very').split(' ').forEach(function(w){STOP[w]=1});
+  function stem(w){
+    if(w.length>4&&/ies$/.test(w))w=w.slice(0,-3)+'y';
+    else if(w.length>5&&/ing$/.test(w))w=w.slice(0,-3);
+    else if(w.length>4&&/ed$/.test(w))w=w.slice(0,-2);
+    else if(w.length>3&&/s$/.test(w)&&!/ss$/.test(w))w=w.slice(0,-1);
+    if(w.length>3&&/e$/.test(w))w=w.slice(0,-1);
+    return w;
+  }
+  function vec(text){var v={};(text.toLowerCase().replace(/[’']/g,'').match(/[a-z0-9]+/g)||[]).forEach(function(w){if(STOP[w]||w.length<2)return;w=stem(w);v[w]=(v[w]||0)+1});return v}
+  function norm(v){var s=0;for(var k in v)s+=v[k]*v[k];return Math.sqrt(s)}
+  function cos(a,b){var na=norm(a),nb=norm(b);if(!na||!nb)return 0;var d=0;for(var k in a)if(b[k])d+=a[k]*b[k];return d/(na*nb)}
+  var DVEC=DOCS.map(function(d){return vec(d[1]+' '+d[2]+' '+d[2]+' '+d[3])});
+  function search(q){var qv=vec(q);return DOCS.map(function(d,i){return {doc:d,score:cos(qv,DVEC[i])}}).sort(function(a,b){return b.score-a.score}).slice(0,3)}
+
+  /* ---- intents (the "tools" the agent can call) ---- */
+  function rows(t,org){return t.filter(function(r){return r[0]===org})}
+  function tgt(alias,name,first){return name?'\n  '+(first?'where ':'and ')+alias+"org_id = (select id from organizations\n                 where name = '"+name+"')":''}
+  var curQ='';var PR=['urgent','high','normal','low'];function HI(){return /urgent|high|priorit|critical|escalat|\bp1\b/i.test(curQ)}
+  var INTENTS=[
+    {id:'invoices.summary',tables:[['invoices',INVOICES]],need:/invoice|bill|revenue|spend|paid|payment/,
+     kw:[[/invoices?/,1],[/\b(show|list|all|every|see)\b/,1],[/\b(billed|billing|revenue|spend|spent|total|how much|paid)\b/,2]],
+     sql:function(t){return "select number, status, amount_usd, due_date\nfrom invoices"+tgt('',t,true)+"\norder by due_date desc;"},
+     cols:['number','status','amount_usd','due_date'],
+     q:function(o){return rows(INVOICES,o).slice().sort(function(a,b){return b[4]<a[4]?-1:1}).map(function(r){return [r[1],r[3],usd(r[2]),md(r[4])]})},
+     say:function(rs,org){var s={paid:0,open:0,overdue:0};rows(INVOICES,org.id).forEach(function(r){s[r[3]]+=r[2]});return plural(rs.length,'invoice')+' for '+org.name+': <b>'+usd(s.paid)+' paid</b>, '+usd(s.open)+' open, '+usd(s.overdue)+' overdue.'}},
+    {id:'invoices.overdue',tables:[['invoices',INVOICES]],need:/invoice|bill|overdue|unpaid|owe|outstanding|late/,
+     kw:[[/invoices?|bills?/,1],[/\b(overdue|unpaid|outstanding|late|past due|owe|owed)\b/,2]],
+     sql:function(t){return "select number, amount_usd, due_date,\n       current_date - due_date as days_late\nfrom invoices\nwhere status = 'overdue'"+tgt('',t)+"\norder by due_date;"},
+     cols:['number','amount_usd','due_date','days_late'],
+     q:function(o){return rows(INVOICES,o).filter(function(r){return r[3]==='overdue'}).sort(function(a,b){return a[4]<b[4]?-1:1}).map(function(r){return [r[1],usd(r[2]),md(r[4]),days(r[4])]})},
+     say:function(rs,org){if(!rs.length)return 'No overdue invoices for '+org.name+'. Nothing to chase.';var tot=rows(INVOICES,org.id).filter(function(r){return r[3]==='overdue'}).reduce(function(a,r){return a+r[2]},0);return '<b>'+plural(rs.length,'overdue invoice')+'</b> for '+org.name+', '+usd(tot)+' in total. The oldest, '+rs[0][0]+', is '+rs[0][3]+' days late.'}},
+    {id:'tickets.open',tables:[['support_tickets',TICKETS]],need:/ticket|issue|case|escalat|bug|incident/,
+     kw:[[/tickets?|issues?|cases?|bugs?|incidents?/,1],[/\b(open|unresolved|pending|active)\b/,1],[/\b(urgent|high|priority|critical|escalat\w*|p1)\b/,1]],
+     sql:function(t){return "select ticket_no, subject, priority, status\nfrom support_tickets\nwhere status <> 'closed'"+(HI()?"\n  and priority in ('urgent', 'high')":'')+tgt('',t)+"\norder by array_position(array['urgent', 'high', 'normal', 'low'], priority),\n         created_at;"},
+     cols:['ticket_no','subject','priority','status'],
+     q:function(o){return rows(TICKETS,o).filter(function(r){return r[5]!=='closed'&&(!HI()||r[4]==='urgent'||r[4]==='high')}).sort(function(a,b){return PR.indexOf(a[4])-PR.indexOf(b[4])||(a[6]<b[6]?-1:1)}).map(function(r){return [r[1],r[3],r[4],r[5]]})},
+     say:function(rs){var w=HI()?'open high-priority ticket':'open ticket';if(!rs.length)return 'No '+w+'s right now.';return '<b>'+plural(rs.length,w)+'</b>. Start with '+rs[0][0]+' ('+rs[0][2]+'): “'+esc(rs[0][1])+'”.'}},
+    {id:'projects.open_tickets',tables:[['projects',PROJECTS],['support_tickets',TICKETS]],need:/project/,
+     kw:[[/projects?/,2],[/\b(most|top|busiest|worst|ranking|rank)\b/,1],[/tickets?|issues?/,1]],
+     sql:function(t){return "select p.name as project,\n       count(t.id) as open_tickets,\n       count(t.id) filter (where t.priority in ('urgent', 'high')) as high_or_urgent\nfrom projects p\nleft join support_tickets t\n  on t.project_id = p.id and t.status <> 'closed'"+tgt('p.',t,true)+"\ngroup by p.name\norder by open_tickets desc;"},
+     cols:['project','open_tickets','high_or_urgent'],
+     q:function(o){return rows(PROJECTS,o).map(function(p){var ts=TICKETS.filter(function(t){return t[2]===p[1]&&t[5]!=='closed'});return [p[2],ts.length,ts.filter(function(t){return t[4]==='urgent'||t[4]==='high'}).length]}).sort(function(a,b){return b[1]-a[1]||b[2]-a[2]})},
+     say:function(rs){if(!rs.length||!rs[0][1])return 'No open tickets in any project.';var r=rs[0];return '<b>'+esc(r[0])+'</b> has the most open tickets: '+r[1]+', '+(r[2]===r[1]?(r[1]===1?'and it is':'all')+' high or urgent':r[2]+' high or urgent')+'.'}},
+    {id:'members.inactive',tables:[['users',USERS]],need:/user|member|teammate|seat|people|team|log ?in|logged|sign(ed)? ?in|inactive|active/,
+     kw:[[/users?|members?|teammates?|seats?|people|team/,1],[/inactive|haven.?t (logged|signed)|not (logged|signed)|last (login|sign)|30 days|dormant|unused|stopped/,2]],
+     sql:function(t){return "select full_name, role,\n       last_sign_in_at::date as last_sign_in\nfrom users\nwhere last_sign_in_at < now() - interval '30 days'"+tgt('',t)+"\norder by last_sign_in_at;"},
+     cols:['full_name','role','last_sign_in'],
+     q:function(o){return rows(USERS,o).filter(function(r){return days(r[4])>30}).sort(function(a,b){return a[4]<b[4]?-1:1}).map(function(r){return [r[1],r[3],md(r[4])]})},
+     say:function(rs,org){if(!rs.length)return 'Everyone at '+org.name+' has signed in within the last 30 days.';return '<b>'+plural(rs.length,'member')+'</b> '+(rs.length===1?"hasn't":"haven't")+' signed in for 30+ days: '+list(rs.map(function(r){return esc(r[0])}))+'. Worth a seat review before renewal.'}}
+  ];
+  var BYID={};INTENTS.forEach(function(i){BYID[i.id]=i});
+
+  /* ---- router ---- */
+  function classify(q){
+    var ql=q.toLowerCase().replace(/[’]/g,"'");
+    var best=null,bs=0;
+    INTENTS.forEach(function(it){if(!it.need.test(ql))return;var s=0;it.kw.forEach(function(k){if(k[0].test(ql))s+=k[1]});if(s>bs){bs=s;best=it}});
+    var how=/\b(how|why|what's|what is|what are|can i|where do|where can|configure|set ?up|enable|explain|docs?|guide|policy|sla|limit)\b/.test(ql.replace(/how (many|much)/g,''));
+    var target=null;ORGS.forEach(function(o){if(o.re.test(ql))target=o});
+    if(target&&!best){best=BYID['invoices.summary'];bs=1}
+    var hits=search(q),ds=hits[0].score;
+    var data=!!best&&(bs>=2||!how||!!target),docs=ds>=0.15&&(how||!data);
+    return {intent:data?best:null,score:bs,docs:docs,hits:hits,ds:ds,target:target,route:data&&docs?'data + docs':data?'data':docs?'docs':'none'};
+  }
+
+  /* ---- SQL highlighter ---- */
+  var KW={};('select from where and or not in is null order by desc asc limit join left on as group having count sum filter case when then else end create policy alter table enable row level security for to using with interval current_date now true false distinct date const await').split(' ').forEach(function(w){KW[w]=1});
+  function hl(src){
+    var re=/(--[^\n]*)|('(?:[^'\n]|'')*')|(\$\d+)|(\b\d+(?:\.\d+)?\b)|(<=>|->>|::)|([A-Za-z_][A-Za-z0-9_]*)(\s*\()?/g,out='',last=0,m;
+    while((m=re.exec(src))){
+      out+=esc(src.slice(last,m.index));last=re.lastIndex;
+      if(m[1])out+='<span class="c">'+esc(m[1])+'</span>';
+      else if(m[2])out+='<span class="s">'+esc(m[2])+'</span>';
+      else if(m[3])out+='<span class="p">'+m[3]+'</span>';
+      else if(m[4])out+='<span class="nm">'+m[4]+'</span>';
+      else if(m[5])out+='<span class="op">'+esc(m[5])+'</span>';
+      else{var w=m[6],par=m[7]||'';out+=KW[w.toLowerCase()]?'<span class="k">'+w+'</span>'+par:par?'<span class="f">'+w+'</span>'+par:esc(w)}
+    }
+    return out+esc(src.slice(last));
+  }
+  function code(src){return '<pre class="la-code">'+hl(src)+'</pre>'}
+
+  /* ---- deterministic latencies ---- */
+  function rng(seed){var h=2166136261;for(var i=0;i<seed.length;i++){h^=seed.charCodeAt(i);h=Math.imul(h,16777619)}return function(){h^=h<<13;h^=h>>>17;h^=h<<5;return ((h>>>0)%10000)/10000}}
+
+  /* ---- state + UI ---- */
+  var org=ORGS[1],busy=false,lastQ='',runN=0;
+  var log=$('laLog'),steps=$('laSteps'),total=$('laTotal'),input=$('laQ'),go=$('laGo'),chipsEl=$('laChips'),orgsEl=$('laOrgs');
+
+  function renderJwt(){$('laJwt').innerHTML='<b>auth.jwt()</b> → { "sub": "'+org.sub+'", "email": "'+org.email+'", "role": "authenticated", "org_id": <em>"'+org.id+'"</em> }'}
+  function renderOrgs(){
+    orgsEl.innerHTML=ORGS.map(function(o,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(o===org)+'" title="'+o.email+' · '+o.name+'"><i style="background:'+o.color+'"></i>'+o.short+'</button>'}).join('');
+  }
+  function other(){return org.id==='org_acme'?ORGS[1]:ORGS[0]}
+  function chipQs(){return [
+    ['Which invoices are overdue?'],['Which projects have the most open tickets?'],["Who hasn't logged in for 30 days?"],
+    ['How do I rotate an API key?'],['We have an overdue invoice. How do I pay it?'],['Show invoices for '+other().name,'x']
+  ]}
+  function renderChips(){chipsEl.innerHTML=chipQs().map(function(c){return '<button type="button" class="la-chip'+(c[1]?' x':'')+'" data-q="'+esc(c[0])+'">'+(c[1]?'🔒 ':'')+esc(c[0])+'</button>'}).join('')}
+  function lock(on){busy=on;input.disabled=on;go.disabled=on;chipsEl.querySelectorAll('button').forEach(function(b){b.disabled=on});orgsEl.querySelectorAll('button').forEach(function(b){b.disabled=on})}
+  function scrollLog(){log.scrollTop=log.scrollHeight}
+  function add(cls,html){var d=document.createElement('div');d.className=cls;d.innerHTML=html;log.appendChild(d);scrollLog();return d}
+
+  function table(cols,rs){
+    if(!rs.length)return '';
+    return '<div class="la-mini"><table class="tbl"><thead><tr>'+cols.map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr></thead><tbody>'+rs.slice(0,6).map(function(r){return '<tr>'+r.map(function(v,i){return '<td'+(i===0?' class="hl"':'')+'>'+esc(v)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+  }
+
+  /* build the plan: list of steps + final answer */
+  function plan(q){
+    curQ=q;var c=classify(q),r=rng(q+'|'+org.id),S=[],ans=[],n=function(a,b){return Math.round(a+r()*(b-a))};
+    var cross=c.target&&c.target.id!==org.id;
+    S.push({t:'Edge Function',tag:'copilot',ms:n(3,7),
+      sm:'POST /functions/v1/copilot · JWT verified · org_id=<em>'+org.id+'</em><br>Supabase client created with the <em>user\'s JWT</em>, not service_role, so every query below runs under RLS.'});
+    var routeTxt='route: <em>'+c.route+'</em>'+(c.intent?' · tool: <em>'+c.intent.id+'</em>':'')+(c.target?' · tenant named: <em>'+esc(c.target.name)+'</em>':'')+'<br>docs similarity '+c.ds.toFixed(2)+(c.docs?' ≥ 0.15 → retrieve':c.ds>=0.15?' · not a how-to → no retrieval':' &lt; 0.15 → no retrieval');
+    S.push({t:'Classify question',tag:'fast model',ms:n(140,260),sm:routeTxt});
+    if(c.intent){
+      var it=c.intent,tn=c.target?c.target.name:null,res=cross?[]:it.q(org.id);
+      S.push({t:'Generate SQL',tag:'tool loop',ms:n(380,640),sm:'Postgres dialect · read-only role · tables: '+it.tables.map(function(x){return x[0]}).join(', '),code:'-- generated for: "'+q.replace(/\n/g,' ').slice(0,60)+'"\n'+it.sql(tn)});
+      var main=it.tables[0][0];
+      S.push({t:'Row Level Security',tag:cross?'0 rows':'policy',warn:cross,ms:0,
+        code:'create policy "tenant_isolation" on '+main+'\n  for select to authenticated\n  using (org_id = auth.jwt() ->> \'org_id\');',
+        sm:(it.tables.length>1?'Same policy on '+it.tables.map(function(x){return x[0]}).join(' and ')+'. ':'')+'Postgres appends it to the query: <em>org_id = \''+org.id+'\'</em>'+(cross?'<br><u>Asked for '+esc(tn)+', but the JWT says '+org.id+'. The subquery on organizations runs under RLS too, so it finds no id and the query matches nothing. No error, no leak, not even proof that '+esc(tn)+' exists.</u>':'')});
+      var counts=it.tables.map(function(x){return x[0]+': '+x[1].length+' rows in table → '+rows(x[1],org.id).length+' visible to '+org.id}).join('<br>');
+      var ex=(n(9,38)/10);
+      S.push({t:'Postgres · execute',tag:'read-only',ms:Math.max(1,Math.round(ex)),warn:cross,sm:counts+'<br>returned <em>'+plural(res.length,'row')+'</em> in '+ex.toFixed(1)+' ms'});
+      if(cross){
+        ans.push('<p><b>0 rows.</b> You\'re signed in as '+org.name+', so this session can only see rows where org_id = \''+org.id+'\'.</p><div class="la-x"><b>RLS did its job</b>The query ran. Postgres simply returned nothing this user isn\'t allowed to see. The agent never had another tenant\'s data to leak, whatever the prompt says.</div>');
+      }else{
+        ans.push('<p>'+it.say(res,org)+'</p>'+table(it.cols,res));
+      }
+      ans.push('<div class="la-foot">'+plural(res.length,'row')+' · '+main+' · RLS: <em>org_id = \''+org.id+'\'</em></div>');
+    }
+    if(c.docs){
+      var qv=vec(q),terms=Object.keys(qv);
+      S.push({t:'Embed question',tag:'in browser',ms:n(18,42),sm:plural(terms.length,'stemmed term')+': '+esc(terms.slice(0,8).join(', '))+'<br>bag-of-words vector standing in for an embedding model'});
+      S.push({t:'pgvector search',tag:'docs',ms:n(3,9),sm:'docs is shared product content: policy <em>using (true)</em> for authenticated',
+        code:'select id, title, content,\n       1 - (embedding <=> $1) as similarity\nfrom docs\norder by embedding <=> $1\nlimit 3;',
+        extra:c.hits.map(function(h,i){return '<div class="la-chunk"><div class="ct"><span>['+(i+1)+'] '+h.doc[1]+' › '+h.doc[2]+'</span><em>'+h.score.toFixed(2)+'</em></div><div class="mt"><i style="width:'+Math.round(h.score*100)+'%"></i></div>'+esc(h.doc[3].slice(0,96))+'…</div>'}).join('')});
+      var h=c.hits,used=[h[0]];if(h[1].score>=Math.max(0.15,h[0].score*0.6))used.push(h[1]);
+      var txt=used.map(function(u,i){var s=u.doc[3].match(/[^.]+\./g)||[u.doc[3]];return esc((i?s[0]:s.slice(0,2).join('')).trim())+' <em>['+(i+1)+']</em>'}).join(' ');
+      ans.push('<p>'+(c.intent?'From the docs: ':'')+txt.replace(/<em>/g,'<b style="color:var(--brand);font-weight:500">').replace(/<\/em>/g,'</b>')+'</p><ul class="la-cite">'+used.map(function(u,i){return '<li><em>['+(i+1)+']</em> '+u.doc[1]+' › '+u.doc[2]+' · similarity '+u.score.toFixed(2)+'</li>'}).join('')+'</ul>');
+    }
+    if(c.route==='none'){
+      ans.push('<p>I can\'t answer that one. I\'m scoped to '+org.name+'\'s workspace data and the product docs. Here\'s what I can do:</p><ul class="la-can"><li>Invoices: overdue, totals, what\'s open</li><li>Support tickets: open, urgent, by project</li><li>Members: who hasn\'t signed in</li><li>Docs: API keys, rate limits, billing, SSO, webhooks, exports</li></ul>');
+    }
+    S.push({t:c.route==='none'?'Fallback reply':'Compose answer',tag:c.route==='none'?'no tool':'stronger model',ms:c.route==='none'?n(60,110):n(240,480),
+      sm:c.route==='none'?'no tool matched, docs similarity below 0.15 → capabilities reply, nothing invented':'grounded in '+[c.intent?(cross?'0 rows':'query results'):'',c.docs?'retrieved chunks with citations':''].filter(Boolean).join(' + ')+' · nothing outside them'});
+    return {steps:S,answer:ans.join('')};
+  }
+
+  function stepHTML(s){
+    return '<span class="la-o" aria-hidden="true"></span><div><div class="la-sh"><b>'+s.t+'</b><span class="la-tag'+(s.warn?' a':s.tag==='policy'?' g':'')+'">'+s.tag+'</span><span class="la-ms">'+(s.ms?s.ms+' ms':'&lt;1 ms')+'</span></div><div class="la-wf"><i></i></div>'+(s.sm?'<div class="la-sm">'+s.sm+'</div>':'')+(s.code?code(s.code):'')+(s.extra||'')+'</div>';
+  }
+
+  function run(q,instant){
+    q=q.trim().slice(0,200);if(!q||busy)return;
+    lastQ=q;runN++;lock(true);
+    add('la-u',esc(q));
+    var a=add('la-a','<span class="mark" aria-hidden="true">AI</span><div class="bd"><span class="la-dots" aria-label="Thinking"><i></i><i></i><i></i></span></div>');
+    var p=plan(q),fast=instant||reduce,i=0,sum=0,starts=[];
+    p.steps.forEach(function(s){starts.push(sum);sum+=s.ms});
+    steps.innerHTML='';total.textContent='running…';$('laRun').textContent='run '+runN;
+    function finish(){
+      var lis=steps.children;
+      p.steps.forEach(function(s,k){var b=lis[k].querySelector('.la-wf i');b.style.left=(starts[k]/sum*100)+'%';b.style.width=Math.max(1.5,s.ms/sum*100)+'%'});
+      total.textContent='Σ '+sum.toLocaleString('en-US')+' ms';
+      a.querySelector('.bd').innerHTML=p.answer;scrollLog();lock(false);
+    }
+    function next(){
+      if(i>=p.steps.length)return finish();
+      var s=p.steps[i++],li=document.createElement('li');li.className='la-st run';li.innerHTML=stepHTML(s);steps.appendChild(li);
+      if(!fast&&window.innerWidth>900)steps.scrollTop=steps.scrollHeight;
+      var done=function(){li.className='la-st '+(s.warn?'warn':'done');next()};
+      if(fast)done();else setTimeout(done,Math.min(650,Math.max(140,s.ms*0.8)));
+    }
+    next();
+  }
+
+  orgsEl.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b||busy)return;var o=ORGS[+b.dataset.i];if(o===org)return;
+    org=o;renderOrgs();renderJwt();renderChips();
+    add('la-sys','Signed in as '+o.email+' · new JWT, org_id='+o.id+(lastQ?' · re-running the last question':''));
+    if(lastQ)run(lastQ);
+  });
+  chipsEl.addEventListener('click',function(e){var b=e.target.closest('button');if(b)run(b.dataset.q)});
+  $('laForm').addEventListener('submit',function(e){e.preventDefault();var v=input.value;if(!v.trim()||busy)return;input.value='';run(v)});
+
+  renderOrgs();renderJwt();renderChips();
+  add('la-sys','Signed in as '+org.email+' · '+org.name);
+  run('Which invoices are overdue?',true);
+})();
+</script>
+
+</body>
+</html>

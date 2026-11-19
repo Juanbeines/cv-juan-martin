@@ -1,0 +1,1336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín · Supabase CSA Lead">
+<meta property="og:description" content="Juan Martín Beines Furcada · #1 SE US Commercial (DevRev 2025) · AI agents architect · Buenos Aires">
+<meta property="og:type" content="website">
+<title>Juan Martín · Supabase CSA Lead</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#121212; --bg2:#171717; --surface:#1c1c1c; --surface2:#232323; --surface3:#282828;
+  --border:#2e2e2e; --border2:#3e3e3e; --border3:#505050;
+  --fg:#ededed; --fg-light:#a0a0a0; --fg-lighter:#8f8f8f;
+  --brand:#3ecf8e; --brand-hi:#6ee7b0; --brand-btn:#006239; --brand-btn-hi:#007a47; --brand-line:rgba(62,207,142,.35); --brand-wash:rgba(62,207,142,.08);
+  --amber:#f1a10d; --violet:#a78bfa; --sky:#5eb1ef;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Source Code Pro","Office Code Pro",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1200px; --r:8px; --r-lg:12px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:640px){.wrap{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--border)}
+.alt{background:var(--bg2)}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-light);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow .n{color:var(--brand)}
+.h2{font-size:clamp(30px,4.4vw,48px);line-height:1.1}
+.h2 .g{color:var(--brand)}
+.lede{font-size:clamp(16px,1.5vw,18px);color:var(--fg-light);max-width:62ch}
+.sechead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 64px;align-items:end;margin-bottom:48px}
+.sechead .eyebrow{grid-column:1/-1}
+.sechead>*{min-width:0}
+@media (max-width:860px){.sechead{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13.5px;font-weight:500;line-height:1;padding:10px 16px;border-radius:6px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.btn-p{background:var(--brand-btn);border-color:var(--brand-line);color:#fff}
+.btn-p:hover{background:var(--brand-btn-hi);border-color:var(--brand)}
+.btn-s{background:var(--surface2);border-color:var(--border2);color:var(--fg)}
+.btn-s:hover{background:var(--surface3);border-color:var(--border3)}
+
+/* banner + nav */
+.banner{background:var(--bg2);border-bottom:1px solid var(--border);font-size:13px;line-height:1.45;text-align:center;padding:9px 16px;color:var(--fg-light)}
+.banner b{color:var(--fg);font-weight:500}
+.banner .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:999px;padding:1px 8px;margin-right:8px;white-space:nowrap}
+nav.top{position:sticky;top:0;z-index:20;background:rgba(18,18,18,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav.top .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.mark{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:var(--brand-wash);border:1px solid var(--brand-line);color:var(--brand);font-family:var(--mono);font-size:12px;font-weight:500}
+nav.top .links{display:flex;gap:22px;margin-left:auto;font-size:13.5px}
+nav.top .links a{text-decoration:none;color:var(--fg-light)}
+nav.top .links a:hover{color:var(--fg)}
+@media (max-width:980px){nav.top .links{display:none}nav.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(48px,8vw,100px) clamp(56px,8vw,96px);border-top:0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:56px 56px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 10%,transparent 75%);pointer-events:none}
+.hero::after{content:"";position:absolute;width:620px;height:620px;right:-160px;top:-220px;background:radial-gradient(closest-side,rgba(62,207,142,.13),transparent);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero .wrap>*{min-width:0}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:44px}}
+.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--fg-light);border:1px solid var(--border2);background:var(--surface);border-radius:999px;padding:4px 12px 4px 8px;margin-bottom:24px;max-width:100%}
+.pill span{overflow-wrap:anywhere}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 0 rgba(62,207,142,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(62,207,142,0)}100%{box-shadow:0 0 0 0 rgba(62,207,142,0)}}
+.hero h1{font-size:clamp(40px,6.2vw,72px);line-height:1.02;margin-bottom:24px}
+.hero h1 span{display:block}
+.hero h1 .g{color:var(--brand)}
+.hero p.sub{font-size:clamp(16px,1.6vw,18px);color:var(--fg-light);max-width:56ch;margin-bottom:30px}
+.hero p.sub b{color:var(--fg);font-weight:500}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:30px;font-size:13.5px;color:var(--fg-light);padding:0;list-style:none}
+.facts li::before{content:"✓";color:var(--brand);margin-right:8px;font-weight:600}
+
+/* sql editor panel */
+.editor{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(62,207,142,.05)}
+.ed-bar{display:flex;align-items:center;gap:12px;padding:10px 13.5px;border-bottom:1px solid var(--border);background:var(--surface)}
+.ed-bar .lights{display:flex;gap:6px}
+.ed-bar .lights i{width:10px;height:10px;border-radius:50%;background:var(--border3)}
+.ed-tab{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ed-run{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:5px;padding:2px 8px;white-space:nowrap}
+.ed-code{padding:16px 13px 13px;font-family:var(--mono);font-size:13px;line-height:1.75;min-height:150px}
+.ed-code pre{margin:0;font:inherit;color:var(--fg)}
+.ed-code .l{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;min-height:1.75em}
+.ed-code .l>span{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}
+.ed-code .l>i{font-style:normal;color:var(--border3);text-align:right;user-select:none}
+.ed-code .k{color:var(--brand)}
+.ed-code .s{color:var(--amber)}
+.ed-code .c{color:var(--fg-lighter)}
+.ed-code .caret{display:inline-block;width:7px;height:15px;background:var(--brand);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.ed-res{border-top:1px solid var(--border)}
+.ed-res .rh{display:flex;justify-content:space-between;gap:10px;padding:8px 13.5px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;table-layout:fixed}
+.tbl th{text-align:left;font-weight:500;color:var(--fg-light);padding:8px 13.5px;border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl th small{color:var(--fg-lighter);font-weight:400;margin-left:6px}
+.tbl td{padding:9px 13.5px;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;overflow-wrap:anywhere}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.hl{color:var(--brand)}
+.tbl tbody tr{transition:opacity .4s,transform .4s}
+.tbl tbody tr.wait{opacity:0;transform:translateY(4px)}
+@media (max-width:520px){.tbl th small{display:none}.tbl th,.tbl td{padding-inline:10px}}
+
+/* stats */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.stat{padding:28px 20px;border-right:1px solid var(--border);min-width:0}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-lighter);margin-bottom:10px}
+.stat b{display:block;font-weight:400;font-size:clamp(30px,3.4vw,42px);line-height:1;letter-spacing:-.03em}
+.stat b em{font-style:normal;color:var(--brand)}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--fg-light)}
+@media (max-width:900px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:20px 16px;border-bottom:1px solid var(--border)}.stat:first-child{padding-left:16px}.stat:nth-child(2n){border-right:0}.stat:last-child{grid-column:1/-1;border-bottom:0}}
+
+/* role mapped */
+.map{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--bg)}
+.map-head{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter)}
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.3fr);gap:10px 24px;padding:22px 20px;border-bottom:1px solid var(--border);align-items:start}
+.mrow:last-child{border-bottom:0}
+.mrow:hover{background:rgba(255,255,255,.015)}
+.mrow>*{min-width:0}
+.mrow .n{font-family:var(--mono);font-size:12px;color:var(--fg-lighter);padding-top:4px}
+.mrow h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
+.mrow .q{font-family:var(--mono);font-size:12.5px;line-height:1.55;color:var(--fg-lighter);margin-top:8px}
+.mrow ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;color:var(--fg-light);font-size:15px}
+.mrow li{position:relative;padding-left:20px}
+.mrow li::before{content:"→";position:absolute;left:0;color:var(--brand)}
+.mrow li b{color:var(--fg);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:5px;background:var(--surface2);border:1px solid var(--border2);color:var(--fg-light)}
+.honest{margin-top:12px;font-size:13.5px;color:var(--fg-light);border-left:2px solid var(--amber);padding:2px 0 2px 12px}
+.honest b{color:var(--amber);font-weight:500;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+@media (max-width:820px){.map-head{display:none}.mrow{grid-template-columns:1fr;padding:20px 16px}.mrow .n{padding:0}}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.val{grid-column:span 2;position:relative;border-radius:var(--r-lg);padding:1px;background:linear-gradient(180deg,var(--border2),var(--border) 60%)}
+.val:nth-child(4),.val:nth-child(5){grid-column:span 3}
+.val>div{height:100%;border-radius:calc(var(--r-lg) - 1px);background:var(--bg2);padding:26px 24px 24px;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.val:hover{background:linear-gradient(180deg,var(--brand-line),var(--border) 70%)}
+.val .ic{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--border2);color:var(--brand)}
+.val .ic svg{width:18px;height:18px}
+.val h3{font-size:22px;margin-top:8px}
+.val .def{font-family:var(--mono);font-size:12.5px;color:var(--fg-lighter);line-height:1.5}
+.val p.story{color:var(--fg-light);font-size:15px}
+.val .proof{margin-top:auto;padding-top:13.5px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--brand)}
+@media (max-width:960px){.values{grid-template-columns:repeat(2,minmax(0,1fr))}.val,.val:nth-child(4),.val:nth-child(5){grid-column:span 1}.val:nth-child(5){grid-column:1/-1}}
+@media (max-width:600px){.values{grid-template-columns:1fr}.val:nth-child(5){grid-column:auto}}
+
+/* now */
+.now{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.now>*{min-width:0}
+@media (max-width:960px){.now{grid-template-columns:1fr}}
+.flow{display:grid;gap:10px;margin-top:28px}
+.fstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:13.5px;align-items:start;padding:16px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg)}
+.fstep .i{font-family:var(--mono);font-size:12px;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:6px;text-align:center;padding:4px 0}
+.fstep b{display:block;font-weight:500;font-size:16px}
+.fstep span{display:block;color:var(--fg-light);font-size:15px;margin-top:2px}
+.schema{border:1px solid var(--border2);border-radius:var(--r-lg);background:var(--bg);overflow:hidden}
+.schema .sh{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface);font-family:var(--mono);font-size:12px;color:var(--fg-light)}
+.schema .sh b{color:var(--fg);font-weight:500}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:16px;background-image:radial-gradient(var(--border) 1px,transparent 1.2px);background-size:16px 16px}
+@media (max-width:520px){.sgrid{grid-template-columns:1fr}}
+.stable{border:1px solid var(--border2);border-radius:8px;background:var(--bg2);overflow:hidden;min-width:0}
+.stable.pg{border-color:var(--brand-line);box-shadow:0 0 0 3px rgba(62,207,142,.06)}
+.stable .tn{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12.5px;font-weight:500;background:var(--surface)}
+.stable .tn svg{width:13px;height:13px;color:var(--brand);flex:none}
+.stable .col{display:flex;justify-content:space-between;gap:10px;padding:5px 12px;font-family:var(--mono);font-size:12px;color:var(--fg-light);border-bottom:1px solid rgba(46,46,46,.6)}
+.stable .col:last-child{border-bottom:0}
+.stable .col i{font-style:normal;color:var(--fg-lighter);white-space:nowrap}
+.stable .col span{min-width:0;overflow-wrap:anywhere}
+.skills{display:grid;gap:8px;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--fg-light)}
+.skills div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px}
+.skills b{color:var(--fg-lighter);font-weight:400}
+
+/* experience */
+.xp{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.xrow{border-bottom:1px solid var(--border);background:var(--bg)}
+.xrow:last-child{border-bottom:0}
+.xrow button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:140px minmax(0,1fr) minmax(0,1.1fr) 24px;gap:10px 24px;align-items:start;padding:22px 20px}
+.xrow button>*{min-width:0}
+.xrow button:hover{background:rgba(255,255,255,.015)}
+.xrow button:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.xrow .when{font-family:var(--mono);font-size:12.5px;color:var(--fg-lighter);padding-top:4px}
+.xrow .co{font-size:22px;line-height:1.2;letter-spacing:-.015em}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.ladder span{font-family:var(--mono);font-size:11.5px;line-height:1.4;padding:2px 8px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);color:var(--fg-light)}
+.ladder span.top{border-color:var(--brand-line);background:var(--brand-wash);color:var(--brand)}
+.ladder i{font-style:normal;font-size:12px;color:var(--fg-lighter)}
+.xrow .sum{color:var(--fg-light);font-size:15px;padding-top:2px}
+.xrow .pm{font-family:var(--mono);font-size:20px;line-height:1;color:var(--fg-lighter);transition:transform .25s;text-align:center;padding-top:4px}
+.xrow.open .pm{transform:rotate(45deg);color:var(--brand)}
+.xrow .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.xrow.open .body{grid-template-rows:1fr}
+.xrow .body>div{overflow:hidden}
+.xrow ul{margin:0;padding:0 20px 24px 184px;list-style:none;display:grid;gap:8px;color:var(--fg-light);font-size:15px}
+.xrow li{position:relative;padding-left:20px}
+.xrow li::before{content:"→";position:absolute;left:0;color:var(--brand)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:4px;background:var(--brand);color:#0b2b1c;margin-left:10px;vertical-align:middle;text-transform:uppercase;font-weight:500}
+@media (max-width:820px){.xrow button{grid-template-columns:minmax(0,1fr) 24px;padding:18px 16px}.xrow .when{grid-column:1/-1;padding:0}.xrow .sum{grid-column:1/-1;grid-row:3}.xrow .pm{grid-row:2;grid-column:2}.xrow ul{padding:0 16px 20px}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.pcard{border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;background:var(--bg);display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.pcard .d{font-family:var(--mono);font-size:12px;color:var(--brand);display:flex;align-items:center;gap:8px}
+.pcard .d::before{content:"";width:8px;height:8px;border-radius:50%;border:2px solid var(--brand)}
+.pcard:last-child .d::before{background:var(--brand)}
+.pcard h3{font-size:20px;line-height:1.25}
+.pcard p{font-size:15px;color:var(--fg-light)}
+.pcard .out{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--fg)}
+.pcard .out::before{content:"→ ";color:var(--brand)}
+.track{height:2px;background:var(--border);border-radius:2px;margin:0 0 20px;position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 100% 0 0;background:var(--brand);transition:right 1.6s cubic-bezier(.2,.7,.2,1)}
+.track.in i{right:0}
+.track-l{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--fg-lighter);margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:960px){.plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plan{grid-template-columns:1fr}}
+
+/* creds */
+.creds{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+.creds>*{min-width:0}
+@media (max-width:900px){.creds{grid-template-columns:1fr}}
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.certs div{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:16px;min-width:0}
+.certs b{display:block;font-weight:500;font-size:15.5px;line-height:1.35}
+.certs span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter);margin-top:6px}
+@media (max-width:520px){.certs{grid-template-columns:1fr}}
+.edu{display:grid;gap:12px;margin-top:18px}
+.edu .it{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:16px}
+.edu .it b{display:block;font-weight:500;font-size:15.5px;line-height:1.35}
+.edu .it span{font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter)}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.langs div{border:1px solid var(--border);border-radius:var(--r);background:var(--bg);padding:12px;min-width:0}
+.langs b{display:block;font-weight:500;font-size:15px}
+.langs span{font-family:var(--mono);font-size:11.5px;color:var(--brand)}
+
+/* contact */
+.contact{position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;width:700px;height:700px;left:50%;bottom:-460px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(62,207,142,.14),transparent);pointer-events:none}
+.contact .wrap{position:relative;z-index:1}
+.contact h2{font-size:clamp(38px,6vw,68px);line-height:1.04;margin:18px 0 20px}
+.contact h2 .g{color:var(--brand);display:block}
+.term{margin-top:36px;border:1px solid var(--border2);border-radius:var(--r-lg);background:var(--bg2);overflow:hidden}
+.term .tb{padding:8px 13.5px;border-bottom:1px solid var(--border);background:var(--surface);font-family:var(--mono);font-size:11px;color:var(--fg-lighter);letter-spacing:.06em;text-transform:uppercase}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))}
+.cgrid>div{padding:18px;border-right:1px solid var(--border);min-width:0}
+.cgrid>div:last-child{border-right:0}
+.cgrid .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);margin-bottom:6px}
+.cgrid .k::before{content:"$ ";color:var(--brand)}
+.cgrid .v{font-family:var(--mono);font-size:15px;color:var(--fg);overflow-wrap:anywhere}
+.cgrid .v.sel{user-select:all}
+@media (max-width:900px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cgrid>div{border-bottom:1px solid var(--border)}.cgrid>div:first-child{grid-column:1/-1;border-right:0}.cgrid>div:nth-child(3){border-right:0}}
+@media (max-width:520px){.cgrid{grid-template-columns:1fr}.cgrid>div{border-right:0}}
+footer{border-top:1px solid var(--border);padding-block:22px;font-size:13px;color:var(--fg-lighter)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--surface2);border:1px solid var(--brand-line);color:var(--fg);font-size:13.5px;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* live agent: schema reviewer */
+.btn-live{background:var(--brand-wash);border-color:var(--brand-line);color:var(--brand)}
+.btn-live:hover{background:rgba(62,207,142,.15);border-color:var(--brand)}
+nav.top .links a.live{color:var(--brand)}
+.la{--crit:#f26d6d;--crit-line:rgba(242,109,109,.4);--crit-wash:rgba(242,109,109,.08);--warn:var(--amber);--warn-line:rgba(241,161,13,.4);--warn-wash:rgba(241,161,13,.08);--tip:var(--sky);--tip-line:rgba(94,177,239,.4);--tip-wash:rgba(94,177,239,.08)}
+.la-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:22px}
+.la-url{font-family:var(--mono);font-size:12px;color:var(--fg-lighter);overflow-wrap:anywhere;min-width:0}
+.la-honest{margin:-20px 0 22px;font-size:13.5px;color:var(--fg-light);border-left:2px solid var(--brand);padding:2px 0 2px 12px;max-width:86ch}
+.la-honest b{color:var(--brand);font-weight:500;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+.la-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:16px}
+.la-grid>*{min-width:0}
+.la-grid2{margin-top:16px;align-items:start}
+@media (max-width:960px){.la-grid{grid-template-columns:1fr}}
+.la-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.la-meta{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--fg-lighter);white-space:nowrap}
+.la-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;border-bottom:1px solid var(--border)}
+.la-chip{font-family:var(--mono);font-size:11.5px;line-height:1.4;padding:4px 10px;border-radius:999px;border:1px solid var(--border2);background:var(--surface);color:var(--fg-light);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.la-chip:hover{border-color:var(--border3);color:var(--fg)}
+.la-chip[aria-pressed="true"]{border-color:var(--brand-line);background:var(--brand-wash);color:var(--brand)}
+.la-chip:focus-visible,.la-mini:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.la-code{display:grid;grid-template-columns:auto minmax(max-content,1fr);height:440px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:22px;tab-size:2;-moz-tab-size:2;overscroll-behavior:contain}
+.la-code:focus-within{box-shadow:inset 0 0 0 1px var(--brand-line)}
+.la-gut{position:sticky;left:0;z-index:2;padding:12px 10px 12px 8px;background:var(--bg2);border-right:1px solid var(--border);color:var(--border3);text-align:right;user-select:none;-webkit-user-select:none;min-width:46px}
+.la-gut div{position:relative;height:22px;padding-left:12px}
+.la-gut .m::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+.la-gut .critical{color:var(--crit)}.la-gut .critical::before{background:var(--crit)}
+.la-gut .warning{color:var(--warn)}.la-gut .warning::before{background:var(--warn)}
+.la-gut .tip{color:var(--tip)}.la-gut .tip::before{background:var(--tip)}
+.la-area{position:relative;min-width:0;padding:12px 18px 12px 14px}
+.la-hl{margin:0;font:inherit;line-height:inherit;white-space:pre;color:var(--fg);pointer-events:none}
+.la-hl .ln{display:block;min-height:22px;margin:0 -8px;padding:0 8px;border-radius:4px;transition:background .6s}
+.la-hl .ln.flash{background:rgba(62,207,142,.18);transition:none}
+.la-area textarea{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:inherit;border:0;border-radius:0;outline:0;resize:none;overflow:hidden;background:transparent;color:transparent;-webkit-text-fill-color:transparent;caret-color:var(--brand);font:inherit;line-height:inherit;letter-spacing:inherit;white-space:pre;tab-size:inherit;-moz-tab-size:inherit}
+.la-area textarea::placeholder{color:var(--fg-lighter);-webkit-text-fill-color:var(--fg-lighter)}
+.la-area textarea::selection{background:rgba(62,207,142,.28)}
+.la-sql .k{color:var(--brand)}.la-sql .t{color:var(--violet)}.la-sql .s{color:var(--amber)}.la-sql .c{color:var(--fg-lighter)}.la-sql .n{color:var(--sky)}
+.la-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 12px;border-top:1px solid var(--border);background:var(--surface);margin-top:auto}
+.la-act .btn[disabled]{opacity:.65;cursor:progress}
+.la-kbd{font-family:var(--mono);font-size:11px;color:var(--fg-lighter)}
+.la-stale{font-family:var(--mono);font-size:11px;color:var(--amber);margin-left:auto}
+.la-res .la-sum{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
+.la-ring{position:relative;width:60px;height:60px}
+.la-ring svg{width:60px;height:60px;transform:rotate(-90deg)}
+.la-ring circle{fill:none;stroke-width:5}
+.la-ring .bg{stroke:var(--border2)}
+.la-ring .fg{stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.2,1)}
+.la-ring b{position:absolute;inset:0;display:grid;place-items:center;font-weight:500;font-size:19px;letter-spacing:-.02em}
+.la-verdict{font-size:17px;line-height:1.3}
+.la-counts{font-family:var(--mono);font-size:12.5px;color:var(--fg-lighter);margin-top:4px}
+.la-counts .critical{color:var(--crit)}.la-counts .warning{color:var(--warn)}.la-counts .tip{color:var(--tip)}
+.la-scope{font-family:var(--mono);font-size:11px;color:var(--fg-lighter);margin-top:3px}
+@media (max-width:520px){.la-res .la-sum{grid-template-columns:auto minmax(0,1fr)}.la-res .la-sum .btn{grid-column:1/-1;justify-content:center}}
+.la-trace{list-style:none;margin:0;padding:10px 16px;border-bottom:1px solid var(--border);display:grid;gap:2px;font-family:var(--mono);font-size:12px}
+.la-trace li{display:grid;grid-template-columns:12px 118px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:24px;color:var(--fg-lighter)}
+.la-trace b{font-weight:500;color:var(--fg-lighter)}
+.la-trace span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.la-trace em{font-style:normal;white-space:nowrap}
+.la-trace .st{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border3)}
+.la-trace .run .st{border-color:var(--brand);border-right-color:transparent;animation:la-spin .7s linear infinite}
+.la-trace .run b{color:var(--brand)}
+.la-trace .done .st{border-color:var(--brand);background:var(--brand)}
+.la-trace .done b{color:var(--fg)}
+.la-trace .done span{color:var(--fg-light)}
+.la-trace .done em{color:var(--brand)}
+.la-trace .tot{display:block;margin-top:4px;padding-top:6px;border-top:1px dashed var(--border);color:var(--fg-lighter);font-size:11px}
+@keyframes la-spin{to{transform:rotate(360deg)}}
+@media (max-width:520px){.la-trace li{grid-template-columns:12px minmax(0,1fr) auto}.la-trace span{grid-column:2/-1;grid-row:2;white-space:normal;font-size:11.5px}}
+.la-fl{flex:1 1 0;min-height:0;overflow:auto;overscroll-behavior:contain}
+@media (max-width:960px){.la-fl{flex:none;max-height:600px}}
+.la-res.busy .la-fl,.la-res.busy .la-sum>*{opacity:.3;transition:opacity .2s}
+.la-f{border-bottom:1px solid var(--border)}
+.la-f:last-child{border-bottom:0}
+.la-f summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:76px minmax(0,1fr) 14px;gap:4px 12px;padding:12px 16px;align-items:start}
+.la-f summary::-webkit-details-marker{display:none}
+.la-f summary:hover{background:rgba(255,255,255,.02)}
+.la-f summary:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.la-sev{grid-row:1;grid-column:1;font-family:var(--mono);font-size:10.5px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;padding:1px 0;border-radius:4px;text-align:center;border:1px solid}
+.la-f.critical .la-sev,.la-sev.critical{color:var(--crit);border-color:var(--crit-line);background:var(--crit-wash)}
+.la-f.warning .la-sev,.la-sev.warning{color:var(--warn);border-color:var(--warn-line);background:var(--warn-wash)}
+.la-f.tip .la-sev,.la-sev.tip{color:var(--tip);border-color:var(--tip-line);background:var(--tip-wash)}
+.la-ft{grid-row:1;grid-column:2;font-size:14.5px;line-height:1.4;color:var(--fg);min-width:0}
+.la-ft code{font-family:var(--mono);font-size:12.5px;color:var(--fg-light);margin-left:8px;overflow-wrap:anywhere}
+.la-why{grid-row:2;grid-column:2;font-size:13.5px;line-height:1.5;color:var(--fg-light);min-width:0}
+.la-chev{grid-row:1;grid-column:3;color:var(--fg-lighter);font-family:var(--mono);transition:transform .2s;line-height:1.4}
+.la-f[open] .la-chev{transform:rotate(90deg)}
+.la-fx{padding:0 16px 14px 104px;min-width:0}
+.la-f .la-sev{grid-row:1}
+.la-f summary .la-sev{grid-column:1}
+@media (max-width:520px){.la-f summary{grid-template-columns:minmax(0,1fr) 14px}.la-f summary .la-sev{justify-self:start;padding:1px 8px}.la-ft{grid-row:2;grid-column:1/-1}.la-why{grid-row:3;grid-column:1/-1}.la-chev{grid-column:2}.la-fx{padding:0 16px 14px}}
+.la-pre{margin:0;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-family:var(--mono);font-size:12px;line-height:1.6;white-space:pre;overflow-x:auto;color:var(--fg);tab-size:2}
+.la-fa{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.la-mini{font-family:var(--mono);font-size:11.5px;line-height:1.4;padding:4px 10px;border-radius:5px;border:1px solid var(--border2);background:var(--surface2);color:var(--fg-light);cursor:pointer}
+.la-mini:hover{color:var(--fg);border-color:var(--border3)}
+.la-empty{padding:28px 16px;color:var(--fg-light);font-size:14.5px}
+.la-empty code,.la-note code{font-family:var(--mono);font-size:.9em;color:var(--fg)}
+.la-head{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--surface);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter);min-height:45px}
+.la-head b{color:var(--fg);font-weight:500}
+.la-head .la-mini{margin-left:auto;text-transform:none;letter-spacing:0}
+.la-coach-b{padding:18px 18px 20px;display:grid;gap:16px}
+.la-from{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--fg-lighter)}
+.la-from b{color:var(--fg);font-weight:500}
+.la-note{font-size:15.5px;line-height:1.65;color:var(--fg-light)}
+.la-note b{color:var(--fg);font-weight:500}
+.la-ag-h{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-lighter)}
+.la-agenda{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px;counter-reset:ag}
+.la-agenda li{display:grid;grid-template-columns:22px 76px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;color:var(--fg);counter-increment:ag}
+.la-agenda li::before{content:counter(ag);font-family:var(--mono);font-size:12px;color:var(--brand);border:1px solid var(--brand-line);background:var(--brand-wash);border-radius:5px;text-align:center;line-height:20px}
+.la-agenda li .la-sev{grid-row:auto;grid-column:auto}
+.la-agenda small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--fg-lighter);overflow-wrap:anywhere}
+@media (max-width:420px){.la-agenda li{grid-template-columns:22px minmax(0,1fr)}.la-agenda li .la-sev{display:none}}
+.la-mig{transition:box-shadow .3s}
+.la-mig.flash{box-shadow:0 0 0 2px var(--brand)}
+.la-mig .la-pre{border:0;border-radius:0;background:var(--bg2);max-height:380px;overflow:auto;padding:14px 16px}
+@keyframes la-in{from{opacity:0;transform:translateY(6px)}}
+.la-anim{animation:la-in .45s cubic-bezier(.2,.7,.2,1) both}
+@media print{
+  .la-code{height:auto;max-height:330px;overflow:hidden}
+  .la-fl{flex:none;max-height:none;overflow:visible}
+  .la-mig .la-pre{max-height:420px;overflow:hidden}
+  .la-fa,.la-act,.la-head .la-mini,.la-res .la-sum .btn{display:none}
+  .la-f,.la-coach{break-inside:avoid}
+}
+
+.reveal{opacity:0;transform:translateY(13.5px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.tbl tbody tr.wait{opacity:1;transform:none}.track i{right:0}}
+</style>
+</head>
+<body>
+
+
+<div class="banner"><span class="tag">Built on purpose</span>Adaptation is the most valuable skill in the AI era. <b>So I studied Supabase's DNA and built my CV in it.</b></div>
+
+<nav class="top" aria-label="Page">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Juan Martín, back to top"><span class="mark" aria-hidden="true">JM</span>Juan Martín</a>
+    <div class="links">
+      <a href="#live-agent" class="live">Live agent</a>
+      <a href="#role">The role</a>
+      <a href="#values">Values</a>
+      <a href="#now">What I do now</a>
+      <a href="#experience">Experience</a>
+      <a href="#plan">First two weeks</a>
+    </div>
+    <a class="btn btn-p" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="pill"><span class="dot" aria-hidden="true"></span><span>Customer Solution Architect, Team Lead · Remote, AMER</span></div>
+      <h1><span>Coach the CSAs.</span><span class="g">Scale the motion to millions.</span></h1>
+      <p class="sub">I'm Juan Martín Beines Furcada. At BGH, an AWS partner, I <b>built and led a team of 7 data engineers and Solutions Architects</b>. At DevRev I was <b>#1 Solutions Engineer in the US Commercial market in 2025</b> and led the SE team in Argentina. Today I architect AI agents for US enterprises. I want to build a CSA team that wins in discovery and keeps customers growing on Supabase.</p>
+      <div class="ctas">
+        <button class="btn btn-p js-copy" type="button">Copy email</button>
+        <a class="btn btn-s" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-live" href="#live-agent">▶ Try the live agent</a>
+      </div>
+      <ul class="facts"><li>Led teams at BGH, DevRev and ITBA</li><li>Postgres in production, SQL for years</li><li>Buenos Aires · GMT-3, same workday as the US East Coast</li><li>ES native · EN bilingual</li></ul>
+    </div>
+    <div class="editor" aria-label="SQL editor listing the teams Juan Martín has led">
+      <div class="ed-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="ed-tab">teams_led.sql</span><span class="ed-run">RUN ⏎</span></div>
+      <div class="ed-code"><pre id="sql"></pre></div>
+      <div class="ed-res"><div class="rh"><span>Results</span><span id="rc"></span></div><table class="tbl" id="tbl"></table></div>
+    </div>
+  </div>
+</header>
+
+<div class="stats" aria-label="Key numbers">
+  <div class="wrap">
+    <div class="stat"><small>DevRev · 2025</small><b><em>#1</em> SE</b><span>US Commercial market</span></div>
+    <div class="stat"><small>Customer-facing</small><b>7+ yrs</b><span>pre-sales &amp; solutions</span></div>
+    <div class="stat"><small>Leadership</small><b>7</b><span>engineers led at BGH</span></div>
+    <div class="stat"><small>AWS partner</small><b>3×</b><span>AWS Competencies earned</span></div>
+    <div class="stat"><small>Career</small><b>4×</b><span>promoted: DevRev, BGH, MicroStrategy, ITBA</span></div>
+  </div>
+</div>
+
+<section class="la" id="live-agent" aria-labelledby="la-title">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">▶</span> Live agent · Schema reviewer</div>
+      <h2 class="h2" id="la-title">Don't read about it. <span class="g">Run it.</span></h2>
+      <div>
+        <p class="lede">Give it a customer's Postgres schema. It reviews it the way a senior CSA would: security first, then performance, then hygiene. Then it drafts the migration and writes the coaching note I'd hand the CSA before the call.</p>
+        <div class="la-links"><a class="btn btn-s" href="https://cv-juan-martin.vercel.app/supabase-customer-sa-team-lead/#live-agent" target="_blank" rel="noopener">Open the live demo ↗</a><span class="la-url">cv-juan-martin.vercel.app/supabase-customer-sa-team-lead</span></div>
+      </div>
+    </div>
+    <p class="la-honest"><b>Honest label</b>Runs entirely in your browser: a deterministic reviewer — the kind of tool I'd build so every CSA reviews schemas like the best one on the team.</p>
+
+    <div class="la-grid">
+      <div class="la-card">
+        <div class="ed-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="ed-tab" id="la-tab">schema.sql</span><span class="la-meta" id="la-meta"></span></div>
+        <div class="la-chips" role="group" aria-label="Sample customer schemas" id="la-chips"></div>
+        <div class="la-code la-sql" id="la-code">
+          <div class="la-gut" id="la-gut" aria-hidden="true"></div>
+          <div class="la-area"><pre class="la-hl" id="la-hl" aria-hidden="true"></pre><textarea id="la-src" wrap="off" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-label="Postgres schema to review" placeholder="-- paste CREATE TABLE statements here&#10;-- (pg_dump --schema-only output works too)"></textarea></div>
+        </div>
+        <div class="la-act"><button class="btn btn-p" id="la-run" type="button">▶ Run review</button><span class="la-kbd">⌘ / Ctrl + Enter</span><span class="la-stale" id="la-stale" hidden>Schema changed · run again</span></div>
+      </div>
+      <div class="la-card la-res" id="la-res">
+        <div class="la-sum" id="la-sum" aria-live="polite"></div>
+        <ol class="la-trace" id="la-trace" aria-label="Agent trace"></ol>
+        <div class="la-fl la-sql" id="la-fl"></div>
+      </div>
+    </div>
+
+    <div class="la-grid la-grid2">
+      <div class="la-card la-coach">
+        <div class="la-head"><b>Coaching note for your CSA</b></div>
+        <div class="la-coach-b" id="la-coach"></div>
+      </div>
+      <div class="la-card la-mig" id="la-mig">
+        <div class="la-head"><b>migration.sql</b><span id="la-mig-n">Fix all</span><button class="la-mini" type="button" id="la-mig-copy">Copy migration</button></div>
+        <pre class="la-pre la-sql" id="la-mig-pre"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="role">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">01</span> The role, mapped</div>
+      <h2 class="h2">Every line of the post, <span class="g">backed by work I've done.</span></h2>
+      <p class="lede">A CSA Team Lead owns two outcomes: people and customers. Hire and coach the team, make the motion repeatable, and still step in when a strategic account needs a deep dive. Here is the evidence for each part.</p>
+    </div>
+    <div class="map">
+      <div class="map-head" aria-hidden="true"><span>#</span><span>From the job post</span><span>Evidence</span></div>
+      <div class="mrow reveal">
+        <div class="n">01</div>
+        <div><h3>Hire, coach and grow a team of CSAs</h3><p class="q">"…captain a high-performing team of Customer Solutions Architects."</p></div>
+        <div><ul><li>As Data Analytics Manager at BGH, <b>built and led a team of 7 data engineers and Solutions Architects</b> across multiple customer accounts</li><li><b>Led and mentored the SE team in Argentina at DevRev</b> while carrying my own accounts. Earlier, led a team of 4 analysts at ITBA</li></ul><div class="tags"><span>People management</span><span>Coaching</span><span>Hiring</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">02</div>
+        <div><h3>2+ years of people management in a technical environment</h3><p class="q">"…2+ years of people management or team leadership experience."</p></div>
+        <div><ul><li>Team leadership at three organizations: BGH (7 engineers and SAs), DevRev (SE team), ITBA (4 analysts)</li><li>Promoted into the lead role at BGH (Solutions Architect → Data Analytics Manager) and at ITBA (Sr Analyst → Back Office Manager)</li></ul><div class="tags"><span>Team lead</span><span>Manager</span><span>4× promoted</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">03</div>
+        <div><h3>Define and scale the CSA motion with Sales, Product and Engineering</h3><p class="q">"…from discovery through adoption and renewal."</p></div>
+        <div><ul><li>At BGH I owned the engagement lifecycle (discovery, design, blueprints, implementation, optimization) and turned it into how the team worked</li><li>The practice earned <b>3 AWS Competencies</b>, which AWS grants after reviewing repeatable, delivered work. That's a motion, not a hero</li></ul><div class="tags"><span>Repeatable motion</span><span>Cross-functional</span><span>Lifecycle</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">04</div>
+        <div><h3>Onboarding and training plans: storytelling, Postgres, customer success</h3><p class="q">"…level up in technical storytelling, Postgres optimization, and customer success strategy."</p></div>
+        <div><ul><li>Taught <b>Product Management and Cloud Computing</b> at ITBA. Enabling a CSA team is the same job with a sharper deadline</li><li>AWS Well-Architected Review Consultant: the framework gives every CSA the same structure for an architecture review</li></ul><div class="tags"><span>Training</span><span>Enablement</span><span>Reviews</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">05</div>
+        <div><h3>Review discovery and coach demos for high-value customers</h3><p class="q">"…helping them clearly articulate the value of the Supabase platform."</p></div>
+        <div><ul><li><b>#1 Solutions Engineer, US Commercial, DevRev, 2025</b>. Discovery and demos are what I'd coach first, because they're what I'm best at</li><li>Today I run on-site discovery for US enterprises and map processes into architecture</li></ul><div class="tags"><span>Discovery</span><span>Demos</span><span>Storytelling</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">06</div>
+        <div><h3>High proof-to-conversion rate</h3><p class="q">"…result in a high proof-to-conversion success rate."</p></div>
+        <div><ul><li>Trusted technical advisor through POCs and adoption at DevRev; delivered POCs for enterprise prospects at MicroStrategy</li><li>My rule for the team: no proof-of-value starts without written success criteria the customer has agreed to</li></ul><div class="tags"><span>Proof-of-value</span><span>Conversion</span><span>Success criteria</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">07</div>
+        <div><h3>Coach architecture reviews, schema design and performance tuning</h3><p class="q">"…strong background with relational databases (PostgreSQL preferred)."</p></div>
+        <div><ul><li>Data modeling and <b>SQL optimization</b> at MicroStrategy; warehouses on AWS (Redshift, Glue, Spark, Step Functions) at BGH; AWS Database Specialty</li><li>Run <b>Postgres in production</b> behind a conversational agent I built end to end, on a Next.js, React and Node.js frontend</li></ul><p class="honest"><b>Honest note</b>My Postgres is application and warehouse work, not years as a DBA. I'll learn Supabase-scale tuning hands-on in my first week, so I can coach it credibly.</p><div class="tags"><span>Postgres</span><span>Schema design</span><span>SQL</span><span>React</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">08</div>
+        <div><h3>Step in on escalations and lead the East Coast, across the Americas</h3><p class="q">"…This role will support the East Coast region across the Americas."</p></div>
+        <div><ul><li>Advised C-level and VPs at banks under strict compliance, and today I work on site with US enterprise teams</li><li>Buenos Aires is GMT-3, one or two hours ahead of New York: a full East Coast workday, plus LatAm customers in Spanish</li></ul><div class="tags"><span>Escalations</span><span>East Coast</span><span>ES / EN</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="values">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">02</span> Human powered</div>
+      <h2 class="h2">Your five traits, <span class="g">and where I've lived them.</span></h2>
+      <p class="lede">Supabase says a remote, async team stays effective through five traits. As a lead, these are the traits I'd hire and coach for. Each one has a story from my own work.</p>
+    </div>
+    <div class="values">
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><path d="M15.5 14.2c2.6-.3 4.8 1.2 5.5 4.3"/></svg></div><h3>Egoless</h3><p class="def">Mission driven, work for the good of colleagues.</p><p class="story">At DevRev I was the #1 SE in the US Commercial market, and I still spent my time leading and mentoring the SE team in Argentina. A win I can't hand over to the next person isn't worth much.</p><div class="proof">Led the SE team · DevRev Argentina</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h4v-4h4v-4h4V6h4"/><path d="M16 6h4v4"/></svg></div><h3>Kaizen Mindset</h3><p class="def">Iterative approach, continuously improve all functions.</p><p class="story">Promoted at four companies in a row, each time by getting a little better at the job every week. Same with agents: ship to production first, then improve on real conversations.</p><div class="proof">4× promoted · DevRev, BGH, MicroStrategy, ITBA</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.2-4.2"/><path d="m8.5 11 1.8 1.8L13.8 9.3"/></svg></div><h3>Truth Seeking</h3><p class="def">Intellectually honest, act with integrity, recognize biases.</p><p class="story">I say "not feasible" when it isn't. A scope the platform can't support is a churned customer that just hasn't happened yet. I'd rather lose the argument on day 3 than the account on day 90.</p><div class="proof">Trusted advisor through POCs · DevRev</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3"/><path d="m11.5 9-2 3h3l-2 3"/></svg></div><h3>Batteries Included</h3><p class="def">High ownership, intrinsically motivated, care about quality.</p><p class="story">I started a company at 17, and nobody else owned the clients or the P&amp;L. I still work that way: I built and shipped a production agent end to end myself, frontend to Postgres to the integrations.</p><div class="proof">BB Productions · founded at 17</div></div></div>
+      <div class="val reveal"><div><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></div><h3>Undeniable</h3><p class="def">So good you earn respect, reliable, consistently deliver.</p><p class="story">#1 Solutions Engineer in DevRev's US Commercial market in 2025. Before that, the AWS practice I helped build at BGH earned three AWS Competencies, which AWS only grants after reviewing delivered work.</p><div class="proof">#1 SE · 3× AWS Competencies</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap now">
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px"><span class="n">03</span> What I do now</div>
+      <h2 class="h2">I turn business processes into <span class="g">agentic architecture.</span></h2>
+      <p class="lede" style="margin-top:20px">Today I design and deploy AI agents for enterprise clients in the US. My favorite place to work is the customer's office: sitting with the people who do the job, mapping it step by step, then turning it into an agent that does it.</p>
+      <div class="flow">
+        <div class="fstep"><span class="i">01</span><div><b>Map the work</b><span>Every call, decision and handoff a person does today.</span></div></div>
+        <div class="fstep"><span class="i">02</span><div><b>Design the agent</b><span>What it owns, what it escalates, which tools it calls.</span></div></div>
+        <div class="fstep"><span class="i">03</span><div><b>Connect the systems</b><span>CRM, messaging, data. Where state lives, and who can read it.</span></div></div>
+        <div class="fstep"><span class="i">04</span><div><b>Ship and iterate</b><span>Production first, then improve on real conversations and results.</span></div></div>
+      </div>
+      <p class="lede" style="margin-top:24px">I don't stop at the diagram. The schema on the right is a production agent I built myself, Postgres included. A lead who still builds can coach with real examples and judge a design review quickly.</p>
+    </div>
+    <div class="reveal">
+      <div class="schema" aria-label="Architecture of a production conversational agent I built and shipped end to end">
+        <div class="sh"><span><b>agent_in_production</b> · schema</span><span>built end to end</span></div>
+        <div class="sgrid">
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>frontend</div><div class="col"><span>framework</span><i>Next.js · React</i></div><div class="col"><span>language</span><i>TypeScript</i></div><div class="col"><span>stream</span><i>Node.js SSE</i></div></div>
+          <div class="stable pg"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>backend</div><div class="col"><span>api</span><i>Python · Flask</i></div><div class="col"><span>jobs</span><i>Celery · Redis</i></div><div class="col"><span>database</span><i>Postgres</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>model_router</div><div class="col"><span>triage</span><i>fast model</i></div><div class="col"><span>tool_loop</span><i>stronger model</i></div><div class="col"><span>fallback</span><i>across providers</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>channels</div><div class="col"><span>voice</span><i>ElevenLabs TTS · cloning</i></div><div class="col"><span>chat</span><i>WhatsApp Cloud API</i></div><div class="col"><span>ads</span><i>Meta Marketing API</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>platform</div><div class="col"><span>auth</span><i>OAuth</i></div><div class="col"><span>billing</span><i>payments</i></div><div class="col"><span>deploy</span><i>Docker on AWS</i></div></div>
+          <div class="stable"><div class="tn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 6h13M6 6v7.5"/></svg>data_past</div><div class="col"><span>warehouse</span><i>Redshift</i></div><div class="col"><span>etl</span><i>Glue · Spark</i></div><div class="col"><span>orchestration</span><i>Step Functions</i></div></div>
+        </div>
+      </div>
+      <div class="skills">
+        <div><b>Languages</b><span>TypeScript · JavaScript · Python · SQL</span></div>
+        <div><b>Frameworks</b><span>Next.js · React · Node.js · Flask</span></div>
+        <div><b>Data</b><span>Postgres · Redis · Redshift · Glue · Spark</span></div>
+        <div><b>Cloud</b><span>AWS · Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">04</span> Experience</div>
+      <h2 class="h2">Promoted at <span class="g">every stop.</span></h2>
+      <p class="lede">Seven-plus years in the room with customers, and a step up at every company: intern to consultant, Solutions Architect to manager, Solutions Engineer to Solutions Architect. Open any row for detail.</p>
+    </div>
+    <div class="xp" id="xp"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">05</span> First two weeks</div>
+      <h2 class="h2">Four weeks to ramp up? <span class="g">Give me two.</span></h2>
+      <p class="lede">A new lead should earn the team's trust before changing anything. So the first week is listening and shadowing, and the second week is the first shared templates.</p>
+    </div>
+    <div class="track-l" aria-hidden="true"><span>Day 1</span><span>Day 10 · end of week two</span></div>
+    <div class="track" id="track" aria-hidden="true"><i></i></div>
+    <div class="plan">
+      <div class="pcard reveal"><div class="d">Days 1–2</div><h3>Meet the team</h3><p>1:1 with every CSA: their accounts, what blocks them, what they want to grow into. Build a small app on Supabase myself so I speak the platform.</p><div class="out">A map of people, accounts and risks</div></div>
+      <div class="pcard reveal"><div class="d">Days 3–5</div><h3>Shadow every CSA</h3><p>Join one live call per CSA and one escalation. Review open discoveries and proofs-of-value with Sales, plus the pipeline data in HubSpot and BigQuery.</p><div class="out">Where proofs stall, and why</div></div>
+      <div class="pcard reveal"><div class="d">Days 6–8</div><h3>Standardize the basics</h3><p>Ship v1 templates with the team: discovery brief, proof-of-value scope with success criteria, onboarding email sequence.</p><div class="out">Shared templates in use</div></div>
+      <div class="pcard reveal"><div class="d">Days 9–10</div><h3>Coaching and hiring</h3><p>A development plan for each CSA (storytelling, Postgres tuning, account plans), a hiring scorecard, and the first conversion metrics we'll track.</p><div class="out">Team plan agreed with leadership</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="creds">
+  <div class="wrap creds">
+    <div class="reveal">
+      <div class="eyebrow"><span class="n">06</span> Certifications</div>
+      <div class="certs">
+        <div><b>AWS Solutions Architect</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Database Specialty</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Well-Architected Review Consultant</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></div>
+        <div><b>Generative AI Professional</b><span>Blockchain Council</span></div>
+        <div><b>MicroStrategy Architect</b><span>MicroStrategy</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Education &amp; languages</div>
+      <div class="edu">
+        <div class="it"><b>B.S. Systems &amp; Business Administration, ITBA</b><span>2016–2021 · Honors</span></div>
+        <div class="it"><b>IGCSE + IB Certificate, Northlands</b><span>Most honored student</span></div>
+        <div class="langs">
+          <div><b>Spanish</b><span>Native</span></div>
+          <div><b>English</b><span>Bilingual</span></div>
+          <div><b>French</b><span>DELF A2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="n">07</span> Contact</div>
+    <h2>Let's build a CSA team <span class="g">customers trust.</span></h2>
+    <p class="lede">Give me 30 minutes and I'll walk you through how I built and ran the team at BGH, and how I'd run the CSA motion at Supabase.</p>
+    <div class="ctas" style="margin-top:28px">
+      <button class="btn btn-p js-copy" type="button">Copy email</button>
+      <a class="btn btn-s" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">Open LinkedIn ↗</a>
+    </div>
+    <div class="term">
+      <div class="tb">juan_martin.contact</div>
+      <div class="cgrid">
+        <div><div class="k">email</div><div class="v sel" id="email">jbeinesfurcada@gmail.com</div></div>
+        <div><div class="k">phone · whatsapp</div><div class="v sel">+54 9 11 6433-6286</div></div>
+        <div><div class="k">location</div><div class="v">Buenos Aires · GMT-3</div></div>
+        <div><div class="k">work</div><div class="v">Remote · AMER</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Juan Martín Beines Furcada · 2026</span><span>Built for Supabase's Customer Solution Architect, Team Lead role</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+<script>
+(function(){
+  var D={"sql": "-- people I've led, and what we delivered\nselect company, team, delivered\nfrom juan.teams_led\norder by started_at desc;", "cols": [["company", "text"], ["team", "text"], ["delivered", "text"]], "rows": [["DevRev", "SE team, Argentina", "led it while #1 SE, US 2025"], ["BGH Tech Partner", "7 engineers + SAs", "3× AWS Competencies"], ["ITBA", "4 analysts", "MIT $100K LatAm ops"]], "xp": [["2026 — Now", "AI Agents Architect", "Enterprise clients in the US", "Design and deploy AI agents that take over operational work for US enterprise teams.", ["Run discovery on site with the customer's operators and map the business process into an agentic architecture", "Architect the agent: prompts, tools, escalation rules and integrations with their CRM and data", "Take it to production and iterate on real conversations and results"]], ["Oct 2024 — 2026", "DevRev", "Solutions Engineer → Solutions Architect", "#1 SE in the US Commercial market in 2025 at an agentic AI company. Promoted to Solutions Architect.", ["#1 Solutions Engineer in the US Commercial market, 2025", "Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts", "Designed AI use cases that automated support triage, product analytics workflows and data consumption", "Trusted technical advisor through POCs, integration design and adoption", "Led and mentored the SE team in Argentina while tracking several accounts at once"], true], ["2021 — 2024", "BGH Tech Partner", "AWS Solutions Architect → Data Analytics Manager", "AWS partner. Joined as a Solutions Architect, promoted to lead a team of 7 data engineers and Solutions Architects.", ["Started as Sr Cloud Pre-Sales Engineer and AWS Solutions Architect, advising C-level and VPs in banking, retail, logistics, telco and public sector", "Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)", "Governed data platforms for banks under strict compliance requirements", "As Data Analytics Manager, built and led a team of 7 data engineers and Solutions Architects across multiple customer accounts", "Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization", "Helped the company earn 3 AWS Competencies"]], ["2019 — 2021", "MicroStrategy", "Intern → Associate Consultant", "Joined as an intern, promoted to consultant. POCs, pre-sales demos and warehouse modernization for enterprise clients.", ["Delivered POCs, technical demos and consulting to prospective enterprise clients", "Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL", "Wrote solution documentation: POCs, roadmaps, logical system views"]], ["2017 — 2021", "ITBA", "Sr Analyst → Back Office Manager → Instructor", "Ran operations for MIT $100K LatAm, then taught Product Management and Cloud Computing.", ["Taught Product Management and Cloud Computing at ITBA", "Back Office Manager for MIT $100K LatAm: led a team of 4 analysts across logistics, data analysis and process optimization", "Owned university framework agreements and internships; automated processes on the ERP"]], ["2014 — 2019", "BB Productions", "CEO & Co-founder", "Founded at 17. Ran clients, P&amp;L, vendors and staffing.", ["Managed every business operation: client relations, P&amp;L, vendor management, staffing and planning"]]]};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  /* SQL editor */
+  var KW=/\b(select|from|where|order|by|desc|asc|and|or|limit|join|on|as|group|true|false|ilike|is|not|null)\b/gi;
+  function hl(src){
+    return src.split('\n').map(function(line){
+      var c=line.indexOf('--');var code=c>=0?line.slice(0,c):line,com=c>=0?line.slice(c):'';
+      var out=esc(code).replace(/('[^']*'?)/g,'\u0000$1\u0001').split(/(\u0000[^\u0001]*\u0001)/).map(function(p){
+        return p.charAt(0)==='\u0000'?'<span class="s">'+p.slice(1,-1)+'</span>':p.replace(KW,'<span class="k">$1</span>');
+      }).join('');
+      return out+(com?'<span class="c">'+esc(com)+'</span>':'');
+    });
+  }
+  var pre=$('sql'),tbl=$('tbl'),rc=$('rc'),N=D.sql.split('\n').length;
+  function paint(src,caret){var h=hl(src);var out='';for(var k=0;k<N;k++){out+='<div class="l"><i aria-hidden="true">'+(k+1)+'</i><span>'+(h[k]||'')+(caret&&k===h.length-1?'<span class="caret"></span>':'')+'</span></div>'}pre.innerHTML=out}
+  tbl.innerHTML='<thead><tr>'+D.cols.map(function(c){return '<th>'+c[0]+'<small>'+c[1]+'</small></th>'}).join('')+'</tr></thead><tbody>'+D.rows.map(function(r){return '<tr class="wait">'+r.map(function(v,i){return '<td'+(i===r.length-1?' class="hl"':'')+'>'+v+'</td>'}).join('')+'</tr>'}).join('')+'</tbody>';
+  var trs=tbl.querySelectorAll('tbody tr');
+  function showRows(){rc.textContent=trs.length+' rows';trs.forEach(function(tr,i){setTimeout(function(){tr.classList.remove('wait')},reduce?0:i*150)})}
+  if(reduce){paint(D.sql,false);showRows()}
+  else{
+    var i=0;rc.textContent='running…';
+    (function type(){
+      i=Math.min(D.sql.length,i+3);
+      paint(D.sql.slice(0,i),i<D.sql.length);
+      if(i<D.sql.length)setTimeout(type,24);else setTimeout(showRows,240);
+    })();
+  }
+
+  /* experience */
+  var xc=$('xp');
+  D.xp.forEach(function(r,i){
+    var d=document.createElement('div');d.className='xrow'+(i===1?' open':'');
+    var lad=r[2].split(' → ');
+    d.innerHTML='<button type="button" aria-expanded="'+(i===1)+'"><span class="when">'+r[0]+'</span><span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE US 2025</span>':'')+'</span><span class="ladder">'+lad.map(function(x,k){return '<span'+(lad.length>1&&k===lad.length-1?' class="top"':'')+'>'+x+'</span>'}).join('<i aria-hidden="true">→</i>')+'</span></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
+    d.querySelector('button').addEventListener('click',function(){var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+    xc.appendChild(d);
+  });
+
+  /* reveal */
+  var els=document.querySelectorAll('.reveal,#track');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(el){io.observe(el)});
+  }else{els.forEach(function(el){el.classList.add('in')})}
+
+  /* copy email */
+  var t=$('toast'),email='jbeinesfurcada@gmail.com',tm;
+  function toast(msg){t.textContent=msg;t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},1800)}
+  function selectEmail(){var v=$('email');var r=document.createRange();r.selectNodeContents(v);var s=getSelection();s.removeAllRanges();s.addRange(r);v.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});toast('Email selected, press Ctrl/Cmd+C')}
+  document.querySelectorAll('.js-copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      try{navigator.clipboard.writeText(email).then(function(){toast('Email copied: '+email)},selectEmail)}catch(x){selectEmail()}
+    });
+  });
+
+  /* ================= live agent: schema reviewer =================
+     Deterministic: a small SQL tokenizer + rule set. No network, no model. */
+  var LA_S=[
+{name:'Marketplace',file:'tidepool_marketplace.sql',sql:`-- Tidepool: two-sided marketplace (fictional customer)
+-- Shared by their CTO ahead of launch. Review before Thursday's call.
+
+create table profiles (
+  id uuid primary key references auth.users (id),
+  email varchar(255) not null,
+  display_name text,
+  created_at timestamp default now()
+);
+alter table profiles enable row level security;
+create policy "Users read own profile" on profiles
+  for select using (auth.uid() = id);
+
+create table shops (
+  id serial primary key,
+  owner_id uuid not null references profiles (id),
+  name text not null,
+  settings jsonb not null default '{}',
+  created_at timestamptz not null default now()
+);
+create index shops_owner_id_idx on shops (owner_id);
+alter table shops enable row level security;
+
+create table products (
+  id bigint generated always as identity primary key,
+  shop_id int not null references shops (id),
+  title text not null,
+  price float not null,
+  created_at timestamptz not null default now()
+);
+create index products_shop_id_idx on products (shop_id);
+alter table products enable row level security;
+create policy "Products are public" on products
+  for select using (true);
+
+create table orders (
+  id bigint generated always as identity primary key,
+  buyer_id uuid not null references profiles (id),
+  status text not null default 'pending',
+  total numeric(12,2) not null,
+  created_at timestamptz not null default now()
+);
+alter table orders enable row level security;
+create policy "Buyers manage orders" on orders
+  for all using (true);
+
+create table order_items (
+  order_id bigint references orders (id),
+  product_id bigint references products (id),
+  quantity int not null default 1
+);
+
+create table payouts (
+  id bigint generated always as identity primary key,
+  shop_id int not null references shops (id),
+  amount numeric(12,2) not null,
+  paid_at timestamp,
+  created_at timestamptz not null default now()
+);
+`},
+{name:'B2B SaaS',file:'ledgerly_saas.sql',sql:`-- Ledgerly: multi-tenant B2B invoicing (fictional customer)
+-- Every row belongs to an organization.
+
+create table organizations (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  plan text not null default 'free',
+  created_at timestamptz not null default now()
+);
+alter table organizations enable row level security;
+
+create table members (
+  org_id uuid not null references organizations (id),
+  user_id uuid not null references auth.users (id),
+  role text not null default 'member',
+  created_at timestamptz not null default now(),
+  primary key (org_id, user_id)
+);
+alter table members enable row level security;
+create policy "Members see their memberships" on members
+  for select using (user_id = auth.uid());
+
+create table customers (
+  id uuid primary key default gen_random_uuid(),
+  org_id uuid not null references organizations (id),
+  email text not null,
+  name text,
+  created_at timestamp without time zone default now()
+);
+alter table customers enable row level security;
+create policy "Org members read customers" on customers
+  for select using (
+    org_id in (select org_id from members where user_id = auth.uid())
+  );
+
+create table invoices (
+  id uuid primary key default gen_random_uuid(),
+  org_id uuid not null references organizations (id),
+  customer_id uuid not null references customers (id),
+  number varchar(20) not null,
+  amount double precision not null,
+  due_at timestamp,
+  created_at timestamptz not null default now()
+);
+create index invoices_org_id_idx on invoices (org_id);
+alter table invoices enable row level security;
+create policy "Org members read invoices" on invoices
+  for select using (
+    org_id in (select org_id from members where user_id = (select auth.uid()))
+  );
+
+create table invoice_events (
+  id bigserial primary key,
+  invoice_id uuid references invoices (id),
+  type text not null,
+  payload json,
+  created_at timestamptz not null default now()
+);
+
+create table api_keys (
+  id uuid primary key default gen_random_uuid(),
+  org_id uuid not null references organizations (id),
+  key_hash text not null,
+  created_by uuid,
+  created_at timestamptz not null default now()
+);
+`},
+{name:'AI chat app',file:'brightdesk_ai.sql',sql:`-- Brightdesk: AI support assistant with RAG (fictional customer)
+create extension if not exists vector;
+
+create table workspaces (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null references auth.users (id) on delete cascade,
+  name text not null,
+  created_at timestamptz not null default now()
+);
+create index workspaces_owner_id_idx on workspaces (owner_id);
+alter table workspaces enable row level security;
+create policy "Owners manage workspaces" on workspaces
+  for all to authenticated
+  using ((select auth.uid()) = owner_id)
+  with check ((select auth.uid()) = owner_id);
+
+create table documents (
+  id bigint generated always as identity primary key,
+  workspace_id uuid not null references workspaces (id),
+  title text,
+  body text,
+  metadata json,
+  created_at timestamptz not null default now()
+);
+alter table documents enable row level security;
+create policy "Anyone can add documents" on documents
+  for insert with check (true);
+
+create table document_chunks (
+  id bigint generated always as identity primary key,
+  document_id bigint not null references documents (id) on delete cascade,
+  content text not null,
+  embedding vector(1536),
+  created_at timestamptz not null default now()
+);
+
+create table conversations (
+  id uuid primary key default gen_random_uuid(),
+  workspace_id uuid not null references workspaces (id),
+  user_id uuid,
+  started_at timestamp default now()
+);
+alter table conversations enable row level security;
+
+create table messages (
+  id bigint generated always as identity primary key,
+  conversation_id uuid not null references conversations (id),
+  role varchar(16) not null,
+  content text not null,
+  created_at timestamptz not null default now()
+);
+alter table messages enable row level security;
+create policy "Users read their messages" on messages
+  for select using (
+    conversation_id in (select id from conversations where user_id = auth.uid())
+  );
+`},
+{name:'Reference (clean)',file:'reference_clean.sql',sql:`-- Reference: what "good" looks like. Expect a clean review.
+
+create table public.teams (
+  id bigint generated always as identity primary key,
+  name text not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+alter table public.teams enable row level security;
+
+create table public.team_members (
+  team_id bigint not null references public.teams (id) on delete cascade,
+  user_id uuid not null references auth.users (id) on delete cascade,
+  role text not null default 'member' check (role in ('owner', 'member')),
+  created_at timestamptz not null default now(),
+  primary key (team_id, user_id)
+);
+create index team_members_user_id_idx on public.team_members (user_id);
+alter table public.team_members enable row level security;
+create policy "Members read their memberships" on public.team_members
+  for select to authenticated
+  using ((select auth.uid()) = user_id);
+
+create policy "Members read their teams" on public.teams
+  for select to authenticated
+  using (id in (
+    select team_id from public.team_members where user_id = (select auth.uid())
+  ));
+
+create table public.projects (
+  id bigint generated always as identity primary key,
+  team_id bigint not null references public.teams (id) on delete cascade,
+  name text not null,
+  settings jsonb not null default '{}',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index projects_team_id_idx on public.projects (team_id);
+alter table public.projects enable row level security;
+create policy "Members read team projects" on public.projects
+  for select to authenticated
+  using (team_id in (
+    select team_id from public.team_members where user_id = (select auth.uid())
+  ));
+`}];
+
+  /* ---- tokenizer helpers (offsets preserved so findings map to editor lines) ---- */
+  var ID='(?:"[^"]+"|[A-Za-z_][A-Za-z0-9_$]*)',QN=ID+'(?:\\s*\\.\\s*'+ID+')?';
+  var RX={
+    table:new RegExp('^create\\s+(?:or\\s+replace\\s+)?(?:(?:global|local)\\s+)?(temp\\s+|temporary\\s+|unlogged\\s+)?table\\s+(?:if\\s+not\\s+exists\\s+)?('+QN+')\\s*\\(','i'),
+    index:new RegExp('^create\\s+(unique\\s+)?index\\s+(?:concurrently\\s+)?(?:if\\s+not\\s+exists\\s+)?(?:'+ID+'\\s+)?on\\s+(?:only\\s+)?('+QN+')\\s*(?:using\\s+(\\w+)\\s*)?\\(','i'),
+    alter:new RegExp('^alter\\s+table\\s+(?:if\\s+exists\\s+)?(?:only\\s+)?('+QN+')\\s+([\\s\\S]*)$','i'),
+    altcol:new RegExp('^alter\\s+(?:column\\s+)?('+ID+')\\s+([\\s\\S]*)$','i'),
+    policy:new RegExp('^create\\s+policy\\s+("(?:[^"]|"")*"|'+ID+')\\s+on\\s+('+QN+')([\\s\\S]*)$','i'),
+    ref:new RegExp('\\breferences\\s+('+QN+')','i'),
+    col:new RegExp('^('+ID+')\\s*([\\s\\S]*)$'),
+    lead:new RegExp('^'+ID+'(?:\\s|$)'),
+    ids:new RegExp(ID,'g'),
+    tcon:new RegExp('^(?:constraint\\s+'+ID+'\\s+)?(primary\\s+key|unique|foreign\\s+key|check|exclude)\\b','i')
+  };
+  function unq(x){x=x.trim();return x.charAt(0)==='"'?x.slice(1,-1).replace(/""/g,'"'):x.toLowerCase()}
+  function qn(x){var p=x.match(RX.ids)||[''];return p.length>1?{s:unq(p[0]),n:unq(p[1])}:{s:'public',n:unq(p[0])}}
+  function tkey(x){var q=qn(x);return q.s+'.'+q.n}
+  function stripC(s){
+    var o='',i=0,n=s.length,j;
+    while(i<n){
+      var c=s[i],d=s[i+1];
+      if(c==='-'&&d==='-'){while(i<n&&s[i]!=='\n'){o+=' ';i++}}
+      else if(c==='/'&&d==='*'){j=s.indexOf('*/',i+2);j=j<0?n:j+2;for(;i<j;i++)o+=s[i]==='\n'?'\n':' '}
+      else if(c==="'"){j=i+1;while(j<n){if(s[j]==="'"){if(s[j+1]==="'"){j+=2;continue}break}j++}j=Math.min(n,j+1);o+=s.slice(i,j);i=j}
+      else if(c==='$'&&/^\$[A-Za-z_]*\$/.test(s.slice(i,i+40))){var tag=s.slice(i,i+40).match(/^\$[A-Za-z_]*\$/)[0];j=s.indexOf(tag,i+tag.length);j=j<0?n:j+tag.length;o+=s.slice(i,j).replace(/[^\n]/g,' ');i=j}
+      else{o+=c;i++}
+    }
+    return o;
+  }
+  function bal(s,i){var d=0,q=false;for(var j=i;j<s.length;j++){var c=s[j];if(q){if(c==="'")q=false;continue}if(c==="'")q=true;else if(c==='(')d++;else if(c===')'){d--;if(!d)return j}}return -1}
+  function seg(s,base,st,j,r){var x=s.slice(st,j),lead=x.length-x.replace(/^\s+/,'').length;if(x.trim())r.push({t:x.trim(),o:base+st+lead})}
+  function splitTop(s,base){var r=[],d=0,q=false,st=0;for(var j=0;j<s.length;j++){var c=s[j];if(q){if(c==="'")q=false;continue}if(c==="'")q=true;else if(c==='(')d++;else if(c===')')d--;else if(c===','&&d<=0){seg(s,base,st,j,r);st=j+1}}seg(s,base,st,s.length,r);return r}
+  function splitStmts(s){var r=[],q=false,st=0;for(var j=0;j<s.length;j++){var c=s[j];if(q){if(c==="'")q=false;continue}if(c==="'")q=true;else if(c===';'){seg(s,0,st,j,r);st=j+1}}seg(s,0,st,s.length,r);return r}
+  function pcols(s){var m=/\(([^)]*)\)/.exec(s);return m?m[1].split(',').map(function(x){return unq(x.trim().split(/\s+/)[0]||'')}).filter(Boolean):[]}
+
+  /* ---- step 1: parse ---- */
+  function laParse(src){
+    var clean=stripC(src),starts=[0],i;
+    for(i=0;i<src.length;i++)if(src.charCodeAt(i)===10)starts.push(i+1);
+    function ln(o){var lo=0,hi=starts.length-1;while(lo<hi){var mid=(lo+hi+1)>>1;if(starts[mid]<=o)lo=mid;else hi=mid-1}return lo+1}
+    var S=splitStmts(clean),T={},order=[],later=[],P={T:T,order:order,stmts:S.length,idx:0,pols:0,other:0,cols:0};
+    function addEl(t,x,line){
+      var m=RX.tcon.exec(x);
+      if(m){
+        var k=m[1].toLowerCase().replace(/\s+/g,' '),rest=x.slice(m[0].length),cols=pcols(rest);
+        if(k==='primary key'&&cols.length)t.pk=cols;
+        else if(k==='unique'&&cols.length)t.uniq.push(cols);
+        else if(k==='foreign key'){var r0=RX.ref.exec(rest);t.fks.push({cols:cols,ref:r0?qn(r0[1]):null,line:line})}
+        return;
+      }
+      if(/^like\s/i.test(x))return;
+      var c=RX.col.exec(x);if(!c)return;
+      var name=unq(c[1]),rest2=' '+c[2],km=/\s(not\s+null|null|default|primary\s+key|references|unique|check|constraint|generated|collate)\b/i.exec(rest2);
+      var col={name:name,type:(km?rest2.slice(0,km.index):rest2).trim().replace(/\s+/g,' ').toLowerCase(),line:line,
+        ident:/\bgenerated\s+(?:always|by\s+default)\s+as\s+identity/i.test(rest2),nextval:/\bnextval\s*\(/i.test(rest2),ref:null};
+      var r=RX.ref.exec(rest2);if(r){col.ref=qn(r[1]);t.fks.push({cols:[name],ref:col.ref,line:line})}
+      if(/\bprimary\s+key\b/i.test(rest2))t.pk=[name];
+      if(/\bunique\b/i.test(rest2))t.uniq.push([name]);
+      var ex=t.cols.indexOf(t.cm[name]);if(ex>=0)t.cols[ex]=col;else t.cols.push(col);
+      t.cm[name]=col;
+    }
+    S.forEach(function(st){
+      var m=RX.table.exec(st.t);
+      if(!m){later.push(st);return}
+      if(m[1]&&/^t/i.test(m[1])){P.other++;return}
+      var q=qn(m[2]),key=q.s+'.'+q.n,open=m[0].length-1,close=bal(st.t,open);
+      var t={s:q.s,n:q.n,key:key,line:ln(st.o),cols:[],cm:{},pk:[],uniq:[],fks:[],idx:[],rls:false,pols:[]};
+      splitTop(st.t.slice(open+1,close<0?st.t.length:close),st.o+open+1).forEach(function(el){addEl(t,el.t,ln(el.o))});
+      if(!T[key])order.push(key);
+      T[key]=t;
+    });
+    later.forEach(function(st){
+      var x=st.t,m,t;
+      if((m=RX.index.exec(x))){
+        P.idx++;t=T[tkey(m[2])];if(!t)return;
+        var open=m[0].length-1,close=bal(x,open),els=splitTop(x.slice(open+1,close<0?x.length:close),0),all=[];
+        els.forEach(function(e){(e.t.match(RX.ids)||[]).forEach(function(n){n=unq(n);if(t.cm[n])all.push(n)})});
+        var lead=els.length&&RX.lead.test(els[0].t)?unq(els[0].t.split(/\s+/)[0]):null;
+        t.idx.push({lead:lead,cols:all,uniq:!!m[1],method:(m[3]||'btree').toLowerCase()});
+        return;
+      }
+      if((m=RX.alter.exec(x))){
+        t=T[tkey(m[1])];if(!t){P.other++;return}
+        splitTop(m[2],st.o+x.length-m[2].length).forEach(function(a){
+          var y=a.t,l=ln(a.o),k;
+          if(/^(enable|force)\s+row\s+level\s+security/i.test(y))t.rls=true;
+          else if(/^disable\s+row\s+level\s+security/i.test(y))t.rls=false;
+          else if(/^add\s+/i.test(y))addEl(t,y.replace(/^add\s+(column\s+)?(if\s+not\s+exists\s+)?/i,''),l);
+          else if((k=RX.altcol.exec(y))){
+            var c=t.cm[unq(k[1])];if(!c)return;
+            if(/^set\s+default\s+nextval/i.test(k[2]))c.nextval=true;
+            else if(/^add\s+generated/i.test(k[2]))c.ident=true;
+            else if(/^(set\s+data\s+)?type\s+/i.test(k[2]))c.type=k[2].replace(/^(set\s+data\s+)?type\s+/i,'').replace(/\s+using[\s\S]*$/i,'').trim().replace(/\s+/g,' ').toLowerCase();
+          }
+        });
+        return;
+      }
+      if((m=RX.policy.exec(x))){
+        P.pols++;t=T[tkey(m[2])];if(!t)return;
+        var r=m[3],u=r.search(/\busing\s*\(/i),w=r.search(/\bwith\s+check\s*\(/i),head=r.slice(0,Math.min(u<0?1e9:u,w<0?1e9:w));
+        var grab=function(i){if(i<0)return null;var o=r.indexOf('(',i),c=bal(r,o);return r.slice(o+1,c<0?r.length:c).replace(/\s+/g,' ').trim()};
+        var cm=/\bfor\s+(all|select|insert|update|delete)\b/i.exec(head),to=/\bto\s+([\s\S]+)$/i.exec(head);
+        t.pols.push({name:unq(m[1].charAt(0)==='"'?m[1]:'"'+m[1]+'"'),cmd:cm?cm[1].toLowerCase():'all',roles:to?to[1].trim().toLowerCase():'',using:grab(u),check:grab(w),line:ln(st.o)});
+        return;
+      }
+      P.other++;
+    });
+    order.forEach(function(k){P.cols+=T[k].cols.length});
+    return P;
+  }
+
+  /* ---- step 2: analyze ---- */
+  var RES={user:1,order:1,group:1,table:1,select:1,from:1,where:1,check:1,column:1,'default':1,limit:1,offset:1,references:1,primary:1,unique:1,all:1,and:1,or:1,to:1,end:1,desc:1,asc:1,grant:1,constraint:1,foreign:1,'case':1,'when':1,'with':1,'for':1,'in':1,'is':1,'on':1,'as':1,'null':1,'not':1};
+  function qi(n){return /^[a-z_][a-z0-9_$]*$/.test(n)&&!RES[n]?n:'"'+n.replace(/"/g,'""')+'"'}
+  function fq(t){return qi(t.s)+'.'+qi(t.n)}
+  function qp(n){return '"'+n.replace(/"/g,'""')+'"'}
+  function disp(t){return t.s==='public'?t.n:t.s+'.'+t.n}
+  var OWN=/^(user_id|owner_id|profile_id|author_id|buyer_id|created_by|member_id)$/,TEN=/^(org_id|organization_id|tenant_id|workspace_id|team_id|account_id)$/,MONEY=/(price|amount|total|cost|balance|fee|subtotal|revenue)/,EMAIL=/^(email|email_address|user_email)$/;
+  var ORDER=['rls','openpol','nopk','nopol','fkidx','polidx','email','money','tz','json','vec','pubread','wrapuid','serial','varchar','noref','ts'],SEV={critical:0,warning:1,tip:2};
+  function covered(t,c){return t.pk[0]===c||t._pkPlan===c||t.uniq.some(function(u){return u[0]===c})||t.idx.some(function(i){return i.lead===c})}
+  function isUnique(t,c){return (t.pk.length===1&&t.pk[0]===c)||t.uniq.some(function(u){return u.indexOf(c)>=0})||t.idx.some(function(i){return i.uniq&&i.cols.indexOf(c)>=0})}
+  function owner(t){var i;for(i=0;i<t.cols.length;i++){var r=t.cols[i].ref;if(r&&r.s==='auth'&&r.n==='users')return t.cols[i].name}for(i=0;i<t.cols.length;i++)if(OWN.test(t.cols[i].name.toLowerCase()))return t.cols[i].name;return null}
+  function scope(t,P,d){
+    var o=owner(t),i,j;if(o)return '(select auth.uid()) = '+qi(o);
+    function isMem(mt,tc){return mt!==t&&mt.cm[tc]&&owner(mt)&&(mt.pk.indexOf(tc)>=0||/member/.test(mt.n))}
+    for(i=0;i<t.cols.length;i++){var tc=t.cols[i].name;if(!TEN.test(tc.toLowerCase()))continue;
+      for(j=0;j<P.order.length;j++){var mt=P.T[P.order[j]];if(isMem(mt,tc))return qi(tc)+' in (select '+qi(tc)+' from '+fq(mt)+' where '+qi(owner(mt))+' = (select auth.uid()))'}}
+    for(j=0;j<P.order.length;j++){var m2=P.T[P.order[j]];for(i=0;i<m2.fks.length;i++){var f2=m2.fks[i];if(f2.ref&&f2.ref.s+'.'+f2.ref.n===t.key&&f2.cols.length===1&&isMem(m2,f2.cols[0]))return qi(t.pk[0]||'id')+' in (select '+qi(f2.cols[0])+' from '+fq(m2)+' where '+qi(owner(m2))+' = (select auth.uid()))'}}
+    if(d<2)for(i=0;i<t.fks.length;i++){var f=t.fks[i],p=f.ref&&P.T[f.ref.s+'.'+f.ref.n];if(!p||p===t||f.cols.length!==1)continue;var e=scope(p,P,d+1);if(e)return qi(f.cols[0])+' in (select '+qi(p.pk[0]||'id')+' from '+fq(p)+' where '+e+')'}
+    return null;
+  }
+  function polSQL(t,P,cmd,name){
+    var e=scope(t,P,0);
+    if(!e)return '-- no owner, tenant or parent column on '+t.n+':\n-- agree who may '+(cmd==='select'?'read':'change')+' these rows, then add a policy';
+    var nm=name||(t.n+': owners can '+(cmd==='select'?'read':cmd==='all'?'manage':cmd));
+    return 'create policy '+qp(nm)+' on '+fq(t)+'\n  for '+cmd+' to authenticated'+(cmd!=='insert'?'\n  using ('+e+')':'')+(/^(insert|update|all)$/.test(cmd)?'\n  with check ('+e+')':'')+';';
+  }
+  function idxSQL(t,cols,uniq,expr){var nm=(t.n+'_'+cols.join('_')+(uniq?'_key':'_idx')).slice(0,63);return 'create '+(uniq?'unique ':'')+'index concurrently if not exists '+qi(nm)+'\n  on '+fq(t)+' ('+(expr||cols.map(qi).join(', '))+');'}
+  function wrapUid(e){return e.replace(/(\(\s*select\s+)?auth\.(uid|jwt)\(\)/gi,function(m0,s,f){return s?m0:'(select auth.'+f+'())'})}
+  function analyze(P){
+    var F=[];
+    function add(sev,rule,t,col,line,title,why,fix,kind,extra){var f={sev:sev,rule:rule,t:t,tn:disp(t)+(col?'.'+col:''),col:col,line:line,title:title,why:why,fix:fix,kind:kind||'tx'};if(extra)for(var k in extra)f[k]=extra[k];F.push(f)}
+    P.order.forEach(function(k){
+      var t=P.T[k],T=fq(t),pub=t.s==='public',n=t.n;
+      if(pub&&!t.rls)add('critical','rls',t,null,t.line,'RLS is off','Tables in public are exposed through the auto-generated API. With RLS off, anyone holding the anon key can read and write every row.','alter table '+T+' enable row level security;\n'+polSQL(t,P,'select'));
+      else if(pub&&!t.pols.length)add('warning','nopol',t,null,t.line,'RLS on, but no policies','RLS denies everything until a policy allows it, so the app gets empty results and the bug report says "my data disappeared".',polSQL(t,P,'select'));
+      t.pols.forEach(function(p){
+        var ou=/^\(?\s*true\s*\)?$/i.test(p.using||''),oc=/^\(?\s*true\s*\)?$/i.test(p.check||'');
+        if((ou||oc)&&p.cmd!=='select'){
+          var verb=p.cmd==='all'?'read and write':p.cmd==='insert'?'insert into':p.cmd;
+          add('critical','openpol',t,null,p.line,'Policy lets anyone '+(p.cmd==='all'?'write':p.cmd),'Policy "'+p.name+'" is '+(ou?'using (true)':'with check (true)')+' for '+p.cmd.toUpperCase()+': any caller can '+verb+' every row of '+n+'.','drop policy '+qp(p.name)+' on '+T+';\n'+polSQL(t,P,p.cmd,p.name),'tx',{pol:p.name});
+        }else if(ou&&p.cmd==='select'&&(!p.roles||/\b(anon|public)\b/.test(p.roles)))
+          add('tip','pubread',t,null,p.line,'Readable by anyone, signed in or not','Policy "'+p.name+'" makes every row of '+n+' public to anonymous visitors. Right for a catalog, a leak for anything personal: confirm it is intended.','-- if it should be signed-in users only:\nalter policy '+qp(p.name)+' on '+T+' to authenticated;','tx',{pol:p.name});
+        var txt=(p.using||'')+' '+(p.check||''),all=(txt.match(/auth\.(uid|jwt)\(\)/gi)||[]).length,wr=(txt.match(/select\s+auth\.(uid|jwt)\(\)/gi)||[]).length;
+        if(all>wr&&!(ou||oc))add('tip','wrapuid',t,null,p.line,'auth.uid() is evaluated on every row','Policy "'+p.name+'" calls auth.uid() per row. Written as (select auth.uid()), Postgres runs it once per query, a large win on big tables.','alter policy '+qp(p.name)+' on '+T+(p.using?'\n  using ('+wrapUid(p.using)+')':'')+(p.check?'\n  with check ('+wrapUid(p.check)+')':'')+';','tx',{pol:p.name});
+      });
+      if(!t.pk.length){
+        var fk1=t.fks.filter(function(f){return f.cols.length===1}).map(function(f){return f.cols[0]}),join=!t.cm.id&&fk1.length>=2,fix;
+        if(t.cm.id)fix='alter table '+T+' add primary key (id);';
+        else if(join){fix='alter table '+T+' add primary key ('+qi(fk1[0])+', '+qi(fk1[1])+');';t._pkPlan=fk1[0]}
+        else fix='alter table '+T+'\n  add column id bigint generated always as identity primary key;';
+        add('critical','nopk',t,null,t.line,'No primary key',(join?'A join table without a key accepts the same pair twice, and ':'Rows can\'t be addressed reliably, and ')+'Realtime and replication need a primary key to identify updates and deletes.',fix);
+      }
+      var flagged={};
+      t.fks.forEach(function(f){var c=f.cols[0];if(!c||flagged[c]||covered(t,c))return;flagged[c]=1;
+        add('warning','fkidx',t,c,f.line,'Foreign key without an index','Postgres doesn\'t index foreign keys for you: joins on '+c+', and every delete on '+(f.ref?f.ref.n:'the parent')+', scan all of '+n+'.',idxSQL(t,[c]),'idx')});
+      t.pols.forEach(function(p){var txt=(p.using||'')+' '+(p.check||''),re=/([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\(?\s*(?:select\s+)?auth\.uid\(\)|auth\.uid\(\)\s*\)?\s*=\s*([A-Za-z_][A-Za-z0-9_]*)/gi,m;
+        while((m=re.exec(txt))){var c=(m[1]||m[2]).toLowerCase();if(c==='select'||!t.cm[c]||flagged[c]||covered(t,c))continue;flagged[c]=1;
+          add('warning','polidx',t,c,p.line,'Policy column without an index','Policy "'+p.name+'" filters every API request by '+c+', but nothing indexes it, so each request scans '+n+'.',idxSQL(t,[c]),'idx')}});
+      var vch=[],ten=null;
+      t.cols.forEach(function(c){if(!ten&&TEN.test(c.name.toLowerCase()))ten=c.name});
+      t.cols.forEach(function(c){
+        var ty=c.type,cn=c.name,lc=cn.toLowerCase(),C=qi(cn);
+        if(/^timestamp(\s*\(\d\))?(\s+without\s+time\s+zone)?$/.test(ty))add('warning','tz',t,cn,c.line,'timestamp without time zone','It stores wall-clock time with no zone, so the same moment reads differently across regions and DST. timestamptz stores an absolute instant.','-- assumes existing values were written in UTC\nalter table '+T+' alter column '+C+'\n  type timestamptz using '+C+' at time zone \'UTC\';');
+        if(ty==='json')add('warning','json',t,cn,c.line,'json instead of jsonb','json is stored as raw text and re-parsed on every read. jsonb is binary, faster to query and can be indexed with GIN.','alter table '+T+' alter column '+C+' type jsonb using '+C+'::jsonb;');
+        if(/^(character varying|varchar|character|char|nchar)\s*\(\s*\d+\s*\)/.test(ty))vch.push(c);
+        if(/^(small|big)?serial[248]?$/.test(ty)||(c.nextval&&!c.ident)){var seq=t.s+'.'+(t.n+'_'+cn+'_seq');add('tip','serial',t,cn,c.line,'serial instead of an identity column','serial is legacy: identity columns are SQL-standard and keep the sequence\'s ownership and permissions tied to the column.','alter table '+T+' alter column '+C+' drop default;\ndrop sequence if exists '+seq.split('.').map(qi).join('.')+';\nalter table '+T+' alter column '+C+'\n  add generated by default as identity;\nselect setval(pg_get_serial_sequence(\''+T.replace(/'/g,"''")+'\', \''+cn.replace(/'/g,"''")+'\'),\n  coalesce(max('+C+'), 0) + 1, false) from '+T+';')}
+        if(/^(real|float[48]?|double precision|float\s*\(\d+\))$/.test(ty)&&MONEY.test(lc))add('warning','money',t,cn,c.line,'Money stored as floating point','Floats can\'t represent cents exactly, so totals drift (0.1 + 0.2 ≠ 0.3). numeric keeps every cent.','alter table '+T+' alter column '+C+' type numeric(12,2);');
+        if(/^vector/.test(ty)&&!t.idx.some(function(i){return i.cols.indexOf(cn)>=0&&/hnsw|ivfflat/.test(i.method)}))add('warning','vec',t,cn,c.line,'Embedding column without a vector index','Without an HNSW index, every similarity search compares the query against every row. Fine at 1k chunks, painful at 1M.','create index concurrently if not exists '+qi((t.n+'_'+cn+'_hnsw').slice(0,63))+'\n  on '+T+' using hnsw ('+C+' vector_cosine_ops);','idx');
+        if(EMAIL.test(lc)&&!isUnique(t,cn))add('warning','email',t,cn,c.line,'Email is not unique',ten?'The same address can be added twice in one '+ten.replace(/_id$/,'')+', and lookups by email return several rows. Scope uniqueness to the tenant.':'The same address can sign up twice, and lookups by email return several rows.',idxSQL(t,ten?[ten,cn]:[cn],true,(ten?qi(ten)+', ':'')+'lower('+C+')'),'idx');
+        if(OWN.test(lc)&&/^uuid/.test(ty)&&!t.fks.some(function(f){return f.cols.indexOf(cn)>=0}))add('tip','noref',t,cn,c.line,'User column not linked to auth.users','Without a foreign key, deleting a user leaves orphaned rows behind and nothing stops a typo\'d id.','alter table '+T+'\n  add foreign key ('+C+') references auth.users (id) on delete cascade;');
+      });
+      if(vch.length)add('tip','varchar',t,vch.length===1?vch[0].name:null,vch[0].line,'varchar(n) on '+vch.map(function(c){return c.name}).join(', '),'In Postgres varchar(n) is no faster than text, and the limit becomes a migration the day a value doesn\'t fit. Use text, plus a check constraint if the limit is a real rule.',vch.map(function(c){return 'alter table '+T+' alter column '+qi(c.name)+' type text;'}).join('\n'));
+      if(!t.cm.created_at&&!t.cm.inserted_at){var nu=!t.cm.updated_at;add('tip','ts',t,null,t.line,'No created_at'+(nu?' / updated_at':''),'Without timestamps, support can\'t answer "when did this change?", and incremental syncs and backfills have nothing to key on.','alter table '+T+' add column created_at timestamptz not null default now();'+(nu?'\nalter table '+T+' add column updated_at timestamptz not null default now();\n-- keep updated_at fresh with a trigger (e.g. the moddatetime extension)':''))}
+    });
+    return F;
+  }
+
+  /* ---- step 3: prioritize ---- */
+  function prioritize(F,P){return F.slice().sort(function(a,b){return SEV[a.sev]-SEV[b.sev]||ORDER.indexOf(a.rule)-ORDER.indexOf(b.rule)||P.order.indexOf(a.t.key)-P.order.indexOf(b.t.key)||a.line-b.line})}
+  function counts(F){var n={critical:0,warning:0,tip:0};F.forEach(function(f){n[f.sev]++});return n}
+  function plural(k,w,ws){return k+' '+(k===1?w:(ws||w+'s'))}
+
+  /* ---- step 4: draft migration ---- */
+  function migration(F,P){
+    if(!P.order.length)return '-- nothing to migrate yet: no CREATE TABLE statements found\n';
+    if(!F.length)return '-- nothing to fix: this schema passes every check\n';
+    var n=counts(F),tx=F.filter(function(f){return f.kind==='tx'}),ix=F.filter(function(f){return f.kind==='idx'}),o;
+    function blk(f){return '-- ['+f.sev+'] '+f.tn+': '+f.title+'\n'+f.fix}
+    o='-- drafted by the schema reviewer: '+plural(n.critical,'critical','critical')+', '+plural(n.warning,'warning')+', '+plural(n.tip,'tip')+'\n-- review with the customer before running; ordered by severity\n';
+    if(tx.length)o+='\nbegin;\n\n'+tx.map(blk).join('\n\n')+'\n\ncommit;\n';
+    if(ix.length)o+='\n-- indexes: built concurrently, so they run outside the transaction\n\n'+ix.map(blk).join('\n\n')+'\n';
+    return o;
+  }
+
+  /* ---- step 5: coaching note ---- */
+  var LBL={rls:'Enable RLS',openpol:'Lock down open policies',nopk:'Add primary keys',nopol:'Write the missing policies',fkidx:'Index foreign keys',polidx:'Index policy columns',email:'Make email unique',money:'Store money as numeric',tz:'Move to timestamptz',json:'Move json to jsonb',vec:'Index the embeddings',pubread:'Confirm public reads',wrapuid:'Wrap auth.uid() in select',serial:'Swap serial for identity',varchar:'varchar(n) to text',noref:'Link users to auth.users',ts:'Add timestamps'};
+  function uniqA(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
+  function list(a){a=uniqA(a).map(esc);if(a.length<2)return a[0]||'';if(a.length>3)return a.slice(0,2).join(', ')+' and '+(a.length-2)+' more';return a.slice(0,-1).join(', ')+' and '+a[a.length-1]}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  function coach(F,P){
+    if(!P.order.length)return {note:'Nothing to review yet. Paste the customer\'s <code>CREATE TABLE</code> statements (a <code>pg_dump --schema-only</code> works) and the note for the CSA appears here.',ag:[]};
+    var g={},ord=[],n=counts(F),s=[];
+    F.forEach(function(f){if(!g[f.rule]){g[f.rule]=[];ord.push(f.rule)}g[f.rule].push(f)});
+    function tabs(r){return (g[r]||[]).map(function(f){return disp(f.t)})}
+    var pub=P.order.filter(function(k){return P.T[k].s==='public'}),on=pub.filter(function(k){return P.T[k].rls}).length;
+    var perf=F.filter(function(f){return /^(fkidx|polidx|vec)$/.test(f.rule)}).length,ty=F.filter(function(f){return /^(tz|json|money|email)$/.test(f.rule)}).length;
+    if(!F.length)return {note:'Clean schema: RLS on '+(pub.length>1?'all '+pub.length+' public tables':'the public table')+', indexed foreign keys, sound types. Tell them that specifically, because it earns trust, then spend the call on what they\'re building next and where it will hurt at 10× the data.',ag:[]};
+    if(g.rls||g.openpol){
+      var p=[];
+      if(g.rls)p.push('<b>'+list(tabs('rls'))+'</b> '+(uniqA(tabs('rls')).length>1?'are':'is')+' readable and writable by anyone holding the anon key');
+      if(g.openpol)p.push('the '+list(g.openpol.map(function(f){return '"'+f.pol+'"'}))+' polic'+(g.openpol.length>1?'ies let':'y lets')+' any caller write <b>'+list(tabs('openpol'))+'</b>');
+      s.push('Lead with security: '+p.join(', and ')+'.');
+      s.push('Don\'t lecture: ask who should be able to see a row in <b>'+esc((g.rls||g.openpol)[0].t.n)+'</b>, because their answer is the policy, then show the fix already drafted.');
+    }else if(g.nopk){
+      s.push('Lead with the missing primary key on <b>'+list(tabs('nopk'))+'</b>: Realtime and replication need one, and it\'s a one-line fix they can ship today.');
+    }else{
+      s.push('No security blockers, so open with what they got right: RLS is on for <b>'+on+' of '+pub.length+'</b> public tables. That earns you the rest of the list.');
+    }
+    var tail=[];
+    if(perf)tail.push('bundle the <b>'+plural(perf,'missing index','missing indexes')+'</b> as a same-day win');
+    else if(ty)tail.push('schedule the <b>'+plural(ty,'type fix','type fixes')+'</b> before the tables grow, while rewrites are cheap');
+    if(n.tip)tail.push('send the '+plural(n.tip,'tip')+' in the written follow-up so they don\'t bury the headline');
+    if(tail.length)s.push(cap(tail.join(', and '))+'.');
+    else if(s.length<2)s.push('Walk the warnings in order and send the migration right after the call.');
+    return {note:s.slice(0,3).join(' '),ag:ord.slice(0,3).map(function(r){return {sev:g[r][0].sev,label:LBL[r],t:list(tabs(r))}})};
+  }
+
+  /* ---- highlighter ---- */
+  var KW={};('create table if not exists primary key references foreign unique index on alter enable disable row level security policy for using with check to default null constraint generated always as identity by select insert update delete all from where in and or begin commit drop add column type concurrently cascade extension only set at time zone true false not on references owner of sequence').split(' ').forEach(function(w){KW[w]=1});
+  var TY={};('uuid text varchar char character varying int int2 int4 int8 integer bigint smallint serial bigserial smallserial numeric decimal float float4 float8 real double precision boolean bool json jsonb timestamp timestamptz date interval bytea vector').split(' ').forEach(function(w){TY[w]=1});
+  function hlLine(line){
+    var o='',re=/(--.*$)|('(?:[^']|'')*'?)|("[^"]*"?)|([A-Za-z_][A-Za-z0-9_$]*)|(\d+(?:\.\d+)?)/g,last=0,m;
+    while((m=re.exec(line))){
+      o+=esc(line.slice(last,m.index));var tk=m[0],c='';
+      if(m[1])c='c';else if(m[2])c='s';else if(m[4]){var w=tk.toLowerCase();c=KW[w]?'k':TY[w]?'t':''}else if(m[5])c='n';
+      o+=c?'<span class="'+c+'">'+esc(tk)+'</span>':esc(tk);last=re.lastIndex;
+    }
+    return o+esc(line.slice(last));
+  }
+  function hlBlock(s){return s.split('\n').map(hlLine).join('\n')}
+
+  /* ---- UI ---- */
+  var ta=$('la-src'),hlEl=$('la-hl'),gut=$('la-gut'),code=$('la-code'),meta=$('la-meta'),tab=$('la-tab'),chips=$('la-chips'),runB=$('la-run'),stale=$('la-stale'),
+      res=$('la-res'),sum=$('la-sum'),trc=$('la-trace'),fl=$('la-fl'),coachEl=$('la-coach'),mig=$('la-mig'),migPre=$('la-mig-pre'),migN=$('la-mig-n'),
+      marks={},busy=false,last=null,STEPS=['parse','analyze','prioritize','draft migration','coaching'],DUR=[420,520,320,420,360];
+  var now=window.performance&&performance.now?function(){return performance.now()}:function(){return Date.now()};
+  function paintEd(){
+    var lines=ta.value.split('\n'),h='',g='';
+    for(var i=0;i<lines.length;i++){h+='<span class="ln">'+(lines[i]?hlLine(lines[i]):'')+'</span>';var s=marks[i+1];g+='<div'+(s?' class="m '+s+'"':'')+'>'+(i+1)+'</div>'}
+    hlEl.innerHTML=h;gut.innerHTML=g;meta.textContent=plural(lines.length,'line');
+  }
+  function paintGut(){var d=gut.children;for(var i=0;i<d.length;i++){var s=marks[i+1];d[i].className=s?'m '+s:''}}
+  LA_S.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.className='la-chip';b.textContent=s.name;b.setAttribute('aria-pressed',i===0?'true':'false');b.addEventListener('click',function(){load(i,true)});chips.appendChild(b)});
+  var own=document.createElement('button');own.type='button';own.className='la-chip';own.textContent='Paste your own';own.setAttribute('aria-pressed','false');chips.appendChild(own);
+  function press(k){var b=chips.children;for(var i=0;i<b.length;i++)b[i].setAttribute('aria-pressed',i===k?'true':'false')}
+  function load(i,anim){if(busy)return;press(i);ta.value=LA_S[i].sql;tab.textContent=LA_S[i].file;marks={};code.scrollTop=0;code.scrollLeft=0;paintEd();run(anim)}
+  own.addEventListener('click',function(){if(busy)return;press(LA_S.length);ta.value='';tab.textContent='your_schema.sql';marks={};paintEd();stale.hidden=false;stale.textContent='Paste a schema, then run';ta.focus()});
+  ta.addEventListener('input',function(){
+    var k=-1;LA_S.forEach(function(s,i){if(s.sql===ta.value)k=i});
+    press(k<0?LA_S.length:k);tab.textContent=k<0?'your_schema.sql':LA_S[k].file;
+    marks={};paintEd();if(last){stale.hidden=false;stale.textContent='Schema changed · run again'}
+  });
+  ta.addEventListener('paste',function(){setTimeout(function(){run(true)},30)});
+  ta.addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();run(true)}});
+  runB.addEventListener('click',function(){run(true)});
+
+  function compute(src){
+    var R={tm:[]},a;
+    try{
+      a=now();R.P=laParse(src);R.tm.push(now()-a);
+      a=now();R.F=analyze(R.P);R.tm.push(now()-a);
+      a=now();R.F=prioritize(R.F,R.P);R.tm.push(now()-a);
+      a=now();R.mig=migration(R.F,R.P);R.tm.push(now()-a);
+      a=now();R.co=coach(R.F,R.P);R.tm.push(now()-a);
+    }catch(e){R.err=true;R.P={order:[],T:{},stmts:0,idx:0,pols:0,other:0,cols:0};R.F=[];R.mig='-- the reviewer could not read this input\n';R.co={note:'The reviewer couldn\'t read that input. Paste plain <code>CREATE TABLE</code> statements and try again.',ag:[]};while(R.tm.length<5)R.tm.push(0)}
+    var P=R.P,n=counts(R.F),nm=(R.mig.match(/;\s*$/gm)||[]).length;
+    R.n=n;R.nm=nm;
+    R.det=[
+      plural(P.stmts,'statement')+' → '+plural(P.order.length,'table')+', '+plural(P.cols,'column')+', '+plural(P.idx,'index','indexes')+', '+plural(P.pols,'policy','policies')+(P.other?' · '+P.other+' other skipped':''),
+      ORDER.length+' checks × '+plural(P.order.length,'table')+' → '+plural(R.F.length,'finding'),
+      R.F.length?'security → performance → hygiene':'nothing to rank',
+      R.F.length?plural(nm,'statement')+', indexes outside the transaction':'no changes needed',
+      P.order.length?'note drafted, '+(R.co.ag.length?'top '+R.co.ag.length+' to raise first':'nothing urgent to raise'):'waiting for a schema'
+    ];
+    return R;
+  }
+  function ms(x){return x<0.01?'<0.01 ms':x.toFixed(2)+' ms'}
+  function renderTrace(R,cur){
+    var tot=0;R.tm.forEach(function(x){tot+=x});
+    trc.innerHTML=STEPS.map(function(s,i){var st=cur<0||i<cur?'done':i===cur?'run':'';return '<li class="'+st+'"><i class="st" aria-hidden="true"></i><b>'+s+'</b><span>'+(st==='done'?esc(R.det[i]):st==='run'?'working…':'')+'</span><em>'+(st==='done'?ms(R.tm[i]):'')+'</em></li>'}).join('')+
+      (cur<0?'<li class="tot" aria-hidden="false">compute '+ms(tot)+' in your browser · deterministic · nothing sent anywhere</li>':'');
+  }
+  function renderSum(R){
+    var n=R.n,P=R.P;
+    if(!P.order.length){sum.innerHTML='<div class="la-ring" aria-hidden="true"><svg viewBox="0 0 60 60"><circle class="bg" cx="30" cy="30" r="26"/></svg><b>–</b></div><div><div class="la-verdict">'+(R.err?'Couldn\'t read that input':'No tables found')+'</div><div class="la-scope">paste CREATE TABLE statements, or pick a sample</div></div>';return}
+    var score=R.F.length?Math.max(0,100-10*n.critical-3*n.warning-n.tip):100,col=score>=85?'var(--brand)':score>=60?'var(--amber)':'var(--crit)',C=2*Math.PI*26;
+    var v=score>=90?'Launch-ready':score>=70?'Needs a pass before launch':score>=40?'Fix before launch':'Blockers before launch';
+    sum.innerHTML='<div class="la-ring" role="img" aria-label="Schema score '+score+' out of 100"><svg viewBox="0 0 60 60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="fg" cx="30" cy="30" r="26" stroke="'+col+'" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-score/100)).toFixed(1)+'"/></svg><b>'+score+'</b></div>'+
+      '<div><div class="la-verdict">'+v+'</div><div class="la-counts"><span class="critical">'+n.critical+' critical</span> · <span class="warning">'+plural(n.warning,'warning')+'</span> · <span class="tip">'+plural(n.tip,'tip')+'</span></div><div class="la-scope">'+plural(P.order.length,'table')+' · '+plural(P.cols,'column')+' · '+plural(P.pols,'policy','policies')+'</div></div>'+
+      (R.F.length?'<button class="btn btn-s" type="button" id="la-fixall">Fix all ↓</button>':'');
+    var fa=$('la-fixall');if(fa)fa.addEventListener('click',function(){mig.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});mig.classList.remove('flash');void mig.offsetWidth;mig.classList.add('flash');setTimeout(function(){mig.classList.remove('flash')},1600)});
+  }
+  function renderFindings(R,anim){
+    if(!R.P.order.length){fl.innerHTML='<div class="la-empty">'+(R.err?'That input tripped the parser.':'No <code>CREATE TABLE</code> statements found.')+' Paste DDL (a <code>pg_dump --schema-only</code> works) or pick a sample above.</div>';return}
+    if(!R.F.length){fl.innerHTML='<div class="la-empty"><b style="color:var(--brand);font-weight:500">No findings.</b> RLS on every public table, policies in place, foreign keys indexed, sound types. This is the bar.</div>';return}
+    fl.innerHTML=R.F.map(function(f,i){
+      return '<details class="la-f '+f.sev+(anim?' la-anim':'')+'"'+(anim?' style="animation-delay:'+Math.min(i*45,900)+'ms"':'')+(f.sev==='critical'?' open':'')+'>'+
+        '<summary><span class="la-sev">'+f.sev+'</span><span class="la-ft">'+esc(f.title)+'<code>'+esc(f.tn)+'</code></span><span class="la-chev" aria-hidden="true">›</span><span class="la-why">'+esc(f.why)+'</span></summary>'+
+        '<div class="la-fx"><pre class="la-pre">'+hlBlock(f.fix)+'</pre><div class="la-fa"><button class="la-mini" type="button" data-copy="'+i+'">Copy fix</button><button class="la-mini" type="button" data-line="'+f.line+'">Line '+f.line+' ↑</button></div></div></details>';
+    }).join('');
+  }
+  function renderCoach(R){
+    var c=R.co;
+    coachEl.innerHTML='<div class="la-from"><span class="mark" aria-hidden="true">JM</span><span><b>Team lead</b> → CSA on the account</span></div><p class="la-note">'+c.note+'</p>'+
+      (c.ag.length?'<div><div class="la-ag-h">Raise first on the call</div><ol class="la-agenda">'+c.ag.map(function(a){return '<li><span class="la-sev '+a.sev+'">'+a.sev+'</span><span>'+esc(a.label)+'<small>'+a.t+'</small></span></li>'}).join('')+'</ol></div>':'');
+  }
+  function show(R,anim){
+    last=R;stale.hidden=true;
+    renderSum(R);renderTrace(R,-1);renderFindings(R,anim);renderCoach(R);
+    migPre.innerHTML=hlBlock(R.mig.replace(/\n$/,''));migN.textContent=R.F.length?'Fix all · '+plural(R.nm,'statement'):'Fix all';
+    marks={};R.F.slice().reverse().forEach(function(f){marks[f.line]=f.sev});paintGut();
+  }
+  function run(anim){
+    if(busy)return;
+    var R=compute(ta.value);
+    if(!anim||reduce){show(R,false);return}
+    busy=true;runB.disabled=true;runB.textContent='Reviewing…';res.classList.add('busy');stale.hidden=true;
+    var i=0;
+    (function step(){renderTrace(R,i);setTimeout(function(){i++;if(i<STEPS.length)step();else{busy=false;runB.disabled=false;runB.textContent='▶ Run review';res.classList.remove('busy');show(R,true)}},DUR[i])})();
+  }
+
+  function selectNode(el,msg){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);toast(msg||'Selected: press Ctrl/Cmd+C to copy')}
+  function copy(txt,el,label){
+    var fb=function(){selectNode(el)};
+    try{if(!navigator.clipboard||!navigator.clipboard.writeText)return fb();navigator.clipboard.writeText(txt).then(function(){toast(label+' copied')},fb)}catch(x){fb()}
+  }
+  function jump(line){
+    code.scrollTo({top:Math.max(0,(line-1)*22-66),behavior:reduce?'auto':'smooth'});
+    var el=hlEl.children[line-1];if(el){el.classList.add('flash');setTimeout(function(){el.classList.remove('flash')},900)}
+    var r=code.getBoundingClientRect();if(r.top<70||r.top>innerHeight-120)code.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  }
+  fl.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('button');if(!b||!last)return;
+    if(b.hasAttribute('data-copy')){var f=last.F[+b.getAttribute('data-copy')];copy(f.fix,b.parentNode.previousElementSibling,'Fix')}
+    else if(b.hasAttribute('data-line'))jump(+b.getAttribute('data-line'));
+  });
+  $('la-mig-copy').addEventListener('click',function(){if(last)copy(last.mig,migPre,'Migration')});
+
+  /* static, pre-run review of the default schema: visible before any interaction (and in the PDF) */
+  ta.value=LA_S[0].sql;tab.textContent=LA_S[0].file;paintEd();run(false);
+})();
+</script>
+
+</body>
+</html>
