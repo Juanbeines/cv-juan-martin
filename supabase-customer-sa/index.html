@@ -720,7 +720,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   var MODE=root.getAttribute('data-mode')||'review';
   var $=function(id){return document.getElementById(id)};
   var LIVE=/^https?:$/.test(location.protocol);
-  var API='/api/review';
+  var API='/api/review/';
   var REPLAY=window.AG_REPLAY||{};
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var PROJ={
