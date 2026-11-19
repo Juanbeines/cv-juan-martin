@@ -730,6 +730,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   };
   var AG={architect:'architect',security:'security',performance:'performance',code:'app code',lead:'lead'};
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function tx(s){return esc(String(s==null?"":s).replace(/\*\*|`/g,""))}
   var side=$('ag-folders'),drop=$('ag-drop'),body=$('ag-body'),head=$('ag-head'),stat=$('ag-stat'),note=$('ag-note'),fixBtn=$('ag-fixbtn'),dot=$('ag-dot'),modelEl=$('ag-modeltxt');
   var busy=false,cur=null,findings=[],verdicts={},plan=null,ctl=null,fixed=false;
   var FOLDER='<svg viewBox="0 0 34 28" fill="none" aria-hidden="true"><path d="M2 5a3 3 0 0 1 3-3h8l3 3h13a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="currentColor" opacity=".16" stroke="currentColor" stroke-width="1.5"/></svg>';
@@ -773,7 +774,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   function step(ev){
     var lane=laneEls[ev.agent],ol=lane?lane.ol:stepsEl;if(!ol)return;
     var li=document.createElement('li');
-    if(ev.t==='say'){li.className='ag-st say';var tx=String(ev.text).replace(/\*\*|#+ /g,'');if(lane&&tx.length>150)tx=tx.slice(0,tx.lastIndexOf(' ',147))+'…';li.innerHTML='<span>'+esc(tx)+'</span>'}
+    if(ev.t==='say'){li.className='ag-st say';var st=String(ev.text).replace(/\*\*|#+ |`/g,"");if(lane&&st.length>150)st=st.slice(0,st.lastIndexOf(' ',147))+"…";li.innerHTML="<span>"+esc(st)+'</span>'}
     else{li.className='ag-st'+(ev.leak?' leak':'');
       li.innerHTML='<span><code>'+esc(ev.name)+'</code> '+esc(arg(ev.input))+'<span class="r">'+esc(ev.out)+'</span></span>';
       if(lane){lane.n++;lane.h.textContent=lane.n+' tool'+(lane.n>1?'s':'')}
@@ -782,10 +783,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   }
   function card(f){
     var d=document.createElement('div');d.className='ag-f '+esc(f.severity);d.id='ag-'+f.id;
-    d.innerHTML='<div class="ag-ft"><span class="ag-sev '+esc(f.severity)+'">'+esc(f.severity)+'</span><b>'+esc(f.title)+'</b>'+
+    d.innerHTML='<div class="ag-ft"><span class="ag-sev '+esc(f.severity)+'">'+esc(f.severity)+'</span><b>'+tx(f.title)+'</b>'+
       (MODE==='team'?'<span class="ag-by">'+esc(f.id)+' · '+esc(AG[f.agent]||f.agent)+'</span>':'')+'</div>'+
-      '<p><em>Evidence</em>'+esc(f.evidence)+'</p><p><em>Impact</em>'+esc(f.impact)+'</p>'+
-      '<details><summary>Proposed fix</summary><pre>'+esc(f.fix)+'</pre></details>';
+      '<p><em>Evidence</em>'+tx(f.evidence)+'</p><p><em>Impact</em>'+tx(f.impact)+'</p>'+
+      '<details><summary>Proposed fix</summary><pre>'+tx(f.fix)+'</pre></details>';
     flEl.appendChild(d);stick();
   }
   function verdict(v){
@@ -794,19 +795,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     var s=document.createElement('span');s.className='ag-vd '+v.verdict;
     s.textContent=v.verdict==='confirm'?'✓ confirmed':v.verdict==='merge'?'merged into '+(v.merge_into||''):'✕ rejected';t.appendChild(s);
     if(v.verdict!=='confirm')d.classList.add('out');
-    var p=document.createElement('p');p.className='why';p.innerHTML='<em>Lead</em>'+esc(v.reason);d.insertBefore(p,d.querySelector('details'));stick();
+    var p=document.createElement('p');p.className='why';p.innerHTML='<em>Lead</em>'+tx(v.reason);d.insertBefore(p,d.querySelector('details'));stick();
   }
   function showPlan(p){
     plan=p;leadEl=document.createElement('div');leadEl.className='ag-lead';
     var byId={};findings.forEach(function(f){byId[f.id]=f});
-    leadEl.innerHTML='<h4>Plan for the customer</h4><p>'+esc(p.summary)+'</p>'+
-      (p.order&&p.order.length?'<ol>'+p.order.map(function(id){return '<li>'+esc(byId[id]?byId[id].title:id)+'</li>'}).join('')+'</ol>':'')+
-      '<div class="ag-coach">'+(p.coaching||[]).map(function(c){return '<div><b>Coaching · '+esc(AG[c.agent]||c.agent)+'</b>'+esc(c.note)+'</div>'}).join('')+'</div>';
+    leadEl.innerHTML='<h4>Plan for the customer</h4><p>'+tx(p.summary)+'</p>'+
+      (p.order&&p.order.length?'<ol>'+p.order.map(function(id){return '<li>'+tx(byId[id]?byId[id].title:id)+'</li>'}).join('')+'</ol>':'')+
+      '<div class="ag-coach">'+(p.coaching||[]).map(function(c){return '<div><b>Coaching · '+esc(AG[c.agent]||c.agent)+'</b>'+tx(c.note)+'</div>'}).join('')+'</div>';
     sec('Lead · plan and coaching');body.appendChild(leadEl);stick();
   }
   function fixRow(f){
     var d=document.createElement('div');d.className='ag-fix'+(f.verified?'':' no');
-    d.innerHTML='<i>'+(f.verified?'✓':'!')+'</i><div><b>'+esc(f.title)+'</b><span><u>'+esc(f.before)+'</u> → <s>'+esc(f.after)+'</s></span></div>';
+    d.innerHTML='<i>'+(f.verified?'✓':'!')+'</i><div><b>'+tx(f.title)+'</b><span><u>'+tx(f.before)+'</u> → <s>'+tx(f.after)+'</s></span></div>';
     fixEl.appendChild(d);stick();
   }
   var tree=null;
