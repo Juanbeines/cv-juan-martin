@@ -982,6 +982,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   run('Which invoices are overdue?',true);
 })();
 </script>
+<script id="la-anchor-fix">
+/* On the live site the demo link scrolls in place; the PDF (file://) keeps the absolute URL. */
+(function(){if(!/^https?:$/.test(location.protocol))return;
+document.querySelectorAll('a[href*="#live-agent"]').forEach(function(a){a.setAttribute('href','#live-agent');a.removeAttribute('target');a.removeAttribute('rel');});})();
+</script>
 
 </body>
 </html>

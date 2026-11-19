@@ -1333,6 +1333,11 @@ create policy "Members read team projects" on public.projects
   ta.value=LA_S[0].sql;tab.textContent=LA_S[0].file;paintEd();run(false);
 })();
 </script>
+<script id="la-anchor-fix">
+/* On the live site the demo link scrolls in place; the PDF (file://) keeps the absolute URL. */
+(function(){if(!/^https?:$/.test(location.protocol))return;
+document.querySelectorAll('a[href*="#live-agent"]').forEach(function(a){a.setAttribute('href','#live-agent');a.removeAttribute('target');a.removeAttribute('rel');});})();
+</script>
 
 </body>
 </html>
