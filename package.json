@@ -1,0 +1,8 @@
+{
+  "name": "cv-juan-martin",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/bedrock-sdk": "1.1.1"
+  }
+}
