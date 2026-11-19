@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín · ElevenLabs FDE">
+<meta property="og:description" content="Juan Martín Beines Furcada · #1 SE US Commercial (DevRev 2025) · AI agents architect · Buenos Aires">
+<meta property="og:type" content="website">
+<title>Juan Martín · ElevenLabs FDE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Juan Martín Beines Furcada for Forward Deployed Engineer, Argentina, at ElevenLabs. Builds and ships AI agents end to end; #1 SE in DevRev's US Commercial market 2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Hanken+Grotesk:wght@300;400;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --black:#000; --ink:#0b0b0b; --white:#fff;
+  --g25:#fdfcfc; --g50:#faf8f8; --cream:#f5f3f1; --g200:#ebe8e4; --g300:#d7d2cc;
+  --g400:#a59f97; --g500:#777169; --g600:#59544f; --g700:#44403b;
+  --blue:#2b7fff; --teal:#0588a2; --lilac:#bda4ff; --peach:#ffcda1; --sun:#fee42a; --mint:#41c64e;
+  --display:"Hanken Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --card:16px; --card-lg:24px; --wrap:1240px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--black);font-family:var(--sans);font-size:16px;line-height:1.5;letter-spacing:.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:640px){.wrap{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+.wrap>*,.grid>*{min-width:0}
+section{padding-block:clamp(64px,9vw,120px)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--g500)}
+.h2{font-size:clamp(32px,4.6vw,56px);line-height:1.06;letter-spacing:-.02em}
+.h2 span{color:var(--g400)}
+.lede{font-size:clamp(16px,1.4vw,18px);line-height:1.55;color:var(--g600);max-width:60ch}
+.sechead{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px 64px;align-items:end;margin-bottom:48px}
+.sechead .eyebrow{grid-column:1/-1}
+@media (max-width:860px){.sechead{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 20px;border-radius:9999px;font:500 14px/1 var(--sans);letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.btn-k{background:var(--black);color:var(--white)}
+.btn-k:hover{background:var(--g700)}
+.btn-w{background:var(--white);color:var(--black);box-shadow:inset 0 0 0 1px var(--g300)}
+.btn-w:hover{background:var(--g50)}
+.dark .btn-k{background:var(--white);color:var(--black)}
+.dark .btn-k:hover{background:var(--g200)}
+.dark .btn-w{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.dark .btn-w:hover{background:rgba(255,255,255,.08)}
+
+/* banner + nav */
+.banner{background:var(--black);color:#e9e6e2;font-size:13px;line-height:1.4;text-align:center;padding:9px 16px}
+.banner b{font-weight:500;color:var(--white)}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--g200)}
+nav.top .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 17px/1 var(--display);letter-spacing:-.01em;white-space:nowrap}
+.logo .ii{display:inline-flex;gap:3px;height:16px}
+.logo .ii i{width:3.5px;background:var(--black);border-radius:1px}
+.links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--g600)}
+.links a{text-decoration:none}
+.links a:hover{color:var(--black)}
+nav.top .btn{height:36px;padding:0 16px}
+@media (max-width:980px){.links{display:none}nav.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(48px,7vw,96px) clamp(56px,7vw,88px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:56px;align-items:center}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
+.hero .eyebrow{margin-bottom:24px;line-height:1.6}
+.live{display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(65,198,78,.5);animation:live 2s infinite}
+@keyframes live{70%{box-shadow:0 0 0 9px rgba(65,198,78,0)}100%{box-shadow:0 0 0 0 rgba(65,198,78,0)}}
+.hero h1{font-size:clamp(42px,6.6vw,82px);line-height:1.02;letter-spacing:-.025em;margin-bottom:26px}
+.hero h1 span{display:block;color:var(--g400)}
+.hero .sub{font-size:clamp(16px,1.5vw,19px);line-height:1.55;color:var(--g600);max-width:56ch;margin-bottom:32px}
+.hero .sub b{color:var(--black);font-weight:500}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:30px;font-size:14px;color:var(--g600)}
+.facts span{display:inline-flex;align-items:center;gap:7px}
+.facts span::before{content:"✓";font-weight:600;color:var(--black)}
+
+/* orb + agent card */
+.agent{background:var(--cream);border-radius:var(--card-lg);padding:26px;position:relative;overflow:hidden}
+.agent .head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.orb{flex:none;width:64px;height:64px;border-radius:50%;position:relative;overflow:hidden;background:conic-gradient(from 0deg,#9ec5ff,var(--lilac),var(--peach),#a8e6f0,#7fb4ff,#9ec5ff);animation:spin 12s linear infinite;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04),0 10px 30px rgba(43,127,255,.18)}
+.orb::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 46%),radial-gradient(circle at 70% 80%,rgba(5,136,162,.35) 0,rgba(5,136,162,0) 55%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.agent .who b{display:block;font:400 22px/1.15 var(--display)}
+.agent .who span{font-family:var(--mono);font-size:12px;color:var(--g500);letter-spacing:.04em;text-transform:uppercase}
+.wave{display:flex;align-items:center;gap:3px;height:28px;margin-left:auto}
+.wave i{width:3px;border-radius:2px;background:var(--black);height:30%;animation:wv 1.1s ease-in-out infinite}
+.wave i:nth-child(2n){animation-delay:-.3s}.wave i:nth-child(3n){animation-delay:-.6s}.wave i:nth-child(5n){animation-delay:-.85s}
+@keyframes wv{0%,100%{height:22%}50%{height:100%}}
+.lines{display:grid;gap:8px}
+.ln{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;align-items:baseline;background:var(--white);border-radius:12px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:opacity .5s,transform .5s cubic-bezier(.2,.7,.2,1)}
+.ln.wait{opacity:.0;transform:translateY(8px)}
+.ln .k{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--g500)}
+.ln .v{font-size:14px;line-height:1.4;color:var(--ink)}
+.ln.hl{background:var(--black)}
+.ln.hl .k{color:var(--g400)}
+.ln.hl .v{color:var(--white)}
+.ln.done{background:var(--black)}
+.ln.done .k{color:var(--mint)}
+.ln.done .v{color:var(--white);font-family:var(--display);font-size:20px}
+.agent .cap{margin-top:14px;font-size:12px;color:var(--g500)}
+@media (max-width:480px){.ln{grid-template-columns:1fr;gap:4px}.agent{padding:18px}.wave{display:none}}
+
+/* stats */
+.stats{border-block:1px solid var(--g200);background:var(--g25)}
+.stats .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.stat{padding:28px 20px 26px;border-right:1px solid var(--g200);min-width:0}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--g500);margin-bottom:12px}
+.stat b{display:block;font:300 clamp(34px,3.8vw,50px)/1 var(--display);letter-spacing:-.02em}
+.stat span{display:block;margin-top:10px;font-size:14px;color:var(--g600)}
+@media (max-width:900px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:22px 14px;border-bottom:1px solid var(--g200)}.stat:first-child{padding-left:14px}.stat:nth-child(2n){border-right:0}.stat:last-child{grid-column:1/-1;border-bottom:0}}
+
+/* role mapped */
+.map{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.25fr);gap:12px 32px;padding:24px 26px;background:var(--cream);border-radius:var(--card);align-items:start}
+.mrow .n{font-family:var(--mono);font-size:12px;color:var(--g500);padding-top:6px}
+.mrow h3{font-size:24px;line-height:1.2;font-weight:400}
+.mrow .q{margin-top:10px;font-size:14px;color:var(--g500)}
+.mrow .q::before{content:"Job post · ";font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.mrow ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.mrow li{position:relative;padding-left:20px;font-size:15.5px;color:var(--g700)}
+.mrow li::before{content:"";position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--c,var(--black))}
+.mrow li b{color:var(--black);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tags span{font-family:var(--mono);font-size:11.5px;padding:4px 10px;border-radius:9999px;background:var(--white);color:var(--g700);box-shadow:inset 0 0 0 1px var(--g200)}
+.mrow.eleven{background:var(--black);color:var(--white)}
+.mrow.eleven h3{color:var(--white)}
+.mrow.eleven .q,.mrow.eleven .n{color:var(--g400)}
+.mrow.eleven li{color:#e3dfda}
+.mrow.eleven li b{color:var(--white)}
+.mrow.eleven li::before{background:conic-gradient(#9ec5ff,var(--lilac),var(--peach),#a8e6f0,#9ec5ff)}
+.mrow.eleven .tags span{background:rgba(255,255,255,.08);color:#e3dfda;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+@media (max-width:860px){.mrow{grid-template-columns:1fr;padding:20px 18px}.mrow .n{padding:0}}
+
+/* values */
+.vals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.val{background:var(--white);border-radius:var(--card);padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:inset 0 0 0 1px var(--g200);min-width:0}
+.val .dot{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.9) 0,rgba(255,255,255,0) 50%),var(--c)}
+.val .src{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--g500)}
+.val h3{font-size:26px;line-height:1.15;font-weight:400}
+.val p{font-size:15.5px;color:var(--g700)}
+.val .proof{margin-top:auto;padding-top:14px;border-top:1px solid var(--g200);font-size:13px;color:var(--g500)}
+.cream{background:var(--cream)}
+@media (max-width:980px){.vals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.vals{grid-template-columns:1fr}}
+
+/* now: process to architecture */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.fstep{background:var(--cream);border-radius:var(--card);padding:24px 22px;display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.fstep .i{font-family:var(--mono);font-size:12px;color:var(--g500)}
+.fstep h3{font-size:24px;font-weight:400}
+.fstep p{font-size:15px;color:var(--g700)}
+.fstep:last-child{background:var(--black);color:var(--white)}
+.fstep:last-child .i{color:var(--mint)}
+.fstep:last-child p{color:#d9d5d0}
+@media (max-width:960px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.flow{grid-template-columns:1fr}}
+.built{margin-top:12px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);gap:24px 40px;padding:28px;border-radius:var(--card);box-shadow:inset 0 0 0 1px var(--g200);align-items:center}
+.built h3{font-size:26px;line-height:1.15;font-weight:400}
+.built p{margin-top:10px;color:var(--g600);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:9999px;background:var(--cream);color:var(--g700)}
+.chips span.x{background:var(--black);color:var(--white)}
+@media (max-width:860px){.built{grid-template-columns:1fr;padding:22px 18px}}
+
+/* experience */
+.xp{border-top:1px solid var(--g300)}
+.xrow{border-bottom:1px solid var(--g200)}
+.xrow button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,1.15fr) 28px;gap:10px 28px;align-items:baseline;padding:24px 0}
+.xrow button:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:4px}
+.xrow .when{font-family:var(--mono);font-size:12.5px;color:var(--g500)}
+.xrow .co{font:400 28px/1.12 var(--display);letter-spacing:-.01em;min-width:0}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;font-family:var(--sans)}
+.ladder span{font-size:13px;line-height:1.3;padding:4px 10px;border-radius:9999px;background:var(--cream);color:var(--g600)}
+.ladder span.top{background:var(--black);color:var(--white)}
+.ladder i{font-style:normal;font-size:13px;color:var(--g400)}
+.xrow .sum{color:var(--g600);font-size:15.5px;min-width:0}
+.xrow .pm{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--g300);font-size:18px;line-height:1;transition:transform .25s,background .2s;align-self:center}
+.xrow.open .pm{transform:rotate(45deg);background:var(--black);color:var(--white);box-shadow:none}
+.xrow .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.xrow.open .body{grid-template-rows:1fr}
+.xrow .body>div{overflow:hidden}
+.xrow ul{margin:0 0 26px;padding:0 0 0 178px;list-style:none;display:grid;gap:8px;color:var(--g700);font-size:15.5px}
+.xrow li{position:relative;padding-left:20px}
+.xrow li::before{content:"";position:absolute;left:2px;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--g400)}
+.badge{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.05em;padding:5px 9px;border-radius:9999px;background:var(--black);color:var(--white);margin-left:10px;vertical-align:middle;text-transform:uppercase}
+@media (max-width:860px){.xrow button{grid-template-columns:minmax(0,1fr) 28px}.xrow .when{grid-column:1/-1}.xrow .sum{grid-column:1/-1;grid-row:3}.xrow .pm{grid-row:2;grid-column:2;align-self:start}.xrow ul{padding-left:0}.badge{margin:8px 0 0;display:table}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pcard{background:var(--white);border-radius:var(--card);padding:24px 22px;display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:inset 0 0 0 1px var(--g200)}
+.pcard .d{display:inline-flex;align-self:flex-start;font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:9999px;background:var(--c);color:var(--black)}
+.pcard h3{font-size:24px;font-weight:400;line-height:1.15}
+.pcard p{font-size:15px;color:var(--g700)}
+.pcard .out{margin-top:auto;padding-top:12px;border-top:1px solid var(--g200);font-size:13px;color:var(--g500)}
+.pcard .out b{color:var(--black);font-weight:500}
+.pcard:last-child{background:var(--black);color:var(--white);box-shadow:none}
+.pcard:last-child p{color:#d9d5d0}
+.pcard:last-child .out{border-color:rgba(255,255,255,.15);color:var(--g400)}
+.pcard:last-child .out b{color:var(--white)}
+@media (max-width:960px){.plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plan{grid-template-columns:1fr}}
+
+/* creds */
+.creds{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+@media (max-width:900px){.creds{grid-template-columns:1fr}}
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.certs div{background:var(--cream);border-radius:12px;padding:16px 18px;min-width:0}
+.certs b{display:block;font:400 18px/1.25 var(--display)}
+.certs span{display:block;font-size:13px;color:var(--g500);margin-top:4px}
+@media (max-width:520px){.certs{grid-template-columns:1fr}}
+.edu{display:grid;gap:18px}
+.edu .it{padding-bottom:16px;border-bottom:1px solid var(--g200)}
+.edu .it b{display:block;font:400 20px/1.25 var(--display)}
+.edu .it span{font-size:14px;color:var(--g500)}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.langs div{border-radius:12px;padding:12px 14px;box-shadow:inset 0 0 0 1px var(--g200);min-width:0}
+.langs b{display:block;font:400 18px/1.2 var(--display)}
+.langs span{font-family:var(--mono);font-size:11.5px;color:var(--g500)}
+@media (max-width:420px){.langs{grid-template-columns:1fr}}
+
+/* contact */
+.contact-wrap{padding-bottom:clamp(16px,3vw,24px)}
+.dark{background:var(--black);color:var(--white);border-radius:var(--card-lg);padding:clamp(28px,6vw,72px);position:relative;overflow:hidden}
+.dark .eyebrow{color:var(--g400)}
+.dark .lede{color:#cfcac4}
+.dark h2{font-size:clamp(44px,7.5vw,96px);line-height:1;letter-spacing:-.03em;margin:16px 0 22px}
+.dark h2 span{color:var(--g500)}
+.dark .glow{position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:conic-gradient(from 90deg,#9ec5ff,var(--lilac),var(--peach),#a8e6f0,#9ec5ff);filter:blur(60px);opacity:.35;pointer-events:none;animation:spin 24s linear infinite}
+.dark>*:not(.glow){position:relative}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:10px;margin-top:44px}
+.cgrid>div{background:rgba(255,255,255,.06);border-radius:12px;padding:18px;min-width:0}
+.cgrid .eyebrow{font-size:11px;margin-bottom:6px}
+.cgrid .v{font:400 18px/1.3 var(--display);overflow-wrap:anywhere;user-select:all}
+@media (max-width:900px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cgrid>div:first-child{grid-column:1/-1}}
+@media (max-width:520px){.cgrid{grid-template-columns:1fr}}
+footer{padding-block:22px 34px;font-size:13px;color:var(--g500)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--black);color:var(--white);padding:10px 18px;border-radius:9999px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal,.ln.wait{opacity:1;transform:none}}
+/* live agent demo */
+.btn-orb{background:var(--white);color:var(--black);box-shadow:inset 0 0 0 1px var(--g300)}
+.btn-orb:hover{background:var(--g50)}
+.btn-orb .od{width:16px;height:16px;border-radius:50%;background:conic-gradient(#9ec5ff,var(--lilac),var(--peach),#a8e6f0,#9ec5ff);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+#live-agent{background:var(--g25);border-bottom:1px solid var(--g200)}
+.la-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:12px;align-items:stretch}
+@media (max-width:980px){.la-grid{grid-template-columns:1fr}}
+.la-card{background:var(--cream);border-radius:var(--card-lg);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.la-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.la-orbw{flex:none;width:76px;height:76px;position:relative;display:grid;place-items:center;transform:scale(var(--amp,1));transition:transform .12s ease-out}
+.la-orb{width:64px;height:64px;border-radius:50%;position:relative;overflow:hidden;background:conic-gradient(from 0deg,#9ec5ff,var(--lilac),var(--peach),#a8e6f0,#7fb4ff,#9ec5ff);animation:spin 12s linear infinite;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04),0 10px 30px rgba(43,127,255,.18);transition:box-shadow .3s}
+.la-orb::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 46%),radial-gradient(circle at 70% 80%,rgba(5,136,162,.35) 0,rgba(5,136,162,0) 55%)}
+.la-ring{position:absolute;inset:6px;border-radius:50%;border:2px solid var(--rc,#9ec5ff);opacity:0;pointer-events:none}
+.la-orbw[data-state="idle"]{animation:la-breathe 4.5s ease-in-out infinite}
+.la-orbw[data-state="listening"] .la-orb{animation-duration:5s;box-shadow:0 0 0 4px rgba(65,198,78,.18),0 12px 34px rgba(65,198,78,.28)}
+.la-orbw[data-state="listening"] .la-ring{--rc:var(--mint);animation:la-ring 1.6s ease-out infinite}
+.la-orbw[data-state="listening"] .la-ring+.la-ring{animation-delay:.8s}
+.la-orbw[data-state="thinking"] .la-orb{animation-duration:1.6s;box-shadow:0 0 0 3px rgba(189,164,255,.3),0 12px 34px rgba(189,164,255,.35)}
+.la-orbw[data-state="speaking"] .la-orb{animation-duration:4s;box-shadow:0 0 0 4px rgba(255,205,161,.35),0 14px 40px rgba(43,127,255,.3)}
+.la-orbw[data-state="speaking"] .la-ring{--rc:#7fb4ff;animation:la-ring 1.2s ease-out infinite}
+.la-orbw[data-state="speaking"] .la-ring+.la-ring{animation-delay:.6s}
+@keyframes la-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes la-ring{0%{transform:scale(.92);opacity:.7}100%{transform:scale(1.45);opacity:0}}
+.la-who{min-width:0;flex:1}
+.la-who b{display:block;font:400 24px/1.1 var(--display)}
+.la-who span{font-family:var(--mono);font-size:11.5px;color:var(--g500);letter-spacing:.04em;text-transform:uppercase}
+.la-st{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--g600);background:var(--white);padding:8px 12px;border-radius:9999px;box-shadow:inset 0 0 0 1px var(--g200)}
+.la-st i{width:7px;height:7px;border-radius:50%;background:var(--g400)}
+.la-st[data-s="listening"] i{background:var(--mint)}
+.la-st[data-s="thinking"] i{background:var(--lilac)}
+.la-st[data-s="speaking"] i{background:var(--blue)}
+.la-bars{display:inline-flex;align-items:center;gap:2px;height:14px}
+.la-bars b{width:2.5px;height:30%;border-radius:2px;background:currentColor;opacity:.55}
+.la-st[data-s="listening"] .la-bars b,.la-st[data-s="speaking"] .la-bars b{animation:wv .9s ease-in-out infinite;opacity:1}
+.la-bars b:nth-child(2){animation-delay:-.25s!important}.la-bars b:nth-child(3){animation-delay:-.5s!important}.la-bars b:nth-child(4){animation-delay:-.7s!important}
+.la-ib{all:unset;box-sizing:border-box;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--white);box-shadow:inset 0 0 0 1px var(--g200);color:var(--black)}
+.la-ib:hover{background:var(--g50)}
+.la-ib:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.la-ib svg{width:17px;height:17px}
+.la-ib[hidden]{display:none}
+.la-ib[aria-pressed="true"]{background:var(--black);color:var(--white)}
+.la-tag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--g500);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.la-tag button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:var(--g600)}
+.la-tag button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.la-log{background:var(--white);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;height:380px;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.la-m{max-width:86%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+.la-m small{display:block;font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;opacity:.6}
+.la-m.a{background:var(--cream);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start}
+.la-m.u{background:var(--black);color:var(--white);border-bottom-right-radius:4px;align-self:flex-end}
+.la-m.u.interim{opacity:.55}
+.la-m.sys{align-self:center;max-width:100%;background:none;padding:2px 0;font:500 11px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--g500);text-align:center}
+.la-dots{display:inline-flex;gap:4px;padding:4px 0}
+.la-dots i{width:6px;height:6px;border-radius:50%;background:var(--g400);animation:la-dot 1s infinite}
+.la-dots i:nth-child(2){animation-delay:.15s}.la-dots i:nth-child(3){animation-delay:.3s}
+@keyframes la-dot{0%,100%{opacity:.3}50%{opacity:1}}
+.la-chips{display:flex;flex-wrap:wrap;gap:6px}
+.la-chips button{all:unset;box-sizing:border-box;cursor:pointer;font-size:13.5px;line-height:1.2;padding:8px 13px;border-radius:9999px;background:var(--white);color:var(--g700);box-shadow:inset 0 0 0 1px var(--g200);max-width:100%;overflow-wrap:anywhere}
+.la-chips button:hover{box-shadow:inset 0 0 0 1px var(--g400);color:var(--black)}
+.la-chips button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.la-ctl{display:flex;gap:8px;align-items:center}
+.la-mic{all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--black);color:var(--white);position:relative;transition:background .15s,transform .15s}
+.la-mic svg{width:20px;height:20px}
+.la-mic:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.la-mic.on{background:var(--mint)}
+.la-mic.off{background:var(--g300);color:var(--g600)}
+.la-in{flex:1;min-width:0;height:48px;border:0;border-radius:9999px;padding:0 18px;font:400 15px var(--sans);color:var(--black);background:var(--white);box-shadow:inset 0 0 0 1px var(--g200)}
+.la-in:focus{outline:2px solid var(--blue);outline-offset:1px}
+.la-send{flex:none;height:48px;padding:0 18px}
+.la-note{font-size:12.5px;color:var(--g600);background:var(--white);border-radius:10px;padding:8px 12px;box-shadow:inset 0 0 0 1px var(--g200)}
+.la-note[hidden]{display:none}
+.la-hint{font-size:12.5px;color:var(--g500)}
+.la-hint code{font-family:var(--mono);font-size:12px;color:var(--g700)}
+/* trace */
+.la-tr{background:var(--black);color:#e6e2dd;border-radius:var(--card-lg);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.la-trh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.la-trh b{font:400 22px/1.1 var(--display);color:var(--white)}
+.la-trh span{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--g400)}
+.la-pipe{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font:500 11px/1 var(--mono);letter-spacing:.04em}
+.la-pipe span{padding:6px 9px;border-radius:9999px;background:rgba(255,255,255,.07);color:var(--g400);transition:background .2s,color .2s}
+.la-pipe span.on{background:var(--white);color:var(--black)}
+.la-pipe i{font-style:normal;color:var(--g600)}
+.la-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.la-kpi div{background:rgba(255,255,255,.06);border-radius:10px;padding:9px 10px;min-width:0}
+.la-kpi small{display:block;font:500 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--g400);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.la-kpi b{display:block;font:400 18px/1.1 var(--display);color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:480px){.la-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.la-turns{flex:1;height:440px;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:10px;font:400 12px/1.55 var(--mono);padding-right:2px}
+.la-t{border-radius:12px;background:rgba(255,255,255,.045);padding:11px 12px;display:grid;gap:5px;min-width:0}
+.la-t.new{animation:la-in .35s ease-out}
+@keyframes la-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.la-t .r{display:flex;gap:10px;min-width:0}
+.la-t .k{flex:none;width:52px;color:var(--g500);text-transform:uppercase;font-size:10.5px;letter-spacing:.05em;padding-top:1px}
+.la-t .v{min-width:0;overflow-wrap:anywhere;color:#d9d5d0}
+.la-t .top{display:flex;justify-content:space-between;gap:8px;color:var(--g400);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.la-t .top em{font-style:normal;color:var(--mint)}
+.la-t .in{color:var(--lilac)}
+.la-t .cf{display:inline-flex;align-items:center;gap:6px;margin-left:8px;color:var(--g400)}
+.la-t .cf u{display:inline-block;width:46px;height:4px;border-radius:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden;text-decoration:none}
+.la-t .cf u::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--lilac);border-radius:2px}
+.la-t .alt{color:var(--g600)}
+.la-t .call{color:#9ec5ff}
+.la-t .call .ms{color:var(--g500)}
+.la-t .res{color:#b8b2ab;border-left:2px solid rgba(255,255,255,.12);padding-left:8px;margin-left:2px}
+.la-t .pol{color:var(--peach)}
+.la-t .ho{color:var(--sun)}
+.la-t .lat{color:var(--g500);font-size:11px}
+.la-t .lat b{font-weight:500;color:var(--mint)}
+.la-t.seed{opacity:.92}
+.la-foot{margin-top:14px;display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;align-items:baseline;font-size:13px;color:var(--g500)}
+.la-foot a{color:var(--black);font-weight:500;text-underline-offset:3px}
+.la-foot p{max-width:70ch}
+/* deployment kit (strategist) */
+.la-kit{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.la-kit>div{background:var(--white);border-radius:var(--card);padding:20px 20px 18px;box-shadow:inset 0 0 0 1px var(--g200);min-width:0;display:flex;flex-direction:column;gap:8px}
+.la-kit .eyebrow{font-size:11px}
+.la-kit h3{font-size:21px;font-weight:400;line-height:1.2}
+.la-kit ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--g700)}
+.la-kit li{position:relative;padding-left:16px}
+.la-kit li::before{content:"";position:absolute;left:1px;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--c,var(--black))}
+.la-kit li b{font-weight:500;color:var(--black)}
+.la-kit>div:last-child{background:var(--black);color:var(--white);box-shadow:none}
+.la-kit>div:last-child .eyebrow{color:var(--g400)}
+.la-kit>div:last-child ul{color:#d9d5d0}
+.la-kit>div:last-child li b{color:var(--white)}
+@media (max-width:860px){.la-kit{grid-template-columns:1fr}}
+@media (max-width:480px){.la-card,.la-tr{padding:16px}.la-log{height:340px;padding:12px}.la-turns{height:380px}.la-m{max-width:92%}.la-send{padding:0 14px}.la-orbw{width:64px;height:64px}.la-orb{width:54px;height:54px}}
+@media print{
+  #live-agent .la-log,#live-agent .la-turns{height:auto;max-height:none;overflow:visible}
+  #live-agent .la-ctl,#live-agent .la-chips,#live-agent .la-note,#live-agent .la-hint,#live-agent .la-ib,#live-agent .la-tag button{display:none!important}
+  #live-agent .la-card,#live-agent .la-tr,#live-agent .la-kit>div{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+
+<div class="banner">Adaptation is the most valuable skill in the AI era. <b>So I studied ElevenLabs' DNA and built my CV in its voice.</b></div>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Juan Martín, back to top"><span class="ii" aria-hidden="true"><i></i><i></i></span>Juan Martín</a>
+    <div class="links">
+      <a href="#live-agent">Live agent</a>
+      <a href="#role">The role</a>
+      <a href="#values">How we work</a>
+      <a href="#now">What I do</a>
+      <a href="#experience">Experience</a>
+      <a href="#plan">First two weeks</a>
+    </div>
+    <a class="btn btn-k" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="live" aria-hidden="true"></span>Forward Deployed Engineer · Argentina · Buenos Aires</div>
+      <h1>I build agents that talk, type and <span>take action.</span></h1>
+      <p class="sub">I'm Juan Martín Beines Furcada. I design and deploy AI agents for enterprise clients in the US, and I've <b>shipped a production conversational agent end to end, with ElevenLabs TTS and voice cloning as its voice</b>. Embed me with your most strategic customers in Argentina and I'll own the integration until it's live.</p>
+      <div class="ctas">
+        <button class="btn btn-k copy" type="button">Copy email</button>
+        <a class="btn btn-orb" href="#live-agent"><span class="od" aria-hidden="true"></span>▶ Talk to my agent</a>
+        <a class="btn btn-w" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="facts"><span>Python · TypeScript · AWS</span><span>Spanish native · English bilingual</span><span>Based in Buenos Aires</span><span>Onsites, happily</span></div>
+    </div>
+    <div class="agent" aria-label="The stack of a production conversational agent I built end to end">
+      <div class="head">
+        <div class="orb" aria-hidden="true"></div>
+        <div class="who"><b>The agent I shipped</b><span>End to end · in production</span></div>
+        <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="lines" id="lines"><div class="ln"><span class="k">Frontend</span><span class="v">Next.js · React · TypeScript</span></div><div class="ln"><span class="k">Streaming</span><span class="v">Node.js server-sent events</span></div><div class="ln"><span class="k">Backend</span><span class="v">Python / Flask · Celery · Redis · Postgres</span></div><div class="ln"><span class="k">Routing</span><span class="v">Fast model triages, stronger model runs the tool loop, fallbacks across providers</span></div><div class="ln hl"><span class="k">Voice</span><span class="v">ElevenLabs TTS · voice cloning</span></div><div class="ln"><span class="k">APIs</span><span class="v">WhatsApp Cloud API · Meta Marketing API · payments · OAuth</span></div><div class="ln done"><span class="k">Shipped</span><span class="v">Docker on AWS, in production</span></div></div>
+      <p class="cap">Every layer above is code I wrote and deployed myself.</p>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><small>DevRev · 2025</small><b>#1 SE</b><span>US Commercial market</span></div>
+    <div class="stat"><small>Customer-facing</small><b>7+ yrs</b><span>pre-sales &amp; solutions</span></div>
+    <div class="stat"><small>Leadership</small><b>7</b><span>engineers led</span></div>
+    <div class="stat"><small>AWS partner</small><b>3×</b><span>AWS Competencies</span></div>
+    <div class="stat"><small>Career</small><b>4×</b><span>promoted: DevRev, BGH, MicroStrategy, ITBA</span></div>
+  </div>
+</div>
+
+<section id="live-agent">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Live agent · try it</div>
+      <h2 class="h2">Don't read about it. <span>Talk to it.</span></h2>
+      <p class="lede">Meet Sofía, a voice support agent for Tienda Pampa, a made-up Argentine online store. Ask where an order is, start a return, change the delivery address or ask for a person. She answers in rioplatense Spanish, by voice or text.</p>
+    </div>
+    <div class="la-grid reveal">
+      <div class="la-card">
+        <div class="la-head">
+          <div class="la-orbw" id="la-orb" data-state="idle" aria-hidden="true"><div class="la-ring"></div><div class="la-ring"></div><div class="la-orb"></div></div>
+          <div class="la-who"><b>Sofía</b><span>Tienda Pampa · support · es-AR</span></div>
+          <div class="la-st" id="la-st" data-s="idle" role="status"><i></i><span id="la-stt">Ready</span><span class="la-bars" aria-hidden="true"><b></b><b></b><b></b><b></b></span></div>
+          <button class="la-ib" id="la-mute" type="button" aria-pressed="false" aria-label="Mute Sofía's voice" title="Mute voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="w1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="w2" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="x" d="m16 9 6 6m0-6-6 6" style="display:none"/></svg></button>
+        </div>
+        <div class="la-tag"><span id="la-tagt">Example run · your turn next</span><button type="button" id="la-reset">Start over</button></div>
+        <div class="la-log" id="la-log" role="log" aria-live="polite" aria-label="Conversation transcript"></div>
+        <div class="la-chips" id="la-chips" aria-label="Suggested replies"></div>
+        <form class="la-ctl" id="la-form" autocomplete="off">
+          <button class="la-mic" id="la-mic" type="button" aria-label="Talk to Sofía (microphone)" title="Hold a conversation by voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></button>
+          <input class="la-in" id="la-in" type="text" placeholder="Escribile a Sofía…" aria-label="Message to Sofía" maxlength="240" enterkeyhint="send">
+          <button class="btn btn-k la-send" type="submit">Send</button>
+        </form>
+        <p class="la-note" id="la-note" hidden></p>
+        <p class="la-hint">Demo orders: <code>#48213</code> in transit · <code>#51077</code> delivered · <code>#50412</code> delayed · <code>#39950</code> past the return window</p>
+      </div>
+      <div class="la-tr" aria-label="Agent trace: intents, tool calls and latency for each turn">
+        <div class="la-trh"><b>Under the hood</b><span id="la-voice">Offline brain · text mode</span></div>
+        <div class="la-pipe" aria-hidden="true"><span data-p="asr">Speech in</span><i>→</i><span data-p="brain">Brain</span><i>→</i><span data-p="tools">Client tools</span><i>→</i><span data-p="tts">Voice out</span></div>
+        <div class="la-kpi">
+          <div><small>Turns</small><b id="la-k1">0</b></div>
+          <div><small>Tool calls</small><b id="la-k2">0</b></div>
+          <div><small>Avg turn</small><b id="la-k3">–</b></div>
+          <div><small>Outcome</small><b id="la-k4">Open</b></div>
+        </div>
+        <div class="la-turns" id="la-turns"></div>
+      </div>
+    </div>
+    <div class="la-foot">
+      <p>Live ElevenLabs agent: real voice and LLM, tools running in your browser against a mock store.</p>
+      <a href="https://cv-juan-martin.vercel.app/elevenlabs-fde/#live-agent" target="_blank" rel="noopener">Open the live demo ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="role">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">The role, mapped</div>
+      <h2 class="h2">Every line of the job post, <span>backed by work I've shipped.</span></h2>
+      <p class="lede">You're hiring someone to embed with strategic customers, write the code, and own the outcome. Here is the evidence for each part of that.</p>
+    </div>
+    <div class="map">
+<div class="mrow reveal"><div class="n">01</div><div><h3>Own major projects end to end, hands-on</h3><p class="q">Take full ownership of end-to-end execution of major projects for our most strategic partners.</p></div><div><ul><li>Today I run AI agent projects for US enterprise clients from on-site discovery to production: <b>I map the process, architect the agent and take it live</b></li><li>Built and shipped a production conversational agent end to end on my own: frontend, streaming, backend, queues, model routing, voice, payments, infrastructure</li><li>At BGH I owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization</li></ul><div class="tags"><span>End-to-end ownership</span><span>Discovery → production</span></div></div></div>
+<div class="mrow reveal"><div class="n">02</div><div><h3>Python and real software architecture</h3><p class="q">Proficiency in Python and strong software development knowledge… software architecture.</p></div><div><ul><li><b>Python / Flask backend with Celery, Redis and Postgres</b> in production, plus a Next.js / React / TypeScript frontend and Node.js SSE streaming</li><li>Years of Python and Spark ETL on AWS: serverless pipelines, data lakes, ML pipelines and warehouses (Glue, Redshift, Step Functions)</li><li>AWS Solutions Architect and Well-Architected Review Consultant: I design for failure, not just for the demo</li></ul><div class="tags"><span>Python</span><span>Flask</span><span>Celery</span><span>Postgres</span><span>AWS</span></div></div></div>
+<div class="mrow reveal"><div class="n">03</div><div><h3>API integrations that hold up in production</h3><p class="q">…a deep understanding of software development, software architecture, and APIs integration.</p></div><div><ul><li>Integrated the <b>WhatsApp Cloud API, Meta Marketing API, payments and OAuth</b> into a live product</li><li>Model routing across providers with fallbacks, so one provider's outage doesn't take the agent down</li><li>At DevRev I designed integrations for enterprise accounts as their trusted technical advisor through POCs and adoption</li></ul><div class="tags"><span>WhatsApp Cloud API</span><span>OAuth</span><span>Payments</span><span>Fallbacks</span></div></div></div>
+<div class="mrow reveal eleven"><div class="n">04</div><div><h3>The best use of ElevenLabs' technologies</h3><p class="q">…ensure the best use of ElevenLabs' technologies.</p></div><div><ul><li><b>I've already built with ElevenLabs: TTS and voice cloning</b> are the voice of the conversational agent I shipped</li><li>I know it from the API consumer's side: generated speech and a cloned voice inside a real product, in front of real users</li><li>Next step for me: going deep on ElevenAgents, its testing, monitoring and workflows, which I haven't used yet</li></ul><div class="tags"><span>ElevenLabs TTS</span><span>Voice cloning</span></div></div></div>
+<div class="mrow reveal"><div class="n">05</div><div><h3>Daily with customer engineers and executives</h3><p class="q">Collaborate daily with our customer's engineers and executives teams.</p></div><div><ul><li><b>#1 Solutions Engineer in DevRev's US Commercial market, 2025</b>: demos, solution architecture and POCs with enterprise engineering teams</li><li>At BGH I advised C-level and VPs in banking, retail, logistics, telco and public sector, including banks under strict compliance</li></ul><div class="tags"><span>Engineers</span><span>C-suite</span><span>Enterprise</span></div></div></div>
+<div class="mrow reveal"><div class="n">06</div><div><h3>Make complex technology simple</h3><p class="q">Ability to summarize complex technical knowledge and using logic in pursuing optimal solutions.</p></div><div><ul><li>Taught Cloud Computing and Product Management at ITBA</li><li>At MicroStrategy I wrote the POCs, roadmaps and logical system views customers used to decide</li><li>7+ years explaining architecture to people who have to sign off on it</li></ul><div class="tags"><span>Teaching</span><span>Solution docs</span><span>Demos</span></div></div></div>
+<div class="mrow reveal"><div class="n">07</div><div><h3>Argentina, onsites, English and Spanish</h3><p class="q">Anywhere in Argentina, preference Buenos Aires. Regular travel for customer onsites. English and Spanish.</p></div><div><ul><li><b>Based in Buenos Aires.</b> Spanish native, English bilingual, French DELF A2</li><li>Led DevRev's SE team in Argentina while selling into the US market: I know how both sides of the call work</li><li>The customer's office is my favorite place to work. Regular onsites are a feature, not a cost</li></ul><div class="tags"><span>Buenos Aires</span><span>ES / EN</span><span>Onsites</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="values">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">How we work, how we build</div>
+      <h2 class="h2">Your principles. <span>Where I've lived them.</span></h2>
+      <p class="lede">ElevenLabs publishes how it works and how it builds. Here is each principle, with the story from my career that matches it.</p>
+    </div>
+    <div class="vals">
+<div class="val reveal" style="--c:var(--peach)"><div class="dot" aria-hidden="true"></div><div class="src">How we work · High-velocity</div><h3>Two weeks to ramp up, not four</h3><p>I like short loops: learn it, try it with a real customer, fix it, repeat. That's how I went from joining DevRev in October 2024 to being its #1 Solutions Engineer in the US Commercial market in 2025, and then a Solutions Architect.</p><div class="proof">DevRev · SE → SA, #1 SE US Commercial 2025</div></div>
+<div class="val reveal" style="--c:#cfe0ff"><div class="dot" aria-hidden="true"></div><div class="src">How we work · Impact not job titles</div><h3>No task above or beneath me</h3><p>I started a company at 17. Clients, P&amp;L, vendors, staffing: all mine. At ITBA I ran back office for MIT $100K LatAm, then taught Product Management and Cloud Computing. Titles change; the job is whatever gets the customer live.</p><div class="proof">BB Productions · founded at 17</div></div>
+<div class="val reveal" style="--c:#e3d9ff"><div class="dot" aria-hidden="true"></div><div class="src">How we work · AI first</div><h3>I build with AI, not just talk about it</h3><p>I architect AI agents for US enterprise clients, and I've shipped one to production myself: a fast model triages, a stronger one runs the tool loop,, with fallbacks across providers.</p><div class="proof">Production agent shipped · Generative AI Professional</div></div>
+<div class="val reveal" style="--c:#a8e6f0"><div class="dot" aria-hidden="true"></div><div class="src">How we work · Excellence everywhere</div><h3>Built to pass an architecture review</h3><p>AWS Well-Architected Review Consultant. At BGH our data practice helped earn three AWS Competencies. I bring that bar to every integration I put in front of a customer.</p><div class="proof">3× AWS Competencies · BGH Tech Partner</div></div>
+<div class="val reveal" style="--c:var(--sun)"><div class="dot" aria-hidden="true"></div><div class="src">How we build · Owning outcomes</div><h3>Say &ldquo;not feasible&rdquo; when it isn't</h3><p>A scope nobody can build is a loss that just hasn't happened yet. I'd rather lose the argument on day 3 than the customer on day 90, and then own the version that does work.</p><div class="proof">Trusted advisor through POCs at DevRev</div></div>
+<div class="val reveal" style="--c:#c9ecc9"><div class="dot" aria-hidden="true"></div><div class="src">How we work · Global team</div><h3>Win as a team, from Buenos Aires</h3><p>I led DevRev's SE team in Argentina while selling into the US market, and built a team of 7 data engineers and Solutions Architects at BGH. Spanish native, English bilingual, French DELF A2.</p><div class="proof">Led SE team · DevRev Argentina</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">What I do now</div>
+      <h2 class="h2">I turn business processes into <span>agentic architecture.</span></h2>
+      <p class="lede">It's what I do every week for US enterprise clients. As a Forward Deployed Engineer it's the same loop, with me writing more of the code.</p>
+    </div>
+    <div class="flow">
+      <div class="fstep reveal"><span class="i">01 · Discover</span><h3>Sit with the operators</h3><p>On site, with the people who do the work today. Where the volume is, where it hurts, what a good outcome looks like to them.</p></div>
+      <div class="fstep reveal"><span class="i">02 · Map</span><h3>Process to agent</h3><p>What the agent owns, what it escalates and to whom, which rules it can never break. Written down before anything gets built.</p></div>
+      <div class="fstep reveal"><span class="i">03 · Connect</span><h3>Tools and systems</h3><p>Prompts, tools and integrations with the customer's CRM, data and messaging channels, designed with their engineers.</p></div>
+      <div class="fstep reveal"><span class="i">04 · Production</span><h3>Live, then better</h3><p>Into production, then iterate on real conversations and real results until the team trusts it.</p></div>
+    </div>
+    <div class="built reveal">
+      <div><div class="eyebrow">Hands-on</div><h3 style="margin-top:10px">And I write the code.</h3><p>The production conversational agent I built and shipped end to end, layer by layer. The dark chips are ElevenLabs.</p></div>
+      <div class="chips"><span>Next.js</span><span>React</span><span>TypeScript</span><span>Node.js SSE streaming</span><span>Python / Flask</span><span>Celery</span><span>Redis</span><span>Postgres</span><span>Model routing</span><span>Provider fallbacks</span><span class="x">ElevenLabs TTS</span><span class="x">Voice cloning</span><span>WhatsApp Cloud API</span><span>Meta Marketing API</span><span>Payments</span><span>OAuth</span><span>Docker on AWS</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="experience">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Experience</div>
+      <h2 class="h2">Promoted at every stop.</h2>
+      <p class="lede">Seven-plus years in front of enterprise customers, and a step up at every company: intern to consultant, Solutions Architect to manager, Solutions Engineer to Solutions Architect. Open any row for detail.</p>
+    </div>
+    <div class="xp" id="xp"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">First two weeks</div>
+      <h2 class="h2">Four weeks to ramp up? <span>Give me two.</span></h2>
+      <p class="lede">I won't wait for a perfect onboarding. I'll learn ElevenAgents by building on it, and pair with the team on a live deployment from week one.</p>
+    </div>
+    <div class="plan">
+<div class="pcard reveal" style="--c:var(--peach)"><span class="d">Days 1–3</span><h3>Build on the platform</h3><p>ElevenAgents and the APIs, hands-on: rebuild a reference agent end to end on my own account, with tools, a channel and a Spanish-language voice.</p><div class="out">Out: <b>a working agent I can demo</b></div></div>
+<div class="pcard reveal" style="--c:#cfe0ff"><span class="d">Days 4–7</span><h3>Pair on a live deployment</h3><p>Pair with Forward Deployed Engineers on a strategic customer. Read the integration code, take real tickets, learn the deployment patterns.</p><div class="out">Out: <b>first changes merged</b></div></div>
+<div class="pcard reveal" style="--c:#e3d9ff"><span class="d">Days 8–10</span><h3>First onsite</h3><p>Sit with a customer's engineering team in Buenos Aires or the region. Map their systems, data and channels to an integration plan.</p><div class="out">Out: <b>integration plan agreed</b></div></div>
+<div class="pcard reveal" style="--c:var(--white)"><span class="d">End of week 2</span><h3>Own a workstream</h3><p>Take one integration of a customer project as mine, end to end, and write down what the field is asking of the product.</p><div class="out">Out: <b>a workstream I own</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="creds">
+  <div class="wrap creds">
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px">Certifications</div>
+      <div class="certs">
+        <div><b>AWS Solutions Architect</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Database Specialty</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Well-Architected Review Consultant</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></div>
+        <div><b>Generative AI Professional</b><span>Blockchain Council</span></div>
+        <div><b>MicroStrategy Architect</b><span>MicroStrategy</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px">Education &amp; languages</div>
+      <div class="edu">
+        <div class="it"><b>B.S. Systems &amp; Business Administration, ITBA</b><span>2016–2021 · Honors</span></div>
+        <div class="it"><b>IGCSE + IB Certificate, Northlands</b><span>Most honored student</span></div>
+        <div class="langs">
+          <div><b>Spanish</b><span>Native</span></div>
+          <div><b>English</b><span>Bilingual</span></div>
+          <div><b>French</b><span>DELF A2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-wrap" id="contact">
+  <div class="wrap">
+    <div class="dark">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="eyebrow">Let's talk</div>
+      <h2>Let's get it <span>live.</span></h2>
+      <p class="lede">Give me 30 minutes and I'll walk you through the agent I shipped, layer by layer, including where ElevenLabs fits in.</p>
+      <div class="ctas" style="margin-top:28px">
+        <button class="btn btn-k copy" type="button">Copy email</button>
+        <a class="btn btn-w" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cgrid">
+        <div><div class="eyebrow">Email</div><div class="v" id="email">jbeinesfurcada@gmail.com</div></div>
+        <div><div class="eyebrow">Phone · WhatsApp</div><div class="v">+54 9 11 6433-6286</div></div>
+        <div><div class="eyebrow">Location</div><div class="v">Buenos Aires · GMT-3</div></div>
+        <div><div class="eyebrow">Onsites</div><div class="v">Ready to travel</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Juan Martín Beines Furcada · 2026</span><span>Built for ElevenLabs · Forward Deployed Engineer, Argentina</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* hero card: lines arrive one at a time, like a live agent */
+  var lines=[].slice.call(document.querySelectorAll('#lines .ln'));
+  if(!reduce&&lines.length){
+    var i=0;
+    var step=function(){
+      if(i===0)lines.forEach(function(l){l.classList.add('wait')});
+      if(i<lines.length){lines[i].classList.remove('wait');i++;setTimeout(step,i===lines.length?4200:900)}
+      else{i=0;setTimeout(step,300)}
+    };
+    step();
+  }
+
+  /* experience */
+  var xp=[["2026 — Now", "AI Agents Architect", "Enterprise clients in the US", "Design and deploy AI agents that take over operational work for US enterprise teams.", ["Run discovery on site with the customer's operators and map the business process into an agentic architecture", "Architect the agent: prompts, tools, escalation rules and integrations with their CRM and data", "Take it to production and iterate on real conversations and results"], false], ["Oct 2024 — 2026", "DevRev", "Solutions Engineer → Solutions Architect", "Agentic AI company. #1 SE in the US Commercial market in 2025, promoted to Solutions Architect.", ["#1 Solutions Engineer in the US Commercial market, 2025", "Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts", "Designed AI use cases that automated support triage, product analytics workflows and data consumption", "Trusted technical advisor through POCs, integration design and adoption", "Led and mentored the SE team in Argentina while tracking several accounts at once"], true], ["2021 — 2024", "BGH Tech Partner", "AWS Solutions Architect → Data Analytics Manager", "AWS partner. Joined as a Solutions Architect, promoted to lead the Data Analytics team.", ["Advised C-level and VPs in banking, retail, logistics, telco and public sector as an AWS Solutions Architect", "Designed and deployed end-to-end data solutions: serverless ETL, data lakes, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)", "Governed data platforms for banks under strict compliance requirements", "As Data Analytics Manager, built and led a team of 7 data engineers and Solutions Architects across multiple customer accounts", "Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization", "Helped the company earn 3 AWS Competencies"], false], ["2019 — 2021", "MicroStrategy", "Intern → Associate Consultant", "Joined as an intern, promoted to consultant. POCs, pre-sales demos and warehouse modernization for enterprise clients.", ["Delivered POCs, technical demos and consulting to prospective enterprise clients", "Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL", "Wrote solution documentation: POCs, roadmaps, logical system views"], false], ["2017 — 2021", "ITBA", "Sr Analyst → Back Office Manager → Instructor", "Ran operations for MIT $100K LatAm, then taught Product Management and Cloud Computing.", ["Back Office Manager for MIT $100K LatAm: led a team of 4 across logistics, data analysis and process optimization", "Taught Product Management and Cloud Computing at ITBA", "Owned university framework agreements and internships; automated processes on the ERP"], false], ["2014 — 2019", "BB Productions", "CEO &amp; Co-founder", "Founded at 17. Ran clients, P&amp;L, vendors and staffing.", ["Managed every business operation: client relations, P&amp;L, vendor management, staffing and planning"], false]];
+  var xc=document.getElementById('xp');
+  xp.forEach(function(r,idx){
+    var d=document.createElement('div');d.className='xrow'+(idx===1?' open':'');
+    var lad=r[2].split(' → ').map(function(x,k,a){return '<span'+(a.length>1&&k===a.length-1?' class="top"':'')+'>'+x+'</span>'}).join('<i aria-hidden="true">→</i>');
+    d.innerHTML='<button type="button" aria-expanded="'+(idx===1)+'"><span class="when">'+r[0]+'</span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE · US 2025</span>':'')+'<span class="ladder">'+lad+'</span></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
+    d.querySelector('button').addEventListener('click',function(){var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+    xc.appendChild(d);
+  });
+
+  /* reveal on scroll */
+  var els=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+    els.forEach(function(el){io.observe(el)});
+  }
+
+  /* copy email */
+  var t=document.getElementById('toast'),timer;
+  var show=function(msg){t.textContent=msg;t.classList.add('on');clearTimeout(timer);timer=setTimeout(function(){t.classList.remove('on')},1800)};
+  var select=function(){
+    var v=document.getElementById('email');
+    try{var r=document.createRange();r.selectNodeContents(v);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}
+    v.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});
+    show('Email selected. Press Ctrl/Cmd+C to copy');
+  };
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var e='jbeinesfurcada@gmail.com';
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(e).then(function(){show('Email copied: '+e)}).catch(select);
+        }else{select()}
+      }catch(x){select()}
+    });
+  });
+})();
+</script>
+<script>
+/* Live agent demo: Sofía, support agent for Tienda Pampa (fictional store).
+   Layers:
+   1. Mock store + client tools (IMPL / SofiaDemo.tools): args object in, JSON out, every call traced.
+   2. Offline brain: deterministic intent + slot state machine. Used for text mode and the seeded example.
+   3. UI hook (window.SofiaDemo): lets a voice SDK layer (ElevenLabs Agents, @elevenlabs/client) drive
+      transcript, orb, trace and tools. See the API notes at the bottom of this script. */
+(function(){
+  var root=document.getElementById('live-agent');if(!root)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id)};
+  var logEl=$('la-log'),turnsEl=$('la-turns'),chipsEl=$('la-chips'),inEl=$('la-in'),micEl=$('la-mic'),noteEl=$('la-note'),orbEl=$('la-orb'),stEl=$('la-st'),sttEl=$('la-stt'),muteEl=$('la-mute'),tagEl=$('la-tagt'),modeEl=$('la-voice');
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var norm=function(s){return String(s).toLowerCase().normalize('NFD').replace(/\p{M}/gu,'').replace(/[¿?¡!,.;:]/g,' ').replace(/\s+/g,' ').trim()};
+  var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+  var now=function(){return (window.performance&&performance.now)?performance.now():Date.now()};
+  var clone=function(o){return JSON.parse(JSON.stringify(o))};
+
+  /* ================= 1. mock store ================= */
+  var DAY=864e5,base=new Date();base.setHours(12,0,0,0);
+  var day=function(n){return new Date(base.getTime()+n*DAY)};
+  var iso=function(d){return d.toISOString().slice(0,10)};
+  var fdate=function(d){try{return new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long'}).format(d).replace(',','')}catch(e){return iso(d)}};
+  var money=function(n){return '$'+n.toLocaleString('es-AR')};
+  var RETURN_WINDOW_DAYS=30,seq=0,ORDERS;
+  function seedOrders(){ORDERS={
+    '48213':{customer:'Lucía',city:'CABA',address:'Gorriti 4800, Palermo, CABA',status:'in_transit',carrier:'Envíos Ñandú',eta:day(1),window:'9 a 18 h',
+      items:[{sku:'CMP-CUM-M',name:'campera rompeviento Cumbre (talle M)',key:/campera/,price:124500}]},
+    '51077':{customer:'Tomás',city:'Córdoba',address:'Bv. San Juan 900, Nueva Córdoba, Córdoba',status:'delivered',carrier:'Logística Tero',delivered:day(-6),
+      items:[{sku:'ZAP-AND-42',name:'zapatillas urbanas Andes (talle 42)',key:/zapa/,price:89900},{sku:'MED-PK3',name:'pack de medias x3',key:/media/,price:9900}]},
+    '50412':{customer:'Camila',city:'CABA',address:'Av. Rivadavia 5400, Caballito, CABA',status:'delayed',carrier:'Logística Tero',eta_promised:day(-3),last_scan:'centro de distribución Pilar',last_scan_at:day(-4),window:'9 a 18 h',
+      items:[{sku:'TRM-1L',name:'termo de acero 1 litro',key:/termo/,price:46500},{sku:'MAT-CAL',name:'mate de calabaza con bombilla',key:/mate|bombilla/,price:18900}]},
+    '39950':{customer:'Julián',city:'CABA',address:'Av. Cabildo 2100, Belgrano, CABA',status:'delivered',carrier:'Envíos Ñandú',delivered:day(-47),
+      items:[{sku:'MOC-25L',name:'mochila urbana 25 litros',key:/mochi/,price:67800}]}
+  }}
+  seedOrders();
+  var oid=function(a){return String((a&&a.order_id)||'').replace(/\D/g,'')};
+  var daysSince=function(d){return Math.round((base-d)/DAY)};
+
+  /* ---- client tool implementations: (args) -> JSON. The voice agent calls these same functions. ---- */
+  function get_order(args){
+    var id=oid(args),o=ORDERS[id];if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    var r={order_id:id,status:o.status,customer:o.customer,address:o.address,carrier:o.carrier,
+      items:o.items.map(function(i){return {sku:i.sku,name:i.name,price_ars:i.price}})};
+    if(o.eta)r.eta=iso(o.eta);if(o.window)r.delivery_window=o.window;if(o.eta_promised)r.eta_promised=iso(o.eta_promised);
+    if(o.delivered){r.delivered_at=iso(o.delivered);r.return_eligible=daysSince(o.delivered)<=RETURN_WINDOW_DAYS}
+    if(o.last_scan){r.last_scan=o.last_scan;r.days_late=daysSince(o.eta_promised)}
+    return r;
+  }
+  function check_return_eligibility(args){
+    var id=oid(args),o=ORDERS[id];if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    if(o.status!=='delivered')return {eligible:false,reason:'NOT_DELIVERED_YET'};
+    var d=daysSince(o.delivered);
+    return d<=RETURN_WINDOW_DAYS?{eligible:true,days_since_delivery:d,window_days:RETURN_WINDOW_DAYS}:{eligible:false,reason:'OUTSIDE_WINDOW',days_since_delivery:d,window_days:RETURN_WINDOW_DAYS};
+  }
+  function create_return(args){
+    var id=oid(args),o=ORDERS[id];if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    var el=check_return_eligibility({order_id:id});if(!el.eligible)return {error:'NOT_ELIGIBLE',detail:el};
+    var item=o.items.filter(function(i){return i.sku===args.sku||(args.item&&i.key.test(norm(args.item)))})[0]||o.items[0];
+    return {return_id:'RMA-'+id+'-'+(++seq),order_id:id,sku:item.sku,reason:args.reason||'unspecified',pickup:'free_home_pickup',label:'sent_by_email',refund_ars:item.price,refund_eta_business_days:'5-10'};
+  }
+  function update_address(args){
+    var id=oid(args),o=ORDERS[id],a=String(args.new_address||'').trim();if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    if(o.status==='delivered')return {error:'ALREADY_DELIVERED',delivered_at:iso(o.delivered)};
+    if(!/\d/.test(a)||a.length<6)return {error:'INVALID_ADDRESS',hint:'street, number and city'};
+    o.address=a;o.eta=day(2);o.status=o.status==='delayed'?'delayed':'in_transit';
+    return {ok:true,order_id:id,new_address:a,new_eta:iso(o.eta),fee_ars:0};
+  }
+  function get_tracking(args){
+    var id=oid(args),o=ORDERS[id];if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    if(o.status==='delayed')return {carrier:o.carrier,last_event:'held_at_hub',location:o.last_scan,at:iso(o.last_scan_at),days_late:daysSince(o.eta_promised)};
+    if(o.status==='delivered')return {carrier:o.carrier,last_event:'delivered',at:iso(o.delivered)};
+    return {carrier:o.carrier,last_event:'in_transit',on_time:true,eta:iso(o.eta)};
+  }
+  function open_carrier_claim(args){
+    var id=oid(args),o=ORDERS[id];if(!o)return {error:'ORDER_NOT_FOUND',order_id:id};
+    o.eta=day(1);return {claim_id:'CLM-'+(7300+(++seq)),order_id:id,priority:args.priority||'high',new_eta:iso(o.eta),compensation:'free_shipping_next_order'};
+  }
+  function transfer_to_human(args){
+    S.handed=true;
+    return {ticket_id:'HUM-'+(5180+(++seq)),queue:args.queue||'general',position:2,est_wait_s:90,summary_attached:!!args.summary};
+  }
+  function end_call(){S.ended=true;return {ok:true}}
+  var IMPL={get_order:get_order,create_return:create_return,update_address:update_address,transfer_to_human:transfer_to_human,
+            check_return_eligibility:check_return_eligibility,get_tracking:get_tracking,open_carrier_claim:open_carrier_claim,end_call:end_call};
+  var SIM_LAT={get_order:84,get_tracking:132,check_return_eligibility:46,create_return:168,update_address:121,open_carrier_claim:143,transfer_to_human:97,end_call:12};
+
+  /* ================= trace panel ================= */
+  var S,cur=null,live=false,seeding=false,seeded=false;
+  function resetState(){S={order:null,pending:null,neg:0,fallbacks:0,handed:false,ended:false,events:[],intents:[],tools:0,toolsUsed:[],turns:0,lat:[]}}
+  resetState();
+  var jsn=function(o){return esc(JSON.stringify(o))};
+  function row(k,html){return '<div class="r"><span class="k">'+k+'</span><span class="v">'+html+'</span></div>'}
+  function openTurn(text,source,nlu,brain){
+    S.turns++;
+    var d=document.createElement('div');d.className='la-t'+(seeding?' seed':' new');
+    var T={n:S.turns,el:d,t0:now(),toolMs:0,nlu:nlu,source:source,closed:false};
+    var h='<div class="top"><span>turn '+String(T.n).padStart(2,'0')+' · '+source+'</span><em class="lt">…</em></div>';
+    if(text!=null)h+=row('user','“'+esc(text)+'”');
+    if(brain)h+=row('brain','<span class="alt">'+esc(brain)+'</span>');
+    if(nlu){h+=row(brain&&/llm/i.test(brain)?'shadow':'intent','<span class="in">'+nlu.intent+'</span><span class="cf"><u style="--w:'+Math.round(nlu.conf*100)+'%"></u>'+nlu.conf.toFixed(2)+'</span>'+(nlu.kind!=='classify'?' <span class="alt">· '+nlu.kind+'</span>':'')+(nlu.alts.length?'<br><span class="alt">alt: '+nlu.alts.map(function(a){return a.intent+' '+a.conf.toFixed(2)}).join(' · ')+'</span>':''));
+      var sl={};for(var k in nlu.slots)if(k!=='reason_text')sl[k]=nlu.slots[k];
+      if(Object.keys(sl).length)h+=row('slots',jsn(sl));}
+    d.innerHTML=h;turnsEl.appendChild(d);scroll(turnsEl);kpis();
+    return T;
+  }
+  function addRow(T,k,html){T=T||ensureTurn();var w=document.createElement('div');w.innerHTML=row(k,html);T.el.appendChild(w.firstChild);scroll(turnsEl);return T}
+  function ensureTurn(){if(!cur||cur.closed)cur=openTurn(null,live?'agent':'system',null,null);return cur}
+  function closeTurn(T,ms,ttsTxt){
+    if(!T||T.closed)return;T.closed=true;T.ms=ms;S.lat.push(ms);
+    T.el.querySelector('.lt').textContent=Math.round(ms)+' ms';
+    var nl=T.nlu?'nlu '+T.nlu.nlu_ms.toFixed(1)+' ms · ':'';
+    addRow(T,'latency','<span class="lat">'+nl+'tools '+Math.round(T.toolMs)+' ms'+(T.sim?' (mocked)':'')+(ttsTxt?' · '+esc(ttsTxt):'')+' · total <b>'+Math.round(ms)+' ms</b></span>');
+    kpis();
+  }
+  function logTool(name,args,result,ms,sim){
+    var T=ensureTurn();T.toolMs+=ms;if(sim)T.sim=true;S.tools++;if(S.toolsUsed.indexOf(name)<0)S.toolsUsed.push(name);
+    addRow(T,'tool','<span class="call">'+esc(name)+'('+jsn(args||{})+') <span class="ms">'+(ms<10?ms.toFixed(1):Math.round(ms))+' ms</span></span><div class="res'+(name==='transfer_to_human'?' ho':'')+'">← '+jsn(result)+'</div>');
+    kpis();
+  }
+  /* runTool: sim=true waits a mocked network latency (offline brain), 'virtual' records it without waiting (seed), false measures real time (voice agent). */
+  function runTool(name,args,sim){
+    args=args||{};var t0=now(),lat=SIM_LAT[name]+((oid(args).length*7+S.tools*13)%37);
+    pipe('tools');
+    var go=function(){var res;try{res=IMPL[name]?IMPL[name](clone(args)):{error:'UNKNOWN_TOOL'}}catch(e){res={error:'TOOL_EXCEPTION',message:String(e&&e.message||e)}}
+      logTool(name,args,res,sim?lat:now()-t0,!!sim);return res};
+    return sim===true?sleep(lat).then(go):Promise.resolve(go());
+  }
+  function kpis(){
+    $('la-k1').textContent=S.turns;$('la-k2').textContent=S.tools;
+    $('la-k3').textContent=S.lat.length?Math.round(S.lat.reduce(function(a,b){return a+b},0)/S.lat.length)+' ms':'–';
+    $('la-k4').textContent=S.handed?'Handed off':S.ended?'Contained':'Open';
+  }
+
+  /* ================= 2. offline brain: regex intents + slot filling ================= */
+  var INTENTS=[
+    ['transfer_to_human',[/\b(humano|persona|agente|operador|operadora|asesor|asesora|representante)\b/,/\balguien (real|del equipo|de verdad)\b/,/\bhablar con (alguien|una persona)\b/]],
+    ['delivery_delay',[/\b(demor|atrasad|retrasad|tarde)\w*/,/\bno (me )?(llega|llego|llegaron|vino|aparece)\b/,/\b(todavia|aun) no\b/,/\bhace (\w+ )?(dias|semanas?)\b/,/\b(enojad|indignad|hart|cansad|pesim|desastre|verguenza|inaceptable|nunca llega)\w*/]],
+    ['return_request',[/\b(devol|devuelv|reembols|reintegr)\w*/,/\bno me (gusto|quedo|quedaron|queda|quedan|sirve|sirvio|anda|funciona)\b/,/\bcambi\w* (de |el )?talle\b/,/\bme (quedo|quedaron|queda|quedan) (chic|grand|mal|corto|larg)\w*/,/\b(fallad|rot[oa]s?|defectuos)\w*/]],
+    ['change_address',[/\b(cambi|modific|actualiz|correg)\w* (la |de |mi |el )*(direccion|domicilio)\b/,/\b(direccion|domicilio)\b/,/\bme mud\w*/,/\b(otra|nueva) (direccion|casa)\b/]],
+    ['order_status',[/\b(donde|cuando)\b.*\b(pedido|compra|orden|paquete|envio)\b/,/\b(estado|seguimiento|rastre\w*|tracking)\b/,/\b(pedido|compra|orden|paquete|envio)\b/,/\bllega\b/]],
+    ['goodbye',[/\b(chau|adios|hasta luego|nos vemos)\b/,/\b(eso es todo|nada mas|era eso|nada gracias)\b/]],
+    ['thanks',[/\b(gracias|genial|buenisimo|joya|barbaro)\b/]],
+    ['greet',[/^(hola|buenas|buen dia|buenos dias|buenas tardes|buenas noches|que tal|como va)\b/]]
+  ];
+  var AFFIRM=/^(si|sip|sii|dale|ok|okey|oka|de una|perfecto|correcto|claro|exacto|va|bueno|confirmo|confirmalo|hacelo|por favor|obvio)\b/;
+  var DENY=/^(no|nop|nah|mejor no|deja|dejalo|cancela|para)\b/;
+  var ADDR=/(?:^|\b(?:a|en|es|para)\s+)((?:av\.?|avenida|calle|bv\.?|boulevard|pasaje)?\s*[A-Za-zÁÉÍÓÚÑáéíóúñü.' ]{3,40}?\s\d{2,5}(?:[ ,][^.?!]{0,40})?)\s*[.?!]?$/i;
+  function reasonOf(n){
+    if(/\b(chic|grand|talle|corto|larg|quedo|quedaron|queda|quedan)\w*/.test(n))return 'size';
+    if(/\b(fallad|rot|defect|no anda|no funciona|mancha)\w*/.test(n))return 'defective';
+    if(/\b(no me gust|arrepent|no lo quiero|no la quiero|no lo necesito)\w*/.test(n))return 'changed_mind';
+    return null;
+  }
+  var RSN={size:'el talle no te quedó bien',defective:'llegó con una falla',changed_mind:'no te convenció',other:'el motivo que me contaste'};
+  function understand(text){
+    var t0=now(),n=norm(text),hits=[],slots={};
+    INTENTS.forEach(function(it){var h=it[1].filter(function(r){return r.test(n)}).length;if(h)hits.push({intent:it[0],h:h})});
+    var m=n.match(/#?\b(\d{5})\b/);if(m)slots.order_id=m[1];
+    var r=reasonOf(n);if(r)slots.reason=r;
+    var a=String(text).trim().match(ADDR);if(a&&/[A-Za-zÁÉÍÓÚÑáéíóúñ]{4,}/.test(a[1])&&!(slots.order_id&&a[1].indexOf(slots.order_id)>-1))slots.address=a[1].trim().replace(/\s+/g,' ');
+    var it=S.pending,top=hits[0],strong=hits.filter(function(x){return x.intent!=='thanks'&&x.intent!=='greet'});
+    var other=function(ok){return strong.filter(function(x){return x.intent!==ok}).length};
+    var res;
+    if(it&&it.slot==='confirm'&&!strong.length&&(AFFIRM.test(n)||DENY.test(n))){res={intent:AFFIRM.test(n)?'affirm':'deny',conf:.96,kind:'confirm'}}
+    else if(it&&it.slot==='order_id'&&slots.order_id&&(!strong.length||strong[0].intent===it.flow||strong[0].intent==='order_status')){res={intent:it.flow,conf:.97,kind:'slot_fill:order_id'}}
+    else if(it&&it.slot==='reason'&&!other('return_request')){slots.reason=slots.reason||'other';slots.reason_text=String(text).trim();res={intent:'return_request',conf:slots.reason==='other'?.81:.95,kind:'slot_fill:reason'}}
+    else if(it&&it.slot==='address'&&(slots.address||(/\d{2,5}/.test(n)&&/[a-z]{3}/.test(n)&&!slots.order_id))&&!other('change_address')){slots.address=slots.address||String(text).trim().replace(/[.?!]+$/,'');res={intent:'change_address',conf:.93,kind:'slot_fill:address'}}
+    else if(top){res={intent:top.intent,conf:Math.min(.98,.66+.1*top.h+(slots.order_id?.08:0)+(n.length%5)/100),kind:'classify'}}
+    else if(slots.order_id){res={intent:'order_status',conf:.72,kind:'inferred_from_slot'}}
+    else res={intent:'fallback',conf:Math.max(.12,.31-(n.length%9)/100),kind:'no_match'};
+    res.alts=hits.filter(function(x){return x.intent!==res.intent}).slice(0,2).map(function(x){return {intent:x.intent,conf:+(Math.min(.9,.34+.08*x.h)).toFixed(2)}});
+    res.slots=slots;res.nlu_ms=now()-t0;res.text=text;
+    return res;
+  }
+
+  var call=function(name,args){return runTool(name,args,seeding?'virtual':true)};
+  var note=function(txt){addRow(cur,'policy','<span class="pol">'+esc(txt)+'</span>')};
+  function ask(slot,flow,extra){S.pending={slot:slot,flow:flow};for(var k in extra)S.pending[k]=extra[k];note('await_slot → '+slot+(flow?' ('+flow+')':''))}
+  function orderLine(o,id){return '#'+id+', '+(o.items.length>1?o.items[0].name+' y '+o.items.slice(1).map(function(i){return i.name}).join(', '):o.items[0].name)}
+  function withOrder(flow,nlu,cb){
+    var id=nlu.slots.order_id||S.order;
+    if(!id){ask('order_id',flow);return Promise.resolve(flow==='delivery_delay'?'Uf, entiendo la bronca, vamos a resolverlo. ¿Me pasás el número de pedido? Son cinco dígitos.':'Dale. ¿Me pasás el número de pedido? Son cinco dígitos, lo tenés en el mail de confirmación.')}
+    if(!ORDERS[id])return call('get_order',{order_id:id}).then(function(){ask('order_id',flow);return 'Mmm, no encuentro el pedido #'+id+'. ¿Me lo repetís? Son cinco dígitos.'});
+    if(S.order!==id){S.order=id;note('ctx.order_id = '+id)}
+    return cb(id,ORDERS[id]);
+  }
+  var FLOWS={
+    greet:function(){return 'Hola, soy Sofía, de Tienda Pampa. ¿En qué te ayudo? Puedo ver dónde está tu pedido, gestionar una devolución o cambiar la dirección de entrega.'},
+    thanks:function(){return '¡De nada! ¿Te ayudo con algo más?'},
+    goodbye:function(){return call('end_call',{reason:'customer_done'}).then(function(){S.events.push('Cerró la conversación');return '¡Gracias por escribirnos! Que tengas un lindo día. Chau.'})},
+    order_status:function(nlu){return withOrder('order_status',nlu,function(id,o){
+      return call('get_order',{order_id:id}).then(function(r){S.pending=null;
+        if(r.status==='in_transit'){S.events.push('Consultó #'+id+': en camino, llega '+fdate(o.eta));return 'Tu pedido '+orderLine(o,id)+', está en camino con '+o.carrier+'. Llega el '+fdate(o.eta)+', de '+o.window+', a '+o.address+'. ¿Te ayudo con algo más?'}
+        if(r.status==='delivered'){S.events.push('Consultó #'+id+': entregado el '+fdate(o.delivered));return 'El pedido '+orderLine(o,id)+', se entregó el '+fdate(o.delivered)+' en '+o.address+'. ¿Necesitás algo con ese pedido, una devolución por ejemplo?'}
+        note('status=delayed → route to delivery_delay');return FLOWS.delivery_delay(nlu,true);
+      })})},
+    delivery_delay:function(nlu,routed){S.neg++;if(!routed)note('sentiment = negative → empathy first');return withOrder('delivery_delay',nlu,function(id,o){
+      return call('get_tracking',{order_id:id}).then(function(r){S.pending=null;
+        if(r.last_event==='held_at_hub'){
+          return call('open_carrier_claim',{order_id:id,reason:'late_delivery',days_late:r.days_late,priority:'high'}).then(function(c){
+            S.events.push('#'+id+' demorado '+r.days_late+' días en '+o.last_scan+'; reclamo '+c.claim_id+' abierto, nueva fecha '+fdate(o.eta));
+            ask('confirm','transfer_to_human',{yes:'transfer'});
+            return 'Tenés toda la razón, y te pido disculpas: tu pedido '+orderLine(o,id)+', tenía que llegar el '+fdate(o.eta_promised)+' y quedó retenido en el '+o.last_scan+'. Ya abrí un reclamo urgente con '+o.carrier+' y la nueva fecha es el '+fdate(o.eta)+'. Además, tu próximo envío va sin cargo. ¿Querés que igual te pase con una persona del equipo?'})}
+        if(r.last_event==='delivered'){ask('confirm','transfer_to_human',{yes:'transfer'});S.events.push('Dice no haber recibido #'+id+', figura entregado');return 'Uy, figura entregado el '+fdate(o.delivered)+' en '+o.address+'. Si no lo recibiste, es para revisarlo ya mismo con una persona. ¿Te paso?'}
+        S.events.push('Consultó demora de #'+id+': en fecha');return 'Te entiendo, la espera cansa. Por lo que veo viene en fecha: llega el '+fdate(o.eta)+', de '+o.window+'. Si ese día no llega, escribime y lo escalo enseguida.'})})},
+    return_request:function(nlu){return withOrder('return_request',nlu,function(id,o){
+      var p=S.pending&&S.pending.flow==='return_request'?S.pending:null;
+      var reason=nlu.slots.reason||(p&&p.reason);
+      var item=(p&&p.item)||o.items.filter(function(i){return i.key.test(norm(nlu.text))})[0]||o.items[0];
+      var go=function(){
+        if(!reason){ask('reason','return_request',{item:item,checked:true});return '¿Me contás por qué la devolvés? Por ejemplo, si no te quedó bien o si llegó fallada.'}
+        ask('confirm','return_request',{yes:'create_return',args:{order_id:id,reason:reason,sku:item.sku},item:item});
+        return 'Perfecto. Te genero la devolución de '+item.name+' porque '+RSN[reason]+'. El retiro a domicilio es gratis y te reintegramos '+money(item.price)+'. ¿Confirmo?';
+      };
+      if(p&&p.checked)return Promise.resolve(go());
+      return call('check_return_eligibility',{order_id:id}).then(function(r){
+        if(r.eligible){note('return_window '+r.days_since_delivery+'d ≤ '+r.window_days+'d → eligible');return go()}
+        if(r.reason==='OUTSIDE_WINDOW'){note('return_window '+r.days_since_delivery+'d > '+r.window_days+'d → not eligible, offer human');ask('confirm','transfer_to_human',{yes:'transfer'});S.events.push('Pidió devolver #'+id+' fuera de plazo ('+r.days_since_delivery+' días)');
+          return 'Lo reviso: '+orderLine(o,id)+', se entregó hace '+r.days_since_delivery+' días y el plazo de devolución es de '+r.window_days+'. Yo no puedo hacer una excepción, pero alguien del equipo sí puede evaluarlo. ¿Querés que te pase?'}
+        S.pending=null;note('status='+o.status+' → return not possible yet');
+        return 'Tu pedido #'+id+' todavía no se entregó, así que aún no se puede devolver. Llega el '+fdate(o.eta||o.eta_promised)+'. Si querés, te cambio la dirección de entrega o te paso con una persona.'});
+    })},
+    change_address:function(nlu){return withOrder('change_address',nlu,function(id,o){
+      var p=S.pending&&S.pending.flow==='change_address'?S.pending:null;
+      var addr=nlu.slots.address;
+      var go=function(){
+        if(!addr){ask('address','change_address',{checked:true});return '¿A qué dirección te lo mando? Decime calle, número y localidad.'}
+        ask('confirm','change_address',{yes:'update_address',args:{order_id:id,new_address:addr}});
+        return 'Anoto: '+addr+'. Al cambiar el destino, la entrega se corre un día. ¿Confirmo el cambio?';
+      };
+      if(p&&p.checked)return Promise.resolve(go());
+      return call('get_order',{order_id:id}).then(function(r){
+        if(r.status==='delivered'){S.pending=null;note('status=delivered → address locked');return 'Ese pedido ya se entregó el '+fdate(o.delivered)+', así que no puedo cambiar la dirección. ¿Te ayudo con otra cosa?'}
+        note('status='+r.status+' → address editable');return go()});
+    })},
+    transfer_to_human:function(nlu,why){
+      var q=S.intents.indexOf('return_request')>-1?'returns':(S.intents.indexOf('delivery_delay')>-1?'logistics':'general');
+      var summary=(S.events.length?S.events.join('. '):'Pidió hablar con una persona sin detallar el motivo')+'.';
+      return call('transfer_to_human',{summary:summary,queue:q,priority:S.neg?'high':'normal',order_id:S.order||null,customer_sentiment:S.neg?'frustrated':'neutral',reason:why||'customer_request'}).then(function(){S.pending=null;
+        return 'Listo, te paso con una persona del equipo. Ya le dejé el resumen de lo que hablamos, así no tenés que repetir nada. La espera estimada es de un minuto y medio.'})},
+    fallback:function(){S.fallbacks++;
+      if(S.fallbacks>=2){ask('confirm','transfer_to_human',{yes:'transfer',why:'repeated_no_match'});note('2 consecutive no_match → offer human');return 'Perdón, no te estoy entendiendo y no quiero hacerte perder tiempo. ¿Te paso con una persona del equipo?'}
+      return 'Perdón, no te entendí. ¿Es por un pedido, una devolución o un cambio de dirección?'}
+  };
+  function policy(nlu){
+    var i=nlu.intent;
+    if(i!=='fallback')S.fallbacks=0;
+    if(S.handed&&i!=='goodbye'&&i!=='thanks')return Promise.resolve('Ya estás en la fila con el equipo y tienen todo el contexto. En un ratito te atienden.');
+    if(i==='affirm'||i==='deny'){
+      var p=S.pending;S.pending=null;
+      if(i==='deny'){note('confirm → no');return Promise.resolve(p.yes==='transfer'?'Dale, sigo yo entonces. ¿En qué más te ayudo?':'Listo, no cambio nada. ¿Te ayudo con algo más?')}
+      note('confirm → yes → '+p.yes);
+      if(p.yes==='transfer')return FLOWS.transfer_to_human(nlu,p.why);
+      if(p.yes==='create_return')return call('create_return',p.args).then(function(r){
+        if(r.error)return 'Uy, no pude generar la devolución ('+r.error+'). ¿Te paso con una persona?';
+        S.events.push('Devolución '+r.return_id+' creada para '+p.item.name+' (#'+p.args.order_id+'), reintegro '+money(r.refund_ars));
+        return 'Listo, devolución creada: código '+r.return_id+'. Te mandamos la etiqueta por mail y el reintegro de '+money(r.refund_ars)+' se acredita en 5 a 10 días hábiles en tu medio de pago. ¿Algo más?'});
+      if(p.yes==='update_address')return call('update_address',p.args).then(function(r){
+        if(r.error)return 'No pude cambiar la dirección ('+r.error+'). ¿Me la pasás de nuevo, con calle, número y localidad?';
+        S.events.push('Cambió la dirección de #'+p.args.order_id+' a '+p.args.new_address);
+        return 'Hecho. El pedido #'+p.args.order_id+' ahora va a '+p.args.new_address+' y llega el '+fdate(new Date(r.new_eta+'T12:00:00'))+'. Sin costo extra. ¿Te ayudo con algo más?'});
+    }
+    if(S.pending&&nlu.kind==='classify'&&S.pending.flow!==i){if(S.pending.slot==='confirm')note('topic switch → drop pending confirm');S.pending=null}
+    return Promise.resolve((FLOWS[i]||FLOWS.fallback)(nlu));
+  }
+
+  /* ================= UI ================= */
+  var muted=false,busy=false,queued=null,barged=false;
+  var handlers={text:null,mic:null,mute:null,speak:null};
+  function setMode(s){
+    s={idle:'idle',listening:'listening',thinking:'thinking',speaking:'speaking'}[s]||'idle';
+    orbEl.setAttribute('data-state',s);stEl.setAttribute('data-s',s);sttEl.textContent={idle:'Ready',listening:'Listening',thinking:'Thinking',speaking:'Speaking'}[s];
+    pipe({idle:null,listening:'asr',thinking:'brain',speaking:'tts'}[s]);
+    if(s!=='speaking')orbEl.style.setProperty('--amp','1');
+  }
+  function pipe(p){[].forEach.call(root.querySelectorAll('.la-pipe span'),function(x){x.classList.toggle('on',x.getAttribute('data-p')===p)})}
+  function scroll(el){el.scrollTop=el.scrollHeight}
+  function bubble(who,text,cls){var d=document.createElement('div');d.className='la-m '+who+(cls?' '+cls:'');d.innerHTML=(who==='a'?'<small>Sofía</small>':who==='u'?'<small>Vos</small>':'')+esc(text);logEl.appendChild(d);scroll(logEl);return d}
+  var CHIPS={def:['¿Dónde está mi pedido?','Quiero hacer una devolución','Mi pedido no llega','Pasame con una persona'],
+    confirm:['Sí, dale','No, mejor no'],reason:['Me quedaron chicas','Vino fallado','No me gustó'],
+    address:['Av. Corrientes 1234, Almagro, CABA','Bv. Oroño 850, Rosario'],end:['Gracias, chau']};
+  var ORDER_CHIPS={return_request:['#51077','#39950','#48213'],delivery_delay:['#50412','#48213'],change_address:['#48213','#50412','#51077']};
+  function chips(){
+    var k=seeded||S.ended?'def':S.handed?'end':S.pending?S.pending.slot:'def';
+    var list=k==='order_id'?(ORDER_CHIPS[S.pending.flow]||['#48213','#51077','#50412','#39950']):(CHIPS[k]||CHIPS.def);
+    chipsEl.innerHTML='';list.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){send(c,'chip')});chipsEl.appendChild(b)});
+  }
+  var ampT;
+  function setLevel(v){if(reduce)return;v=Math.max(0,Math.min(1,+v||0));orbEl.style.setProperty('--amp',(1+v*.12).toFixed(3))}
+  function bump(){setLevel(.75);clearTimeout(ampT);ampT=setTimeout(function(){setLevel(0)},140)}
+
+  /* speak(text): pluggable speech output. Default is SILENT (text mode): the orb gives a short visual pulse only.
+     TODO(ElevenLabs): plug the ElevenLabs voice here via SofiaDemo.setSpeakHandler(fn) -> Promise.
+     With ElevenLabs Agents (@elevenlabs/client) the agent speaks on its own: the SDK layer instead calls
+     SofiaDemo.setMode('speaking'|'listening') and SofiaDemo.setLevel(volume), and this stays silent. */
+  function speak(text){
+    if(handlers.speak&&!muted){setMode('speaking');return Promise.resolve().then(function(){return handlers.speak(text)}).catch(function(){}).then(function(){setMode('idle')})}
+    if(reduce)return Promise.resolve();
+    setMode('speaking');var iv=setInterval(bump,220);
+    return sleep(Math.min(1400,300+String(text).length*6)).then(function(){clearInterval(iv);setMode('idle')});
+  }
+
+  function clearSeed(){if(!seeded)return;seeded=false;logEl.innerHTML='';turnsEl.innerHTML='';cur=null;resetState();seedOrders();kpis();chips();tagEl.textContent=live?'Live session · ElevenLabs agent':'Text session · offline brain'}
+  function send(text,source){
+    text=String(text||'').trim();if(!text)return;
+    if(seeded)clearSeed();
+    if(live&&handlers.text){ // voice agent mode: the agent's LLM decides, tools run here via SofiaDemo.tools
+      onUserTranscript(text,{source:source});
+      try{handlers.text(text)}catch(e){if(window.console)console.warn(e)}
+      return;
+    }
+    if(busy){queued=[text,source];if(stEl.getAttribute('data-s')==='speaking')barged=true;return}
+    busy=true;bubble('u',text);setMode('thinking');
+    var typing=bubble('a','','typing');typing.innerHTML='<span class="la-dots" aria-label="Sofía is typing"><i></i><i></i><i></i></span>';
+    var nlu=understand(text);
+    if(S.intents.indexOf(nlu.intent)<0&&/_/.test(nlu.intent))S.intents.push(nlu.intent);
+    cur=openTurn(text,source,nlu,'intent engine (offline)');var T=cur;
+    if(barged){barged=false;note('barge-in → speech cut, user turn taken')}
+    policy(nlu).then(function(reply){
+      typing.remove();bubble('a',reply);closeTurn(T,now()-T.t0,live?'':'voice off (text mode)');chips();
+      return speak(reply);
+    }).catch(function(e){try{typing.remove()}catch(x){}bubble('a','Perdón, tuve un problema técnico. ¿Lo intentamos de nuevo?');if(window.console)console.warn(e)})
+    .then(function(){busy=false;setMode('idle');afterTurn();if(queued){var q=queued;queued=null;send(q[0],q[1])}});
+  }
+  function afterTurn(){
+    if(S.handed&&!S.sysShown){S.sysShown=true;bubble('sys','Transferred to a human agent · summary attached')}
+    if(S.ended&&!S.endShown){S.endShown=true;bubble('sys',S.handed?'Conversation ended':'Conversation ended · contained, no human needed')}
+    kpis();
+  }
+
+  /* hooks the voice SDK layer calls */
+  var interim=null;
+  function onUserTranscript(text,opt){
+    opt=opt||{};text=String(text||'');
+    if(seeded)clearSeed();
+    if(opt.final===false){if(!interim)interim=bubble('u','','interim');interim.innerHTML='<small>Vos · listening</small>'+esc(text);scroll(logEl);return}
+    if(interim){interim.remove();interim=null}
+    if(!text.trim())return;
+    bubble('u',text);
+    if(cur&&!cur.closed)closeTurn(cur,now()-cur.t0);
+    cur=openTurn(text,opt.source||'voice',understand(text),'LLM tool loop (ElevenLabs agent)');
+    setMode('thinking');
+  }
+  function onAgentMessage(text,opt){
+    if(seeded)clearSeed();
+    bubble('a',String(text||''));
+    if(cur&&!cur.closed)closeTurn(cur,(opt&&opt.latency_ms!=null)?opt.latency_ms:now()-cur.t0,opt&&opt.tts);
+    afterTurn();chips();
+  }
+  function logTrace(entry){
+    entry=entry||{};
+    if(entry.kind==='tool'||entry.tool)return logTool(entry.tool||entry.name,entry.args,entry.result,entry.ms||0,false);
+    return addRow(cur,esc(entry.label||'note'),'<span class="pol">'+esc(entry.text||JSON.stringify(entry))+'</span>');
+  }
+  function setLive(on,opt){
+    live=!!on;opt=opt||{};
+    micEl.classList.toggle('off',!live);muteEl.hidden=!live;
+    noteEl.hidden=live;if(!live)noteEl.textContent=opt.note||'Voice unavailable here: text mode.';
+    micEl.setAttribute('aria-label',live?'Talk to Sofía (microphone)':'Voice unavailable here, type instead');
+    modeEl.textContent=live?(opt.label||'ElevenLabs agent · live voice'):'Offline brain · text mode';
+    if(!seeded)tagEl.textContent=live?'Live session · ElevenLabs agent':'Text session · offline brain';
+  }
+
+  micEl.addEventListener('click',function(){
+    if(live&&handlers.mic){if(seeded)clearSeed();try{handlers.mic()}catch(e){if(window.console)console.warn(e);setLive(false)}return}
+    noteEl.hidden=false;inEl.focus();
+  });
+  $('la-form').addEventListener('submit',function(e){e.preventDefault();var v=inEl.value;inEl.value='';send(v,'text')});
+  muteEl.addEventListener('click',function(){muted=!muted;muteEl.setAttribute('aria-pressed',muted);muteEl.setAttribute('aria-label',muted?'Unmute Sofía':'Mute Sofía');
+    muteEl.querySelector('.x').style.display=muted?'':'none';muteEl.querySelector('.w1').style.display=muted?'none':'';muteEl.querySelector('.w2').style.display=muted?'none':'';
+    if(handlers.mute)try{handlers.mute(muted)}catch(e){}});
+  function reset(){busy=false;queued=null;seeded=false;logEl.innerHTML='';turnsEl.innerHTML='';cur=null;resetState();seedOrders();kpis();chips();setMode('idle');
+    tagEl.textContent=live?'Live session · ElevenLabs agent':'Text session · offline brain';
+    if(!live)bubble('a',FLOWS.greet())}
+  $('la-reset').addEventListener('click',function(){if(handlers.reset)try{handlers.reset()}catch(e){}reset()});
+
+  /* client tools for the voice agent: same functions the offline brain uses, traced with real latency */
+  var tools={};Object.keys(IMPL).forEach(function(k){tools[k]=function(args){var p=runTool(k,args,false);p.then(afterTurn);return p}});
+
+  /* window.SofiaDemo — integration surface for the ElevenLabs Agents SDK layer.
+     tools.get_order({order_id}) · tools.create_return({order_id, reason, sku?}) · tools.update_address({order_id, new_address})
+     tools.transfer_to_human({summary, queue?, priority?, order_id?}) · plus check_return_eligibility, get_tracking, open_carrier_claim, end_call.
+     Each returns Promise<JSON> and logs itself to the trace (name, args, result, latency).
+     onUserTranscript(text, {final?:false}) · onAgentMessage(text, {latency_ms?, tts?}) · setMode('listening'|'speaking'|'thinking'|'idle')
+     setLevel(0..1) drives the orb · logTrace({label,text} | {tool,args,result,ms}) · setLive(true|false, {label?, note?})
+     setTextHandler(fn(text)) routes typed text and chips to the agent · setMicHandler(fn) runs on mic click (start/stop session)
+     setMuteHandler(fn(muted)) · setSpeakHandler(fn(text)->Promise) · setResetHandler(fn) · brain(text) runs the offline brain · reset() */
+  window.SofiaDemo={tools:tools,onUserTranscript:onUserTranscript,onAgentMessage:onAgentMessage,setMode:setMode,setLevel:setLevel,logTrace:logTrace,setLive:setLive,
+    speak:speak,reset:reset,brain:function(t){var l=live;live=false;send(t,'text');live=l},
+    setTextHandler:function(f){handlers.text=f},setMicHandler:function(f){handlers.mic=f},setMuteHandler:function(f){handlers.mute=f},
+    setSpeakHandler:function(f){handlers.speak=f},setResetHandler:function(f){handlers.reset=f},
+    get muted(){return muted},get live(){return live}};
+
+  setLive(false);
+
+  /* seeded example: visible before any interaction, and in print */
+  (function seed(){
+    seeding=true;
+    var script=['Hola, ¿dónde está mi pedido?','Es el 48213','Gracias. ¿Me pasás con una persona? Quiero cambiar algo del envío.'];
+    var p=Promise.resolve();
+    script.forEach(function(u){p=p.then(function(){
+      bubble('u',u);var nlu=understand(u);if(S.intents.indexOf(nlu.intent)<0&&/_/.test(nlu.intent))S.intents.push(nlu.intent);
+      cur=openTurn(u,'example',nlu,'intent engine (offline)');var T=cur;
+      return policy(nlu).then(function(r){bubble('a',r);closeTurn(T,nlu.nlu_ms+T.toolMs)})})});
+    p.then(function(){bubble('sys','Transferred to a human agent · summary attached');S.sysShown=true;seeding=false;seeded=true;cur=null;chips();setMode('idle');tagEl.textContent='Example run · your turn next'})
+     .catch(function(e){seeding=false;if(window.console)console.warn(e)});
+  })();
+})();
+</script>
+<script id="la-voice">
+/* ElevenLabs voice layer for Sofía. Public agent id only (no key in the page). The SDK loads on the first mic tap.
+   Agent limits live server-side: 120 s per call, 8 calls/day, 1 at a time. Typed text outside a call runs the offline brain.
+   file:// (PDF render) stays offline. */
+(function(){
+  var D=window.SofiaDemo;if(!D||!/^https?:$/.test(location.protocol))return;
+  var AGENT='agent_5101m7t5jwd7em3tywc46e48a67z',SDK='https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.32.1/dist/lib.iife.js';
+  var mic=document.getElementById('la-mic'),note=document.getElementById('la-note');
+  var conv=null,starting=false,endAfter=false,raf=0;
+  D.setLive(true,{label:'ElevenLabs agent · tap the mic to talk'});
+  function say(t){note.textContent=t;note.hidden=!t}
+  function ui(on){mic.classList.toggle('on',on);mic.setAttribute('aria-pressed',on);mic.setAttribute('aria-label',on?'End the call with Sofía':'Talk to Sofía (microphone)')}
+  function load(){return window.ElevenLabsClient?Promise.resolve():new Promise(function(res,rej){var s=document.createElement('script');s.src=SDK;s.onload=res;s.onerror=function(){rej(new Error('sdk'))};document.head.appendChild(s)})}
+  var MAP={get_order:'get_order',get_tracking:'get_tracking',check_return_eligibility:'check_return_eligibility',create_return:'create_return',
+    update_address:'update_address',open_carrier_claim:'open_carrier_claim',transfer_to_human:'transfer_to_human',end_conversation:'end_call'};
+  var clientTools={};Object.keys(MAP).forEach(function(k){clientTools[k]=function(p){if(k==='end_conversation')endAfter=true;
+    return D.tools[MAP[k]](p||{}).then(function(r){return JSON.stringify(r)})}});
+  function level(){if(conv&&conv.getOutputVolume)D.setLevel(Math.min(1,conv.getOutputVolume()*2.5));raf=requestAnimationFrame(level)}
+  function today(){try{return new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
+  function cleanup(msg){conv=null;starting=false;endAfter=false;cancelAnimationFrame(raf);D.setTextHandler(null);ui(false);D.setMode('idle');D.setLevel(0);say(msg||'')}
+  function start(){
+    if(starting)return;starting=true;ui(true);D.setMode('thinking');say('Connecting to the ElevenLabs agent…');
+    load().then(function(){
+      return window.ElevenLabsClient.Conversation.startSession({
+        agentId:AGENT,connectionType:'webrtc',dynamicVariables:{today:today()},clientTools:clientTools,
+        onConnect:function(){say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Martina (rioplatense) · max 2 min'})},
+        onMessage:function(m){if(!m||!m.message)return;if(m.source==='user')D.onUserTranscript(m.message,{source:'voice'});else D.onAgentMessage(m.message,{tts:'ElevenLabs TTS · Flash v2.5'})},
+        onModeChange:function(m){D.setMode(m.mode==='speaking'?'speaking':'listening');if(m.mode==='listening'&&endAfter&&conv)conv.endSession()},
+        onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic to try again, or type below.':d&&d.reason==='agent'?'Call ended. Tap the mic to start a new one.':'')},
+        onError:function(m){if(window.console)console.warn('ElevenLabs',m)}
+      });
+    }).then(function(c){conv=c;starting=false;D.setMode('listening');raf=requestAnimationFrame(level);
+      D.setTextHandler(function(t){if(conv)conv.sendUserMessage(t)});
+      if(D.muted&&conv.setVolume)conv.setVolume({volume:0});
+    }).catch(function(e){
+      var m=String(e&&(e.message||e)||'');
+      cleanup(/permission|denied|notallowed/i.test(m)?'Microphone blocked. Allow it in the browser, or just type: the offline brain answers.':
+        'Voice is resting right now (daily demo limit or network). Type below: the offline brain answers.');
+      if(window.console)console.warn(e);
+    });
+  }
+  D.setMicHandler(function(){if(conv){endAfter=false;conv.endSession()}else start()});
+  D.setMuteHandler(function(m){if(conv&&conv.setVolume)conv.setVolume({volume:m?0:1})});
+  D.setResetHandler(function(){if(conv)conv.endSession()});
+  window.addEventListener('pagehide',function(){if(conv)conv.endSession()});
+})();
+</script>
+<script id="la-anchor-fix">
+/* On the live site the demo link scrolls in place; the PDF (file://) keeps the absolute URL. */
+(function(){if(!/^https?:$/.test(location.protocol))return;
+document.querySelectorAll('a[href*="#live-agent"]').forEach(function(a){a.setAttribute('href','#live-agent');a.removeAttribute('target');a.removeAttribute('rel');});})();
+</script>
+
+</body>
+</html>
