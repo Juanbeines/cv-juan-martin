@@ -57,7 +57,8 @@ Call report_finding for each confirmed problem. Stop when done, no summary.`,
   lead: `${BASE}
 You are the TEAM LEAD of three specialist agents (security, performance, app code). They each reviewed the same customer project.
 Your job:
-1. Check every finding. Re-run one tool when a finding's evidence looks thin or two findings overlap.
+1. Check every finding against a tool result. For every performance finding, re-run explain_query yourself: if the plan already
+   uses an index or the time is a few ms, reject it. Reject anything that is advice or a guess rather than a measured problem.
 2. Call decide_finding for EVERY finding id: confirm, merge (duplicate of another id) or reject (not proven / wrong), with a one-line reason.
 3. Call write_plan: the customer-facing summary, the fix order (confirmed ids, most urgent first), and one coaching note per specialist
    (what they did well, what to do better next time, concrete). Be a fair, demanding lead.`,
