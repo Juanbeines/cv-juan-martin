@@ -1113,7 +1113,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       wd=setTimeout(function(){gen++;var c=conv;cleanup('Sofía is busy with another caller right now. Try again in a minute, or type below.');if(c)c.endSession()},12000);
       return window.ElevenLabsClient.Conversation.startSession({
         agentId:AGENT,connectionType:'webrtc',dynamicVariables:{today:today()},clientTools:clientTools,
-        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Martina (rioplatense) · max 2 min'})},
+        onConnect:function(){clearTimeout(wd);say('');D.logTrace({label:'session',text:'ElevenLabs agent connected · voice Melanie (rioplatense) · max 2 min'})},
         onMessage:function(m){if(!m||!m.message)return;if(m.source==='user')D.onUserTranscript(m.message,{source:'voice'});else D.onAgentMessage(m.message,{tts:'ElevenLabs TTS · Flash v2.5'})},
         onModeChange:function(m){D.setMode(m.mode==='speaking'?'speaking':'listening');if(m.mode==='listening'&&endAfter&&conv)conv.endSession()},
         onDisconnect:function(d){cleanup(d&&d.reason==='error'?'The call dropped. Tap the mic to try again, or type below.':d&&d.reason==='agent'?'Call ended. Tap the mic to start a new one.':'')},
