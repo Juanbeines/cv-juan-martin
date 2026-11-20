@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín · Pencil Agent Architect">
+<meta property="og:description" content="Juan Martín Beines Furcada · #1 SE US Commercial (DevRev 2025) · AI agents architect · Buenos Aires">
+<meta property="og:type" content="website">
+<title>Juan Martín · Pencil Agent Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f4f4ef;--paper:#fefefe;--ink:#0c0b02;--ink2:#191915;--gray:#3d3d36;--mute:#706f67;--mute2:#a09f95;--stone:#dbdbd1;
+  --line:rgba(12,11,2,.12);--line2:rgba(12,11,2,.2);--y:#fff310;--y2:#fff761;--y3:#ffe02c;--orange:#f8b133;
+  --green:#26a871;--green-bg:rgba(131,184,119,.16);--red:#d65c67;--red-bg:rgba(214,92,103,.12);
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r-s:.5rem;--r:.75rem;--r-m:1rem;--r-l:1.5rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--y);color:var(--ink)}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:720px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.mono{font-family:var(--mono)}
+.hl{background:linear-gradient(transparent .2em,var(--y) .2em,var(--y) calc(100% - .04em),transparent calc(100% - .04em));padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.dot{display:inline-block;width:.16em;height:.16em;background:var(--ink);border-radius:50%;vertical-align:.1em;margin:0 .04em}
+
+/* banner + nav */
+.banner{background:var(--y);color:var(--ink);font-family:var(--mono);font-size:12.5px;line-height:1.45;padding:9px 0;text-align:center}
+.banner .wrap{display:flex;gap:6px 14px;justify-content:center;flex-wrap:wrap}
+.banner a{font-weight:600;text-decoration:none;border-bottom:1px solid currentColor}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(244,244,239,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.logo i{width:22px;height:22px;border-radius:7px;background:var(--y);border:1.5px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700}
+.navl{display:flex;gap:22px;margin-left:auto;font-size:14.5px;color:var(--gray)}
+.navl a{text-decoration:none}.navl a:hover{color:var(--ink)}
+@media(max-width:900px){.navl{display:none}}
+nav.top .btn{margin-left:auto}@media(min-width:901px){nav.top .btn{margin-left:0}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:500 15px/1 var(--sans);padding:13px 22px;border-radius:100vw;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn-p{background:var(--y);border-color:var(--y)}
+.btn-p:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn-s{padding:10px 16px;font-size:14px}
+.btn:focus-visible,button:focus-visible,a:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* hero */
+.hero{position:relative;padding:72px 0 56px;background-image:radial-gradient(rgba(12,11,2,.16) 1px,transparent 1.2px);background-size:22px 22px;background-position:-11px -11px}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(rgba(244,244,239,0),var(--bg));pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:48px;align-items:end}
+@media(max-width:960px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+.pill{display:inline-flex;align-items:center;gap:8px;font:500 12.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:var(--paper);border:1px solid var(--line2);border-radius:100vw;padding:8px 13px}
+@media(max-width:480px){.pill{font-size:11px;letter-spacing:.03em}.loop h4{font-size:11px}}
+.pill b{width:7px;height:7px;border-radius:50%;background:var(--green)}
+h1{font-size:clamp(2.6rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.045em;font-weight:600;margin:22px 0 22px}
+.intro{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--gray);max-width:640px;margin:0 0 28px}
+.intro b{color:var(--ink);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.checks{display:flex;flex-wrap:wrap;gap:8px 22px;padding:0;margin:0;list-style:none;font-size:14.5px;color:var(--gray)}
+.checks li{display:flex;gap:8px;align-items:center}
+.checks li::before{content:"✓";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--ink);color:var(--y);font-size:11px;font-weight:700;flex:none}
+.loop{background:var(--ink);color:var(--paper);border-radius:var(--r-l);padding:22px 22px 18px;box-shadow:0 30px 60px -30px rgba(12,11,2,.45);min-width:0}
+.loop h4{margin:0 0 4px;font:500 12px/1.4 var(--mono);color:var(--mute2);text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between;gap:10px}
+.loop h4 span{color:var(--y)}
+.loop ol{list-style:none;margin:12px 0 0;padding:0;counter-reset:l}
+.loop li{counter-increment:l;display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid rgba(255,255,255,.1)}
+.loop li::before{content:counter(l,decimal-leading-zero);font:500 12px/1.6 var(--mono);color:var(--y)}
+.loop li b{display:block;font-weight:500;font-size:15px}
+.loop li span{display:block;font-size:13px;color:var(--mute2);line-height:1.4}
+.loop .src{font:400 11.5px/1.4 var(--mono);color:var(--mute);margin-top:10px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line2);border-radius:var(--r-l);background:var(--paper);overflow:hidden;margin-top:8px}
+.stat{padding:20px 20px 18px;border-left:1px solid var(--line);min-width:0}
+.stat:first-child{border-left:0}
+.stat small{display:block;font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.stat b{display:block;font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-.04em;font-weight:600;line-height:1.1;margin:10px 0 4px}
+.stat b em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
+.stat span{font-size:13.5px;color:var(--gray);line-height:1.35;display:block}
+@media(max-width:960px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{border-left:0;border-top:1px solid var(--line)}.stat:nth-child(-n+2){border-top:0}.stat:nth-child(even){border-left:1px solid var(--line)}.stat:last-child{grid-column:1/-1}}
+
+/* sections */
+section{padding:96px 0 0}
+.sechead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 48px;margin-bottom:40px;align-items:end}
+@media(max-width:860px){.sechead{grid-template-columns:minmax(0,1fr)}}
+.eyebrow{font:500 12.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);display:flex;gap:10px;align-items:center;grid-column:1/-1}
+.eyebrow .n{background:var(--ink);color:var(--y);border-radius:100vw;padding:5px 9px}
+.h2{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.06;letter-spacing:-.04em;font-weight:600;margin:0}
+.lede{font-size:1.06rem;color:var(--gray);margin:0;max-width:560px}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(14px)}
+
+/* role mapped */
+.map{border-top:1px solid var(--ink)}
+.mrow{display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.25fr);gap:12px 32px;padding:26px 0;border-bottom:1px solid var(--line2)}
+.mrow .n{font:500 13px/1.6 var(--mono);color:var(--mute)}
+.mrow h3{font-size:1.2rem;letter-spacing:-.02em;font-weight:600;margin:0 0 8px;line-height:1.25}
+.mrow .q{font:400 13.5px/1.5 var(--mono);color:var(--mute);margin:0}
+.mrow ul{margin:0;padding:0;list-style:none}
+.mrow li{position:relative;padding-left:20px;margin-bottom:8px;color:var(--gray)}
+.mrow li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--y);border:1.5px solid var(--ink);border-radius:2px}
+.mrow li b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font:500 11.5px/1 var(--mono);border:1px solid var(--line2);border-radius:100vw;padding:6px 10px;color:var(--gray);background:var(--paper)}
+.honest{margin:10px 0 0;padding:12px 14px;border-radius:var(--r);background:var(--paper);border:1px dashed var(--line2);font-size:14px;color:var(--gray)}
+.honest b{display:block;font:600 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:4px}
+@media(max-width:860px){.mrow{grid-template-columns:minmax(0,1fr)}.mrow .n{order:-1}}
+
+/* ===== eval lab ===== */
+#eval-lab{padding-top:96px}
+.lab-honest{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r);padding:14px 16px;font-size:14.5px;color:var(--gray);margin:0 0 18px}
+.lab-honest b{color:var(--ink)}
+.lab-honest i{flex:none;font-style:normal;font:600 11px/1 var(--mono);background:var(--y);border:1px solid var(--ink);border-radius:100vw;padding:5px 8px;margin-top:1px}
+.shell{background:var(--ink);color:var(--paper);border-radius:var(--r-l);overflow:hidden;box-shadow:0 40px 80px -40px rgba(12,11,2,.55)}
+.shbar{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.1);font:500 13px/1.3 var(--mono);color:var(--mute2);flex-wrap:wrap}
+.shbar b{color:var(--paper);font-weight:600}
+.shbar .lights{display:flex;gap:6px}.shbar .lights i{width:10px;height:10px;border-radius:50%;background:#3d3d36}
+.shbar .lights i:first-child{background:var(--y)}
+.model{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px}
+.ldot{width:8px;height:8px;border-radius:50%;background:#3d3d36;flex:none}
+.ldot.on{background:var(--green);box-shadow:0 0 0 0 rgba(75,222,127,.6);animation:pulse 1.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(75,222,127,0)}100%{box-shadow:0 0 0 0 rgba(75,222,127,0)}}
+.lab{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:560px}
+@media(max-width:960px){.lab{grid-template-columns:minmax(0,1fr)}}
+.side{border-right:1px solid rgba(255,255,255,.1);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+@media(max-width:960px){.side{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}}
+.lbl{font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute2)}
+.case{all:unset;box-sizing:border-box;display:block;cursor:pointer;border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:13px 14px;background:#191915;transition:border-color .2s,background .2s;min-width:0}
+.case:hover{border-color:rgba(255,255,255,.4)}
+.case[aria-pressed="true"]{border-color:var(--y);background:#24230f}
+.case .ct{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.case b{font-size:15px;font-weight:600}
+.case em{font:500 10.5px/1 var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);background:var(--y);border-radius:100vw;padding:4px 7px;white-space:nowrap}
+.case span{display:block;font-size:13px;color:var(--mute2);margin-top:4px;line-height:1.4}
+.case:focus-visible{outline:2px solid var(--y);outline-offset:2px}
+.notebox{margin-top:4px}
+.notebox label{display:flex;justify-content:space-between;gap:8px}
+.notebox textarea{width:100%;margin-top:6px;min-height:84px;resize:vertical;background:#191915;color:var(--paper);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:10px 12px;font:400 14px/1.45 var(--sans)}
+.notebox textarea:focus{outline:none;border-color:var(--y)}
+.notebox small{display:block;font-size:12px;color:var(--mute);margin-top:6px;line-height:1.4}
+.run{width:100%;margin-top:4px}
+.run:disabled{opacity:.5;cursor:default}
+.main{display:flex;flex-direction:column;min-width:0}
+.mhead{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:4px 14px;flex-wrap:wrap;align-items:baseline}
+.mhead b{font-size:15.5px}
+.mhead span{font:400 12.5px/1.4 var(--mono);color:var(--mute2)}
+.mhead q{flex-basis:100%;font-size:13.5px;color:var(--y2);quotes:"“" "”"}
+.trace{list-style:none;margin:0;padding:12px 20px;max-height:330px;overflow:auto;border-bottom:1px solid rgba(255,255,255,.1);scrollbar-width:thin;scrollbar-color:#3d3d36 transparent}
+.trace li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;padding:6px 0;font-size:13.5px;line-height:1.45;animation:fin .35s ease}
+@keyframes fin{from{opacity:0;transform:translateY(4px)}}
+.trace li::before{content:"";width:8px;height:8px;border-radius:50%;margin-top:6px;background:#3d3d36;justify-self:center}
+.trace li.say{color:var(--stone)}
+.trace li.tool::before{background:var(--y)}
+.trace li.flag::before{background:var(--orange)}
+.trace code{font:500 12.5px/1.4 var(--mono);color:var(--y);background:rgba(255,243,16,.08);border-radius:4px;padding:1px 6px}
+.trace .arg{font:400 12.5px/1.4 var(--mono);color:var(--mute2)}
+.trace .r{display:block;font:400 12.5px/1.45 var(--mono);color:var(--mute2);margin-top:2px;overflow-wrap:anywhere}
+.trace li.flag .r{color:var(--orange)}
+.results{padding:18px 20px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media(max-width:1100px){.results{grid-template-columns:minmax(0,1fr)}}
+.panel{background:#191915;border:1px solid rgba(255,255,255,.1);border-radius:var(--r-m);padding:16px;min-width:0}
+.panel h4{margin:0 0 12px;font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute2);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.panel h4 em{font-style:normal;color:var(--y)}
+.empty{font-size:13.5px;color:var(--mute)}
+.round{padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
+.round:first-of-type{border-top:0;padding-top:0}
+.rtop{display:flex;align-items:center;gap:10px}
+.rtop b{font-size:13.5px;font-weight:500;min-width:74px}
+.bar{flex:1;height:8px;border-radius:100vw;background:#2a2a24;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange);border-radius:100vw;transition:width .6s ease}
+.bar i.full{background:var(--y)}
+.rtop .avg{font:600 13px/1 var(--mono);min-width:56px;text-align:right}
+.vs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.v{font:500 11.5px/1 var(--mono);border-radius:100vw;padding:5px 8px;border:1px solid rgba(255,255,255,.14);color:var(--stone)}
+.v.ok{border-color:rgba(255,243,16,.5);color:var(--y)}
+.v.no{border-color:rgba(214,92,103,.6);color:#f0a1a8}
+.fails{margin:6px 0 0;padding:0;list-style:none;font:400 11.5px/1.5 var(--mono);color:var(--mute2)}
+.fails li{overflow-wrap:anywhere}
+.fails li b{color:#f0a1a8;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.chips span{font:500 11px/1 var(--mono);border-radius:100vw;padding:5px 8px;background:#2a2a24;color:var(--stone)}
+.chips span.c{background:var(--y);color:var(--ink)}
+.crit{font-size:13px;color:var(--stone);margin:0 0 8px;line-height:1.45}
+.crit b{font:500 12px/1 var(--mono);color:var(--y)}
+.cal{width:100%;border-collapse:collapse;font:400 12px/1.4 var(--mono);margin-top:6px}
+.cal th{text-align:left;color:var(--mute);font-weight:500;padding:5px 6px 5px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.cal td{padding:6px 6px 6px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top;color:var(--stone);overflow-wrap:anywhere}
+.cal td:nth-child(3){white-space:nowrap}
+.cal .ok{color:var(--y)}.cal .no{color:#f0a1a8}
+.cmo{grid-column:1/-1;background:var(--paper);color:var(--ink);border-radius:var(--r-m);padding:22px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:22px}
+@media(max-width:860px){.cmo{grid-template-columns:minmax(0,1fr)}}
+.cmo .tag{font:500 11.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cmo .tag i{font-style:normal;background:var(--y);color:var(--ink);border-radius:100vw;padding:4px 8px}
+.cmo h5{font-size:1.35rem;letter-spacing:-.025em;line-height:1.2;margin:10px 0 10px;font-weight:600}
+.cmo p{margin:0 0 10px;font-size:14.5px;color:var(--gray)}
+.cmo p strong{color:var(--ink);font:600 11.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
+.ba{display:flex;align-items:center;gap:10px 14px;margin:14px 0;flex-wrap:wrap}
+.ba em{flex-basis:140px}
+.ba div{background:var(--bg);border-radius:var(--r);padding:10px 14px;min-width:0}
+.ba small{display:block;font:500 11px/1.2 var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.ba b{font-size:2rem;letter-spacing:-.04em;font-weight:600;line-height:1.1}
+.ba div.after{background:var(--y)}
+.ba span{font-size:1.4rem;color:var(--mute)}
+.ba em{font:400 12px/1.4 var(--mono);color:var(--mute);font-style:normal}
+.adwrap small.cap{display:block;font:500 11px/1.3 var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.ad{border:1px solid var(--line2);border-radius:var(--r);overflow:hidden;background:#fff;font-size:14px}
+.ad .who{display:flex;gap:9px;align-items:center;padding:10px 12px}
+.ad .who i{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--y);display:grid;place-items:center;font:600 12px/1 var(--sans);font-style:normal}
+.ad .who b{font-size:13.5px;display:block;line-height:1.2}.ad .who span{font-size:11.5px;color:var(--mute)}
+.ad .txt{padding:0 12px 10px;line-height:1.4}
+.ad .img{height:120px;background:radial-gradient(circle at 30% 40%,var(--y2),var(--y3) 45%,var(--orange));display:grid;place-items:center;font:500 12px/1 var(--mono);color:rgba(12,11,2,.6)}
+.ad .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;background:#f3f3f6}
+.ad .foot b{font-size:14px;line-height:1.25}
+.ad .foot span{flex:none;font-size:12.5px;font-weight:600;background:#e5e5ea;border-radius:6px;padding:7px 10px}
+.ad.g{padding:12px 14px}
+.ad.g .sp{font-size:12px;color:var(--ink)}.ad.g .sp b{font-weight:600}
+.ad.g .h{color:#1a0dab;font-size:17px;line-height:1.3;margin:4px 0}
+.ad.g .d{color:#4d5156;font-size:13.5px}
+.ad.t{background:linear-gradient(170deg,#2a2a24,#0c0b02);color:#fff;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;padding:14px}
+.ad.t .hook{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.15;background:var(--y);color:var(--ink);padding:4px 8px;border-radius:6px;align-self:flex-start;max-width:100%}
+.ad.t .cap2{font-size:13px;line-height:1.4;color:#f4f4ef}
+.ad.t .cta{margin-top:10px;background:#fe2c55;color:#fff;text-align:center;border-radius:6px;padding:8px;font-weight:600;font-size:13.5px}
+.ad.t small{font-size:11px;color:var(--mute2)}
+.lfoot{display:flex;gap:10px 18px;align-items:center;flex-wrap:wrap;padding:12px 20px;border-top:1px solid rgba(255,255,255,.1);font:400 12.5px/1.4 var(--mono);color:var(--mute2)}
+.lfoot em{font-style:normal;color:var(--paper)}
+.lfoot .note{color:var(--y2)}
+.dots i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--y);margin-right:3px;animation:bl 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.2}}
+.lab-why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.lab-why div{background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-m);padding:16px;font-size:14px;color:var(--gray);min-width:0}
+.lab-why b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+@media(max-width:860px){.lab-why{grid-template-columns:minmax(0,1fr)}}
+
+/* how we work */
+.hww{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.val{grid-column:span 2;background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-l);padding:24px;display:flex;flex-direction:column;min-width:0}
+.val:nth-child(4),.val:nth-child(5){grid-column:span 3}
+@media(max-width:960px){.hww{grid-template-columns:minmax(0,1fr)}.val,.val:nth-child(4),.val:nth-child(5){grid-column:auto}}
+.val .k{font:500 12px/1 var(--mono);color:var(--mute);display:flex;justify-content:space-between}
+.val .k span{background:var(--y);color:var(--ink);border-radius:100vw;padding:4px 8px}
+.val h3{font-size:1.28rem;letter-spacing:-.025em;line-height:1.2;margin:16px 0 6px;font-weight:600}
+.val .def{font:400 13px/1.5 var(--mono);color:var(--mute);margin:0 0 14px}
+.val .story{color:var(--gray);margin:0 0 16px;font-size:15px}
+.val .proof{margin-top:auto;font:500 12px/1.3 var(--mono);border-top:1px solid var(--line);padding-top:12px}
+
+/* now */
+.now{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media(max-width:960px){.now{grid-template-columns:minmax(0,1fr)}}
+.steps4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 18px}
+@media(max-width:520px){.steps4{grid-template-columns:minmax(0,1fr)}}
+.steps4 div{background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-m);padding:16px;min-width:0}
+.steps4 small{font:500 12px/1 var(--mono);color:var(--mute)}
+.steps4 b{display:block;font-size:1.05rem;margin:8px 0 4px;letter-spacing:-.015em}
+.steps4 span{font-size:14px;color:var(--gray)}
+.now p{color:var(--gray)}
+.schema{background:var(--ink);color:var(--paper);border-radius:var(--r-l);padding:20px;font:400 13px/1.5 var(--mono);min-width:0}
+.schema .t{color:var(--mute2);font-size:12px;margin-bottom:12px}
+.schema .t b{color:var(--y);font-weight:500}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(max-width:520px){.sgrid{grid-template-columns:minmax(0,1fr)}}
+.sbox{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:10px 12px;min-width:0}
+.sbox h5{margin:0 0 6px;font:600 12.5px/1.3 var(--mono);color:var(--y)}
+.sbox div{display:flex;justify-content:space-between;gap:10px;color:var(--stone);font-size:12px;border-top:1px dashed rgba(255,255,255,.08);padding:4px 0}
+.sbox div span:first-child{color:var(--mute2)}
+.sbox div span:last-child{text-align:right}
+
+/* experience */
+.xp{border-top:1px solid var(--ink)}
+.xrow{border-bottom:1px solid var(--line2)}
+.xrow summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:6px 24px;padding:22px 0;align-items:center}
+.xrow summary::-webkit-details-marker{display:none}
+.xrow .when{font:500 13px/1.4 var(--mono);color:var(--mute)}
+.xrow h3{margin:0;font-size:1.25rem;letter-spacing:-.025em;font-weight:600}
+.xrow .lad{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.xrow .lad span{font:500 11.5px/1 var(--mono);border:1px solid var(--line2);border-radius:100vw;padding:6px 10px;background:var(--paper)}
+.xrow .lad span.top{background:var(--y);border-color:var(--ink)}
+.xrow .lad i{font-style:normal;color:var(--mute);font-size:12px}
+.xrow .pm{width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;font-size:18px;transition:transform .2s,background .2s}
+.xrow[open] .pm{transform:rotate(45deg);background:var(--y);border-color:var(--ink)}
+.xrow .xb{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:0 0 24px}
+.xrow .xb p{margin:0 0 10px;font-weight:500}
+.xrow .xb ul{margin:0;padding-left:18px;color:var(--gray)}
+.xrow .xb li{margin-bottom:6px}
+@media(max-width:720px){.xrow summary{grid-template-columns:minmax(0,1fr) auto}.xrow .when{grid-column:1/-1}.xrow .xb{grid-template-columns:minmax(0,1fr)}.xrow .xb>span{display:none}}
+
+/* two weeks */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;position:relative}
+@media(max-width:960px){.plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.plan{grid-template-columns:minmax(0,1fr)}}
+.pstep{background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-l);padding:22px;display:flex;flex-direction:column;min-width:0}
+.pstep:last-child{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pstep small{font:600 12px/1 var(--mono);background:var(--y);color:var(--ink);border-radius:100vw;padding:6px 10px;align-self:flex-start}
+.pstep h3{font-size:1.2rem;letter-spacing:-.02em;margin:16px 0 8px;font-weight:600}
+.pstep p{font-size:14.5px;color:var(--gray);margin:0 0 16px}
+.pstep:last-child p{color:var(--stone)}
+.pstep .out{margin-top:auto;font:500 12.5px/1.4 var(--mono);border-top:1px solid var(--line);padding-top:12px}
+.pstep:last-child .out{border-color:rgba(255,255,255,.14);color:var(--y)}
+
+/* certs */
+.certs{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+@media(max-width:900px){.certs{grid-template-columns:minmax(0,1fr)}}
+.clist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(max-width:520px){.clist{grid-template-columns:minmax(0,1fr)}}
+.cert{background:var(--paper);border:1px solid var(--line2);border-radius:var(--r-m);padding:14px 16px;min-width:0}
+.cert b{display:block;font-size:15px;letter-spacing:-.01em}
+.cert span{font:400 12.5px/1.4 var(--mono);color:var(--mute)}
+.h3s{font:500 12.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:0 0 14px}
+.edu{display:grid;gap:10px}
+
+/* contact */
+.contact{margin:96px 0 0;background:var(--ink);color:var(--paper);padding:88px 0 40px;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1.2px);background-size:22px 22px;pointer-events:none}
+.contact .wrap{position:relative}
+.contact h2{font-size:clamp(2.6rem,7vw,6rem);letter-spacing:-.05em;line-height:.95;margin:16px 0 20px;font-weight:600}
+.contact h2 .hl{color:var(--ink)}
+.contact .lede{color:var(--stone);max-width:620px}
+.contact .eyebrow{color:var(--mute2)}
+.contact .btn{border-color:rgba(255,255,255,.5);color:var(--paper)}
+.contact .btn:hover{background:var(--paper);color:var(--ink)}
+.contact .btn-p{background:var(--y);border-color:var(--y);color:var(--ink)}
+.cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:44px;border-top:1px solid rgba(255,255,255,.14)}
+@media(max-width:860px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.cgrid{grid-template-columns:minmax(0,1fr)}}
+.cgrid div{padding:18px 18px 18px 0;min-width:0}
+.cgrid small{display:block;font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute2);margin-bottom:6px}
+.cgrid span,.cgrid a{font-size:15px;overflow-wrap:anywhere;user-select:all}
+.fine{margin-top:40px;font:400 12px/1.5 var(--mono);color:var(--mute);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--y);color:var(--ink);font:600 14px/1 var(--sans);padding:12px 18px;border-radius:100vw;border:1px solid var(--ink);transition:transform .3s ease;z-index:50}
+.toast.show{transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal:not(.in){opacity:1;transform:none}
+}
+@media print{nav.top{position:static}.js .reveal:not(.in){opacity:1;transform:none}.trace{max-height:none}}
+</style>
+</head>
+<body>
+
+
+<div class="banner"><div class="wrap"><span>Adaptation is the most valuable skill in the AI era. So I studied Pencil's DNA and built my CV in it.</span><a href="#eval-lab">Run the eval lab →</a></div></div>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>J</i>Juan Martín</a>
+    <div class="navl">
+      <a href="#role">The role</a><a href="#eval-lab">Eval lab</a><a href="#how">How we work</a><a href="#xp">Experience</a><a href="#plan">Two weeks</a>
+    </div>
+    <button class="btn btn-p btn-s js-copy" type="button">Copy email</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="pill"><b></b>Agent Architect · Remote · Available now</span>
+      <h1>A vague brief in.<br>A <span class="hl">measured</span>, ship&#8209;ready agent out.</h1>
+      <p class="intro">I'm Juan Martín Beines Furcada. I sit with the people who own a problem, agree with them what good looks like, then make an agent do it reliably. <b>#1 Solutions Engineer in DevRev's US Commercial market in 2025</b>, and today I architect AI agents for enterprise clients in the US, starting in their offices.</p>
+      <div class="ctas">
+        <button class="btn btn-p js-copy" type="button">Copy email</button>
+        <a class="btn" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="#eval-lab">▶ Run the eval lab</a>
+      </div>
+      <ul class="checks">
+        <li>AI agents in production today</li>
+        <li>Buenos Aires · GMT-3 · afternoons overlap London</li>
+        <li>ES native · EN bilingual</li>
+      </ul>
+    </div>
+    <aside class="loop reveal" aria-label="Pencil's optimisation practice">
+      <h4>optimisation_practice <span>● from the post</span></h4>
+      <ol>
+        <li><div><b>Start from the client's real briefs</b><span>Agree what good looks like, precise enough to measure</span></div></li>
+        <li><div><b>Measure before changing anything</b><span>Every improvement shown against a baseline</span></div></li>
+        <li><div><b>Change one thing at a time</b><span>Keep a record of what changed and why</span></div></li>
+        <li><div><b>Diagnose before fixing</b><span>Inputs, instructions, or the measurement itself</span></div></li>
+        <li><div><b>Done when it holds up on repeat</b><span>Then generalise it for the core product</span></div></li>
+      </ol>
+      <p class="src">The demo below runs this loop with a real Claude agent.</p>
+    </aside>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><small>DevRev · 2025</small><b><em>#1</em> SE</b><span>US Commercial market</span></div>
+    <div class="stat"><small>Customer-facing</small><b>7+ yrs</b><span>pre-sales &amp; solutions</span></div>
+    <div class="stat"><small>Leadership</small><b>7</b><span>engineers led at BGH</span></div>
+    <div class="stat"><small>AWS partner</small><b>3×</b><span>AWS Competencies earned</span></div>
+    <div class="stat"><small>Career</small><b>4×</b><span>promoted: DevRev, BGH, MicroStrategy, ITBA</span></div>
+  </div>
+</div>
+
+<section id="role">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">01</span> The role, mapped</div>
+      <h2 class="h2">Every line of the post, <span class="hl">backed by work I've done.</span></h2>
+      <p class="lede">An Agent Architect takes a client's creative problem and makes the agent solve it reliably: discovery, a definition of done, a measured optimisation, then a lesson for the core product. Here is the evidence for each part.</p>
+    </div>
+    <div class="map">
+      <div class="mrow reveal">
+        <div class="n">01</div>
+        <div><h3>Client discovery, ending in a measurable definition of done</h3><p class="q">"…turn ambiguous briefs into a scoped problem with an agreed, measurable definition of done."</p></div>
+        <div><ul><li>Today I run discovery <b>on site</b> with US enterprise teams and map their business processes into agentic architecture</li><li><b>#1 Solutions Engineer, US Commercial, DevRev, 2025</b>: owned pre-sales strategy and solution architecture for enterprise accounts</li><li>At MicroStrategy, getting finance and marketing to agree on what an "active customer" means was part of the job. "Make it feel more premium" is the same meeting</li></ul><div class="tags"><span>Discovery</span><span>Definition of done</span><span>Brand &amp; agency teams</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">02</div>
+        <div><h3>Optimise an agent from baseline to a confirmed result</h3><p class="q">"…lead the optimisation of Scribble for your engagements from baseline to confirmed result."</p></div>
+        <div><ul><li>I design agents for enterprise clients, take them to production and <b>iterate on real conversations and results</b></li><li>At DevRev I was the trusted technical advisor through POCs, integration design and adoption: the stretch where a demo becomes something a customer relies on</li></ul><div class="tags"><span>Optimisation</span><span>POCs</span><span>Production</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">03</div>
+        <div><h3>Measurement discipline: evals that catch known failures</h3><p class="q">"…check that they catch known failures before relying on them."</p></div>
+        <div><ul><li>The eval lab below does exactly this: before trusting a criterion, the agent checks it against the brand's own past reviewer verdicts, and refuses to measure a baseline until they agree</li><li><b>AWS Well-Architected Review Consultant</b>: a review is a measured baseline against agreed criteria, before anyone changes anything</li></ul><div class="tags"><span>Eval design</span><span>Calibration</span><span>Baselines</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">04</div>
+        <div><h3>Extrapolate to the core, and make the case with evidence</h3><p class="q">"…generalise what works for one client so that it serves a whole category of work."</p></div>
+        <div><ul><li>At BGH the AWS practice I helped build earned <b>3 AWS Competencies</b>, which AWS grants only after reviewing delivered work. One-off projects had to become a repeatable practice first</li><li>At DevRev I designed AI use cases that automated support triage, product analytics workflows and data consumption for enterprise accounts</li></ul><div class="tags"><span>Core squads</span><span>Evidenced requests</span><span>Generalise</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">05</div>
+        <div><h3>A reusable library of skills, evals and playbooks</h3><p class="q">"…make each new engagement faster than the last."</p></div>
+        <div><ul><li>Built and led a team of <b>7</b> data engineers and Solutions Architects at BGH across parallel customer accounts; led and mentored the SE team in Argentina at DevRev</li><li>Taught Product Management and Cloud Computing at ITBA. If a playbook can't be taught to the next person, it isn't a playbook yet</li></ul><div class="tags"><span>Playbooks</span><span>Team lead</span><span>Teaching</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">06</div>
+        <div><h3>Explain cost, speed and reliability to a CMO, in plain words</h3><p class="q">"…explain an evaluation result or an agent failure to a CMO without jargon."</p></div>
+        <div><ul><li>Advised <b>C-level and VPs</b> at banks, retailers and telcos at BGH</li><li>The production agent I built routes by that exact trade-off: a fast model triages, a stronger model runs the tool loop, fallbacks across providers when one fails. I can explain why in one sentence to a non-engineer</li></ul><div class="tags"><span>Exec readouts</span><span>Trade-offs</span><span>Plain language</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">07</div>
+        <div><h3>Hands-on with LLMs and generative models, and how agents fail</h3><p class="q">"…a practical understanding of how agents fail and why."</p></div>
+        <div><ul><li>Built and shipped a <b>production conversational agent end to end</b>: Next.js/TypeScript frontend, Node.js SSE streaming, Python/Flask with Celery, Redis and Postgres, model routing with fallbacks</li><li>Generative voice in production: <b>ElevenLabs TTS and voice cloning</b>. The ad side too: <b>Meta Marketing API</b>, plus WhatsApp Cloud API, payments and OAuth</li><li>I read JSON and API docs daily, write the scripts myself and direct agents through multi-step work. This page's demo is one</li></ul><p class="honest"><b>Honest note</b>My generative work in production is text and voice. Image and video models at the scale of global brand campaigns are where I'll go deepest in my first week.</p><div class="tags"><span>LLMs</span><span>Agents</span><span>TTS</span><span>Meta Marketing API</span><span>Python · TypeScript</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">08</div>
+        <div><h3>Creative literacy: turn "more premium" into something measurable</h3><p class="q">"…understand what 'make it feel more premium' means for a specific brand, and turn it into something measurable."</p></div>
+        <div><ul><li>In the eval lab, a Creative Director's note becomes word lists and checks, tested against the brand's past approvals and rejections before anyone relies on them</li><li>I started a company at 17 and ran the client side myself: what a client says and what they mean are rarely the same sentence</li></ul><div class="tags"><span>Creative Directors</span><span>Brand books</span><span>Measurable taste</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eval-lab" aria-labelledby="lab-h">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">02</span> Live demo · Claude with tools</div>
+      <h2 class="h2" id="lab-h">The eval lab. <span class="hl">Brief in, CMO readout out.</span></h2>
+      <p class="lede">Pick a brand brief. The agent reads the brand kit and past ads, turns the Creative Director's note into a measurable criterion, checks the eval against past reviewer verdicts, measures the current drafts, writes variants, fixes what fails and re-scores. Then it writes the summary a CMO would read.</p>
+    </div>
+    <p class="lab-honest"><i>SANDBOX</i><span><b>Real agent, made-up brands.</b> Claude Haiku 4.5 on Amazon Bedrock calling deterministic tools: brand kit, past ads, eval suite, scorer. The three brands, their ads and every CTR are fictional sandbox data. The scores come from the tools, never from the model. Edit the Creative Director's note to test your own.</span></p>
+    <div class="shell reveal">
+      <div class="shbar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><b>eval-lab</b><span>/ brief → criteria → baseline → optimise → readout</span>
+        <span class="model"><span class="ldot" id="lab-dot"></span><span id="lab-model">Claude Haiku 4.5 · Bedrock · tool use</span></span></div>
+      <div class="lab">
+        <aside class="side" aria-label="Brand briefs">
+          <div class="lbl">Brand briefs · pick one</div>
+          <div id="lab-cases" style="display:grid;gap:8px"></div>
+          <div class="notebox">
+            <label class="lbl" for="lab-note"><span>Creative Director's note</span><span id="lab-count">0/240</span></label>
+            <textarea id="lab-note" maxlength="240" rows="3"></textarea>
+            <small>Rewrite it if you like ("more playful", "less corporate"). The agent has to turn it into a check and prove the check works.</small>
+          </div>
+          <button class="btn btn-p run" id="lab-run" type="button">▶ Run the engagement</button>
+        </aside>
+        <div class="main">
+          <div class="mhead" id="lab-head"><b>No brief yet</b><span>pick a brand on the left</span></div>
+          <ol class="trace" id="lab-trace" aria-live="polite"></ol>
+          <div class="results">
+            <div class="panel"><h4>Eval suite <em id="lab-cal"></em></h4><div id="lab-eval"><p class="empty">Built-in checks plus the criteria the agent derives from the note. Calibration appears here.</p></div></div>
+            <div class="panel"><h4>Scoreboard <em id="lab-delta"></em></h4><div id="lab-score"><p class="empty">Baseline first, then every round of variants.</p></div></div>
+            <div id="lab-cmo" style="display:contents"></div>
+          </div>
+        </div>
+      </div>
+      <div class="lfoot"><span id="lab-stat"></span><span class="note" id="lab-note2" role="status"></span></div>
+    </div>
+    <div class="lab-why">
+      <div class="reveal"><b>Measure before changing anything</b>The agent can't score a single variant until it has a baseline, and can't take a baseline until the eval agrees with the brand's own past verdicts.</div>
+      <div class="reveal"><b>Diagnose, then change one thing</b>Each failing check names its cause (a length, a banned claim, a missing CTA). The agent fixes that and re-scores everything.</div>
+      <div class="reveal"><b>Leave the core better</b>The readout ends with one check worth making standard for every brand in the category. That's the request to a core squad.</div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">03</span> How we work</div>
+      <h2 class="h2">Your five principles, <span class="hl">and where I've lived them.</span></h2>
+      <p class="lede">Pencil's post describes how the optimisation practice works. I read it as values, because that's what they are. Each one has a story behind it.</p>
+    </div>
+    <div class="hww">
+      <div class="val reveal"><div class="k">01 <span>real briefs</span></div><h3>Start from the client's real briefs</h3><p class="def">Agree what good looks like in terms precise enough to measure.</p><p class="story">My favorite place to work is the customer's office, sitting with the people who do the job and mapping it step by step. Their real artifacts beat any spec I could write from a distance.</p><div class="proof">On-site discovery · US enterprise clients today</div></div>
+      <div class="val reveal"><div class="k">02 <span>baseline</span></div><h3>Measure before changing anything</h3><p class="def">Every improvement shown against a baseline.</p><p class="story">As an AWS Well-Architected Review Consultant I walked customers through their workloads pillar by pillar before recommending a single change. A fix without a before is just an opinion.</p><div class="proof">AWS Well-Architected Review Consultant</div></div>
+      <div class="val reveal"><div class="k">03 <span>one variable</span></div><h3>Change one thing at a time</h3><p class="def">Keep a record of what changed and why.</p><p class="story">My production agent routes across models and falls back across providers. With that many moving parts, the only way to know what helped is one change, one note, one measurement.</p><div class="proof">Production agent · model routing + fallbacks</div></div>
+      <div class="val reveal"><div class="k">04 <span>diagnose</span></div><h3>Treat a failure as a diagnosis problem</h3><p class="def">The cause may sit in the inputs, the instructions or the measurement.</p><p class="story">Years of ETL and ML pipelines on AWS for banks and retailers taught me that most "model problems" start upstream, in the data or in how we measured. I check the inputs and the ruler before I touch the agent.</p><div class="proof">Data lakes, ETL &amp; ML pipelines · BGH</div></div>
+      <div class="val reveal"><div class="k">05 <span>repeat</span></div><h3>Done only when it holds up on repeat</h3><p class="def">Then it's worth generalising.</p><p class="story">I say "not feasible" when it isn't. A result that only works on the demo day is a churned customer that hasn't happened yet. I'd rather lose the argument on day 3 than the account on day 90.</p><div class="proof">Trusted advisor through POCs · DevRev</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">04</span> What I do now</div>
+      <h2 class="h2">I turn business processes into <span class="hl">agentic architecture.</span></h2>
+      <p class="lede">Today I design and deploy AI agents for enterprise clients in the US. A creative brief is a business process too: inputs, rules, a reviewer, a definition of done.</p>
+    </div>
+    <div class="now">
+      <div class="reveal">
+        <div class="steps4">
+          <div><small>01</small><b>Map the work</b><span>Every brief, review and handoff a team does today.</span></div>
+          <div><small>02</small><b>Define good</b><span>What the reviewer approves and rejects, written as checks.</span></div>
+          <div><small>03</small><b>Design the agent</b><span>Instructions, skills, tools, and what it escalates to a human.</span></div>
+          <div><small>04</small><b>Ship and iterate</b><span>Production first, then improve against the measured baseline.</span></div>
+        </div>
+        <p>I don't stop at the diagram. The schema on the right is a production agent I built myself. When an engineer on a core squad walks me through a pipeline, I've usually shipped something with the same parts.</p>
+      </div>
+      <div class="schema reveal" aria-label="Production agent I built">
+        <div class="t"><b>agent_in_production</b> · built end to end</div>
+        <div class="sgrid">
+          <div class="sbox"><h5>frontend</h5><div><span>framework</span><span>Next.js · React</span></div><div><span>language</span><span>TypeScript</span></div><div><span>stream</span><span>Node.js SSE</span></div></div>
+          <div class="sbox"><h5>backend</h5><div><span>api</span><span>Python · Flask</span></div><div><span>jobs</span><span>Celery · Redis</span></div><div><span>db</span><span>Postgres</span></div></div>
+          <div class="sbox"><h5>model_router</h5><div><span>triage</span><span>fast model</span></div><div><span>tool_loop</span><span>stronger model</span></div><div><span>fallback</span><span>across providers</span></div></div>
+          <div class="sbox"><h5>channels</h5><div><span>voice</span><span>ElevenLabs TTS · cloning</span></div><div><span>chat</span><span>WhatsApp Cloud API</span></div><div><span>ads</span><span>Meta Marketing API</span></div></div>
+          <div class="sbox"><h5>platform</h5><div><span>auth</span><span>OAuth</span></div><div><span>billing</span><span>payments</span></div><div><span>deploy</span><span>Docker on AWS</span></div></div>
+          <div class="sbox"><h5>data_before_ai</h5><div><span>warehouse</span><span>Redshift</span></div><div><span>etl</span><span>Glue · Spark</span></div><div><span>orchestration</span><span>Step Functions</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="xp">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">05</span> Experience</div>
+      <h2 class="h2">Promoted at <span class="hl">every stop.</span></h2>
+      <p class="lede">Seven-plus years in the room with customers, and a step up at every company: intern to consultant, Solutions Architect to manager, Solutions Engineer to Solutions Architect. Open any row for detail.</p>
+    </div>
+    <div class="xp" id="xp-list"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow"><span class="n">06</span> First two weeks</div>
+      <h2 class="h2">Four weeks to ramp up? <span class="hl">Give me two.</span></h2>
+      <p class="lede">Clients can tell in the first session whether their Agent Architect knows the agent. So I'll learn it hands-on and run a real baseline before the end of week two.</p>
+    </div>
+    <div class="plan">
+      <div class="pstep reveal"><small>Days 1–3</small><h3>Learn Scribble by using it</h3><p>Run real briefs through Scribble across image, video and structured formats. Read the skills, the eval criteria and the optimisation records from past engagements.</p><div class="out">I can demo Scribble end to end</div></div>
+      <div class="pstep reveal"><small>Days 4–6</small><h3>Re-run a closed engagement</h3><p>Take one finished engagement and rebuild its evals from the brief. Check them against its known failures, and compare my result with the confirmed one.</p><div class="out">My evals calibrated on Pencil's real work</div></div>
+      <div class="pstep reveal"><small>Days 7–10</small><h3>First discovery, first baseline</h3><p>Shadow, then lead, a discovery session with a brand team. Write the definition of done with them and measure the baseline before changing anything.</p><div class="out">Agreed definition of done + baseline</div></div>
+      <div class="pstep reveal"><small>Days 11–14</small><h3>First readout, first core note</h3><p>First optimisation round with a change log, explained to the client in plain language. One evidenced note to the relevant core squad.</p><div class="out">Client readout + one contribution to the core</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="certs">
+      <div class="reveal">
+        <p class="h3s">07 · Certifications</p>
+        <div class="clist">
+          <div class="cert"><b>AWS Solutions Architect</b><span>Amazon Web Services</span></div>
+          <div class="cert"><b>AWS Database Specialty</b><span>Amazon Web Services</span></div>
+          <div class="cert"><b>AWS Well-Architected Review Consultant</b><span>Amazon Web Services</span></div>
+          <div class="cert"><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></div>
+          <div class="cert"><b>Generative AI Professional</b><span>Blockchain Council</span></div>
+          <div class="cert"><b>MicroStrategy Architect</b><span>MicroStrategy</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="h3s">Education &amp; languages</p>
+        <div class="edu">
+          <div class="cert"><b>B.S. Systems &amp; Business Administration, ITBA</b><span>2016–2021 · Honors</span></div>
+          <div class="cert"><b>IGCSE + IB Certificate, Northlands</b><span>Most honored student</span></div>
+          <div class="clist">
+            <div class="cert"><b>Spanish</b><span>Native</span></div>
+            <div class="cert"><b>English</b><span>Bilingual</span></div>
+            <div class="cert"><b>French</b><span>DELF A2</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="n">08</span> Contact</div>
+    <h2>Give me a brief.<br><span class="hl">I'll bring the baseline.</span></h2>
+    <p class="lede">Give me 30 minutes and I'll walk you through an engagement I owned from discovery to production, and how I'd run the same thing with Scribble for one of your clients.</p>
+    <div class="ctas" style="margin-top:28px">
+      <button class="btn btn-p js-copy" type="button">Copy email</button>
+      <a class="btn" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">Open LinkedIn ↗</a>
+    </div>
+    <div class="cgrid">
+      <div><small>Email</small><span id="email-txt">jbeinesfurcada@gmail.com</span></div>
+      <div><small>Phone · WhatsApp</small><span>+54 9 11 6433-6286</span></div>
+      <div><small>Location</small><span>Buenos Aires · GMT-3</span></div>
+      <div><small>Start</small><span>Now · remote</span></div>
+    </div>
+    <div class="fine"><span>Juan Martín Beines Furcada · 2026</span><span>Built for Pencil's Agent Architect role · Geist, IBM Plex Mono and one yellow</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  /* copy email */
+  var EMAIL='jbeinesfurcada@gmail.com',toast=document.getElementById('toast'),tt;
+  function show(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800)}
+  function selectEmail(){var el=document.getElementById('email-txt');try{var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);el.scrollIntoView({block:'center'});show('Email selected: press Ctrl/Cmd+C')}catch(e){}}
+  document.querySelectorAll('.js-copy').forEach(function(b){b.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(EMAIL).then(function(){show('Email copied')},selectEmail)}else selectEmail();
+  })});
+  /* reveal */
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }else els.forEach(function(e){e.classList.add('in')});
+  /* experience */
+  var XP=[
+    ["2026 — Now","AI Agents Architect · Enterprise clients in the US",["AI Agents Architect"],"Design and deploy AI agents that take over operational work for US enterprise teams.",["Run discovery on site with the customer's teams and map the business process into an agentic architecture","Architect the agent: instructions, tools, escalation rules and integrations with their CRM and data","Take it to production and iterate on real conversations and results"]],
+    ["Oct 2024 — 2026","DevRev",["Solutions Engineer","Solutions Architect"],"#1 SE in the US Commercial market in 2025 at an agentic AI company. Promoted to Solutions Architect.",["#1 Solutions Engineer in the US Commercial market, 2025","Owned pre-sales strategy, technical demos and solution architecture for enterprise accounts","Designed AI use cases that automated support triage, product analytics workflows and data consumption","Trusted technical advisor through POCs, integration design and adoption","Led and mentored the SE team in Argentina"]],
+    ["2021 — 2024","BGH Tech Partner",["AWS Solutions Architect","Data Analytics Manager"],"AWS partner. Joined as a Solutions Architect, promoted to lead a team of 7 data engineers and Solutions Architects.",["Advised C-level and VPs in banking, retail, logistics, telco and public sector","Designed and deployed data lakes, serverless ETL, ML pipelines and warehouses on AWS (Spark, Glue, Redshift, Step Functions)","Governed data platforms for banks under strict compliance requirements","Built and led a team of 7 data engineers and Solutions Architects across multiple customer accounts","Owned the engagement lifecycle: discovery, design, blueprints, implementation, optimization","Helped the company earn 3 AWS Competencies"]],
+    ["2019 — 2021","MicroStrategy",["Intern","Associate Consultant"],"Joined as an intern, promoted to consultant. POCs, pre-sales demos and warehouse modernization for enterprise clients.",["Delivered POCs, technical demos and consulting to prospective enterprise clients","Led data warehouse modernization and BI deployments: data modeling, SQL optimization, ETL","Wrote solution documentation: POCs, roadmaps, logical system views"]],
+    ["2017 — 2021","ITBA",["Sr Analyst","Back Office Manager","Instructor"],"Ran operations for MIT $100K LatAm, then taught Product Management and Cloud Computing.",["Back Office Manager for MIT $100K LatAm: led a team of 4","Taught Product Management and Cloud Computing at ITBA"]],
+    ["2014 — 2019","BB Productions",["CEO & Co-founder"],"Founded at 17. Ran clients, P&L, vendors and staffing.",["Managed every business operation: client relations, P&L, vendor management, staffing and planning"]]
+  ];
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  window.__esc=esc;
+  var xl=document.getElementById('xp-list');
+  XP.forEach(function(x,i){var d=document.createElement('details');d.className='xrow reveal in';if(i===1)d.open=true;
+    d.innerHTML='<summary><span class="when">'+esc(x[0])+'</span><div><h3>'+esc(x[1])+'</h3><div class="lad">'+x[2].map(function(r,k){return (k?'<i>→</i>':'')+'<span'+(k===x[2].length-1?' class="top"':'')+'>'+esc(r)+'</span>'}).join('')+'</div></div><span class="pm" aria-hidden="true">+</span></summary><div class="xb"><span></span><div><p>'+esc(x[3])+'</p><ul>'+x[4].map(function(b){return '<li>'+esc(b)+'</li>'}).join('')+'</ul></div></div>';
+    xl.appendChild(d)});
+})();
+</script>
+<script id="lab-replay">window.LAB_REPLAY={"coffee":[{"t":"start","scenario":"pencil","model":"Claude Haiku 4.5 · Amazon Bedrock"},{"t":"say","text":"I'll run the full engagement for Ridgeline Roasters. Starting with the brand kit and past ads."},{"t":"tool","name":"open_brand_kit","input":{},"out":"Meta feed ad: primary_text ≤100, headline ≤30 · 7 banned claims","flag":false},{"t":"card","name":"open_brand_kit","card":{"kind":"brief","brand":"Ridgeline Roasters (fictional)","what":"DTC specialty coffee, subscription bags roasted to order in a small roastery","goal":"Win new subscribers on Meta","channel":"Meta feed ad","limits":{"primary_text":100,"headline":30},"note":"Make it feel more premium. Right now it reads like a discount brand."}},{"t":"tool","name":"get_past_ads","input":{},"out":"4 past ads · 2 rejected · best approved angle \"ritual\" (1.8% CTR, sandbox)","flag":false},{"t":"say","text":"The brand kit shows Ridgeline positions as a craft roaster with warm, unhurried voice; past ads show the discount angle was rejected while ritual and origin angles were approved.\n\nNow I'll convert the Creative Director's note into measurable criteria. The note says \"premium\" not \"discount,\" so I need to catch language that undermines premiumness."},{"t":"tool","name":"define_criterion","input":{"id":"avoid_discount_language","type":"avoid_words","words":["save","off","deal","cheap","discount","promo","offer","limited time","hurry","act now"],"rationale":"Discount language directly undermines premium positioning, which the Creative Director flagged as the core issue."},"out":"avoid_discount_language: avoid save, off, deal, cheap, discount…","flag":false},{"t":"tool","name":"define_criterion","input":{"id":"require_craft_language","type":"require_any","words":["small-batch","small batch","roasted","craft","artisanal","single-origin","single origin","ritual","slow"],"rationale":"Premium brands emphasize craft and intentionality; the brand lexicon already requires at least one craft word, but reinforcing it signals quality over value."},"out":"require_craft_language: require one of small-batch, small batch, roasted, craft, artisanal…","flag":false},{"t":"say","text":"Criteria defined; now calibrating the eval suite against past ad verdicts."},{"t":"tool","name":"calibrate_eval","input":{},"out":"eval agrees with the reviewer on 4/4 past ads","flag":false},{"t":"card","name":"calibrate_eval","card":{"kind":"eval","agree":4,"total":4,"ok":true,"checks":["channel_limits","cta","banned_claims","brand_lexicon","style_guide","original"],"custom":[{"id":"avoid_discount_language","type":"avoid_words","words":["save","off","deal","cheap","discount","promo","offer","limited time","hurry","act now"],"rationale":"Discount language directly undermines premium positioning, which the Creative Director flagged as the core issue."},{"id":"require_craft_language","type":"require_any","words":["small-batch","small batch","roasted","craft","artisanal","single-origin","single origin","ritual","slow"],"rationale":"Premium brands emphasize craft and intentionality; the brand lexicon already requires at least one craft word, but reinforcing it signals quality over value."}],"rows":[{"id":"P1","reviewer":"rejected","eval":"fail","agree":true,"by":"avoid_discount_language","problem":""},{"id":"P2","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""},{"id":"P3","reviewer":"rejected","eval":"fail","agree":true,"by":"banned_claims","problem":""},{"id":"P4","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""}]}},{"t":"say","text":"Perfect calibration: 4 of 4 past ads match the reviewer's verdicts. Now measuring the brand's baseline drafts."},{"t":"tool","name":"measure_baseline","input":{},"out":"baseline avg 71/100 · 3/3 drafts fail","flag":true},{"t":"card","name":"measure_baseline","card":{"kind":"score","label":"Baseline","avg":71,"rows":[{"id":"B1","angle":"discount","score":75,"fails":["channel_limits: primary_text 122/100 chars","avoid_discount_language: uses \"off\""],"fields":{"primary_text":"Get 30% off your first subscription today and enjoy freshly roasted beans delivered right to your door every single month!","headline":"30% off fresh coffee","cta":"Shop now"}},{"id":"B2","angle":"origin","score":88,"fails":["banned_claims: \"best coffee\""],"fields":{"primary_text":"The best coffee you'll ever taste, roasted by hand from single-origin beans.","headline":"Taste the difference","cta":"Learn more"}},{"id":"B3","angle":"ritual","score":50,"fails":["cta: \"Buy now\" is not an allowed CTA","brand_lexicon: no brand lexicon word","style_guide: 2 exclamation marks (max 1)","require_craft_language: none of: small-batch, small batch, roasted, craft…"],"fields":{"primary_text":"Coffee delivered. Fresh every month!! Try it now.","headline":"Your new favorite coffee","cta":"Buy now"}}]}},{"t":"say","text":"Baseline is 71% average; three drafts have clear failures. Now writing three variants on approved angles (ritual and origin both scored 1.5-1.8 CTR), shifting firmly away from discount messaging."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"A","angle":"ritual","fields":{"primary_text":"Your morning ritual, roasted fresh in small batches every week and shipped within days.","headline":"Small-batch Mondays","cta":"Subscribe"}},{"id":"B","angle":"origin","fields":{"primary_text":"Single-origin beans from Huila's highlands, roasted to order for your slow mornings.","headline":"One farm. One roast.","cta":"Learn more"}},{"id":"C","angle":"craft","fields":{"primary_text":"Roasted in a small roastery. Shipped within days. A ritual for those who slow down.","headline":"Craft roasted weekly","cta":"Subscribe"}}]},"out":"round 1: avg 92/100 · A fails original · B fails original","flag":true},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 1","avg":92,"rows":[{"id":"A","angle":"ritual","score":88,"fails":["original: reuses past ad P2"],"fields":{"primary_text":"Your morning ritual, roasted fresh in small batches every week and shipped within days.","headline":"Small-batch Mondays","cta":"Subscribe"}},{"id":"B","angle":"origin","score":88,"fails":["original: reuses past ad P4"],"fields":{"primary_text":"Single-origin beans from Huila's highlands, roasted to order for your slow mornings.","headline":"One farm. One roast.","cta":"Learn more"}},{"id":"C","angle":"craft","score":100,"fails":[],"fields":{"primary_text":"Roasted in a small roastery. Shipped within days. A ritual for those who slow down.","headline":"Craft roasted weekly","cta":"Subscribe"}}]}},{"t":"say","text":"A and B reused past language; C passed perfectly. Rewriting A and B with fresh angles while holding the premium positioning."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"A","angle":"ritual","fields":{"primary_text":"Start your morning right. Small-batch roasted beans shipped fresh, every week to your door.","headline":"Ritual, refined","cta":"Subscribe"}},{"id":"B","angle":"origin","fields":{"primary_text":"From Huila's single-origin harvest to your ritual. Roasted to order, shipped the same day.","headline":"Origin to ritual","cta":"Learn more"}}]},"out":"round 2: all 3 variants pass (avg 100/100)","flag":false},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 2","avg":100,"rows":[{"id":"A","angle":"ritual","score":100,"fails":[],"fields":{"primary_text":"Start your morning right. Small-batch roasted beans shipped fresh, every week to your door.","headline":"Ritual, refined","cta":"Subscribe"}},{"id":"B","angle":"origin","score":100,"fails":[],"fields":{"primary_text":"From Huila's single-origin harvest to your ritual. Roasted to order, shipped the same day.","headline":"Origin to ritual","cta":"Learn more"}},{"id":"C","angle":"craft","score":100,"fails":[],"fields":{"primary_text":"Roasted in a small roastery. Shipped within days. A ritual for those who slow down.","headline":"Craft roasted weekly","cta":"Subscribe"}}]}},{"t":"say","text":"All three variants now score 100. Submitting the CMO report with facts from the tool results."},{"t":"card","name":"submit_cmo_report","card":{"kind":"report","brand":"Ridgeline Roasters (fictional)","channel":"Meta feed ad","headline":"Three premium coffee ads ready to launch; all on-brand and on-brief.","summary":"We tested whether premium positioning—emphasizing craft, origin, and ritual—could replace the discount angle that the Creative Director flagged. We measured against two criteria: avoiding discount language (save, off, deal, etc.) and requiring craft terminology. All three variants passed the full eval suite at 100 percent, compared to the baseline average of 71 percent.","why":"Variant C scored 100 in round 1 with no revisions needed and leans hardest into craft positioning (\"Craft roasted weekly\"). The two approved past ads—the ritual angle (P2, 1.8 percent CTR) and origin angle (P4, 1.5 percent CTR)—provide confidence that premium language performs with this audience.","next_test":"Run live to confirm whether premium positioning increases conversion rate on new subscriber acquisition, since the sandbox data reflects click-through only and past approvals, not subscriber lift.","make_standard":"For specialty food and beverage DTC: avoid discount language entirely and require at least one craft or intentionality word per ad to reinforce premium positioning over value messaging.","before":71,"after":100,"rounds":2,"checks":8,"calib":"4/4","launch":{"id":"C","angle":"craft","score":100,"fields":{"primary_text":"Roasted in a small roastery. Shipped within days. A ritual for those who slow down.","headline":"Craft roasted weekly","cta":"Subscribe"},"past_ctr":null,"past_verdict":null}}},{"t":"say","text":"Done. All three variants (A, B, C) score 100 percent and are ready for launch, with C recommended first. The premium positioning shift—replacing discount language with craft and ritual messaging—solved the Creative Director's brief and improved from a baseline of 71 to 100 across the full set."},{"t":"done","calls":8,"seconds":18,"cost":0.037}],"fintech":[{"t":"start","scenario":"pencil","model":"Claude Haiku 4.5 · Amazon Bedrock"},{"t":"say","text":"I'll run the full engagement end to end. Let me start by opening the brand kit and past ads to understand Ledgerly's constraints and performance history."},{"t":"tool","name":"open_brand_kit","input":{},"out":"Google Search responsive ad: headline_1 ≤30, headline_2 ≤30, description ≤90 · 7 banned claims · must say \"Capital at risk\"","flag":false},{"t":"card","name":"open_brand_kit","card":{"kind":"brief","brand":"Ledgerly (fictional)","what":"UK investing app for first-time investors: index funds from £1, one flat monthly fee","goal":"Drive app installs from search without compliance rejections","channel":"Google Search responsive ad","limits":{"headline_1":30,"headline_2":30,"description":90},"note":"Sound trustworthy, not hypey. Compliance keeps rejecting anything that sounds like excitement."}},{"t":"tool","name":"get_past_ads","input":{},"out":"4 past ads · 2 rejected · best approved angle \"fees\" (3.9% CTR, sandbox)","flag":false},{"t":"say","text":"Now I'll turn the Creative Director's note into measurable criteria: avoid excitement/hype language (which triggers compliance rejections) and require trustworthy/plain lexicon from the brand kit."},{"t":"tool","name":"define_criterion","input":{"id":"avoid_hype_language","type":"avoid_words","words":["soar","fast","rapid","guaranteed","growth","get rich","amazing","incredible","best","exciting","revolutionary"],"rationale":"Compliance rejects excitement language; trustworthy tone requires plain, factual words instead."},"out":"avoid_hype_language: avoid soar, fast, rapid, guaranteed, growth…","flag":false},{"t":"tool","name":"define_criterion","input":{"id":"require_trustworthy_lexicon","type":"require_any","words":["simple","clear","plain","transparent","flat fee"],"rationale":"Brand voice is calm and plain; must use at least one anchor word from brand lexicon to signal trustworthiness."},"out":"require_trustworthy_lexicon: require one of simple, clear, plain, transparent, flat fee","flag":false},{"t":"say","text":"Now I'll calibrate the eval suite against the brand's past reviewer verdicts to ensure it catches what compliance rejected."},{"t":"tool","name":"calibrate_eval","input":{},"out":"eval agrees with the reviewer on 4/4 past ads","flag":false},{"t":"card","name":"calibrate_eval","card":{"kind":"eval","agree":4,"total":4,"ok":true,"checks":["channel_limits","cta","banned_claims","brand_lexicon","mandatory","style_guide","original"],"custom":[{"id":"avoid_hype_language","type":"avoid_words","words":["soar","fast","rapid","guaranteed","growth","get rich","amazing","incredible","best","exciting","revolutionary"],"rationale":"Compliance rejects excitement language; trustworthy tone requires plain, factual words instead."},{"id":"require_trustworthy_lexicon","type":"require_any","words":["simple","clear","plain","transparent","flat fee"],"rationale":"Brand voice is calm and plain; must use at least one anchor word from brand lexicon to signal trustworthiness."}],"rows":[{"id":"P1","reviewer":"rejected","eval":"fail","agree":true,"by":"avoid_hype_language","problem":""},{"id":"P2","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""},{"id":"P3","reviewer":"rejected","eval":"fail","agree":true,"by":"banned_claims, avoid_hype_language","problem":""},{"id":"P4","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""}]}},{"t":"say","text":"Perfect: suite agrees 4/4 with past verdicts. Now I'll measure the baseline performance of the brand's current drafts."},{"t":"tool","name":"measure_baseline","input":{},"out":"baseline avg 67/100 · 3/3 drafts fail","flag":true},{"t":"card","name":"measure_baseline","card":{"kind":"score","label":"Baseline","avg":67,"rows":[{"id":"B1","angle":"returns","score":44,"fails":["channel_limits: headline_1 33/30 chars","brand_lexicon: no brand lexicon word","mandatory: missing \"Capital at risk\"","style_guide: 1 exclamation marks (max 0)","require_trustworthy_lexicon: none of: simple, clear, plain, transparent…"],"fields":{"headline_1":"Grow your wealth faster than ever","headline_2":"Smart investing app","description":"Join thousands of investors growing their money. Download the app today!"}},{"id":"B2","angle":"speed","score":78,"fails":["banned_claims: \"risk-free\"","avoid_hype_language: uses \"fast\""],"fields":{"headline_1":"Investing in 60 seconds","headline_2":"Simple, clear, fast","description":"Risk-free way to start. Get started now. Capital at risk."}},{"id":"B3","angle":"simplicity","score":78,"fails":["cta: no CTA phrase in description","original: reuses past ad P2"],"fields":{"headline_1":"Investing, made simple","headline_2":"From £1","description":"Simple index funds, one flat fee, no surprises. Capital at risk."}}]}},{"t":"say","text":"Baseline is 67/100 with three drafts all failing. Now I'll write three new variants on different angles (simplicity, fees, transparency) that passed or scored well before, keeping copy tight and trustworthy."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"A","angle":"simplicity","fields":{"headline_1":"Investing, made clear","headline_2":"Index funds from £1","description":"One flat fee, transparent costs. Start investing in minutes. Capital at risk.","cta":"Start investing"}},{"id":"B","angle":"fees","fields":{"headline_1":"One clear monthly fee","headline_2":"Plain investing for all","description":"See every cost upfront. No hidden charges. Download the app today. Capital at risk.","cta":"Download the app"}},{"id":"C","angle":"access","fields":{"headline_1":"Index funds from just £1","headline_2":"Simple and transparent","description":"Plain English, no jargon. Get started with clear costs. Capital at risk.","cta":"Get started"}}]},"out":"round 1: avg 96/100 · A fails original","flag":true},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 1","avg":96,"rows":[{"id":"A","angle":"simplicity","score":89,"fails":["original: reuses past ad P2"],"fields":{"headline_1":"Investing, made clear","headline_2":"Index funds from £1","description":"One flat fee, transparent costs. Start investing in minutes. Capital at risk."}},{"id":"B","angle":"fees","score":100,"fails":[],"fields":{"headline_1":"One clear monthly fee","headline_2":"Plain investing for all","description":"See every cost upfront. No hidden charges. Download the app today. Capital at risk."}},{"id":"C","angle":"access","score":100,"fails":[],"fields":{"headline_1":"Index funds from just £1","headline_2":"Simple and transparent","description":"Plain English, no jargon. Get started with clear costs. Capital at risk."}}]}},{"t":"say","text":"Variant A failed due to reusing P2 (too much overlap); B and C both pass. I'll replace A with a new angle on transparency that doesn't reuse past copy."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"A","angle":"transparency","fields":{"headline_1":"Know exactly what you pay","headline_2":"One flat fee, always","description":"No surprises, just clear investing from £1. Get started now. Capital at risk.","cta":"Get started"}}]},"out":"round 2: all 3 variants pass (avg 100/100)","flag":false},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 2","avg":100,"rows":[{"id":"A","angle":"transparency","score":100,"fails":[],"fields":{"headline_1":"Know exactly what you pay","headline_2":"One flat fee, always","description":"No surprises, just clear investing from £1. Get started now. Capital at risk."}},{"id":"B","angle":"fees","score":100,"fails":[],"fields":{"headline_1":"One clear monthly fee","headline_2":"Plain investing for all","description":"See every cost upfront. No hidden charges. Download the app today. Capital at risk."}},{"id":"C","angle":"access","score":100,"fails":[],"fields":{"headline_1":"Index funds from just £1","headline_2":"Simple and transparent","description":"Plain English, no jargon. Get started with clear costs. Capital at risk."}}]}},{"t":"say","text":"All three variants now score 100. Time to file the final report for the CMO."},{"t":"card","name":"submit_cmo_report","card":{"kind":"report","brand":"Ledgerly (fictional)","channel":"Google Search responsive ad","headline":"Three compliant, on-brand app-install ads ready to launch: all pass compliance checks and align with Ledgerly's trustworthy voice.","summary":"We built a compliance-focused eval suite using two measurable criteria: avoiding excitement language (soar, fast, guaranteed) that triggered past rejections, and requiring plain English from the brand lexicon (simple, clear, transparent, flat fee). The suite agreed with all four past reviewer verdicts. We drafted three variants on different angles—transparency, fees, and access—all scoring 100 and meeting character limits, CTAs, mandatory copy, and style rules.","why":"Variant B scored highest with the clearest emphasis on fee transparency (\"See every cost upfront. No hidden charges\"), directly addressing the compliance concern about trustworthiness. It uses brand lexicon and includes all mandatory copy while staying under all character limits.","next_test":"Run live A/B tests on all three angles (transparency, fees, access) against actual search traffic to determine which messaging angle drives the highest install rate while maintaining compliance approval.","make_standard":"For fintech app ads: require plain English words from brand voice lexicon and block excitement language with an avoid_words criterion to prevent compliance rejections on first submission.","before":67,"after":100,"rounds":2,"checks":9,"calib":"4/4","launch":{"id":"B","angle":"fees","score":100,"fields":{"headline_1":"One clear monthly fee","headline_2":"Plain investing for all","description":"See every cost upfront. No hidden charges. Download the app today. Capital at risk."},"past_ctr":3.9,"past_verdict":"approved"}}},{"t":"say","text":"Done. Here's what we proved:\n\nEngagement Summary:\n- Ledgerly's compliance kept rejecting hype-driven copy (P1, P3). We built an eval suite that caught those failures while passing the approved ads (P2, P4).\n- The brand's current drafts scored 67/100—all three failed on banned claims, missing CTAs, or hype language.\n- We wrote three new variants on different angles (transparency, fees, access), all avoiding excitement words and using plain-English lexicon. Round 2: all scored 100.\n- Variant B launches first: it leads on fee clarity without triggering compliance concerns.\n- The live test should prove which angle (transparency vs. fees vs. access) drives installs while the eval ensures complian"},{"t":"done","calls":8,"seconds":18,"cost":0.0371}],"sportswear":[{"t":"start","scenario":"pencil","model":"Claude Haiku 4.5 · Amazon Bedrock"},{"t":"say","text":"I'll run the full engagement end-to-end for Vantor Athletic. Starting with discovery."},{"t":"tool","name":"open_brand_kit","input":{},"out":"TikTok in-feed ad: hook ≤32, caption ≤80 · 6 banned claims · must say \"Kite 2\"","flag":false},{"t":"card","name":"open_brand_kit","card":{"kind":"brief","brand":"Vantor Athletic (fictional)","what":"Running brand launching the Kite 2, a lightweight daily trainer","goal":"Launch week: drive pre-orders from runners on TikTok","channel":"TikTok in-feed ad","limits":{"hook":32,"caption":80},"note":"Make it feel like race day, not a catalogue. More energy, but stay honest."}},{"t":"tool","name":"get_past_ads","input":{},"out":"4 past ads · 2 rejected · best approved angle \"race-day\" (2.3% CTR, sandbox)","flag":false},{"t":"say","text":"Clear picture: race-day and community angles were approved (CTR 2.3% and 1.6%), while specs (catalogue-y) and performance claims (legal issues) were rejected. The note wants more energy and race-day feel. Now I'll turn the CD note into measurable criteria."},{"t":"tool","name":"define_criterion","input":{"id":"avoid_catalogue_language","type":"avoid_words","words":["available in","sizes","colourways","every pace","features","specifications"],"rationale":"Rejects ads that sound like product listings instead of race-day experiences."},"out":"avoid_catalogue_language: avoid available in, sizes, colourways, every pace, features…","flag":false},{"t":"tool","name":"define_criterion","input":{"id":"require_race_energy","type":"require_any","words":["race","miles","stride","pace","start line","finish"],"rationale":"Ensures ads use brand lexicon that creates race-day energy while staying grounded in runner experience."},"out":"require_race_energy: require one of race, miles, stride, pace, start line…","flag":false},{"t":"say","text":"Criteria locked in: avoid catalogue language, require race-day energy words. Now I'll calibrate the eval suite against known verdicts."},{"t":"tool","name":"calibrate_eval","input":{},"out":"eval agrees with the reviewer on 4/4 past ads","flag":false},{"t":"card","name":"calibrate_eval","card":{"kind":"eval","agree":4,"total":4,"ok":true,"checks":["channel_limits","cta","banned_claims","brand_lexicon","mandatory","style_guide","original"],"custom":[{"id":"avoid_catalogue_language","type":"avoid_words","words":["available in","sizes","colourways","every pace","features","specifications"],"rationale":"Rejects ads that sound like product listings instead of race-day experiences."},{"id":"require_race_energy","type":"require_any","words":["race","miles","stride","pace","start line","finish"],"rationale":"Ensures ads use brand lexicon that creates race-day energy while staying grounded in runner experience."}],"rows":[{"id":"P1","reviewer":"rejected","eval":"fail","agree":true,"by":"avoid_catalogue_language","problem":""},{"id":"P2","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""},{"id":"P3","reviewer":"rejected","eval":"fail","agree":true,"by":"banned_claims, avoid_catalogue_language","problem":""},{"id":"P4","reviewer":"approved","eval":"pass","agree":true,"by":"","problem":""}]}},{"t":"say","text":"Perfect: the eval suite agrees 4/4 with the reviewer verdicts. It catches the catalogue failures (P1, P3) and approves the race-day winners (P2, P4). Now I'll score the brand's current baseline."},{"t":"tool","name":"measure_baseline","input":{},"out":"baseline avg 63/100 · 3/3 drafts fail","flag":true},{"t":"card","name":"measure_baseline","card":{"kind":"score","label":"Baseline","avg":63,"rows":[{"id":"B1","angle":"specs","score":44,"fails":["channel_limits: hook 37/32 chars, caption 96/80 chars","brand_lexicon: no brand lexicon word","style_guide: 4 hashtags (max 3)","avoid_catalogue_language: uses \"colourways\"","require_race_energy: none of: race, miles, stride, pace…"],"fields":{"hook":"NEW Kite 2: lighter, bouncier, better","caption":"Available now in 8 colourways. Engineered mesh upper, 8mm drop, 240g. #running #shoes #new #sale","cta":"Shop now"}},{"id":"B2","angle":"performance","score":67,"fails":["banned_claims: \"fastest shoe\"","style_guide: 2 exclamation marks (max 1)","avoid_catalogue_language: uses \"every pace\""],"fields":{"hook":"The fastest shoe of the year","caption":"Kite 2 makes every pace feel easy!! Pre-order today.","cta":"Pre-order"}},{"id":"B3","angle":"race-day","score":78,"fails":["cta: \"Buy\" is not an allowed CTA","mandatory: missing \"Kite 2\""],"fields":{"hook":"Your next PB is waiting","caption":"Built for race day and every mile before it. Pre-order now.","cta":"Buy"}}]}},{"t":"say","text":"Baseline: B1 is a specs mess (44), B2 has performance claims (67), B3 is close but missing the product name and has a bad CTA (78). Now I'll write three variants on approved angles with high energy, leaning on the race-day and community wins."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"A","angle":"race-day","fields":{"hook":"Mile 19. The kick starts now","caption":"Kite 2 keeps your stride sharp when fatigue hits. Ready to finish strong?","cta":"Pre-order"}},{"id":"B","angle":"community","fields":{"hook":"Your crew runs on Kite 2","caption":"Saturday long runs, tempo miles, race day pace. The Kite 2 is built for every stride.","cta":"Pre-order"}},{"id":"C","angle":"race-readiness","fields":{"hook":"Come race day, you'll know","caption":"Lightweight, responsive, ready. The Kite 2 puts the focus on your pace, not the shoe.","cta":"Learn more"}}]},"out":"round 1: avg 93/100 · B fails channel_limits · C fails channel_limits","flag":true},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 1","avg":93,"rows":[{"id":"A","angle":"race-day","score":100,"fails":[],"fields":{"hook":"Mile 19. The kick starts now","caption":"Kite 2 keeps your stride sharp when fatigue hits. Ready to finish strong?","cta":"Pre-order"}},{"id":"B","angle":"community","score":89,"fails":["channel_limits: caption 85/80 chars"],"fields":{"hook":"Your crew runs on Kite 2","caption":"Saturday long runs, tempo miles, race day pace. The Kite 2 is built for every stride.","cta":"Pre-order"}},{"id":"C","angle":"race-readiness","score":89,"fails":["channel_limits: caption 85/80 chars"],"fields":{"hook":"Come race day, you'll know","caption":"Lightweight, responsive, ready. The Kite 2 puts the focus on your pace, not the shoe.","cta":"Learn more"}}]}},{"t":"say","text":"Round 1: A nails it at 100. B and C are 5 chars over the caption limit. I'll trim both to fit without losing energy."},{"t":"tool","name":"score_variants","input":{"variants":[{"id":"B","angle":"community","fields":{"hook":"Your crew runs on Kite 2","caption":"Saturday runs, tempo miles, race day pace. Built for every stride.","cta":"Pre-order"}},{"id":"C","angle":"race-readiness","fields":{"hook":"Come race day, you'll know","caption":"Lightweight, responsive, ready. Kite 2 keeps the focus on your pace.","cta":"Learn more"}}]},"out":"round 2: all 3 variants pass (avg 100/100)","flag":false},{"t":"card","name":"score_variants","card":{"kind":"score","label":"Round 2","avg":100,"rows":[{"id":"A","angle":"race-day","score":100,"fails":[],"fields":{"hook":"Mile 19. The kick starts now","caption":"Kite 2 keeps your stride sharp when fatigue hits. Ready to finish strong?","cta":"Pre-order"}},{"id":"B","angle":"community","score":100,"fails":[],"fields":{"hook":"Your crew runs on Kite 2","caption":"Saturday runs, tempo miles, race day pace. Built for every stride.","cta":"Pre-order"}},{"id":"C","angle":"race-readiness","score":100,"fails":[],"fields":{"hook":"Come race day, you'll know","caption":"Lightweight, responsive, ready. Kite 2 keeps the focus on your pace.","cta":"Learn more"}}]}},{"t":"say","text":"All three variants score 100: A (race-day), B (community), C (race-readiness). Every variant clears the channel limits, uses brand lexicon, avoids catalogue language, and stays on-brand and honest. Ready to file the CMO report."},{"t":"card","name":"submit_cmo_report","card":{"kind":"report","brand":"Vantor Athletic (fictional)","channel":"TikTok in-feed ad","headline":"All three TikTok variants passed brand compliance and are ready for pre-order campaign launch.","summary":"We tested three variants on the Creative Director's note to add race-day energy while staying honest: one pure race-day angle (A), one community-focused (B), and one race-readiness angle (C). The eval suite was calibrated against four past ads (approved race-day and community angles, rejected catalogue and claim-based ads). All three variants score 100, up from a baseline average of 63, and avoid catalogue language while using race-day brand lexicon (race, miles, stride, pace, finish).","why":"Variant A scored 100 and mirrors the highest-performing approved past ad (P2, race-day angle, 2.3% CTR). It uses specific race imagery (Mile 19, the kick) to create energy, embeds the product name, and stays within all brand limits—32 char hook, 73 char caption, approved CTA.","next_test":"Test all three variants live to measure which angle (race-day, community, or race-readiness) drives the highest pre-order conversion rate among TikTok runners.","make_standard":"For athletic brands on social: require at least one brand lexicon word tied to the sport (race, miles, stride, pace, finish) and ban product spec language (available in, sizes, colourways, features) to ensure ads feel experiential, not catalogues.","before":63,"after":100,"rounds":2,"checks":9,"calib":"4/4","launch":{"id":"A","angle":"race-day","score":100,"fields":{"hook":"Mile 19. The kick starts now","caption":"Kite 2 keeps your stride sharp when fatigue hits. Ready to finish strong?","cta":"Pre-order"},"past_ctr":2.3,"past_verdict":"approved"}}},{"t":"say","text":"Done. Three launch-ready variants for Vantor Athletic: Variant A (race-day energy, specific Mile 19 imagery) launches first—it matches the proven angle and scores 100. B and C both score 100 as well and give the brand two alternates to test live. The eval suite caught all catalogue language and ensured race lexicon stayed grounded. Live test should prove which angle converts runners to pre-orders."},{"t":"done","calls":8,"seconds":19,"cost":0.038}]};</script>
+<script id="lab-agent">
+/* Eval lab: a real Claude agent (Haiku 4.5 on Bedrock, via /api/agent/) runs an ad-optimisation engagement over sandbox tools.
+   Live only on the deployed site; elsewhere (artifact preview, PDF) and on any error it replays a recorded run. */
+(function(){
+  var $=function(id){return document.getElementById(id)},esc=window.__esc;
+  var LIVE=/^cv-juan-martin.*\.vercel\.app$|^localhost$/.test(location.hostname);
+  var REPLAY=window.LAB_REPLAY||{};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CASES={
+    coffee:{brand:'Ridgeline Roasters',tag:'DTC coffee',channel:'Meta feed ad',goal:'Win new subscribers',note:'Make it feel more premium. Right now it reads like a discount brand.'},
+    fintech:{brand:'Ledgerly',tag:'Fintech app',channel:'Google Search ad',goal:'App installs, zero compliance rejections',note:'Sound trustworthy, not hypey. Compliance keeps rejecting anything that sounds like excitement.'},
+    sportswear:{brand:'Vantor Athletic',tag:'Shoe launch',channel:'TikTok in-feed ad',goal:'Launch-week pre-orders',note:'Make it feel like race day, not a catalogue. More energy, but stay honest.'}
+  };
+  var casesEl=$('lab-cases'),note=$('lab-note'),count=$('lab-count'),runBtn=$('lab-run'),head=$('lab-head'),trace=$('lab-trace'),
+      evalEl=$('lab-eval'),calEl=$('lab-cal'),scoreEl=$('lab-score'),deltaEl=$('lab-delta'),cmoEl=$('lab-cmo'),stat=$('lab-stat'),msg=$('lab-note2'),dot=$('lab-dot');
+  var cur='coffee',busy=false,ctl=null,base=null;
+  Object.keys(CASES).forEach(function(id){var c=CASES[id];
+    var b=document.createElement('button');b.type='button';b.className='case';b.dataset.id=id;b.setAttribute('aria-pressed',id===cur?'true':'false');
+    b.innerHTML='<div class="ct"><b>'+esc(c.brand)+'</b><em>'+esc(c.tag)+'</em></div><span>'+esc(c.channel)+' · '+esc(c.goal)+'</span>';
+    b.addEventListener('click',function(){if(busy)return;pick(id)});casesEl.appendChild(b)});
+  function pick(id){cur=id;casesEl.querySelectorAll('.case').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.id===id?'true':'false')});note.value=CASES[id].note;upd();msg.textContent=''}
+  function upd(){count.textContent=note.value.length+'/240'}
+  note.addEventListener('input',upd);
+  function lock(on){busy=on;runBtn.disabled=on;casesEl.querySelectorAll('.case').forEach(function(b){b.disabled=on});dot.classList.toggle('on',on)}
+
+  /* rendering */
+  function reset(id,n){
+    var c=CASES[id];trace.innerHTML='';scoreEl.innerHTML='';evalEl.innerHTML='<p class="empty">Waiting for the agent to define its criteria…</p>';calEl.textContent='';deltaEl.textContent='';cmoEl.innerHTML='';base=null;
+    head.innerHTML='<b>'+esc(c.brand)+' <span style="color:var(--mute2);font-weight:400">(fictional)</span></b><span>'+esc(c.channel)+' · '+esc(c.goal)+'</span><q>'+esc(n)+'</q>';
+  }
+  function stick(){if(trace.scrollHeight-trace.scrollTop-trace.clientHeight<140)trace.scrollTop=trace.scrollHeight}
+  function arg(name,i){i=i||{};if(name==='define_criterion')return i.id||'';if(name==='score_variants'){var k=(i.variants||[]).length;return k+' variant'+(k===1?'':'s')}return ''}
+  function step(ev){
+    var li=document.createElement('li');
+    if(ev.t==='say'){li.className='say';li.textContent=ev.text}
+    else{li.className='tool'+(ev.flag?' flag':'');li.innerHTML='<span><code>'+esc(ev.name)+'</code> <span class="arg">'+esc(arg(ev.name,ev.input))+'</span><span class="r">'+esc(ev.out)+'</span></span>'}
+    trace.appendChild(li);stick();
+  }
+  function renderEval(c){
+    calEl.textContent=c.agree+'/'+c.total+' agree'+(c.ok?' ✓':'');
+    evalEl.innerHTML='<div class="chips">'+c.checks.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+c.custom.map(function(x){return '<span class="c">'+esc(x.id)+'</span>'}).join('')+'</div>'+
+      c.custom.map(function(x){return '<p class="crit"><b>'+esc(x.id)+'</b> '+(x.type==='avoid_words'?'fails on: ':'needs one of: ')+esc(x.words.join(', '))+(x.rationale?'<br><span style="color:var(--mute2)">'+esc(x.rationale)+'</span>':'')+'</p>'}).join('')+
+      '<table class="cal"><thead><tr><th>Past ad</th><th>Reviewer</th><th>Eval</th><th>Caught by</th></tr></thead><tbody>'+
+      c.rows.map(function(r){return '<tr><td>'+esc(r.id)+'</td><td>'+esc(r.reviewer)+'</td><td class="'+(r.agree?'ok':'no')+'">'+esc(r.eval)+(r.agree?' ✓':' ✕')+'</td><td>'+esc(r.problem||r.by||'·')+'</td></tr>'}).join('')+'</tbody></table>';
+  }
+  function renderScore(c){
+    if(c.label==='Baseline')base=c.avg;else if(base!=null)deltaEl.textContent=base+' → '+c.avg;
+    var d=document.createElement('div');d.className='round';
+    var fails=[];c.rows.forEach(function(r){r.fails.forEach(function(f){fails.push('<li><b>'+esc(r.id)+'</b> '+esc(f)+'</li>')})});
+    d.innerHTML='<div class="rtop"><b>'+esc(c.label)+'</b><span class="bar"><i class="'+(c.avg===100?'full':'')+'" style="width:0%"></i></span><span class="avg">'+c.avg+'/100</span></div>'+
+      '<div class="vs">'+c.rows.map(function(r){return '<span class="v '+(r.score===100?'ok':'no')+'" title="'+esc(r.angle)+'">'+esc(r.id)+' · '+esc(r.angle)+' · '+r.score+'</span>'}).join('')+'</div>'+
+      (fails.length?'<ul class="fails">'+fails.slice(0,6).join('')+(fails.length>6?'<li>+'+(fails.length-6)+' more</li>':'')+'</ul>':'');
+    scoreEl.appendChild(d);var bar=d.querySelector('.bar i');requestAnimationFrame(function(){bar.style.width=c.avg+'%'});
+  }
+  function adHTML(id,f,ch){
+    var c=CASES[id];
+    if(id==='fintech')return '<div class="ad g"><div class="sp"><b>Sponsored</b> · ledgerly.example</div><div class="h">'+esc(f.headline_1)+' | '+esc(f.headline_2)+'</div><div class="d">'+esc(f.description)+'</div></div>';
+    if(id==='sportswear')return '<div class="ad t"><div class="hook">'+esc(f.hook)+'</div><div><small>@vantor.example · Sponsored</small><div class="cap2">'+esc(f.caption)+'</div><div class="cta">'+esc(f.cta)+'</div></div></div>';
+    return '<div class="ad"><div class="who"><i>R</i><div><b>'+esc(c.brand)+'</b><span>Sponsored</span></div></div><div class="txt">'+esc(f.primary_text)+'</div><div class="img">product image</div><div class="foot"><b>'+esc(f.headline)+'</b><span>'+esc(f.cta)+'</span></div></div>';
+  }
+  function renderReport(c){
+    var l=c.launch||{};
+    cmoEl.innerHTML='<div class="cmo"><div><div class="tag"><i>CMO readout</i>'+esc(c.brand)+' · '+esc(c.channel)+'</div><h5>'+esc(c.headline)+'</h5>'+
+      '<div class="ba"><div><small>Baseline</small><b>'+c.before+'</b></div><span>→</span><div class="after"><small>After '+c.rounds+' round'+(c.rounds>1?'s':'')+'</small><b>'+c.after+'</b></div><em>avg eval score /100<br>'+c.checks+' checks · eval calibrated '+esc(c.calib)+'</em></div>'+
+      '<p>'+esc(c.summary)+'</p><p><strong>Launch first: '+esc(l.id)+'</strong>'+esc(c.why)+'</p><p><strong>Next test</strong>'+esc(c.next_test)+'</p><p><strong>Make it standard</strong>'+esc(c.make_standard)+'</p></div>'+
+      '<div class="adwrap"><small class="cap">Variant '+esc(l.id)+' · '+esc(l.angle)+' · eval '+l.score+'/100'+(l.past_ctr!=null?' · angle\'s past CTR '+l.past_ctr+'% (sandbox)':'')+'</small>'+adHTML(cur,l.fields||{})+'</div></div>';
+  }
+  function money(c){return c<0.01?'$'+c.toFixed(4):'$'+c.toFixed(3)}
+  function handle(ev){
+    switch(ev.t){
+      case 'start':$('lab-model').textContent=ev.model+' · tool use';break;
+      case 'say':case 'tool':step(ev);break;
+      case 'card':var c=ev.card||{};if(c.kind==='eval')renderEval(c);else if(c.kind==='score')renderScore(c);else if(c.kind==='report')renderReport(c);break;
+      case 'done':stat.innerHTML='<em>'+ev.calls+'</em> model calls · <em>'+ev.seconds+' s</em> · cost <em>'+money(ev.cost)+'</em>'+(ev.replay?' · recorded run':' · live run');break;
+    }
+  }
+  function finish(){lock(false)}
+  function replay(id,why){
+    var evs=REPLAY[id];reset(id,CASES[id].note);
+    if(!evs){msg.textContent=why+' No recording for this brief.';finish();return}
+    msg.textContent=why;var i=0,gap=reduce?0:Math.max(120,Math.min(650,26000/evs.length));
+    (function next(){if(i>=evs.length)return finish();var e=evs[i++];if(e.t==='done')e=Object.assign({},e,{replay:true});handle(e);
+      if(gap)setTimeout(next,e.t==='tool'?gap:gap*.6);else next()})();
+  }
+  function run(){
+    if(busy)return;lock(true);var id=cur,n=note.value.trim()||CASES[id].note,custom=n!==CASES[id].note;
+    stat.innerHTML='<span class="dots"><i></i><i></i><i></i></span> agent working';msg.textContent='';
+    if(!LIVE)return replay(id,custom?'Custom notes run live on the deployed page. This is the recorded run with the original note.':'Recorded run. The live agent runs on the deployed page.');
+    reset(id,n);ctl=new AbortController();var got=0;
+    fetch('/api/agent/',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({scenario:'pencil',input:{case:id,note:n}}),signal:ctl.signal}).then(function(r){
+      if(!r.ok||!r.body)throw new Error(r.status===429?'limit':'http'+r.status);
+      var rd=r.body.getReader(),dec=new TextDecoder(),buf='';
+      return (function pump(){return rd.read().then(function(x){
+        if(x.done){finish();return}
+        buf+=dec.decode(x.value,{stream:true});var lines=buf.split('\n');buf=lines.pop();
+        lines.forEach(function(l){if(!l.trim())return;var ev;try{ev=JSON.parse(l)}catch(e){return}got++;if(ev.t==='error')throw new Error(ev.msg);handle(ev)});
+        return pump();
+      })})();
+    }).catch(function(e){
+      var m=String(e&&e.message||e);
+      if(got>3){msg.textContent='The run stopped early ('+m+'). Try again in a minute.';finish();return}
+      replay(id,m==='limit'?'Today’s live runs are used up, so this is a recorded run of the same agent.':m==='busy'?'The model is busy right now, so this is a recorded run of the same agent.':'The live agent is unavailable right now, so this is a recorded run of the same agent.');
+    });
+  }
+  runBtn.addEventListener('click',run);
+  window.addEventListener('pagehide',function(){if(ctl)ctl.abort()});
+  /* first paint (and the PDF): the recorded coffee run, rendered statically */
+  pick('coffee');
+  if(REPLAY.coffee){reset('coffee',CASES.coffee.note);REPLAY.coffee.forEach(function(e){if(e.t==='done')e=Object.assign({},e,{replay:true});handle(e)});
+    stat.innerHTML+=' · '+(LIVE?'pick a brief and run it live':'pick a brief to replay it');trace.scrollTop=0;
+    scoreEl.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.parentNode.nextSibling.textContent.split('/')[0]+'%'});}
+})();
+</script>
+
+</body>
+</html>

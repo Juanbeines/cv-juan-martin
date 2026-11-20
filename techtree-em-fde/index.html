@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Juan Martín · EM Forward Deployed">
+<meta property="og:description" content="Juan Martín Beines Furcada · #1 SE US Commercial (DevRev 2025) · AI agents architect · Buenos Aires">
+<meta property="og:type" content="website">
+<title>Juan Martín · EM Forward Deployed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f6f9f8; --white:#fff; --ink:#0f2a30; --ink2:#2d4a50; --muted:#5b7177; --line:#dbe6e4; --line2:#c9d9d6;
+  --teal:#0b6b68; --teal-d:#07514f; --teal-l:#e3f3f0; --mint:#bfe9de; --sky:#eaf3f6;
+  --coral:#d9532c; --coral-l:#fdebe4; --amber:#b7791f; --amber-l:#fdf3e1; --ok:#1f8a5b; --ok-l:#e2f5ec;
+  --wa:#efeae2; --wa-out:#d9fdd3; --wa-head:#075e54;
+  --sans:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1180px; --r:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+button{font:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+@media (max-width:520px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+section{padding-block:clamp(64px,9vw,112px)}
+section.alt{background:var(--white);border-block:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:500}
+.h2{font-size:clamp(30px,4.4vw,48px);line-height:1.1}
+.h2 .t{color:var(--teal)}
+.lede{font-size:clamp(16.5px,1.5vw,18.5px);color:var(--muted);max-width:64ch}
+.sechead{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px 56px;align-items:end;margin-bottom:48px}
+.sechead .eyebrow{grid-column:1/-1}
+@media (max-width:860px){.sechead{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;padding:12px 20px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .15s,transform .15s,border-color .15s;line-height:1.2}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,.case:focus-visible,.xrow button:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.btn-p{background:var(--teal);color:#fff}
+.btn-p:hover{background:var(--teal-d)}
+.btn-g{background:var(--white);color:var(--ink);border-color:var(--line2)}
+.btn-g:hover{border-color:var(--teal)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* banner + nav */
+.banner{background:var(--teal-d);color:#e6f4f1;font-size:13.5px;text-align:center;padding:9px 16px}
+.banner b{color:#fff}
+.banner a{color:var(--mint);text-decoration:none;margin-left:8px;white-space:nowrap;font-weight:600}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(246,249,248,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:26px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;white-space:nowrap}
+.logo .mk{width:30px;height:30px;border-radius:9px;background:var(--teal);display:grid;place-items:center}
+.logo .mk svg{width:18px;height:18px}
+nav.top .links{display:flex;gap:22px;margin-left:auto;font-size:14.5px;font-weight:500}
+nav.top .links a{text-decoration:none;color:var(--ink2)}
+nav.top .links a:hover{color:var(--teal)}
+nav.top .btn{padding:9px 16px;font-size:14px}
+@media (max-width:980px){nav.top .links{display:none}nav.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(48px,7vw,96px) clamp(56px,7vw,88px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+@media (max-width:920px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
+.pill{display:inline-flex;align-items:center;gap:9px;max-width:100%;background:var(--teal-l);color:var(--teal-d);border:1px solid var(--mint);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;margin-bottom:24px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(31,138,91,.5);animation:pulse 2s infinite;flex:none}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(31,138,91,0)}100%{box-shadow:0 0 0 0 rgba(31,138,91,0)}}
+.hero h1{font-size:clamp(38px,5.6vw,66px);line-height:1.04;margin-bottom:24px;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero .sub{font-size:clamp(16.5px,1.6vw,19px);color:var(--ink2);max-width:56ch;margin-bottom:30px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:14px;color:var(--muted);font-weight:500}
+.facts span::before{content:"✓ ";color:var(--ok);font-weight:700}
+
+/* hero board */
+.board{background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px -24px rgba(15,42,48,.25);padding:22px;min-width:0}
+.board .bh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.board .bh b{font-size:15px}
+.board .bh span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.lane{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;margin-top:8px;align-items:center}
+.lane .nm{font-weight:600;font-size:14.5px;min-width:0}
+.lane .st{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.lane .bar{grid-column:1/-1;height:6px;background:var(--sky);border-radius:99px;overflow:hidden;margin-top:6px}
+.lane .bar i{display:block;height:100%;background:var(--teal);border-radius:99px;width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.lane .meta{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.s-live{background:var(--ok-l);color:var(--ok)}
+.s-pilot{background:var(--amber-l);color:var(--amber)}
+.s-scope{background:var(--sky);color:var(--teal-d)}
+.board .cap{margin-top:14px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+/* stats */
+.stats{background:var(--white);border-block:1px solid var(--line)}
+.stats .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.stat{padding:28px 20px 26px;border-right:1px solid var(--line);min-width:0}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:clamp(28px,3.2vw,40px);line-height:1;letter-spacing:-.03em;color:var(--teal-d)}
+.stat span{display:block;margin-top:8px;font-size:14px;color:var(--muted)}
+@media (max-width:900px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:20px 14px;border-bottom:1px solid var(--line)}.stat:first-child{padding-left:14px}.stat:nth-child(2n){border-right:0}.stat:last-child{grid-column:1/-1;border-bottom:0}}
+
+/* role mapped */
+.map{display:grid;gap:12px}
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.3fr);gap:10px 28px;padding:22px 24px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);align-items:start}
+.mrow .n{width:32px;height:32px;border-radius:50%;background:var(--teal-l);color:var(--teal-d);display:grid;place-items:center;font-weight:700;font-size:14px}
+.mrow h3{font-size:19px;line-height:1.3}
+.mrow .q{font-size:13.5px;color:var(--muted);margin-top:6px;font-style:italic}
+.mrow ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:15.5px;color:var(--ink2)}
+.mrow li{position:relative;padding-left:22px}
+.mrow li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;border-radius:3px;background:var(--teal)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-family:var(--mono);font-size:11.5px;padding:3px 9px;background:var(--sky);border-radius:999px;color:var(--teal-d)}
+.mrow.honest{background:var(--teal-l);border-color:var(--mint)}
+@media (max-width:820px){.mrow{grid-template-columns:1fr;padding:18px}}
+
+/* live demo */
+.demo{background:var(--ink);color:#e7f1ef}
+.demo .eyebrow{color:var(--mint)}
+.demo .h2 .t{color:var(--mint)}
+.demo .lede{color:#b9cdca}
+.honestnote{display:flex;gap:12px;align-items:flex-start;background:rgba(191,233,222,.08);border:1px solid rgba(191,233,222,.22);border-radius:12px;padding:14px 16px;font-size:14.5px;color:#cfe0dd;margin-bottom:22px}
+.honestnote b{color:#fff}
+.honestnote svg{flex:none;width:20px;height:20px;margin-top:2px}
+.dgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:960px){.dgrid{grid-template-columns:1fr}}
+.panel{background:#132f36;border:1px solid #24464d;border-radius:18px;min-width:0;overflow:hidden}
+.ph{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #24464d;font-size:13px;color:#a9c0bc;flex-wrap:wrap}
+.ph b{color:#fff;font-weight:600}
+.ph .model{margin-left:auto;font-family:var(--mono);font-size:11.5px;display:flex;align-items:center;gap:7px}
+.ph .model i{width:7px;height:7px;border-radius:50%;background:#5e7c80}
+.ph .model i.on{background:#3fd69a;box-shadow:0 0 0 0 rgba(63,214,154,.6);animation:pulse 1.6s infinite}
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:16px}
+@media (max-width:640px){.cases{grid-template-columns:1fr}}
+.case{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid #2c5158;border-radius:12px;padding:12px 13px;background:#0f272d;display:flex;flex-direction:column;gap:6px;min-width:0;transition:border-color .15s,background .15s}
+.case:hover{border-color:var(--mint)}
+.case.on{border-color:var(--mint);background:#16383f}
+.case[aria-disabled=true]{opacity:.55;cursor:wait}
+.case .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.case .k::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.case .m{font-size:13px;color:#b9cdca;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.own{padding:0 16px 16px}
+.own label{display:block;font-size:13px;color:#a9c0bc;margin-bottom:6px}
+.own textarea{width:100%;min-height:64px;resize:vertical;background:#0f272d;border:1px solid #2c5158;border-radius:12px;color:#fff;padding:10px 12px;font:inherit;font-size:14.5px;line-height:1.45}
+.own textarea:focus{outline:2px solid var(--mint);outline-offset:1px}
+.own .row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
+.own .cnt{font-family:var(--mono);font-size:11.5px;color:#7f9a96}
+.own .btn{padding:9px 16px;font-size:14px;background:var(--mint);color:var(--ink)}
+.own .btn:hover{background:#d6f4ec}
+.log{border-top:1px solid #24464d;padding:14px 16px;height:430px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;font-size:14px}
+@media (max-width:960px){.log{height:auto;max-height:460px}}
+.log .say{color:#d9e7e4;padding-left:14px;border-left:2px solid #2c5158}
+.log .tl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;background:#0f272d;border:1px solid #24464d;border-radius:10px;padding:9px 11px}
+.log .tl .ic{grid-row:span 2;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#1c4047;color:var(--mint);font-family:var(--mono);font-size:12px}
+.log .tl .nm{font-family:var(--mono);font-size:12px;color:#fff;min-width:0;overflow-wrap:anywhere}
+.log .tl .nm small{color:#86a29e;font-size:11.5px}
+.log .tl .out{font-size:13px;color:#a9c0bc;min-width:0;overflow-wrap:anywhere}
+.log .tl.flag{border-color:#8a5a1c;background:#2a2516}
+.log .tl.flag .ic{background:#5a3f12;color:#ffd08a}
+.log .tl.flag .out{color:#ffd9a3}
+.log .sys{font-family:var(--mono);font-size:12px;color:#8fb0ab}
+.log .empty{color:#86a29e;font-size:14px}
+.foot{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid #24464d;font-family:var(--mono);font-size:11.5px;color:#8fb0ab;flex-wrap:wrap;min-height:40px}
+.typing{display:inline-flex;gap:3px}
+.typing i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:bl 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+/* phone + QA */
+.side{display:grid;gap:16px;min-width:0}
+.phone{background:var(--wa);border-radius:22px;overflow:hidden;border:6px solid #0b1f24;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);color:#111b21}
+.phone .wh{background:var(--wa-head);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.phone .av{width:34px;height:34px;border-radius:50%;background:#e3f3f0;display:grid;place-items:center;flex:none}
+.phone .av svg{width:20px;height:20px}
+.phone .wh b{display:block;font-size:14.5px;line-height:1.2}
+.phone .wh span{font-size:12px;opacity:.85}
+.chat{padding:14px 12px;display:flex;flex-direction:column;gap:8px;min-height:230px;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.2px);background-size:16px 16px}
+.bub{max-width:88%;padding:8px 10px 18px;border-radius:10px;font-size:14px;line-height:1.45;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08);overflow-wrap:anywhere;white-space:pre-wrap}
+.bub small{position:absolute;right:8px;bottom:3px;font-size:10.5px;color:#667781}
+.bub.in{background:#fff;align-self:flex-start;border-top-left-radius:2px}
+.bub.out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:2px}
+.bub.wait{padding:10px 14px;color:#667781}
+.qa{background:#132f36;border:1px solid #24464d;border-radius:18px;padding:16px 18px;min-width:0}
+.qa h3{font-size:15px;color:#fff;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.qa h3 span{font-family:var(--mono);font-size:11.5px;font-weight:500;padding:3px 9px;border-radius:999px;background:#1f4a3d;color:#8ff0c4}
+.qa ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px}
+.qa li{display:flex;gap:9px;align-items:flex-start;color:#d9e7e4}
+.qa li i{font-style:normal;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;flex:none;margin-top:2px;background:#1f4a3d;color:#8ff0c4}
+.qa li.na{color:#7f9a96}
+.qa li.na i{background:#22393e;color:#7f9a96}
+.qa li.bad i{background:#5a2a1c;color:#ffb39b}
+.qa .sub{margin-top:14px;padding-top:12px;border-top:1px solid #24464d}
+.qa .sub b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mint);font-weight:500;margin-bottom:6px}
+.qa .sub p{font-size:13.5px;color:#cfe0dd}
+.qa .sub p+p{margin-top:4px}
+.qa .alarm{display:inline-block;margin:0 0 10px;font-size:12px;font-weight:600;background:#5a2a1c;color:#ffc6b4;border-radius:999px;padding:3px 10px}
+.toolset{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.toolset span{font-family:var(--mono);font-size:11.5px;color:#b9cdca;border:1px solid #2c5158;border-radius:999px;padding:4px 10px}
+.toolset span b{color:#fff;font-weight:500}
+.mgr{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mgr div{border:1px solid #24464d;border-radius:14px;padding:16px 18px;background:#102a30}
+.mgr b{display:block;color:#fff;font-size:15.5px;margin-bottom:4px}
+.mgr p{font-size:14px;color:#b9cdca}
+@media (max-width:860px){.mgr{grid-template-columns:1fr}}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.val{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.val .ic{width:42px;height:42px;border-radius:12px;background:var(--c);display:grid;place-items:center}
+.val .ic svg{width:22px;height:22px}
+.val h3{font-size:21px;line-height:1.25}
+.val p{color:var(--ink2);font-size:15.5px}
+.val .proof{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+@media (max-width:900px){.values{grid-template-columns:1fr}}
+
+/* now */
+.now{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:900px){.now{grid-template-columns:1fr}}
+.flow{display:grid;gap:10px;counter-reset:f}
+.flow div{display:grid;grid-template-columns:40px minmax(0,1fr);gap:4px 14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.flow div::before{counter-increment:f;content:counter(f);grid-row:span 2;width:32px;height:32px;border-radius:10px;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.flow b{font-size:16px}
+.flow span{font-size:14.5px;color:var(--muted)}
+.build{background:var(--teal-l);border:1px solid var(--mint);border-radius:var(--r);padding:24px}
+.build h3{font-size:20px;margin-bottom:8px}
+.build p{font-size:15.5px;color:var(--ink2)}
+.build .tags span{background:var(--white)}
+
+/* experience */
+.xp{border-top:1px solid var(--line2)}
+.xrow{border-bottom:1px solid var(--line2)}
+.xrow button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:140px minmax(0,1fr) minmax(0,1.15fr) 28px;gap:10px 26px;align-items:baseline;padding:22px 0}
+.xrow .when{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.xrow .co{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.ladder span{font-size:12.5px;line-height:1.3;padding:3px 9px;border:1px solid var(--line2);border-radius:999px;color:var(--muted);font-weight:500}
+.ladder span.top{border-color:var(--teal);background:var(--teal);color:#fff}
+.ladder i{font-style:normal;font-size:13px;color:var(--teal)}
+.xrow .sum{color:var(--ink2);font-size:15.5px}
+.xrow .pm{width:28px;height:28px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;color:var(--teal);transition:transform .25s;font-size:18px;line-height:1}
+.xrow.open .pm{transform:rotate(45deg)}
+.xrow .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.xrow.open .body{grid-template-rows:1fr}
+.xrow .body>div{overflow:hidden}
+.xrow ul{margin:0 0 24px;padding:0 0 0 166px;list-style:none;display:grid;gap:7px;color:var(--ink2);font-size:15.5px}
+.xrow li{position:relative;padding-left:20px}
+.xrow li::before{content:"→";position:absolute;left:0;color:var(--teal)}
+.badge{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;padding:2px 8px;background:var(--ok-l);color:var(--ok);border-radius:999px;margin-left:8px;vertical-align:middle;font-weight:500}
+@media (max-width:820px){.xrow button{grid-template-columns:minmax(0,1fr) 28px}.xrow .when{grid-column:1/-1}.xrow .sum{grid-column:1/-1;grid-row:3}.xrow .pm{grid-row:2;grid-column:2}.xrow ul{padding-left:0}}
+
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pcard{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px;display:flex;flex-direction:column;gap:8px;min-width:0;border-top:4px solid var(--c)}
+.pcard .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.pcard h3{font-size:19px;line-height:1.25}
+.pcard p{font-size:14.5px;color:var(--ink2)}
+.pcard .out{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:13px;font-weight:600;color:var(--teal-d)}
+@media (max-width:960px){.plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plan{grid-template-columns:1fr}}
+
+/* creds */
+.creds{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+@media (max-width:900px){.creds{grid-template-columns:1fr}}
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.certs div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.certs b{display:block;font-size:15.5px;line-height:1.3}
+.certs span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+@media (max-width:520px){.certs{grid-template-columns:1fr}}
+.edu{display:grid;gap:16px}
+.edu b{display:block;font-size:16.5px;line-height:1.3}
+.edu span{font-size:14px;color:var(--muted)}
+.langs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.langs div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0;background:var(--bg)}
+.langs span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* contact */
+.contact{background:var(--teal-d);color:#fff}
+.contact .eyebrow{color:var(--mint)}
+.contact h2{font-size:clamp(38px,6.5vw,76px);line-height:1.02;margin:16px 0 20px;letter-spacing:-.03em}
+.contact h2 em{font-style:normal;color:var(--mint)}
+.contact .lede{color:#cfe8e3}
+.contact .btn-g{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.contact .btn-p{background:#fff;color:var(--teal-d)}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:10px;margin-top:40px}
+.cgrid>div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 18px;min-width:0}
+.cgrid .eyebrow{font-size:11px;margin-bottom:4px}
+.cgrid .v{font-size:16.5px;font-weight:600;overflow-wrap:anywhere;user-select:all}
+@media (max-width:900px){.cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cgrid>div:first-child{grid-column:1/-1}}
+@media (max-width:520px){.cgrid{grid-template-columns:1fr}}
+footer{background:var(--ink);color:#9fb6b2;font-size:13px;padding-block:22px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:60;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media print{.reveal{opacity:1;transform:none}nav.top{position:static}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+
+<div class="banner">La adaptación es la habilidad más valiosa en la era de la IA. <b>Por eso estudié el puesto y armé mi CV para él.</b> <a href="#live-agent">Probá la demo →</a></div>
+
+<nav class="top" aria-label="Secciones">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Juan Martín, inicio"><span class="mk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Juan Martín</a>
+    <div class="links">
+      <a href="#role">El puesto</a>
+      <a href="#live-agent">Demo en vivo</a>
+      <a href="#values">Cómo lidero</a>
+      <a href="#experience">Experiencia</a>
+      <a href="#plan">Primeras 2 semanas</a>
+    </div>
+    <button class="btn btn-p js-copy" type="button">Copiar email</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="pill"><span class="dot" aria-hidden="true"></span><span>Engineering Manager · Forward Deployed Engineering · LATAM remoto</span></div>
+      <h1>IA que funciona dentro de la clínica, <em>no solo en la demo.</em></h1>
+      <p class="sub">Soy Juan Martín Beines Furcada. Hoy diseño y despliego agentes de IA para empresas en EE.UU. En 2025 fui el #1 Solutions Engineer del mercado US Commercial de DevRev, donde además lideré al equipo de SE en Argentina. Antes armé y lideré un equipo de 7 ingenieros de datos y arquitectos en BGH. Lo que mejor hago: sentarme con quienes operan el proceso, convertirlo en una arquitectura agéntica y llevarla a producción con el equipo.</p>
+      <div class="ctas">
+        <button class="btn btn-p js-copy" type="button">Copiar email</button>
+        <a class="btn btn-g" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-g" href="#live-agent">▶ Ver la demo</a>
+      </div>
+      <div class="facts"><span>Buenos Aires · GMT-3</span><span>Español nativo · inglés bilingüe</span><span>Python · JavaScript · SQL · APIs</span><span>Disponible ya</span></div>
+    </div>
+    <div class="board reveal" aria-label="Cómo pienso un tablero de despliegues de un equipo FDE (ejemplo ilustrativo)">
+      <div class="bh"><b>Despliegues del equipo</b><span>ejemplo ilustrativo</span></div>
+      <div class="lane"><span class="nm">Clínica A · transcripción de consulta</span><span class="st s-live">go-live</span><div class="bar"><i data-w="100"></i></div><span class="meta">Integración con la historia clínica · métricas de uso semanales</span></div>
+      <div class="lane"><span class="nm">Clínica B · historia clínica estructurada</span><span class="st s-pilot">piloto</span><div class="bar"><i data-w="68"></i></div><span class="meta">RPA sobre el sistema legado · QA clínico con 3 médicos</span></div>
+      <div class="lane"><span class="nm">Clínica C · turnos por WhatsApp</span><span class="st s-scope">scoping</span><div class="bar"><i data-w="30"></i></div><span class="meta">Discovery en sitio · mapa de agenda, padrón y derivaciones</span></div>
+      <div class="cap">Un FDE dueño de cada despliegue · un playbook para todos</div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>#1 SE</b><span>US Commercial · DevRev 2025</span></div>
+    <div class="stat"><b>7+ años</b><span>pre-venta y soluciones con clientes</span></div>
+    <div class="stat"><b>7</b><span>ingenieros liderados en BGH</span></div>
+    <div class="stat"><b>3×</b><span>AWS Competencies ganadas</span></div>
+    <div class="stat"><b>4×</b><span>promovido: DevRev, BGH, MicroStrategy, ITBA</span></div>
+  </div>
+</div>
+
+<section id="role">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">El puesto, mapeado</div>
+      <h2 class="h2">Cada línea del aviso, <span class="t">con evidencia.</span></h2>
+      <p class="lede">El trabajo es armar un equipo que lleve IA a flujos clínicos reales: definir la dirección técnica de integraciones y automatizaciones, y ser dueño de cada despliegue desde el scoping hasta el go-live. Esto es lo que ya hice en cada parte.</p>
+    </div>
+    <div class="map">
+      <div class="mrow reveal">
+        <div class="n">1</div>
+        <div><h3>Liderar y hacer crecer un equipo de Forward Deployed Engineers</h3><p class="q">"Lead and grow a team of Forward Deployed Engineers"</p></div>
+        <div><ul>
+          <li>Como Data Analytics Manager en BGH armé y lideré un equipo de 7 data engineers y Solutions Architects, trabajando en varias cuentas a la vez</li>
+          <li>En DevRev lideré y mentoreé al equipo de Solutions Engineering en Argentina mientras llevaba mis propias cuentas</li>
+          <li>Enseñé Product Management y Cloud Computing en el ITBA: formar gente es parte del trabajo que más disfruto</li>
+        </ul><div class="tags"><span>7 ingenieros</span><span>Mentoring</span><span>Contratación</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">2</div>
+        <div><h3>Dirección técnica de RPA, integraciones y workflows con IA</h3><p class="q">"Set technical direction for RPA, integrations and AI-powered workflows"</p></div>
+        <div><ul>
+          <li>Hoy diseño agentes de IA para empresas en EE.UU.: qué hace el agente, qué deriva a una persona y cómo se conecta con sus sistemas</li>
+          <li>Construí y puse en producción un agente conversacional de punta a punta: WhatsApp Cloud API, streaming, ruteo entre modelos con fallbacks, colas con Celery y Redis, Postgres, Docker en AWS</li>
+          <li>En DevRev diseñé casos de IA que automatizaron triage de soporte, analítica de producto y consumo de datos; en el ITBA automaticé procesos sobre el ERP</li>
+        </ul><div class="tags"><span>Agentes de IA</span><span>Integraciones</span><span>Automatización</span><span>WhatsApp API</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">3</div>
+        <div><h3>Ser dueño de los despliegues, del scoping al go-live</h3><p class="q">"Own client deployments end to end"</p></div>
+        <div><ul>
+          <li>En BGH fui dueño del ciclo completo: discovery, diseño, blueprints, implementación y optimización de plataformas de datos en AWS</li>
+          <li>Hoy hago discovery en sitio con los operadores del cliente, mapeo el proceso a una arquitectura agéntica y la llevo a producción</li>
+          <li>En DevRev acompañé POCs, diseño de integraciones y adopción como asesor técnico de confianza</li>
+        </ul><div class="tags"><span>Discovery</span><span>Go-live</span><span>Adopción</span></div></div>
+      </div>
+      <div class="mrow reveal honest">
+        <div class="n">4</div>
+        <div><h3>Con sistemas de salud y equipos clínicos</h3><p class="q">"…with health systems and clinical teams"</p></div>
+        <div><ul>
+          <li>Mi experiencia en industrias reguladas viene de banca y sector público: plataformas de datos gobernadas para bancos bajo compliance estricto, con C-level y VPs del lado del cliente</li>
+          <li>La lógica se traslada: datos sensibles, procesos que no pueden frenar por un piloto, y usuarios (acá, médicos y recepción) que adoptan solo si la herramienta les ahorra tiempo de verdad</li>
+          <li>La demo de abajo muestra cómo pienso un flujo clínico: las reglas viven en las herramientas, no solo en el prompt</li>
+        </ul><div class="tags"><span>Industrias reguladas</span><span>Compliance</span><span>Datos sensibles</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">5</div>
+        <div><h3>6+ años en desarrollo, automatización o integración de sistemas</h3><p class="q">"6+ years in software development, automation or systems integration"</p></div>
+        <div><ul>
+          <li>Desde 2019: data warehouses, modelado y ETL en MicroStrategy; data lakes, ETL serverless, pipelines de ML y warehouses en AWS (Spark, Glue, Redshift, Step Functions) en BGH; integraciones y agentes desde entonces</li>
+        </ul><div class="tags"><span>ETL</span><span>AWS</span><span>Integración de sistemas</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">6</div>
+        <div><h3>2+ años liderando ingenieros · Python, JavaScript, APIs y SQL</h3><p class="q">"2+ years leading engineers, Python and JavaScript, APIs and SQL"</p></div>
+        <div><ul>
+          <li>Liderazgo: Data Analytics Manager en BGH (7 ingenieros) y líder del equipo de SE en Argentina en DevRev</li>
+          <li>Código: Python/Flask y Spark, Node.js y TypeScript, Next.js y React; APIs de WhatsApp Cloud, Meta Marketing, pagos y OAuth; años de SQL en MicroStrategy y Redshift</li>
+        </ul><div class="tags"><span>Python</span><span>JavaScript / TS</span><span>APIs</span><span>SQL</span></div></div>
+      </div>
+      <div class="mrow reveal">
+        <div class="n">7</div>
+        <div><h3>Español fluido</h3><p class="q">"Fluent Spanish"</p></div>
+        <div><ul>
+          <li>Español nativo, porteño. Inglés bilingüe para hablar con producto o con clientes en EE.UU. Francés DELF A2</li>
+        </ul><div class="tags"><span>ES nativo</span><span>EN bilingüe</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="live-agent" aria-labelledby="demo-h">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">▶ Demo en vivo · Claude con herramientas</div>
+      <h2 class="h2" id="demo-h">Un recepcionista con IA, <span class="t">desplegado como lo haría mi equipo.</span></h2>
+      <div>
+        <p class="lede">Una clínica ficticia atiende turnos por WhatsApp. Elegí un mensaje de paciente (o escribí el tuyo) y mirá al agente buscar en la ficha, consultar la agenda, verificar la obra social en el padrón, reservar o derivar a una persona, y pasar su respuesta por un control de calidad antes de enviarla.</p>
+      </div>
+    </div>
+    <p class="honestnote reveal"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe9de" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V7l8-4z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span><b>Agente real, datos inventados.</b> Claude Haiku 4.5 en Amazon Bedrock llamando herramientas sobre una clínica que no existe: pacientes, obras sociales, profesionales y copagos son de mentira. El razonamiento es en vivo en el sitio publicado; en otros lugares (o si se agotó el cupo del día) ves una corrida grabada del mismo agente. Nunca da consejo médico.</span></p>
+    <div class="dgrid">
+      <div class="panel reveal">
+        <div class="ph"><b>Centro Médico Arroyo Claro</b><span>· ficticio · WhatsApp</span><span class="model"><i id="ag-dot"></i><span id="ag-model">Claude Haiku 4.5 · Bedrock</span></span></div>
+        <div class="cases" id="ag-cases" role="group" aria-label="Mensajes de pacientes"></div>
+        <div class="own">
+          <label for="ag-own">O escribí el mensaje de un paciente (máx. 600 caracteres)</label>
+          <textarea id="ag-own" maxlength="600" placeholder="Ej.: Hola, quiero turno con traumatología el jueves, tengo OS Docentes del Sur. Soy Rosa Benítez."></textarea>
+          <div class="row"><span class="cnt" id="ag-cnt">0 / 600</span><button class="btn" id="ag-send" type="button">Enviar al agente →</button></div>
+        </div>
+        <div class="log" id="ag-log" aria-live="polite"></div>
+        <div class="foot"><span id="ag-stat"></span><span id="ag-note" role="status"></span></div>
+      </div>
+      <div class="side">
+        <div class="phone reveal" aria-label="Conversación de WhatsApp">
+          <div class="wh"><span class="av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0b6b68" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><div><b>Centro Médico Arroyo Claro</b><span>asistente virtual · ficticio</span></div></div>
+          <div class="chat" id="ag-chat"></div>
+        </div>
+        <div class="qa reveal" id="ag-qa"></div>
+      </div>
+    </div>
+    <div class="toolset reveal" aria-label="Herramientas del agente">
+      <span><b>find_patient</b> ficha de pacientes</span><span><b>check_agenda</b> turnos libres</span><span><b>check_coverage</b> padrón de obras sociales</span><span><b>book / reschedule</b> sistema de turnos</span><span><b>escalate_to_human</b> recepción o guardia</span><span><b>qa_check_reply</b> políticas antes de enviar</span>
+    </div>
+    <div class="mgr">
+      <div class="reveal"><b>Las reglas viven en las herramientas</b><p>Reservar sin verificar la cobertura, mover un turno a otro médico sin consentimiento o agendar con síntomas de alarma: el sistema lo rechaza y el agente tiene que corregir.</p></div>
+      <div class="reveal"><b>Cada respuesta pasa por QA</b><p>Sin consejo médico ni diagnóstico, urgencias derivadas, copago informado, sin prometer lo que no se hizo. Si falla, se reescribe antes de llegar al paciente.</p></div>
+      <div class="reveal"><b>Cada caso le deja algo al equipo</b><p>Ficha desactualizada contra el padrón, agenda con cache, pacientes homónimos: la fricción de integración se vuelve un ítem del backlog del despliegue.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="values">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Cómo lidero</div>
+      <h2 class="h2">Dueño del resultado, honesto con el alcance, <span class="t">en equipo.</span></h2>
+      <p class="lede">Un equipo FDE vive en la frontera entre lo que el producto hace hoy y lo que la clínica necesita mañana. Estos son los tres principios con los que trabajo, y cada uno tiene una historia detrás.</p>
+    </div>
+    <div class="values">
+      <div class="val reveal" style="--c:var(--teal-l)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b6b68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Ser dueño de cada despliegue</h3><p>Fundé una empresa a los 17. Nadie más era dueño de los clientes, del P&amp;L ni de los errores. Sigo trabajando así: si un go-live se traba por un acceso a la historia clínica, destrabarlo es problema mío, y del FDE que lo lleva conmigo.</p><div class="proof">BB Productions · fundada a los 17</div></div>
+      <div class="val reveal" style="--c:var(--coral-l)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#d9532c" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8"/></svg></div><h3>Decir "no es viable" cuando no lo es</h3><p>Un alcance que el equipo no puede construir es una pérdida que todavía no pasó. Prefiero perder la discusión el día 3 que la clínica el día 90. En salud, esto también es seguridad del paciente.</p><div class="proof">Asesor técnico en POCs · DevRev</div></div>
+      <div class="val reveal" style="--c:var(--ok-l)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1f8a5b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c.8-3 2.8-4.5 5-4.5s4.2 1.5 5 4.5M11 19c.8-3 2.8-4.5 5-4.5s4.2 1.5 5 4.5"/></svg></div><h3>Ganar en equipo</h3><p>Producto define los patrones, los FDEs los despliegan, la clínica los usa. Mi trabajo es que cada traspaso sea limpio, que el equipo crezca, y que lo que aprendemos en campo vuelva a producto cada semana.</p><div class="proof">7 ingenieros en BGH · equipo de SE en DevRev Argentina</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Lo que hago hoy</div>
+      <h2 class="h2">Convierto procesos de negocio en <span class="t">arquitectura agéntica.</span></h2>
+      <p class="lede">Como AI Agents Architect para clientes enterprise en EE.UU., este es mi método. Es el mismo que llevaría a cada clínica y que le enseñaría al equipo.</p>
+    </div>
+    <div class="now">
+      <div class="flow reveal">
+        <div><b>Discovery en sitio</b><span>Me siento con quienes operan el proceso. En una clínica: recepción, médicos, facturación.</span></div>
+        <div><b>Mapa del proceso</b><span>Cada paso, cada sistema y cada excepción. Qué decide una persona y qué puede decidir un agente.</span></div>
+        <div><b>Arquitectura del agente</b><span>Prompts, herramientas, reglas de escalamiento e integraciones con los sistemas que ya usan.</span></div>
+        <div><b>Producción e iteración</b><span>Go-live, conversaciones reales, métricas, y la próxima mejora en el backlog.</span></div>
+      </div>
+      <div class="build reveal">
+        <div class="eyebrow" style="margin-bottom:10px">Con las manos en el código</div>
+        <h3>Construí y puse en producción un agente conversacional de punta a punta.</h3>
+        <p>Frontend en Next.js, React y TypeScript; streaming con Node.js (SSE); backend en Python/Flask con Celery, Redis y Postgres; ruteo de modelos (uno rápido clasifica, uno más fuerte corre el loop de herramientas, con fallbacks entre proveedores); voz con ElevenLabs; WhatsApp Cloud API, Meta Marketing API, pagos y OAuth; todo en Docker sobre AWS. Un manager de FDEs tiene que poder revisar un PR y debuggear una integración a las 11 de la noche antes de un go-live. Yo puedo.</p>
+        <div class="tags"><span>Python</span><span>TypeScript</span><span>Node.js</span><span>Postgres</span><span>Redis</span><span>WhatsApp Cloud API</span><span>AWS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Experiencia</div>
+      <h2 class="h2">Promovido en cada lugar <span class="t">donde trabajé.</span></h2>
+      <p class="lede">Siete años frente a clientes enterprise, y un paso más en cada empresa: de pasante a consultor, de Solutions Architect a manager, de Solutions Engineer a Solutions Architect. Tocá cada fila para ver el detalle.</p>
+    </div>
+    <div class="xp" id="xp"></div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div class="eyebrow">Primeras dos semanas</div>
+      <h2 class="h2">¿Cuatro semanas para arrancar? <span class="t">Dame dos.</span></h2>
+      <p class="lede">Un manager nuevo no debería frenar los despliegues en curso. Así usaría los primeros catorce días.</p>
+    </div>
+    <div class="plan">
+      <div class="pcard reveal" style="--c:var(--teal)"><div class="d">Días 1–3</div><h3>El equipo y los despliegues</h3><p>Uno a uno con cada FDE. Estado real de cada clínica: qué está en scoping, en piloto o en producción, y qué lo bloquea.</p><div class="out">Sale: mapa de despliegues y riesgos</div></div>
+      <div class="pcard reveal" style="--c:var(--amber)"><div class="d">Días 4–7</div><h3>Ir a la clínica</h3><p>Sentarme con un FDE en un cliente: recepción, consultorio, historia clínica. Ver dónde la transcripción y el registro estructurado ahorran tiempo, y dónde no.</p><div class="out">Sale: los 3 bloqueos que más se repiten</div></div>
+      <div class="pcard reveal" style="--c:var(--ok)"><div class="d">Días 8–11</div><h3>Playbook de despliegue v0</h3><p>Checklist de scoping, patrones de integración y RPA con los sistemas de cada clínica, criterios de go-live y QA clínico antes de producción.</p><div class="out">Sale: un playbook que el equipo firma</div></div>
+      <div class="pcard reveal" style="--c:var(--coral)"><div class="d">Días 12–14</div><h3>Ritmo del equipo</h3><p>Tablero de despliegues, revisión semanal de casos difíciles, y un canal directo de feedback de campo hacia producto. Plan de contratación si hace falta crecer.</p><div class="out">Sale: cadencia y próximos go-lives</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="creds">
+  <div class="wrap creds">
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:16px">Certificaciones</div>
+      <div class="certs">
+        <div><b>AWS Solutions Architect</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Database Specialty</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Well-Architected Review Consultant</b><span>Amazon Web Services</span></div>
+        <div><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></div>
+        <div><b>Generative AI Professional</b><span>Blockchain Council</span></div>
+        <div><b>MicroStrategy Architect</b><span>MicroStrategy</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:16px">Educación e idiomas</div>
+      <div class="edu">
+        <div><b>Licenciatura en Sistemas y Administración de Empresas, ITBA</b><span>2016–2021 · con honores</span></div>
+        <div><b>IGCSE (Cambridge) · IB Certificate, Northlands</b><span>Alumno más distinguido</span></div>
+        <div class="langs">
+          <div><b>Español</b><br><span>Nativo</span></div>
+          <div><b>Inglés</b><br><span>Bilingüe</span></div>
+          <div><b>Francés</b><br><span>DELF A2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Hablemos</div>
+    <h2>Armemos el equipo <em>que lleva la IA a la consulta.</em></h2>
+    <p class="lede">Me encantaría contarles cómo armé y lideré equipos técnicos frente a clientes, y cómo encararía los primeros despliegues con ustedes.</p>
+    <div class="ctas" style="margin-top:28px">
+      <button class="btn btn-p js-copy" type="button">Copiar email</button>
+      <a class="btn btn-g" href="https://linkedin.com/in/JuanMart%C3%ADnBeinesFurcada" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="cgrid">
+      <div><div class="eyebrow">Email</div><div class="v" id="email">jbeinesfurcada@gmail.com</div></div>
+      <div><div class="eyebrow">Teléfono · WhatsApp</div><div class="v">+54 9 11 6433-6286</div></div>
+      <div><div class="eyebrow">Ubicación</div><div class="v">Buenos Aires, Argentina</div></div>
+      <div><div class="eyebrow">Inicio</div><div class="v">Inmediato · remoto LATAM</div></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Juan Martín Beines Furcada · 2026</span><span>Hecho para Engineering Manager, Forward Deployed Engineering · vía TechTree</span></div></footer>
+<div class="toast" id="toast" role="status">Email copiado</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* experience */
+  var XP=[
+    ["2026 — hoy","AI Agents Architect","Clientes enterprise en EE.UU.","Diseño y despliego agentes de IA que toman trabajo operativo de equipos enterprise en EE.UU.",["Hago discovery en sitio con los operadores del cliente y mapeo el proceso de negocio a una arquitectura agéntica","Diseño el agente: prompts, herramientas, reglas de escalamiento e integraciones con su CRM y sus datos","Lo llevo a producción e itero sobre conversaciones y resultados reales"]],
+    ["Oct 2024 — 2026","DevRev","Solutions Engineer → Solutions Architect","#1 SE del mercado US Commercial en 2025, en una empresa de IA agéntica. Promovido a Solutions Architect.",["#1 Solutions Engineer del mercado US Commercial, 2025","Dueño de la estrategia de pre-venta, demos técnicas y arquitectura de soluciones para cuentas enterprise","Diseñé casos de uso de IA que automatizaron triage de soporte, analítica de producto y consumo de datos","Asesor técnico de confianza en POCs, diseño de integraciones y adopción","Lideré y mentoreé al equipo de SE en Argentina mientras llevaba varias cuentas a la vez"],true],
+    ["2021 — 2024","BGH Tech Partner","AWS Solutions Architect → Data Analytics Manager","Partner de AWS. Entré como Solutions Architect y me promovieron a liderar el equipo de Data Analytics.",["Empecé como Sr Cloud Pre-Sales Engineer y AWS Solutions Architect, asesorando a C-level y VPs de banca, retail, logística, telco y sector público","Diseñé y desplegué soluciones de datos de punta a punta: ETL serverless, data lakes, pipelines de ML y warehouses en AWS (Spark, Glue, Redshift, Step Functions)","Plataformas de datos gobernadas para bancos bajo requisitos estrictos de compliance","Como Data Analytics Manager, armé y lideré un equipo de 7 data engineers y Solutions Architects en varias cuentas","Dueño del ciclo completo: discovery, diseño, blueprints, implementación y optimización","Ayudé a la empresa a ganar 3 AWS Competencies"]],
+    ["2019 — 2021","MicroStrategy","Intern → Associate Consultant","Entré como pasante y me promovieron a consultor. POCs, demos de pre-venta y modernización de data warehouses.",["POCs, demos técnicas y consultoría para clientes enterprise","Lideré modernizaciones de data warehouse y despliegues de BI: modelado de datos, optimización de SQL, ETL","Documentación de soluciones: POCs, roadmaps, vistas lógicas de sistemas"]],
+    ["2017 — 2021","ITBA","Sr Analyst → Back Office Manager → Instructor","Operaciones de la competencia de emprendedores MIT $100K LatAm, y después docente de Product Management y Cloud Computing.",["Docente de Product Management y Cloud Computing en el ITBA","Back Office Manager del MIT $100K LatAm: lideré un equipo de 4 analistas en logística, análisis de datos y mejora de procesos","Convenios marco y pasantías de la universidad; automaticé procesos sobre el ERP"]],
+    ["2014 — 2019","BB Productions","CEO & Co-founder","Fundada a los 17. Clientes, P&L, proveedores y equipo.",["Manejé toda la operación: relación con clientes, P&L, proveedores, staffing y planificación"]]
+  ];
+  var xc=$('xp');
+  XP.forEach(function(r,i){
+    var d=document.createElement('div');d.className='xrow reveal'+(i<2?' open':'');
+    var lad=r[2].split(' → ');
+    d.innerHTML='<button type="button" aria-expanded="'+(i<2)+'"><span class="when">'+r[0]+'</span><span><span class="co">'+r[1]+(r[5]?'<span class="badge">#1 SE US 2025</span>':'')+'</span><span class="ladder">'+lad.map(function(x,k){return '<span'+(lad.length>1&&k===lad.length-1?' class="top"':'')+'>'+x+'</span>'}).join('<i aria-hidden="true">→</i>')+'</span></span><span class="sum">'+r[3]+'</span><span class="pm" aria-hidden="true">+</span></button><div class="body"><div><ul>'+r[4].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div>';
+    d.querySelector('button').addEventListener('click',function(){var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+    xc.appendChild(d);
+  });
+
+  /* reveal + board bars */
+  var els=document.querySelectorAll('.reveal');
+  function show(el){el.classList.add('in');el.querySelectorAll('i[data-w]').forEach(function(b){b.style.width=b.getAttribute('data-w')+'%'})}
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target)}})},{threshold:.08});
+    els.forEach(function(el){io.observe(el)});
+  }else{els.forEach(show)}
+
+  /* copy email */
+  var t=$('toast'),email='jbeinesfurcada@gmail.com',tm;
+  function toast(msg){t.textContent=msg;t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},1900)}
+  function selectEmail(){var v=$('email');var r=document.createRange();r.selectNodeContents(v);var s=getSelection();s.removeAllRanges();s.addRange(r);v.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});toast('Email seleccionado: Ctrl/Cmd+C para copiar')}
+  document.querySelectorAll('.js-copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      try{navigator.clipboard.writeText(email).then(function(){toast('Email copiado: '+email)},selectEmail)}catch(x){selectEmail()}
+    });
+  });
+})();
+</script>
+<script id="ag-replay">window.AG_REPLAY={"turno": [{"t": "start", "scenario": "clinica", "model": "Claude Haiku 4.5 · Amazon Bedrock"}, {"t": "say", "text": "Busco al paciente en la ficha de la clínica."}, {"t": "tool", "name": "find_patient", "input": {"query": "Lucía Fernández 30.111.222"}, "out": "P-101 Lucía Fernández", "flag": false}, {"t": "say", "text": "Verifico la cobertura en el padrón de coberturas."}, {"t": "tool", "name": "check_coverage", "input": {"patient_id": "P-101", "specialty": "Dermatología"}, "out": "Salud Andina 210 · Dermatología · copago $ 8.500 · ficha dice Salud Andina 310", "flag": true}, {"t": "say", "text": "Busco horarios disponibles en dermatología para la semana próxima."}, {"t": "tool", "name": "check_agenda", "input": {"specialty": "Dermatología"}, "out": "Dermatología: mar 09:00, mar 11:30, jue 10:00, vie 15:00", "flag": false}, {"t": "say", "text": "Hay dos horarios a la mañana: martes a las 09:00 y martes a las 11:30. Reservo el primero (martes 09:00) que es el más temprano."}, {"t": "tool", "name": "book_appointment", "input": {"patient_id": "P-101", "slot_id": "DER-1"}, "out": "rechazado: martes 09:00 ya estaba tomado", "flag": true}, {"t": "say", "text": "El turno de martes 09:00 se tomó justo ahora, intento con el de martes 11:30."}, {"t": "tool", "name": "book_appointment", "input": {"patient_id": "P-101", "slot_id": "DER-2"}, "out": "reservado Dermatología · martes 11:30 · Dra. Valeria Ríos", "flag": false}, {"t": "say", "text": "Redacto la respuesta con el plan del padrón (Salud Andina 210), el copago y los detalles del turno confirmado."}, {"t": "tool", "name": "qa_check_reply", "input": {"reply": "Hola Lucía! Te confirmamos tu turno con la Dra. Valeria Ríos el martes a las 11:30 (confirmación T-90211). Tu plan es Salud Andina 210 y tiene cobertura en dermatología con copago de $8.500. ¡Hasta el martes!"}, "out": "aprobado 6/6", "flag": false}, {"t": "say", "text": "Envío la respuesta aprobada al paciente."}, {"t": "card", "name": "send_whatsapp_reply", "card": {"case": "turno", "label": "Turno con obra social", "message": "Hola! Soy Lucía Fernández, DNI 30.111.222. Necesito un turno con dermatología la semana que viene, cualquier día a la mañana. Tengo Salud Andina plan 310, ¿me cubre o tengo que pagar algo?", "reply": "Hola Lucía! Te confirmamos tu turno con la Dra. Valeria Ríos el martes a las 11:30 (confirmación T-90211). Tu plan es Salud Andina 210 y tiene cobertura en dermatología con copago de $8.500. ¡Hasta el martes!", "patient": "Lucía Fernández · P-101", "flags": [], "actions": ["Turno reservado: Dermatología · martes 11:30 · Dra. Valeria Ríos", "Cobertura: Salud Andina 210 · copago $ 8.500"], "qa": [{"label": "Sin consejo médico ni diagnóstico", "ok": true, "na": false}, {"label": "Urgencia derivada a humano", "ok": true, "na": true}, {"label": "Cobertura verificada en el padrón", "ok": true, "na": false}, {"label": "Día, hora y profesional correctos", "ok": true, "na": false}, {"label": "Copago informado", "ok": true, "na": false}, {"label": "Sin prometer lo que no se hizo", "ok": true, "na": false}, {"label": "Mensaje corto para WhatsApp", "ok": true, "na": false}], "notes": ["Ficha desactualizada: dice \"Salud Andina 310\" y el padrón dice \"Salud Andina 210\".", "El turno DER-1 figuraba libre en la agenda cacheada pero ya estaba tomado en el sistema de turnos."], "team_note": "El padrón tiene un plan diferente al de la ficha (210 vs 310 vs lo que dijo el paciente). La herramienta check_coverage aclaró cuál era vigente. Sugerencia: sincronizar periódicamente los datos de ficha con el padrón de coberturas para evitar confusión en la atención."}}, {"t": "done", "calls": 8, "seconds": 12, "cost": 0.0282}], "reprogramar": [{"t": "start", "scenario": "clinica", "model": "Claude Haiku 4.5 · Amazon Bedrock"}, {"t": "say", "text": "Busco a Martín Sosa en la ficha de la clínica."}, {"t": "tool", "name": "find_patient", "input": {"query": "Martín Sosa"}, "out": "P-102 Martín Sosa · turno jueves 09:00 | P-103 Martín Alejandro Sosa", "flag": true}, {"t": "say", "text": "Encontré a Martín Sosa con turno de cardiología el jueves. Ahora verifico su cobertura en el padrón."}, {"t": "tool", "name": "check_coverage", "input": {"patient_id": "P-102", "specialty": "Cardiología"}, "out": "Prepaga Río 400 · Cardiología · copago $ 0", "flag": false}, {"t": "say", "text": "La cobertura está ok, sin copago. Ahora busco horarios libres para cardiología el viernes y lunes."}, {"t": "tool", "name": "check_agenda", "input": {"specialty": "Cardiología"}, "out": "Cardiología: lun 15:30, lun 17:00, vie 16:00, mié 09:30", "flag": false}, {"t": "say", "text": "Hay horario el viernes a las 16:00 y dos opciones el lunes (15:30 y 17:00). Reprograma el turno al viernes, que era su preferencia."}, {"t": "tool", "name": "reschedule_appointment", "input": {"appointment_id": "A-5531", "new_slot_id": "CAR-3"}, "out": "rechazado: cambia de profesional sin consentimiento", "flag": true}, {"t": "say", "text": "No hay viernes disponible con el Dr. Paz, solo con otra médica. Voy al lunes 15:30 con el Dr. Paz que es su profesional."}, {"t": "tool", "name": "reschedule_appointment", "input": {"appointment_id": "A-5531", "new_slot_id": "CAR-1"}, "out": "movido de jueves 09:00 a lunes 15:30 · Dr. Tomás Paz", "flag": false}, {"t": "say", "text": "Turno reprogramado para el lunes a las 15:30 con el Dr. Paz. Preparo la respuesta."}, {"t": "tool", "name": "qa_check_reply", "input": {"reply": "Hola Martín, listo: movimos tu turno de cardiología al lunes a las 15:30 con el Dr. Paz. No hay disponibilidad el viernes con tu médico, pero el lunes a la tarde está confirmado. ¡Gracias!"}, "out": "aprobado 6/6", "flag": false}, {"t": "say", "text": "Respuesta aprobada. Envío al paciente."}, {"t": "card", "name": "send_whatsapp_reply", "card": {"case": "reprogramar", "label": "Reprogramar", "message": "Buenas, soy Martín Sosa. Tengo turno el jueves con el Dr. Paz de cardiología y al final no voy a poder ir. ¿Me lo pueden pasar al viernes? Si no hay, el lunes a la tarde. Confírmenmelo directo, porfa. Gracias", "reply": "Hola Martín, listo: movimos tu turno de cardiología al lunes a las 15:30 con el Dr. Paz. No hay disponibilidad el viernes con tu médico, pero el lunes a la tarde está confirmado. ¡Gracias!", "patient": "Martín Sosa · P-102", "flags": [], "actions": ["Turno movido (era jueves 09:00): Cardiología · lunes 15:30 · Dr. Tomás Paz", "Cobertura: Prepaga Río 400 · copago $ 0"], "qa": [{"label": "Sin consejo médico ni diagnóstico", "ok": true, "na": false}, {"label": "Urgencia derivada a humano", "ok": true, "na": true}, {"label": "Cobertura verificada en el padrón", "ok": true, "na": false}, {"label": "Día, hora y profesional correctos", "ok": true, "na": false}, {"label": "Copago informado", "ok": true, "na": false}, {"label": "Sin prometer lo que no se hizo", "ok": true, "na": false}, {"label": "Mensaje corto para WhatsApp", "ok": true, "na": false}], "notes": ["Pacientes homónimos en la ficha (P-102, P-103): identificar por DNI o turno."], "team_note": "El sistema rechazó cambio de profesional en reschedule. Restricción esperada para continuidad de atención, pero hubo alternativa disponible el lunes que satisfizo al paciente."}}, {"t": "done", "calls": 8, "seconds": 12, "cost": 0.0287}], "urgente": [{"t": "start", "scenario": "clinica", "model": "Claude Haiku 4.5 · Amazon Bedrock"}, {"t": "say", "text": "Síntomas de alarma: dolor en el pecho que irradia al brazo izquierdo y dificultad respiratoria."}, {"t": "tool", "name": "find_patient", "input": {"query": "Carlos Méndez"}, "out": "P-104 Carlos Méndez", "flag": false}, {"t": "say", "text": "Paciente identificado."}, {"t": "tool", "name": "escalate_to_human", "input": {"patient_id": "P-104", "priority": "urgente", "reason": "Dolor en el pecho que irradia al brazo izquierdo desde hace una hora, con dificultad respiratoria"}, "out": "H-7401 · urgente · Dolor en el pecho que irradia al brazo izquierdo desde hace una hora, con dificultad respi", "flag": true}, {"t": "say", "text": "Derivado a guardia con prioridad urgente."}, {"t": "tool", "name": "qa_check_reply", "input": {"reply": "Hola Carlos, lo que describís requiere atención inmediata. No podemos esperar ni darte medicación por WhatsApp. Llamá al 107 o al 911 ahora mismo, o acercate a la guardia más cercana. Te estamos alertando a nuestro equipo de guardia para cuando llegues. Cuidate."}, "out": "aprobado 4/4", "flag": false}, {"t": "say", "text": "Mensaje aprobado."}, {"t": "card", "name": "send_whatsapp_reply", "card": {"case": "urgente", "label": "Síntomas de alarma", "message": "Hola, quería un turno con clínica médica para mañana. Soy Carlos Méndez. Desde hace una hora tengo un dolor fuerte en el pecho que se me va al brazo izquierdo y me cuesta respirar. ¿Qué me puedo tomar mientras tanto?", "reply": "Hola Carlos, lo que describís requiere atención inmediata. No podemos esperar ni darte medicación por WhatsApp. Llamá al 107 o al 911 ahora mismo, o acercate a la guardia más cercana. Te estamos alertando a nuestro equipo de guardia para cuando llegues. Cuidate.", "patient": "Carlos Méndez · P-104", "flags": ["dolor de pecho", "dificultad para respirar"], "actions": ["Derivado a humano (urgente) · H-7401"], "qa": [{"label": "Sin consejo médico ni diagnóstico", "ok": true, "na": false}, {"label": "Urgencia derivada a humano", "ok": true, "na": false}, {"label": "Cobertura verificada en el padrón", "ok": true, "na": true}, {"label": "Día, hora y profesional correctos", "ok": true, "na": true}, {"label": "Copago informado", "ok": true, "na": true}, {"label": "Sin prometer lo que no se hizo", "ok": true, "na": false}, {"label": "Mensaje corto para WhatsApp", "ok": true, "na": false}], "notes": ["El filtro de reglas detectó signos de alarma (dolor de pecho, dificultad para respirar) y bloqueó reservas en este caso."], "team_note": "Caso de alarma cardiovascular derivado a guardia. Sistema escaló correctamente con patient_id y síntomas clínicos sin diagnóstico."}}, {"t": "done", "calls": 5, "seconds": 8, "cost": 0.0159}]};</script>
+<script>
+/* Live demo: streams NDJSON from /api/agent/ on the published site; elsewhere (or on error/limit) plays a recorded run. */
+(function(){
+  var root=document.getElementById('live-agent');if(!root)return;
+  var $=function(id){return document.getElementById(id)};
+  var REPLAY=window.AG_REPLAY||{};
+  var LIVE=/^cv-juan-martin.*\.vercel\.app$|^localhost$/.test(location.hostname);
+  var LIVE_URL='https://cv-juan-martin.vercel.app/techtree-em-fde/#live-agent';
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CASES=[
+    {id:'turno',k:'Turno + obra social',c:'#5fd3b0',m:'Hola! Soy Lucía Fernández, DNI 30.111.222. Necesito un turno con dermatología la semana que viene, cualquier día a la mañana. Tengo Salud Andina plan 310, ¿me cubre o tengo que pagar algo?'},
+    {id:'reprogramar',k:'Reprogramar',c:'#f2c46d',m:'Buenas, soy Martín Sosa. Tengo turno el jueves con el Dr. Paz de cardiología y al final no voy a poder ir. ¿Me lo pueden pasar al viernes? Si no hay, el lunes a la tarde. Confírmenmelo directo, porfa. Gracias'},
+    {id:'urgente',k:'Síntomas de alarma',c:'#ff8a65',m:'Hola, quería un turno con clínica médica para mañana. Soy Carlos Méndez. Desde hace una hora tengo un dolor fuerte en el pecho que se me va al brazo izquierdo y me cuesta respirar. ¿Qué me puedo tomar mientras tanto?'}
+  ];
+  var TOOL={find_patient:['F','ficha'],check_agenda:['A','agenda'],check_coverage:['$','padrón'],book_appointment:['R','reserva'],reschedule_appointment:['↻','reprogramación'],escalate_to_human:['!','derivación'],qa_check_reply:['QA','control']};
+  var log=$('ag-log'),chat=$('ag-chat'),qa=$('ag-qa'),stat=$('ag-stat'),note=$('ag-note'),dot=$('ag-dot'),casesEl=$('ag-cases'),own=$('ag-own'),send=$('ag-send'),cnt=$('ag-cnt');
+  var busy=false,ctl=null,carded=false;
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function now(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+
+  CASES.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='case';b.setAttribute('data-id',c.id);b.style.setProperty('--c',c.c);
+    b.innerHTML='<span class="k">'+esc(c.k)+'</span><span class="m">'+esc(c.m)+'</span>';
+    b.addEventListener('click',function(){if(!busy)run({case:c.id},c.m,c.id)});
+    casesEl.appendChild(b);
+  });
+  own.addEventListener('input',function(){cnt.textContent=own.value.length+' / 600'});
+  send.addEventListener('click',function(){
+    var v=own.value.replace(/\s+/g,' ').trim();
+    if(busy)return;
+    if(v.length<8){note.textContent='Escribí un mensaje un poco más largo.';return}
+    if(!LIVE){note.innerHTML='Los mensajes propios corren en el <a href="'+LIVE_URL+'" style="color:#bfe9de">sitio publicado</a>.';return}
+    run({message:v.slice(0,600)},v.slice(0,600),null);
+  });
+  function lock(on){busy=on;dot.classList.toggle('on',on);send.disabled=on;casesEl.querySelectorAll('.case').forEach(function(b){b.setAttribute('aria-disabled',on?'true':'false')})}
+  function mark(id){casesEl.querySelectorAll('.case').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-id')===id)})}
+  function scroll(){if(LIVE||busy)log.scrollTop=log.scrollHeight}
+  function add(html,cls){var d=document.createElement('div');d.className=cls;d.innerHTML=html;log.appendChild(d);scroll();return d}
+
+  function reset(msg){
+    log.innerHTML='';carded=false;note.textContent='';
+    chat.innerHTML='<div class="bub in">'+esc(msg)+'<small>'+now()+'</small></div><div class="bub out wait" id="ag-wait"><span class="typing"><i></i><i></i><i></i></span></div>';
+    qa.innerHTML='<h3>QA del caso <span style="background:#22393e;color:#a9c0bc">en curso</span></h3><ul><li class="na"><i>…</i>Esperando la respuesta del agente</li></ul>';
+  }
+  function summarize(name,inp){
+    inp=inp||{};
+    if(name==='find_patient')return inp.query;
+    if(name==='check_agenda')return inp.specialty;
+    if(name==='check_coverage')return (inp.patient_id||'')+' · '+(inp.specialty||'');
+    if(name==='book_appointment')return (inp.patient_id||'')+' · '+(inp.slot_id||'');
+    if(name==='reschedule_appointment')return (inp.appointment_id||'')+' → '+(inp.new_slot_id||'');
+    if(name==='escalate_to_human')return inp.priority;
+    if(name==='qa_check_reply')return '"'+String(inp.reply||'').slice(0,70)+'…"';
+    return '';
+  }
+  function card(c){
+    carded=true;
+    var w=$('ag-wait');if(w)w.remove();
+    var b=document.createElement('div');b.className='bub out';b.innerHTML=esc(c.reply)+'<small>'+now()+' ✓✓</small>';chat.appendChild(b);
+    var ok=(c.qa||[]).filter(function(x){return !x.na}),pass=ok.filter(function(x){return x.ok}).length;
+    var h='<h3>QA del caso <span>'+pass+'/'+ok.length+' ok</span></h3>';
+    if(c.flags&&c.flags.length)h+='<div class="alarm">Signos de alarma: '+esc(c.flags.join(', '))+'</div>';
+    h+='<ul>'+(c.qa||[]).map(function(x){return '<li class="'+(x.na?'na':x.ok?'':'bad')+'"><i>'+(x.na?'–':x.ok?'✓':'✕')+'</i>'+esc(x.label)+(x.na?' · no aplica':'')+'</li>'}).join('')+'</ul>';
+    h+='<div class="sub"><b>Acciones en sistemas</b>'+(c.actions||[]).map(function(a){return '<p>'+esc(a)+'</p>'}).join('')+'</div>';
+    var notes=(c.notes||[]).slice();if(c.team_note)notes.push('Propuesta del agente: '+c.team_note);
+    if(notes.length)h+='<div class="sub"><b>Para el equipo FDE</b>'+notes.map(function(a){return '<p>'+esc(a)+'</p>'}).join('')+'</div>';
+    qa.innerHTML=h;
+  }
+  function handle(e){
+    if(e.t==='start'){if(e.model)$('ag-model').textContent=e.model;add('El agente recibió el mensaje','sys')}
+    else if(e.t==='say'){if(!carded)add(esc(e.text),'say')}
+    else if(e.t==='tool'){var m=TOOL[e.name]||['·',''];add('<span class="ic" aria-hidden="true">'+esc(m[0])+'</span><span class="nm">'+esc(e.name)+' <small>'+esc(summarize(e.name,e.input))+'</small></span><span class="out">'+(e.flag?'⚑ ':'')+esc(e.out)+'</span>','tl'+(e.flag?' flag':''))}
+    else if(e.t==='card'){card(e.card||{})}
+    else if(e.t==='done'){stat.textContent=e.calls+' llamadas al modelo · '+e.seconds+' s · US$ '+Number(e.cost).toFixed(3)+(e.replay?' · corrida grabada':' · en vivo')}
+  }
+  function finish(){lock(false);if(!carded){var w=$('ag-wait');if(w)w.remove()}}
+  function replay(id,why){
+    var evs=REPLAY[id];
+    if(!evs){note.textContent=why+' No hay grabación para este caso.';finish();return}
+    if(why)note.textContent=why;
+    var i=0,gap=reduce?0:Math.max(120,Math.min(520,14000/evs.length));
+    (function next(){
+      if(i>=evs.length)return finish();
+      var e=Object.assign({},evs[i++]);if(e.t==='done')e.replay=true;handle(e);
+      if(gap)setTimeout(next,e.t==='tool'?gap:gap*.6);else next();
+    })();
+  }
+  function run(input,msg,id){
+    lock(true);mark(id);reset(msg);stat.innerHTML='<span class="typing"><i></i><i></i><i></i></span> el agente está trabajando';
+    if(!LIVE)return replay(id,'Corrida grabada. En el sitio publicado corre en vivo.');
+    ctl=new AbortController();var got=0;
+    fetch('/api/agent/',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({scenario:'clinica',input:input}),signal:ctl.signal}).then(function(r){
+      if(!r.ok||!r.body)throw new Error(r.status===429?'limit':'http'+r.status);
+      var rd=r.body.getReader(),dec=new TextDecoder(),buf='';
+      return (function pump(){return rd.read().then(function(x){
+        if(x.done){finish();return}
+        buf+=dec.decode(x.value,{stream:true});var lines=buf.split('\n');buf=lines.pop();
+        lines.forEach(function(l){if(!l.trim())return;var ev;try{ev=JSON.parse(l)}catch(err){return}got++;
+          if(ev.t==='error')throw new Error(ev.msg);handle(ev)});
+        return pump();
+      })})();
+    }).catch(function(err){
+      var m=String(err&&err.message||err);
+      if(got>2){note.textContent='La corrida se cortó ('+m+'). Probá de nuevo o con otro caso.';finish();return}
+      if(!id){note.textContent=m==='limit'?'Se agotaron las corridas en vivo de hoy. Probá uno de los casos grabados.':'El agente no está disponible ahora. Probá uno de los casos grabados.';finish();return}
+      reset(msg);
+      replay(id,m==='limit'?'Se agotaron las corridas en vivo de hoy: esta es una corrida grabada del mismo agente.':'El agente en vivo no está disponible: esta es una corrida grabada del mismo agente.');
+    });
+  }
+  window.addEventListener('pagehide',function(){if(ctl)ctl.abort()});
+
+  /* first paint (and the PDF): render the recorded run of the first case statically */
+  var first=CASES[0];
+  if(REPLAY[first.id]){mark(first.id);reset(first.m);REPLAY[first.id].forEach(function(e){e=Object.assign({},e);if(e.t==='done')e.replay=true;handle(e)});finish();
+    stat.textContent+=' · elegí un caso para '+(LIVE?'correrlo en vivo':'verlo de nuevo');log.scrollTop=0}
+  else{log.innerHTML='<div class="empty">Elegí un mensaje de paciente para empezar.</div>'}
+})();
+</script>
+
+</body>
+</html>
